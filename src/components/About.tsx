@@ -1,0 +1,26 @@
+import { Section } from './Section';
+import { profile } from '@/content';
+
+/** "The Arc" — the rare multidisciplinary throughline, told in ordered beats. */
+export function About() {
+  return (
+    <Section id="about" eyebrow="The Arc" title="From aerospace precision to AI-native products">
+      <ol className="grid gap-8 sm:grid-cols-3">
+        {profile.arc.map((beat, i) => (
+          <li key={beat.phase} className="relative">
+            <div className="mb-3 flex items-center gap-3">
+              <span className="tabular text-sm font-semibold text-accent">
+                {String(i + 1).padStart(2, '0')}
+              </span>
+              <span className="text-xs font-medium uppercase tracking-[0.18em] text-muted">
+                {beat.phase}
+              </span>
+            </div>
+            <h3 className="mb-2 text-lg font-semibold text-ink">{beat.title}</h3>
+            <p className="text-sm leading-relaxed text-muted">{beat.body}</p>
+          </li>
+        ))}
+      </ol>
+    </Section>
+  );
+}

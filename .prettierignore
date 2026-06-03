@@ -1,0 +1,9 @@
+out/
+.next/
+.pw-site/
+node_modules/
+playwright-report/
+test-results/
+*.pdf
+*.docx
+package-lock.json
