@@ -1,3 +1,6 @@
+'use client';
+
+import { useState } from 'react';
 import { asset } from '@/lib/asset';
 import { profile } from '@/content';
 
@@ -10,6 +13,7 @@ const LINKS = [
 
 /** Sticky top nav with anchor links + a persistent resume CTA. */
 export function Nav() {
+  const [open, setOpen] = useState(false);
   return (
     <header className="sticky top-0 z-50 border-b border-hairline bg-paper/80 backdrop-blur">
       <nav
@@ -19,7 +23,7 @@ export function Nav() {
         <a href="#top" className="text-sm font-semibold tracking-tight text-ink no-underline">
           {profile.name}
         </a>
-        <div className="flex items-center gap-6">
+        <div className="flex items-center gap-4 sm:gap-6">
           <ul className="hidden items-center gap-6 sm:flex">
             {LINKS.map((l) => (
               <li key={l.href}>
@@ -35,8 +39,58 @@ export function Nav() {
           >
             Resume
           </a>
+          <button
+            type="button"
+            aria-expanded={open}
+            aria-controls="mobile-menu"
+            onClick={() => setOpen((o) => !o)}
+            className="-mr-1 p-1 text-ink sm:hidden"
+          >
+            <span className="sr-only">{open ? 'Close menu' : 'Open menu'}</span>
+            <svg
+              aria-hidden="true"
+              width="20"
+              height="20"
+              viewBox="0 0 20 20"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="1.5"
+              strokeLinecap="round"
+            >
+              {open ? (
+                <>
+                  <line x1="4" y1="4" x2="16" y2="16" />
+                  <line x1="16" y1="4" x2="4" y2="16" />
+                </>
+              ) : (
+                <>
+                  <line x1="3" y1="5" x2="17" y2="5" />
+                  <line x1="3" y1="10" x2="17" y2="10" />
+                  <line x1="3" y1="15" x2="17" y2="15" />
+                </>
+              )}
+            </svg>
+          </button>
         </div>
       </nav>
+      {open && (
+        <ul
+          id="mobile-menu"
+          className="space-y-3 border-t border-hairline bg-paper px-6 py-4 sm:hidden"
+        >
+          {LINKS.map((l) => (
+            <li key={l.href}>
+              <a
+                href={l.href}
+                onClick={() => setOpen(false)}
+                className="block py-1 text-sm text-muted no-underline hover:text-ink"
+              >
+                {l.label}
+              </a>
+            </li>
+          ))}
+        </ul>
+      )}
     </header>
   );
 }
