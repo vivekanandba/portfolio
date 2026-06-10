@@ -24,6 +24,42 @@ test('resume PDF link resolves under the base path', async ({ page, baseURL }) =
   expect(res.headers()['content-type']).toContain('pdf');
 });
 
+test('og:image is absolute and the file is served', async ({ page, baseURL }) => {
+  await page.goto('');
+  const ogImage = await page.locator('meta[property="og:image"]').first().getAttribute('content');
+  expect(ogImage).toContain('/portfolio/og.png');
+
+  const res = await page.request.get(new URL('og.png', baseURL).toString());
+  expect(res.status()).toBe(200);
+  expect(res.headers()['content-type']).toContain('image/png');
+});
+
+test('mobile menu opens and navigates to a section', async ({ page }, testInfo) => {
+  test.skip(testInfo.project.name !== 'mobile', 'mobile viewport only');
+  await page.goto('');
+  await page.getByRole('button', { name: /open menu/i }).click();
+  await page.locator('#mobile-menu').getByRole('link', { name: 'Skills' }).click();
+  await expect(page).toHaveURL(/#skills$/);
+  await expect(page.locator('#mobile-menu')).toHaveCount(0);
+});
+
+test('unknown paths get the custom 404 page', async ({ page }) => {
+  const res = await page.goto('this-page-does-not-exist/');
+  expect(res?.status()).toBe(404);
+  await expect(page.getByText(/doesn’t exist/i)).toBeVisible();
+  await expect(page.getByRole('link', { name: /back to the portfolio/i })).toBeVisible();
+});
+
+test.describe('dark mode', () => {
+  test.use({ colorScheme: 'dark' });
+
+  test('dark palette applies via prefers-color-scheme', async ({ page }) => {
+    await page.goto('');
+    const bg = await page.evaluate(() => getComputedStyle(document.body).backgroundColor);
+    expect(bg).toBe('rgb(19, 19, 22)');
+  });
+});
+
 test('primary CTA scrolls to work and a featured project is visible', async ({ page }) => {
   await page.goto('');
   await page.getByRole('link', { name: 'View Work' }).click();

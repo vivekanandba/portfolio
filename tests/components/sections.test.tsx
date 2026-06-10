@@ -81,4 +81,9 @@ describe('Contact', () => {
       expect.stringContaining(profile.resumeFile),
     );
   });
+
+  it('shows the current year in the copyright line', () => {
+    render(<Contact />);
+    expect(screen.getByText(new RegExp(`© ${new Date().getFullYear()}`))).toBeInTheDocument();
+  });
 });

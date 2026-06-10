@@ -21,7 +21,7 @@ export function Hero() {
         <div className="mt-10 flex flex-wrap items-center gap-4">
           <a
             href="#work"
-            className="rounded-full bg-accent px-6 py-3 text-sm font-medium text-white no-underline transition-opacity hover:opacity-90"
+            className="rounded-full bg-accent px-6 py-3 text-sm font-medium text-accent-contrast no-underline transition-opacity hover:opacity-90"
           >
             View Work
           </a>

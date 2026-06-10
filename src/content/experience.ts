@@ -48,7 +48,11 @@ export const projects: Project[] = [
     org: 'Sanas.ai',
     summary:
       'Architected a privacy-first, edge-powered voice analytics platform processing high-fidelity audio locally without cloud PII exposure — a ClickHouse OLAP pipeline, queue-driven multi-track LLM workers for post-call CRM summaries, and a real-time active-call widget with a 30-second fraud dashboard.',
-    metrics: [{ value: 'Edge-first', label: 'zero cloud PII' }],
+    metrics: [
+      { value: '100%', label: 'conversation coverage (vs 1–3% industry baseline)' },
+      { value: '<4s', label: 'call artifacts after call end' },
+      { value: '60–120s', label: 'fraud-alert SLA' },
+    ],
     tags: ['ClickHouse', 'LLM Workers', 'Privacy-First'],
     featured: true,
   },
