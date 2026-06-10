@@ -27,6 +27,8 @@ export default defineConfig({
       `BASE_PATH=${BASE_PATH} npm run build`,
       `rm -rf .pw-site && mkdir -p .pw-site${BASE_PATH}`,
       `cp -r out/. .pw-site${BASE_PATH}/`,
+      // GitHub Pages serves the repo's 404.html from the site root for any path.
+      `cp out/404.html .pw-site/404.html`,
       `npx serve .pw-site -l ${PORT}`,
     ].join(' && '),
     url: `http://localhost:${PORT}${BASE_PATH}/`,

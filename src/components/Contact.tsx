@@ -2,7 +2,7 @@ import { asset } from '@/lib/asset';
 import { profile } from '@/content';
 
 export function Contact() {
-  const year = 2026; // build-time constant — keeps the static export deterministic.
+  const year = new Date().getFullYear(); // evaluated at build time — site rebuilds on every deploy.
   return (
     <footer id="contact" className="border-t border-hairline">
       <div className="mx-auto w-full max-w-shell px-6 py-20 sm:py-24">
@@ -16,7 +16,7 @@ export function Contact() {
         <div className="mt-8 flex flex-wrap items-center gap-4">
           <a
             href={`mailto:${profile.email}`}
-            className="rounded-full bg-accent px-6 py-3 text-sm font-medium text-white no-underline transition-opacity hover:opacity-90"
+            className="rounded-full bg-accent px-6 py-3 text-sm font-medium text-accent-contrast no-underline transition-opacity hover:opacity-90"
           >
             {profile.email}
           </a>

@@ -40,6 +40,8 @@ jobs:
           NODE_ENV: production
           # Project page lives under /portfolio. Override here if a custom domain is added.
           BASE_PATH: /portfolio
+          # GoatCounter analytics — set the GOATCOUNTER_CODE repo variable to enable.
+          NEXT_PUBLIC_GOATCOUNTER_CODE: ${{ vars.GOATCOUNTER_CODE }}
 
       - uses: actions/upload-pages-artifact@v3
         with:

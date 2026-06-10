@@ -9,13 +9,18 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        paper: '#FAFAF7', // off-white page background (avoid `base` — collides with text-base font size)
-        ink: '#16161A', // primary text
-        muted: '#5B5B66', // secondary text
-        hairline: '#E6E6E0', // borders / dividers
+        // Values are CSS variables (space-separated RGB channels in globals.css)
+        // so dark mode swaps the palette without touching components, and
+        // opacity modifiers like bg-paper/80 keep working via <alpha-value>.
+        paper: 'rgb(var(--c-paper) / <alpha-value>)', // page background (avoid `base` — collides with text-base font size)
+        ink: 'rgb(var(--c-ink) / <alpha-value>)', // primary text
+        muted: 'rgb(var(--c-muted) / <alpha-value>)', // secondary text
+        hairline: 'rgb(var(--c-hairline) / <alpha-value>)', // borders / dividers
+        card: 'rgb(var(--c-card) / <alpha-value>)', // card surfaces (was white)
         accent: {
-          DEFAULT: '#1D4ED8', // deep signal blue — used sparingly
-          soft: '#EFF3FE', // accent tint for surfaces
+          DEFAULT: 'rgb(var(--c-accent) / <alpha-value>)', // signal blue — used sparingly
+          soft: 'rgb(var(--c-accent-soft) / <alpha-value>)', // accent tint for surfaces
+          contrast: 'rgb(var(--c-accent-contrast) / <alpha-value>)', // text on accent buttons
         },
       },
       fontFamily: {
