@@ -1,0 +1,53 @@
+name: CI (pull requests)
+
+on:
+  pull_request:
+    branches: [main]
+
+# Cancel superseded runs for the same PR.
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  checks:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 20
+          cache: npm
+
+      - run: npm ci
+
+      - name: Quality gate (lint + typecheck + format)
+        run: npm run quality:check
+
+      - name: Unit / component / a11y tests
+        run: npm test
+
+      - name: Build static export
+        run: npm run build
+        env:
+          NODE_ENV: production
+          BASE_PATH: /portfolio
+
+  e2e:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 20
+          cache: npm
+
+      - run: npm ci
+
+      - name: Install Playwright browser
+        run: npx playwright install --with-deps chromium
+
+      - name: E2E smoke tests (desktop + mobile)
+        run: npx playwright test
