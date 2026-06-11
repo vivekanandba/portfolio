@@ -7,7 +7,7 @@ import { Skills } from '@/components/Skills';
 import { Timeline } from '@/components/Timeline';
 import { Credentials } from '@/components/Credentials';
 import { Contact } from '@/components/Contact';
-import { profile, featuredProjects, skills, roles } from '@/content';
+import { profile, featuredProjects, secondaryProjects, skills, roles } from '@/content';
 
 describe('Hero', () => {
   it('renders name, tagline, and primary CTAs', () => {
@@ -39,6 +39,14 @@ describe('Experience (Selected Work)', () => {
     }
     // Spot-check a headline metric persuades.
     expect(screen.getAllByText('430k/day').length).toBeGreaterThan(0);
+  });
+
+  it('renders the "More work" list with every secondary project', () => {
+    render(<Experience />);
+    expect(screen.getByRole('heading', { name: /more work/i })).toBeInTheDocument();
+    for (const p of secondaryProjects) {
+      expect(screen.getByRole('heading', { name: p.title })).toBeInTheDocument();
+    }
   });
 });
 

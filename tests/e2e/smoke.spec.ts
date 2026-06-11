@@ -10,6 +10,9 @@ test('landing page renders all sections', async ({ page }) => {
   for (const id of SECTIONS) {
     await expect(page.locator(`#${id}`)).toBeAttached();
   }
+
+  // Secondary work renders below the featured grid.
+  await expect(page.locator('#work').getByRole('heading', { name: /more work/i })).toBeAttached();
 });
 
 test('resume PDF link resolves under the base path', async ({ page, baseURL }) => {

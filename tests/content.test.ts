@@ -43,6 +43,10 @@ describe('content invariants for an impactful page', () => {
     expect(projects.some((p) => p.featured)).toBe(true);
   });
 
+  it('has secondary projects to fill the "More work" list', () => {
+    expect(projects.some((p) => !p.featured)).toBe(true);
+  });
+
   it('project ids are unique (stable keys / future routes)', () => {
     const ids = projects.map((p) => p.id);
     expect(new Set(ids).size).toBe(ids.length);

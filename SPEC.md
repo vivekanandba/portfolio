@@ -63,8 +63,11 @@ resume.
   scientists; resolved reproducibility, accelerated deployment.
 - **AI-Next Strategy** — democratized coding agents to **80% of workforce**; "Crawl, Walk, Run"
   adoption; delivery timelines accelerated **40%+**.
-- (Earlier) **GCP Telemetry & Data View**, **AI-Driven QA tooling** (regression −30%), **Healthcare
-  Interoperability** (HIPAA/HL7/DICOM) — available as secondary cards.
+- (Earlier / secondary) Rendered as a quiet "More work" list under the featured grid, covering all
+  four eras: **GCP Telemetry & Data View**, **Healthcare Interoperability** (HIPAA/HL7/DICOM),
+  **AI-Driven Test Automation** (NovaSignal); **Internal Tools Portal**, **Admin Portal** (Sanas);
+  **VSSC/ISRO Aerospace Tooling**, **BEL/IGCAR Defence Engineering** (Legend); **Mapshalli
+  volunteer work** (Stop Hunger, AirCare).
 
 ## 5. Design (Modern Minimal)
 
