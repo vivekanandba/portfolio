@@ -99,6 +99,66 @@ export const projects: Project[] = [
     tags: ['HIPAA', 'HL7', 'DICOM'],
     featured: false,
   },
+  {
+    id: 'ai-driven-qa',
+    title: 'AI-Driven Test Automation',
+    org: 'NovaSignal / NeuraSignal',
+    summary:
+      'Pioneered AI-generated test suites (OpenAI Assistant / Vision APIs → PyTest) from requirement specs for a medical-device GUI, automating ~60% of manual test cases.',
+    metrics: [],
+    tags: ['OpenAI APIs', 'PyTest', 'Pywinauto'],
+    featured: false,
+  },
+  {
+    id: 'internal-tools',
+    title: 'Internal Tools Portal & Modernization',
+    org: 'Sanas.ai',
+    summary:
+      'Took ownership of 25+ legacy apps across React, Vue, Python, and Node, and built a unified searchable portal — projected to halve engineer onboarding time.',
+    metrics: [],
+    tags: ['Vue.js', 'NestJS', 'AI-Assisted Dev'],
+    featured: false,
+  },
+  {
+    id: 'sanas-portal',
+    title: 'Admin Portal — Releases & Timezones',
+    org: 'Sanas.ai',
+    summary:
+      'Shipped cloud version distribution across 3 global regions (≈70% less manual release coordination) and a UTC-based workspace timezone framework with 100% timestamp consistency.',
+    metrics: [],
+    tags: ['NestJS', 'React', 'PostgreSQL'],
+    featured: false,
+  },
+  {
+    id: 'isro-tooling',
+    title: 'Aerospace Tooling — VSSC / ISRO',
+    org: 'Legend Technologies',
+    summary:
+      'End-to-end design, fabrication, and first-article proving of nose-cone assembly jigs, spinner weld jigs, and master tooling gauges for launch-vehicle structures.',
+    metrics: [],
+    tags: ['CATIA V5', 'UG NX', 'VSSC · ISRO'],
+    featured: false,
+  },
+  {
+    id: 'bmp-turret-slip-ring',
+    title: 'Defence Engineering — BEL / IGCAR',
+    org: 'Legend Technologies',
+    summary:
+      'Led an 8-member team through 3,000 drawing sheets and full turret kinematics for BEL’s FICV study; designed a high-amperage slip ring for nuclear-fuel electro-refining (NAMS 2015 white paper).',
+    metrics: [],
+    tags: ['CATIA', 'Kinematics', 'NAMS 2015'],
+    featured: false,
+  },
+  {
+    id: 'mapshalli-volunteer',
+    title: 'Stop Hunger & AirCare',
+    org: 'Mapshalli (volunteer)',
+    summary:
+      'Built a COVID-19 relief-coordination platform for NGOs and supported a community-managed air-quality sensor network in Whitefield, Bangalore.',
+    metrics: [],
+    tags: ['Civic Tech', 'IoT'],
+    featured: false,
+  },
 ];
 
 /** Career timeline — most recent first. */
@@ -111,6 +171,7 @@ export const roles: Role[] = [
     location: 'Bangalore, India',
     highlights: [
       'Internal technical co-founder driving zero-to-one initiatives across consumer, sales, and speech-intelligence products.',
+      'Modernized 25+ internal apps into a unified portal and shipped admin-portal release distribution across 3 global regions.',
     ],
   },
   {
@@ -120,6 +181,8 @@ export const roles: Role[] = [
     track: 'Programming',
     highlights: [
       'Cloud telemetry, healthcare interoperability, and AI-driven QA automation for robotic medical devices.',
+      'Pioneered AI-generated test automation (OpenAI APIs → PyTest), automating ~60% of manual test cases.',
+      'Built the Data View BI app giving sales and med-ed teams real-time insight into hospital robot fleets.',
     ],
   },
   {
@@ -140,6 +203,8 @@ export const roles: Role[] = [
     track: 'Mechanical',
     highlights: [
       'Led multidisciplinary teams designing aerospace & locomotive jigs and fixtures for ISRO, Safran, and Pratt & Whitney.',
+      'Directed an 8-engineer team through 3,000 drawing sheets and turret kinematics for BEL’s FICV program.',
+      'Designed a high-amperage slip ring for nuclear-fuel electro-refining (IGCAR / Godrej), presented at NAMS 2015.',
     ],
   },
   {
@@ -149,6 +214,7 @@ export const roles: Role[] = [
     track: 'Mechanical',
     highlights: [
       'Mechanical design and analysis of aerospace components with advanced CAD/simulation; automated design tasks via custom scripts.',
+      'Designed Airbus A350 primary/secondary structure brackets and FTI harness routing to Airbus standards.',
     ],
   },
 ];
