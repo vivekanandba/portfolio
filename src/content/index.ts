@@ -24,3 +24,4 @@ export const patents = z.array(patentSchema).parse(rawPatents);
 export const education = z.array(educationSchema).parse(rawEducation);
 
 export const featuredProjects = projects.filter((p) => p.featured);
+export const secondaryProjects = projects.filter((p) => !p.featured);
