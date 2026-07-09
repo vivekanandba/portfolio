@@ -25,14 +25,19 @@ const config: Config = {
       },
       fontFamily: {
         sans: ['var(--font-sans)', 'system-ui', 'sans-serif'],
+        display: ['var(--font-display)', 'Georgia', 'serif'],
       },
       fontSize: {
-        display: ['clamp(2.75rem, 6vw, 5rem)', { lineHeight: '1.02', letterSpacing: '-0.03em' }],
-        h2: ['clamp(1.5rem, 3vw, 2.25rem)', { lineHeight: '1.1', letterSpacing: '-0.02em' }],
+        // Serif display wants looser tracking than the old sans values.
+        display: ['clamp(2.75rem, 6vw, 5rem)', { lineHeight: '1.05', letterSpacing: '-0.015em' }],
+        h2: ['clamp(1.5rem, 3vw, 2.25rem)', { lineHeight: '1.15', letterSpacing: '-0.01em' }],
       },
       maxWidth: {
         content: '72ch',
         shell: '64rem',
+      },
+      boxShadow: {
+        lift: '0 12px 32px -16px rgb(var(--c-ink) / 0.25)',
       },
       fontVariantNumeric: {
         tabular: 'tabular-nums',

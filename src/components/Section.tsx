@@ -1,4 +1,5 @@
 import type { ReactNode } from 'react';
+import { Reveal } from './Reveal';
 
 type SectionProps = {
   id: string;
@@ -18,20 +19,23 @@ export function Section({ id, eyebrow, title, children, className }: SectionProp
       className={`mx-auto w-full max-w-shell px-6 py-20 sm:py-24 ${className ?? ''}`}
     >
       {(eyebrow || title) && (
-        <header className="mb-10">
-          {eyebrow && (
-            <p className="mb-2 text-sm font-medium uppercase tracking-[0.18em] text-accent">
-              {eyebrow}
-            </p>
-          )}
-          {title && (
-            <h2 id={labelId} className="text-h2 font-semibold text-ink">
-              {title}
-            </h2>
-          )}
-        </header>
+        <Reveal>
+          <header className="mb-10">
+            {eyebrow && (
+              <p className="mb-2 flex items-center gap-3 text-sm font-medium uppercase tracking-[0.18em] text-accent">
+                <span aria-hidden="true" className="h-px w-8 bg-accent/60" />
+                {eyebrow}
+              </p>
+            )}
+            {title && (
+              <h2 id={labelId} className="font-display text-h2 font-semibold text-ink">
+                {title}
+              </h2>
+            )}
+          </header>
+        </Reveal>
       )}
-      {children}
+      <Reveal delay={100}>{children}</Reveal>
     </section>
   );
 }

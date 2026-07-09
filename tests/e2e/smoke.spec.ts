@@ -63,6 +63,12 @@ test.describe('dark mode', () => {
   });
 });
 
+test('nav marks Contact active at the bottom of the page', async ({ page }) => {
+  await page.goto('');
+  await page.evaluate(() => window.scrollTo(0, document.body.scrollHeight));
+  await expect(page.locator('nav a[aria-current="location"]')).toHaveText('Contact');
+});
+
 test('primary CTA scrolls to work and a featured project is visible', async ({ page }) => {
   await page.goto('');
   await page.getByRole('link', { name: 'View Work' }).click();

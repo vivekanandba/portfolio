@@ -6,8 +6,11 @@ export function Contact() {
   return (
     <footer id="contact" className="border-t border-hairline">
       <div className="mx-auto w-full max-w-shell px-6 py-20 sm:py-24">
-        <p className="mb-2 text-sm font-medium uppercase tracking-[0.18em] text-accent">Contact</p>
-        <h2 className="text-h2 font-semibold text-ink">Let’s build something.</h2>
+        <p className="mb-2 flex items-center gap-3 text-sm font-medium uppercase tracking-[0.18em] text-accent">
+          <span aria-hidden="true" className="h-px w-8 bg-accent/60" />
+          Contact
+        </p>
+        <h2 className="font-display text-h2 font-semibold text-ink">Let’s build something.</h2>
         <p className="mt-4 max-w-content text-muted">
           Open to senior/staff engineering roles, founding-engineer opportunities, and conversations
           with investors and partners.
