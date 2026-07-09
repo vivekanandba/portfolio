@@ -4,21 +4,44 @@ import { profile } from '@/content';
 /** Above-the-fold identity + value prop + primary calls to action. */
 export function Hero() {
   return (
-    <section
-      id="top"
-      aria-labelledby="hero-name"
-      className="mx-auto w-full max-w-shell px-6 pb-16 pt-20 sm:pt-28"
-    >
-      <div className="animate-fade-up">
-        <p className="mb-4 text-sm font-medium uppercase tracking-[0.18em] text-accent">
+    <section id="top" aria-labelledby="hero-name" className="relative overflow-hidden">
+      {/* Decorative backdrop: accent glow + fading hairline grid. */}
+      <div aria-hidden="true" className="hero-atmosphere absolute inset-0" />
+      <div aria-hidden="true" className="hero-grid absolute inset-0" />
+
+      <div className="relative mx-auto w-full max-w-shell px-6 pb-20 pt-20 sm:pt-28">
+        <p className="mb-6 inline-flex animate-fade-up items-center gap-2 rounded-full border border-hairline bg-card/60 px-4 py-1.5 text-xs font-medium text-muted">
+          <span aria-hidden="true" className="relative flex h-2 w-2">
+            <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-accent opacity-60 motion-reduce:hidden" />
+            <span className="relative inline-flex h-2 w-2 rounded-full bg-accent" />
+          </span>
+          Open to senior/staff &amp; founding-engineer roles
+        </p>
+
+        <p
+          style={{ animationDelay: '80ms' }}
+          className="mb-4 animate-fade-up text-sm font-medium uppercase tracking-[0.18em] text-accent"
+        >
           {profile.tagline}
         </p>
-        <h1 id="hero-name" className="text-display font-semibold text-ink">
+        <h1
+          id="hero-name"
+          style={{ animationDelay: '140ms' }}
+          className="animate-fade-up font-display text-display font-semibold text-ink"
+        >
           {profile.name}
         </h1>
-        <p className="mt-6 max-w-content text-lg leading-relaxed text-muted">{profile.valueProp}</p>
+        <p
+          style={{ animationDelay: '220ms' }}
+          className="mt-6 max-w-content animate-fade-up text-lg leading-relaxed text-muted"
+        >
+          {profile.valueProp}
+        </p>
 
-        <div className="mt-10 flex flex-wrap items-center gap-4">
+        <div
+          style={{ animationDelay: '300ms' }}
+          className="mt-10 flex animate-fade-up flex-wrap items-center gap-4"
+        >
           <a
             href="#work"
             className="rounded-full bg-accent px-6 py-3 text-sm font-medium text-accent-contrast no-underline transition-opacity hover:opacity-90"

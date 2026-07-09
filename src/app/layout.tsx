@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from 'next';
-import { Inter } from 'next/font/google';
+import { Fraunces, Inter } from 'next/font/google';
 import Script from 'next/script';
 import './globals.css';
 import { siteMetadata, personJsonLd } from '@/lib/seo';
@@ -14,6 +14,14 @@ const inter = Inter({
   display: 'swap',
 });
 
+// Display serif for headings — the editorial contrast against Inter body text.
+const fraunces = Fraunces({
+  subsets: ['latin'],
+  variable: '--font-display',
+  display: 'swap',
+  axes: ['opsz'],
+});
+
 export const metadata: Metadata = siteMetadata;
 
 export const viewport: Viewport = {
@@ -25,8 +33,12 @@ export const viewport: Viewport = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={inter.variable}>
+    <html lang="en" className={`${inter.variable} ${fraunces.variable}`}>
       <body>
+        <script
+          // Stamp .js before paint so scroll-reveal styles only apply when JS runs.
+          dangerouslySetInnerHTML={{ __html: "document.documentElement.classList.add('js')" }}
+        />
         <a
           href="#top"
           className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-[60] focus:rounded focus:bg-ink focus:px-4 focus:py-2 focus:text-paper"

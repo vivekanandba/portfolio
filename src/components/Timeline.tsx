@@ -5,11 +5,13 @@ export function Timeline() {
   return (
     <Section id="journey" eyebrow="Career" title="The journey">
       <ol className="relative border-l border-hairline">
-        {roles.map((role) => (
+        {roles.map((role, i) => (
           <li key={`${role.company}-${role.period}`} className="ml-6 pb-10 last:pb-0">
             <span
               aria-hidden="true"
-              className="absolute -left-[5px] mt-1.5 h-2.5 w-2.5 rounded-full border border-accent bg-paper"
+              className={`absolute -left-[5px] mt-1.5 h-2.5 w-2.5 rounded-full border border-accent ${
+                i === 0 ? 'bg-accent ring-4 ring-accent/15' : 'bg-paper'
+              }`}
             />
             <div className="flex flex-wrap items-baseline justify-between gap-x-4">
               <h3 className="text-base font-semibold text-ink">
