@@ -32,7 +32,20 @@ export function Nav() {
       { rootMargin: '-25% 0px -65% 0px' },
     );
     sections.forEach((s) => io.observe(s));
-    return () => io.disconnect();
+
+    // The footer is too short to ever reach the observer band, so a
+    // bottom-of-page check owns the Contact highlight.
+    const onScroll = () => {
+      const doc = document.documentElement;
+      if (window.innerHeight + window.scrollY >= doc.scrollHeight - 4) setActive('#contact');
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+
+    return () => {
+      io.disconnect();
+      window.removeEventListener('scroll', onScroll);
+    };
   }, []);
   return (
     <header className="sticky top-0 z-50 border-b border-hairline bg-paper/80 backdrop-blur">
@@ -49,7 +62,7 @@ export function Nav() {
               <li key={l.href}>
                 <a
                   href={l.href}
-                  aria-current={active === l.href ? 'true' : undefined}
+                  aria-current={active === l.href ? 'location' : undefined}
                   className={`text-sm no-underline transition-colors ${
                     active === l.href ? 'font-medium text-accent' : 'text-muted hover:text-ink'
                   }`}
