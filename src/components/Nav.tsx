@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { asset } from '@/lib/asset';
 import { profile } from '@/content';
 
@@ -14,6 +14,26 @@ const LINKS = [
 /** Sticky top nav with anchor links + a persistent resume CTA. */
 export function Nav() {
   const [open, setOpen] = useState(false);
+  const [active, setActive] = useState('');
+
+  // Highlight the nav link for the section currently in view.
+  useEffect(() => {
+    if (typeof IntersectionObserver === 'undefined') return;
+    const sections = LINKS.map((l) => document.getElementById(l.href.slice(1))).filter(
+      (el): el is HTMLElement => el !== null,
+    );
+    const io = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          if (entry.isIntersecting) setActive(`#${entry.target.id}`);
+        }
+      },
+      // A band around the upper-middle of the viewport decides the active section.
+      { rootMargin: '-25% 0px -65% 0px' },
+    );
+    sections.forEach((s) => io.observe(s));
+    return () => io.disconnect();
+  }, []);
   return (
     <header className="sticky top-0 z-50 border-b border-hairline bg-paper/80 backdrop-blur">
       <nav
@@ -27,7 +47,13 @@ export function Nav() {
           <ul className="hidden items-center gap-6 sm:flex">
             {LINKS.map((l) => (
               <li key={l.href}>
-                <a href={l.href} className="text-sm text-muted no-underline hover:text-ink">
+                <a
+                  href={l.href}
+                  aria-current={active === l.href ? 'true' : undefined}
+                  className={`text-sm no-underline transition-colors ${
+                    active === l.href ? 'font-medium text-accent' : 'text-muted hover:text-ink'
+                  }`}
+                >
                   {l.label}
                 </a>
               </li>

@@ -50,13 +50,62 @@
     @apply underline-offset-4;
   }
 
-  /* Respect reduced-motion: disable the entrance animation. */
+  ::selection {
+    background: rgb(var(--c-accent) / 0.2);
+  }
+
+  /* Hero atmosphere: a soft accent glow + a hairline grid that fades out.
+     Pure decoration — sits behind the content and inherits the palette. */
+  .hero-atmosphere {
+    background: radial-gradient(
+        40rem 24rem at 85% -10%,
+        rgb(var(--c-accent) / 0.1),
+        transparent 70%
+      ),
+      radial-gradient(28rem 20rem at 10% 110%, rgb(var(--c-accent) / 0.06), transparent 70%);
+  }
+  .hero-grid {
+    background-image: linear-gradient(rgb(var(--c-hairline) / 0.6) 1px, transparent 1px),
+      linear-gradient(90deg, rgb(var(--c-hairline) / 0.6) 1px, transparent 1px);
+    background-size: 3rem 3rem;
+    mask-image: radial-gradient(32rem 22rem at 75% 0%, black 30%, transparent 75%);
+  }
+
+  /* Scroll reveal: hidden only once JS has stamped .js on <html> (see layout),
+     so no-JS visitors and crawlers always get visible content. */
+  .js .reveal {
+    opacity: 0;
+    transform: translateY(16px);
+    transition:
+      opacity 0.6s ease-out,
+      transform 0.6s ease-out;
+  }
+  .js .reveal.is-visible {
+    opacity: 1;
+    transform: none;
+  }
+
+  /* Print never scrolls, so reveals would leave sections blank on paper. */
+  @media print {
+    .js .reveal {
+      opacity: 1;
+      transform: none;
+      transition: none;
+    }
+  }
+
+  /* Respect reduced-motion: disable entrance animations and reveals. */
   @media (prefers-reduced-motion: reduce) {
     html {
       scroll-behavior: auto;
     }
     .animate-fade-up {
       animation: none;
+    }
+    .js .reveal {
+      opacity: 1;
+      transform: none;
+      transition: none;
     }
   }
 }
