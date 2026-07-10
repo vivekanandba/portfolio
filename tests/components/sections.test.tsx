@@ -24,6 +24,8 @@ describe('Hero', () => {
   it('shows the domain-arc badge instead of availability copy', () => {
     render(<Hero />);
     expect(screen.getByText(profile.heroDomains.join(' → '))).toBeInTheDocument();
+    // Screen-reader alternative without the arrow glyphs.
+    expect(screen.getByText(profile.heroDomains.join(', '))).toBeInTheDocument();
     expect(screen.queryByText(/open to/i)).not.toBeInTheDocument();
   });
 

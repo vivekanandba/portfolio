@@ -69,6 +69,16 @@ test('nav marks Contact active at the bottom of the page', async ({ page }) => {
   await expect(page.locator('nav a[aria-current="location"]')).toHaveText('Contact');
 });
 
+test('hero leads with the domain arc and experience stats', async ({ page }) => {
+  await page.goto('');
+  await expect(page.getByText('Aerospace → Healthcare Robotics → AI-Native')).toBeVisible();
+  // exact: the footer prose also contains "years of engineering".
+  await expect(page.getByText('years of engineering', { exact: true })).toBeVisible();
+  await expect(page.getByText('domains mastered')).toBeVisible();
+  await expect(page.getByText('patent granted')).toBeVisible();
+  await expect(page.getByText(/open to/i)).toHaveCount(0);
+});
+
 test('primary CTA scrolls to work and a featured project is visible', async ({ page }) => {
   await page.goto('');
   await page.getByRole('link', { name: 'View Work' }).click();

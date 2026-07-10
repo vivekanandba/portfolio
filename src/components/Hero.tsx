@@ -13,7 +13,9 @@ export function Hero() {
       <div className="relative mx-auto w-full max-w-shell px-6 pb-20 pt-20 sm:pt-28">
         <p className="mb-6 inline-flex animate-fade-up items-center gap-2 rounded-full border border-hairline bg-card/60 px-4 py-1.5 text-xs font-medium text-muted">
           <span aria-hidden="true" className="inline-flex h-2 w-2 rounded-full bg-accent" />
-          {profile.heroDomains.join(' → ')}
+          {/* Arrow glyphs are visual-only; screen readers get the comma-separated list. */}
+          <span aria-hidden="true">{profile.heroDomains.join(' → ')}</span>
+          <span className="sr-only">{profile.heroDomains.join(', ')}</span>
         </p>
 
         <p
