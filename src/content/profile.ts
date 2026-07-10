@@ -16,6 +16,8 @@ export const profile: Profile = {
     },
     { label: 'GitHub', href: 'https://github.com/vivekanandba' },
   ],
+  careerStartYear: 2011,
+  heroDomains: ['Aerospace', 'Healthcare Robotics', 'AI-Native'],
   arc: [
     {
       phase: 'Aerospace',
