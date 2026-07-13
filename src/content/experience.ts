@@ -1,6 +1,10 @@
 import type { Project, Role } from './schema';
 
-/** Flagship projects — metrics verbatim from the resume. Featured ones lead the grid. */
+/**
+ * Flagship projects — every claim and metric verbatim from resume v15 (the
+ * served PDF). Claims beyond v15 were removed in v1.2; reinstate only after
+ * shipping a resume that contains them. Featured ones lead the grid.
+ */
 export const projects: Project[] = [
   {
     id: 'sanas-consumer-app',
@@ -15,6 +19,9 @@ export const projects: Project[] = [
     ],
     tags: ['React Native', 'Multi-Agent AI', 'B2C'],
     featured: true,
+    domain: 'ai-native',
+    href: 'https://apps.apple.com/us/app/sanas-translate/id6748606509',
+    linkLabel: 'App Store',
   },
   {
     id: 'playground',
@@ -23,11 +30,12 @@ export const projects: Project[] = [
     summary:
       'Designed a triple-track asynchronous pipeline (FastAPI / Asyncio) running Accent Translation, Noise Cancellation, and Language Translation in one session. Optimized Triton/gRPC inference and autoscaled across AWS EKS and Modal (H100/T4).',
     metrics: [
-      { value: '430k/day', label: 'requests handled' },
+      { value: '430k/day', label: 'requests in production' },
       { value: '<100ms', label: 'chunk latency' },
     ],
     tags: ['FastAPI', 'Triton', 'AWS EKS', 'Modal'],
     featured: true,
+    domain: 'ai-native',
   },
   {
     id: 'sanas-for-sales',
@@ -41,20 +49,20 @@ export const projects: Project[] = [
     ],
     tags: ['RAG', 'Chrome Extension', 'Real-Time'],
     featured: true,
+    domain: 'ai-native',
   },
   {
     id: 'speech-intelligence',
     title: 'Speech Intelligence Platform',
     org: 'Sanas.ai',
     summary:
-      'Architected a privacy-first, edge-powered voice analytics platform processing high-fidelity audio locally without cloud PII exposure — a ClickHouse OLAP pipeline, queue-driven multi-track LLM workers for post-call CRM summaries, and a real-time active-call widget with a 30-second fraud dashboard.',
-    metrics: [
-      { value: '100%', label: 'conversation coverage (vs 1–3% industry baseline)' },
-      { value: '<4s', label: 'call artifacts after call end' },
-      { value: '60–120s', label: 'fraud-alert SLA' },
-    ],
+      'Architected a privacy-first, edge-powered voice analytics platform processing high-fidelity audio locally without cloud PII exposure — a ClickHouse OLAP pipeline, queue-driven multi-track LLM workers for post-call CRM summaries, and a real-time active-call widget with a fraud dashboard.',
+    metrics: [{ value: '30s', label: 'fraud-dashboard refresh' }],
     tags: ['ClickHouse', 'LLM Workers', 'Privacy-First'],
     featured: true,
+    domain: 'ai-native',
+    href: 'https://www.sanas.ai/speech-intelligence',
+    linkLabel: 'Product page',
   },
   {
     id: 'unified-ml-platform',
@@ -65,6 +73,7 @@ export const projects: Project[] = [
     metrics: [{ value: '10+', label: 'research scientists aligned' }],
     tags: ['Kubernetes', 'MLflow', 'MLOps'],
     featured: true,
+    domain: 'ai-native',
   },
   {
     id: 'ai-next-strategy',
@@ -72,12 +81,10 @@ export const projects: Project[] = [
     org: 'Sanas.ai',
     summary:
       'Spearheaded the shift from "AI Users" to "Agent Directors." Established a vendor-agnostic toolchain and investment dashboard, democratizing advanced coding agents and defining the "Crawl, Walk, Run" adoption strategy.',
-    metrics: [
-      { value: '80%', label: 'of workforce enabled' },
-      { value: '40%+', label: 'faster delivery' },
-    ],
+    metrics: [{ value: '80%', label: 'of workforce enabled' }],
     tags: ['Enterprise Adoption', 'Strategy'],
     featured: true,
+    domain: 'ai-native',
   },
   {
     id: 'gcp-telemetry',
@@ -88,6 +95,7 @@ export const projects: Project[] = [
     metrics: [],
     tags: ['GCP', 'BigQuery', 'Telemetry'],
     featured: false,
+    domain: 'healthcare-robotics',
   },
   {
     id: 'healthcare-interop',
@@ -98,66 +106,51 @@ export const projects: Project[] = [
     metrics: [],
     tags: ['HIPAA', 'HL7', 'DICOM'],
     featured: false,
+    domain: 'healthcare-robotics',
   },
   {
     id: 'ai-driven-qa',
     title: 'AI-Driven Test Automation',
     org: 'NovaSignal / NeuraSignal',
     summary:
-      'Pioneered AI-generated test suites (OpenAI Assistant / Vision APIs → PyTest) from requirement specs for a medical-device GUI, automating ~60% of manual test cases.',
-    metrics: [],
-    tags: ['OpenAI APIs', 'PyTest', 'Pywinauto'],
+      'Pioneered the integration of OpenAI APIs into QA workflows (AutoUI, TestAI), automating test-script generation, plus an AI-powered Jira Analyzer classifying issues and visualizing error paths.',
+    metrics: [{ value: '30%', label: 'shorter regression cycles' }],
+    tags: ['OpenAI APIs', 'AutoUI', 'TestAI'],
     featured: false,
-  },
-  {
-    id: 'internal-tools',
-    title: 'Internal Tools Portal & Modernization',
-    org: 'Sanas.ai',
-    summary:
-      'Took ownership of 25+ legacy apps across React, Vue, Python, and Node, and built a unified searchable portal — projected to halve engineer onboarding time.',
-    metrics: [],
-    tags: ['Vue.js', 'NestJS', 'AI-Assisted Dev'],
-    featured: false,
+    domain: 'healthcare-robotics',
   },
   {
     id: 'sanas-portal',
     title: 'Admin Portal — Releases & Timezones',
     org: 'Sanas.ai',
     summary:
-      'Shipped cloud version distribution across 3 global regions (≈70% less manual release coordination) and a UTC-based workspace timezone framework with 100% timestamp consistency.',
-    metrics: [],
+      'Designed a workspace-level timezone-management system and app version distribution, enabling consistent global reporting standards across India, Philippines, and US regions.',
+    metrics: [{ value: '60%', label: 'fewer support tickets' }],
     tags: ['NestJS', 'React', 'PostgreSQL'],
     featured: false,
+    domain: 'ai-native',
   },
   {
     id: 'isro-tooling',
-    title: 'Aerospace Tooling — VSSC / ISRO',
+    title: 'Aerospace Tooling — ISRO / Safran / P&W',
     org: 'Legend Technologies',
     summary:
-      'End-to-end design, fabrication, and first-article proving of nose-cone assembly jigs, spinner weld jigs, and master tooling gauges for launch-vehicle structures.',
+      'Design and fabrication of aerospace & locomotive jigs and fixtures for ISRO, Safran, and Pratt & Whitney, with end-to-end support across manufacturing, testing, and service — owning the entire product lifecycle.',
     metrics: [],
-    tags: ['CATIA V5', 'UG NX', 'VSSC · ISRO'],
+    tags: ['CATIA', 'Jigs & Fixtures', 'ISRO · Safran · P&W'],
     featured: false,
-  },
-  {
-    id: 'bmp-turret-slip-ring',
-    title: 'Defence Engineering — BEL / IGCAR',
-    org: 'Legend Technologies',
-    summary:
-      'Led an 8-member team through 3,000 drawing sheets and full turret kinematics for BEL’s FICV study; designed a high-amperage slip ring for nuclear-fuel electro-refining (NAMS 2015 white paper).',
-    metrics: [],
-    tags: ['CATIA', 'Kinematics', 'NAMS 2015'],
-    featured: false,
+    domain: 'aerospace',
   },
   {
     id: 'mapshalli-volunteer',
     title: 'Stop Hunger & AirCare',
     org: 'Mapshalli (volunteer)',
     summary:
-      'Built a COVID-19 relief-coordination platform for NGOs and supported a community-managed air-quality sensor network in Whitefield, Bangalore.',
+      'Contributed to a COVID-19 relief-distribution platform (Stop Hunger) and an IoT air-quality monitoring network (AirCare) in Whitefield, Bangalore.',
     metrics: [],
     tags: ['Civic Tech', 'IoT'],
     featured: false,
+    domain: 'community',
   },
 ];
 
@@ -169,9 +162,11 @@ export const roles: Role[] = [
     period: 'Nov 2024 – Present',
     track: 'Programming',
     location: 'Bangalore, India',
+    domain: 'ai-native',
     highlights: [
       'Internal technical co-founder driving zero-to-one initiatives across consumer, sales, and speech-intelligence products.',
-      'Modernized 25+ internal apps into a unified portal and shipped admin-portal release distribution across 3 global regions.',
+      'Led the technical roadmap and weekly C-suite reviews for Sanas for Sales, and a cross-functional DevOps/MLOps/Innovation team consolidating fragmented tooling into a Kubernetes-native ML platform.',
+      "Orchestrated multi-agent workflows accelerating delivery timelines by 40%+, and democratized advanced coding agents to 80% of the workforce via the 'Crawl, Walk, Run' strategy.",
     ],
   },
   {
@@ -179,10 +174,11 @@ export const roles: Role[] = [
     title: 'Software Engineer',
     period: 'Nov 2020 – Nov 2024',
     track: 'Programming',
+    domain: 'healthcare-robotics',
     highlights: [
       'Cloud telemetry, healthcare interoperability, and AI-driven QA automation for robotic medical devices.',
-      'Pioneered AI-generated test automation (OpenAI APIs → PyTest), automating ~60% of manual test cases.',
-      'Built the Data View BI app giving sales and med-ed teams real-time insight into hospital robot fleets.',
+      'Pioneered AI-powered QA automation (OpenAI APIs — AutoUI, TestAI), reducing regression cycles by 30%.',
+      'Built the Data View app (Streamlit/Flask) visualizing hospital-utilization metrics for sales and leadership.',
     ],
   },
   {
@@ -191,9 +187,10 @@ export const roles: Role[] = [
     period: 'Nov 2016 – Nov 2020',
     track: 'Entrepreneurial',
     location: 'Bangalore, India',
+    domain: 'entrepreneurial',
     highlights: [
       'Founded and ran a gadget repair business — 1,000+ devices and 100+ customers/month at a 4.7+ satisfaction rating.',
-      'Built custom software (ledger, checklists, device tracking) that lifted operational efficiency ~80%.',
+      'Built custom software (ledger, checklists, device tracking) that increased operational efficiency by 80%.',
     ],
   },
   {
@@ -201,10 +198,10 @@ export const roles: Role[] = [
     title: 'Senior Lead Engineer',
     period: 'Jan 2013 – Nov 2016',
     track: 'Mechanical',
+    domain: 'aerospace',
     highlights: [
       'Led multidisciplinary teams designing aerospace & locomotive jigs and fixtures for ISRO, Safran, and Pratt & Whitney.',
-      'Directed an 8-engineer team through 3,000 drawing sheets and turret kinematics for BEL’s FICV program.',
-      'Designed a high-amperage slip ring for nuclear-fuel electro-refining (IGCAR / Godrej), presented at NAMS 2015.',
+      'Provided end-to-end support in manufacturing, testing, and service — overseeing the entire product lifecycle.',
     ],
   },
   {
@@ -212,9 +209,9 @@ export const roles: Role[] = [
     title: 'Trainee Engineer',
     period: 'Aug 2011 – Dec 2012',
     track: 'Mechanical',
+    domain: 'aerospace',
     highlights: [
-      'Mechanical design and analysis of aerospace components with advanced CAD/simulation; automated design tasks via custom scripts.',
-      'Designed Airbus A350 primary/secondary structure brackets and FTI harness routing to Airbus standards.',
+      'Mechanical design and analysis of aerospace components with advanced CAD and simulation tools; developed custom software scripts to automate design tasks, reducing design time.',
     ],
   },
 ];

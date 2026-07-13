@@ -2,7 +2,9 @@ import { asset } from '@/lib/asset';
 import { profile } from '@/content';
 
 export function Contact() {
-  const year = new Date().getFullYear(); // evaluated at build time — site rebuilds on every deploy.
+  // Evaluated at build time — the site rebuilds on every deploy.
+  const year = new Date().getFullYear();
+  const built = new Date().toLocaleDateString('en-US', { month: 'long', year: 'numeric' });
   return (
     <footer id="contact" className="border-t border-hairline">
       <div className="mx-auto w-full max-w-shell px-6 py-20 sm:py-24">
@@ -43,7 +45,7 @@ export function Contact() {
         </div>
 
         <p className="mt-16 text-xs text-muted">
-          © {year} {profile.name} · {profile.location}
+          © {year} {profile.name} · {profile.location} · Last updated {built}
         </p>
       </div>
     </footer>

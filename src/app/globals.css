@@ -15,6 +15,10 @@
     --c-accent: 29 78 216; /* #1D4ED8 */
     --c-accent-soft: 239 243 254; /* #EFF3FE */
     --c-accent-contrast: 255 255 255; /* text on accent buttons */
+    /* Domain hues — hairline-scale markers for the career arc only (see src/lib/domain.ts).
+       Must hold >=4.5:1 on paper in both schemes (enforced by tests/tokens.test.ts). */
+    --c-domain-aero: 180 83 9; /* drafting amber #B45309 */
+    --c-domain-health: 15 118 110; /* clinical teal #0F766E */
   }
 
   @media (prefers-color-scheme: dark) {
@@ -28,6 +32,8 @@
       --c-accent: 96 165 250; /* lighter blue — keeps AA contrast on dark paper */
       --c-accent-soft: 23 33 56;
       --c-accent-contrast: 16 19 26; /* near-ink on the light-blue accent */
+      --c-domain-aero: 245 158 11; /* #F59E0B */
+      --c-domain-health: 20 184 166; /* #14B8A6 */
     }
   }
 
