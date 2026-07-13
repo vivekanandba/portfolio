@@ -13,6 +13,26 @@ export const linkSchema = z.object({
 });
 export type Link = z.infer<typeof linkSchema>;
 
+/** A quantified figure rendered as a MetricBadge — shared by projects, the hero, and case studies. */
+export const metricSchema = z.object({
+  value: z.string().min(1), // "430k/day", "<100ms", "40%+"
+  label: z.string().min(1),
+});
+export type Metric = z.infer<typeof metricSchema>;
+
+/**
+ * The three-domain career arc plus non-technical chapters. Colors derive from
+ * this (see src/lib/domain.ts) — never from company names or track labels.
+ */
+export const domainSchema = z.enum([
+  'aerospace',
+  'healthcare-robotics',
+  'ai-native',
+  'entrepreneurial',
+  'community',
+]);
+export type Domain = z.infer<typeof domainSchema>;
+
 export const profileSchema = z.object({
   name: z.string().min(1),
   tagline: z.string().min(1), // "Engineer · Intrapreneur · AI-Native Architect"
@@ -24,6 +44,11 @@ export const profileSchema = z.object({
   links: z.array(linkSchema).min(1), // LinkedIn, GitHub, ...
   careerStartYear: z.number().int(), // first professional role — years of experience derive from this
   heroDomains: z.array(z.string().min(1)).min(2), // ordered domain names for the hero badge
+  currentRole: z.object({
+    title: z.string().min(1), // "Staff Software Engineer & Technical Lead"
+    org: z.string().min(1), // "Sanas.ai"
+  }),
+  heroStat: metricSchema, // the hard production number in the hero stats strip
   // "The Arc" narrative — the multidisciplinary differentiator, in ordered beats.
   arc: z
     .array(
@@ -31,6 +56,7 @@ export const profileSchema = z.object({
         phase: z.string().min(1), // "Aerospace"
         title: z.string().min(1), // "Mechanical Engineering"
         body: z.string().min(1),
+        domain: domainSchema.optional(),
       }),
     )
     .min(1),
@@ -49,19 +75,16 @@ export const projectSchema = z.object({
   org: z.string().min(1),
   summary: z.string().min(1),
   // Quantified impact — rendered as metric badges. Optional but recommended.
-  metrics: z
-    .array(
-      z.object({
-        value: z.string().min(1), // "430k/day", "<100ms", "40%+"
-        label: z.string().min(1),
-      }),
-    )
-    .default([]),
+  metrics: z.array(metricSchema).default([]),
   tags: z.array(z.string().min(1)).default([]),
   featured: z.boolean().default(false),
-  // Designed-for future case studies / photos; unused in v1.
+  domain: domainSchema.optional(),
+  // Photo slot for future galleries; unused in v1.2.
   image: z.string().optional(),
+  // External public artifact only (App Store, product page, patent). Absolute
+  // URLs enforced — internal case-study links derive from caseStudies instead.
   href: z.string().url().optional(),
+  linkLabel: z.string().min(1).optional(), // "App Store" — text for the href link
 });
 export type Project = z.infer<typeof projectSchema>;
 
@@ -72,8 +95,42 @@ export const roleSchema = z.object({
   track: z.enum(['Programming', 'Entrepreneurial', 'Mechanical']),
   location: z.string().optional(),
   highlights: z.array(z.string().min(1)).default([]),
+  domain: domainSchema.optional(),
 });
 export type Role = z.infer<typeof roleSchema>;
+
+/** One step of the AI-direction operating loop, tied to a shipped, resume-verbatim outcome. */
+export const aiPracticeStepSchema = z.object({
+  name: z.string().min(1), // "Plan"
+  body: z.string().min(1),
+  proof: metricSchema,
+});
+export type AiPracticeStep = z.infer<typeof aiPracticeStepSchema>;
+
+/** Long-form case study for a flagship project, rendered at /work/<slug>/. */
+export const caseStudySchema = z.object({
+  slug: z.string().regex(/^[a-z0-9-]+$/), // equals the project id — stable URLs
+  projectId: z.string().min(1), // FK to projects[].id, test-enforced
+  eyebrow: z.string().min(1), // "Case Study · Sanas.ai"
+  title: z.string().min(1),
+  intro: z.string().min(1), // dek paragraph under the H1
+  metrics: z.array(metricSchema).min(1), // headline strip
+  problem: z.array(z.string().min(1)).min(1), // paragraphs
+  constraints: z.array(z.string().min(1)).min(1), // bullet list
+  decisions: z
+    .array(
+      z.object({
+        decision: z.string().min(1),
+        tradeoff: z.string().min(1), // why / what it cost
+      }),
+    )
+    .min(1),
+  results: z.array(metricSchema).min(1),
+  resultsNote: z.string().optional(),
+  diagramId: z.enum(['playground', 'sales-copilot', 'consumer-app']),
+  seoDescription: z.string().min(1),
+});
+export type CaseStudy = z.infer<typeof caseStudySchema>;
 
 export const patentSchema = z.object({
   kind: z.enum(['patent', 'publication']),

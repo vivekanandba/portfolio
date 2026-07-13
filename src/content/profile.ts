@@ -18,21 +18,32 @@ export const profile: Profile = {
   ],
   careerStartYear: 2011,
   heroDomains: ['Aerospace', 'Healthcare Robotics', 'AI-Native'],
+  currentRole: { title: 'Staff Software Engineer & Technical Lead', org: 'Sanas.ai' },
+  heroStat: { value: '430k/day', label: 'requests in production' },
   arc: [
     {
       phase: 'Aerospace',
       title: 'Mechanical Engineering',
       body: 'Began designing and fabricating aerospace & locomotive jigs and fixtures for ISRO, Safran, and Pratt & Whitney — where precision, lifecycle ownership, and analytical rigor were non-negotiable.',
+      domain: 'aerospace',
+    },
+    {
+      phase: 'Founder',
+      title: 'Gadjoy Repair Services',
+      body: 'Founded and ran a repair business for four years — 1,000+ devices, 100+ customers a month, a 4.7+ satisfaction rating — and built its own ops software that increased operational efficiency by 80%.',
+      domain: 'entrepreneurial',
     },
     {
       phase: 'Electronics',
       title: 'Healthcare Robotics',
       body: 'Engineered HIPAA/HL7/DICOM-compliant cloud microservices and serverless GCP telemetry for robotic medical devices, turning manual diagnostics into real-time fleet monitoring and predictive maintenance.',
+      domain: 'healthcare-robotics',
     },
     {
       phase: 'AI-Native',
       title: 'Zero-to-One Software',
       body: 'Now a Staff Engineer operating as an internal technical co-founder — shipping consumer apps, real-time AI copilots, and high-throughput audio pipelines, and orchestrating multi-agent workflows that cut delivery timelines 40%+.',
+      domain: 'ai-native',
     },
   ],
 };

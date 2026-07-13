@@ -31,6 +31,11 @@ export function Hero() {
         >
           {profile.name}
         </h1>
+        <p style={{ animationDelay: '180ms' }} className="mt-3 animate-fade-up text-lg text-muted">
+          <span className="font-medium text-ink">{profile.currentRole.title}</span>
+          {' — '}
+          {profile.currentRole.org}
+        </p>
         <p
           style={{ animationDelay: '220ms' }}
           className="mt-6 max-w-content animate-fade-up text-lg leading-relaxed text-muted"
@@ -76,7 +81,7 @@ export function Hero() {
             value={`${new Date().getFullYear() - profile.careerStartYear}+`}
             label="years of engineering"
           />
-          <MetricBadge value={String(profile.heroDomains.length)} label="domains mastered" />
+          <MetricBadge value={profile.heroStat.value} label={profile.heroStat.label} />
           <MetricBadge value="US" label="patent granted" />
         </div>
       </div>

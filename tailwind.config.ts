@@ -22,6 +22,10 @@ const config: Config = {
           soft: 'rgb(var(--c-accent-soft) / <alpha-value>)', // accent tint for surfaces
           contrast: 'rgb(var(--c-accent-contrast) / <alpha-value>)', // text on accent buttons
         },
+        domain: {
+          aero: 'rgb(var(--c-domain-aero) / <alpha-value>)', // aerospace era markers
+          health: 'rgb(var(--c-domain-health) / <alpha-value>)', // healthcare-robotics era markers
+        },
       },
       fontFamily: {
         sans: ['var(--font-sans)', 'system-ui', 'sans-serif'],

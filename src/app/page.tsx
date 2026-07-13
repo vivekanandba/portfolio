@@ -2,6 +2,7 @@ import { Nav } from '@/components/Nav';
 import { Hero } from '@/components/Hero';
 import { About } from '@/components/About';
 import { Experience } from '@/components/Experience';
+import { AiPractice } from '@/components/AiPractice';
 import { Skills } from '@/components/Skills';
 import { Timeline } from '@/components/Timeline';
 import { Credentials } from '@/components/Credentials';
@@ -15,6 +16,7 @@ export default function Home() {
         <Hero />
         <About />
         <Experience />
+        <AiPractice />
         <Skills />
         <Timeline />
         <Credentials />

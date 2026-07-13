@@ -1,15 +1,16 @@
 import { Section } from './Section';
 import { profile } from '@/content';
+import { domainColor } from '@/lib/domain';
 
 /** "The Arc" — the rare multidisciplinary throughline, told in ordered beats. */
 export function About() {
   return (
     <Section id="about" eyebrow="The Arc" title="From aerospace precision to AI-native products">
-      <ol className="grid gap-8 sm:grid-cols-3">
+      <ol className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
         {profile.arc.map((beat, i) => (
           <li key={beat.phase} className="relative">
             <div className="mb-3 flex items-center gap-3">
-              <span className="tabular text-sm font-semibold text-accent">
+              <span className={`tabular text-sm font-semibold ${domainColor(beat.domain).text}`}>
                 {String(i + 1).padStart(2, '0')}
               </span>
               <span className="text-xs font-medium uppercase tracking-[0.18em] text-muted">
