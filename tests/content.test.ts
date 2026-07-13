@@ -56,6 +56,15 @@ describe('content invariants for an impactful page', () => {
     expect(profile.arc.length).toBeGreaterThanOrEqual(3);
   });
 
+  it('hero badge names all three domains', () => {
+    expect(profile.heroDomains).toHaveLength(3);
+  });
+
+  it('career start year yields a credible experience figure', () => {
+    const years = new Date().getFullYear() - profile.careerStartYear;
+    expect(years).toBeGreaterThanOrEqual(15);
+  });
+
   it('roles cover all three career tracks', () => {
     const tracks = new Set(roles.map((r) => r.track));
     expect(tracks).toContain('Programming');

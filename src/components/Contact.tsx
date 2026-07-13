@@ -12,8 +12,8 @@ export function Contact() {
         </p>
         <h2 className="font-display text-h2 font-semibold text-ink">Let’s build something.</h2>
         <p className="mt-4 max-w-content text-muted">
-          Open to senior/staff engineering roles, founding-engineer opportunities, and conversations
-          with investors and partners.
+          Fifteen years of engineering across aerospace, healthcare robotics, and AI-native
+          software. If you&rsquo;re building something ambitious, let&rsquo;s talk.
         </p>
 
         <div className="mt-8 flex flex-wrap items-center gap-4">

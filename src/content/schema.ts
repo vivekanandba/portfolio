@@ -22,6 +22,8 @@ export const profileSchema = z.object({
   location: z.string().min(1),
   resumeFile: z.string().min(1), // filename in /public, prefixed with basePath at use
   links: z.array(linkSchema).min(1), // LinkedIn, GitHub, ...
+  careerStartYear: z.number().int(), // first professional role — years of experience derive from this
+  heroDomains: z.array(z.string().min(1)).min(2), // ordered domain names for the hero badge
   // "The Arc" narrative — the multidisciplinary differentiator, in ordered beats.
   arc: z
     .array(

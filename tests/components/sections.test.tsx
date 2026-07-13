@@ -20,6 +20,23 @@ describe('Hero', () => {
       expect.stringContaining(profile.resumeFile),
     );
   });
+
+  it('shows the domain-arc badge instead of availability copy', () => {
+    render(<Hero />);
+    expect(screen.getByText(profile.heroDomains.join(' → '))).toBeInTheDocument();
+    // Screen-reader alternative without the arrow glyphs.
+    expect(screen.getByText(profile.heroDomains.join(', '))).toBeInTheDocument();
+    expect(screen.queryByText(/open to/i)).not.toBeInTheDocument();
+  });
+
+  it('shows the experience stats strip', () => {
+    render(<Hero />);
+    const years = new Date().getFullYear() - profile.careerStartYear;
+    expect(screen.getByText(`${years}+`)).toBeInTheDocument();
+    expect(screen.getByText('years of engineering')).toBeInTheDocument();
+    expect(screen.getByText('domains mastered')).toBeInTheDocument();
+    expect(screen.getByText('patent granted')).toBeInTheDocument();
+  });
 });
 
 describe('About (The Arc)', () => {
