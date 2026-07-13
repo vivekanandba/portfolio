@@ -14,6 +14,7 @@ export const siteMetadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: TITLE,
   description: DESCRIPTION,
+  alternates: { canonical: `${SITE_URL}/` },
   authors: [{ name: profile.name }],
   openGraph: {
     title: TITLE,
@@ -37,8 +38,37 @@ export function personJsonLd() {
     '@type': 'Person',
     name: profile.name,
     email: profile.email,
-    jobTitle: profile.tagline,
+    jobTitle: profile.currentRole.title,
+    worksFor: { '@type': 'Organization', name: profile.currentRole.org },
     address: { '@type': 'PostalAddress', addressLocality: profile.location },
     sameAs: profile.links.map((l) => l.href),
+  };
+}
+
+/** Per-page metadata for case-study routes — absolute URLs, same reasoning as above. */
+export function caseStudyMetadata(cs: {
+  title: string;
+  seoDescription: string;
+  slug: string;
+}): Metadata {
+  const title = `${cs.title} — ${profile.name}`;
+  const url = `${SITE_URL}/work/${cs.slug}/`;
+  return {
+    title,
+    description: cs.seoDescription,
+    alternates: { canonical: url },
+    openGraph: {
+      title,
+      description: cs.seoDescription,
+      type: 'article',
+      url,
+      images: [OG_IMAGE],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title,
+      description: cs.seoDescription,
+      images: [OG_IMAGE.url],
+    },
   };
 }

@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test';
 
-const SECTIONS = ['about', 'work', 'skills', 'journey', 'credentials', 'contact'];
+const SECTIONS = ['about', 'work', 'agents', 'skills', 'journey', 'credentials', 'contact'];
 
 test('landing page renders all sections', async ({ page }) => {
   await page.goto('');
@@ -69,12 +69,14 @@ test('nav marks Contact active at the bottom of the page', async ({ page }) => {
   await expect(page.locator('nav a[aria-current="location"]')).toHaveText('Contact');
 });
 
-test('hero leads with the domain arc and experience stats', async ({ page }) => {
+test('hero leads with the domain arc, title, and experience stats', async ({ page }) => {
   await page.goto('');
   await expect(page.getByText('Aerospace → Healthcare Robotics → AI-Native')).toBeVisible();
+  await expect(page.getByText('Staff Software Engineer & Technical Lead')).toBeVisible();
   // exact: the footer prose also contains "years of engineering".
   await expect(page.getByText('years of engineering', { exact: true })).toBeVisible();
-  await expect(page.getByText('domains mastered')).toBeVisible();
+  // Scoped to the hero — the Playground card carries the same label.
+  await expect(page.locator('#top').getByText('requests in production')).toBeVisible();
   await expect(page.getByText('patent granted')).toBeVisible();
   await expect(page.getByText(/open to/i)).toHaveCount(0);
 });
