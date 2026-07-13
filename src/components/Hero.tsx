@@ -1,5 +1,6 @@
 import { asset } from '@/lib/asset';
 import { profile } from '@/content';
+import { MetricBadge } from './MetricBadge';
 
 /** Above-the-fold identity + value prop + primary calls to action. */
 export function Hero() {
@@ -11,11 +12,10 @@ export function Hero() {
 
       <div className="relative mx-auto w-full max-w-shell px-6 pb-20 pt-20 sm:pt-28">
         <p className="mb-6 inline-flex animate-fade-up items-center gap-2 rounded-full border border-hairline bg-card/60 px-4 py-1.5 text-xs font-medium text-muted">
-          <span aria-hidden="true" className="relative flex h-2 w-2">
-            <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-accent opacity-60 motion-reduce:hidden" />
-            <span className="relative inline-flex h-2 w-2 rounded-full bg-accent" />
-          </span>
-          Open to senior/staff &amp; founding-engineer roles
+          <span aria-hidden="true" className="inline-flex h-2 w-2 rounded-full bg-accent" />
+          {/* Arrow glyphs are visual-only; screen readers get the comma-separated list. */}
+          <span aria-hidden="true">{profile.heroDomains.join(' → ')}</span>
+          <span className="sr-only">{profile.heroDomains.join(', ')}</span>
         </p>
 
         <p
@@ -65,6 +65,19 @@ export function Hero() {
               {link.label} ↗
             </a>
           ))}
+        </div>
+
+        <div
+          style={{ animationDelay: '380ms' }}
+          className="mt-12 flex animate-fade-up flex-wrap gap-x-12 gap-y-6 border-t border-hairline pt-8"
+        >
+          {/* Years computed at build time — the site rebuilds on every deploy. */}
+          <MetricBadge
+            value={`${new Date().getFullYear() - profile.careerStartYear}+`}
+            label="years of engineering"
+          />
+          <MetricBadge value={String(profile.heroDomains.length)} label="domains mastered" />
+          <MetricBadge value="US" label="patent granted" />
         </div>
       </div>
     </section>
