@@ -18,8 +18,8 @@ export function CaseStudyNav() {
           {profile.name}
         </Link>
         <div className="flex items-center gap-4 sm:gap-6">
-          <Link href="/#work" className="text-sm text-muted no-underline hover:text-ink">
-            ← Work
+          <Link href="/work/" className="text-sm text-muted no-underline hover:text-ink">
+            All case studies
           </Link>
           <a
             href={asset(profile.resumeFile)}

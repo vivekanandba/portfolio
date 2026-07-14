@@ -1,4 +1,4 @@
-# SPEC — Vivekanand B Portfolio (v1.2)
+# SPEC — Vivekanand B Portfolio (v1.3)
 
 > Spec-driven contract. Code follows this; if reality diverges, update this file first.
 
@@ -21,17 +21,28 @@ resume.
 
 ## 2. Scope
 
-### In scope (v1.2)
+### In scope (v1.3)
 
-- One responsive landing page, anchor-nav sections (below), plus **static case-study pages** for
-  the three flagship projects under `/work/<slug>/`.
-- Static content sourced verbatim from **resume v15** (no invented facts/metrics — the served PDF
-  is the canonical source; site claims must not exceed it).
+- One responsive landing page, anchor-nav sections (below), plus a **case-study page for every
+  project card** (15) under `/work/<slug>/` and a **`/work/` index** grouping them by chapter.
+- Content governed by the **two-tier source policy** (below).
 - Downloadable resume PDF.
 - SEO + social share (OpenGraph/Twitter) + JSON-LD `Person` structured data.
 - Accessible (WCAG AA target) and fast (static export, near-zero runtime JS).
 
-### Out of scope (v1.2) — Non-goals
+### Source policy (two-tier)
+
+The **master resume** (`VIVEKANANDB-RESUME-MASTER-v2.docx`) is the fact source for all site
+content; the **served resume v15 PDF is the floor** — no site claim may _contradict_ it, but
+case-study pages may carry curated master-resume detail that v15 omits. Landing-page cards stay
+modest: ≤3 metrics, summary-level claims. Master-resume tracked-changes conflicts resolve toward
+the v15-consistent value ("Agent Directors" not "Agent Boss", unversioned model names, Gadjoy
+4.7+/80%, Legend ends Nov 2016, "Sanas Core" not "Core6"); Tech Mahindra (absent from v15) stays
+excluded. Any metric absent from v15 ships only after explicit owner approval — the v1.2 removals
+(SI coverage/SLA, Portal 70%/100%, Internal Tools card, FICV detail, A350 specifics) are
+reinstated under this policy, subject to that item-by-item approval.
+
+### Out of scope (v1.3) — Non-goals
 
 - CMS, backend, database, server-side contact form.
 - Blog/writing engine, photo galleries (designed-for, not built).
@@ -68,17 +79,14 @@ resume.
   scientists; resolved reproducibility, accelerated deployment.
 - **AI-Next Strategy** — democratized coding agents to **80% of workforce**; "Crawl, Walk, Run"
   adoption; delivery timelines accelerated **40%+**.
-- (Earlier / secondary) Rendered as a quiet "More work" list under the featured grid: **GCP
-  Telemetry & Data View**, **Healthcare Interoperability** (HIPAA/HL7/DICOM),
-  **AI-Driven Test Automation** (30% shorter regression cycles) (NovaSignal); **Admin Portal**
-  (India/Philippines/US regions, 60% fewer support tickets) (Sanas); **ISRO/Safran/P&W Aerospace
-  Tooling** (Legend); **Mapshalli volunteer work** (Stop Hunger, AirCare).
-
-> **v15 strict-alignment note:** claims that appeared on the site but not in resume v15 were
-> removed in v1.2 (SI coverage/latency/SLA metrics, ≈70% release coordination, 100% timestamp
-> consistency, ~60% manual test cases, 25+ legacy apps / Internal Tools Portal card, BEL/FICV
-> defence card detail, Safran A350 specifics). Reinstate any by first shipping a resume v16 that
-> contains them.
+- (Earlier / secondary) Rendered as a quiet "More work" list under the featured grid, ordered:
+  **Admin Portal** (regions, 60% fewer tickets), **Internal Tools Portal** (restored v1.3),
+  **MLOps Observability & Model Cards** (new v1.3) (Sanas); **GCP Telemetry & Data View**,
+  **Healthcare Interoperability** (HIPAA/HL7/DICOM), **AI-Driven Test Automation** (30% shorter
+  regression cycles) (NovaSignal); **Aerospace Tooling — ISRO/Safran/P&W**, **Defence & Nuclear
+  Engineering — BEL/IGCAR** (restored v1.3) (Legend); **Mapshalli volunteer work** (Stop Hunger,
+  AirCare — mapshalli.org proof link). Every card links to its case study (titles are links);
+  every project has one (test-enforced bijection).
 
 ## 5. Design (Modern Minimal)
 
@@ -112,16 +120,18 @@ resume.
 - [ ] `npm run quality:check` (lint + typecheck + format) clean.
 - [ ] SEO: title/description, OpenGraph/Twitter tags, JSON-LD `Person` present.
 
-## 8. Case-study pages (v1.2)
+## 8. Case-study pages (v1.3)
 
-Three static routes `/work/<slug>/` (slug = project id): `playground`, `sanas-for-sales`,
-`sanas-consumer-app`. Content model: `caseStudySchema` collection in `src/content/caseStudies.ts`
-keyed by `projectId`; structure per page: intro + metric strip → Problem → Constraints →
-Decisions & tradeoffs → annotated inline-SVG systems diagram (token-driven, dark-mode automatic,
-`role="img"` + title/desc) → Results → back link. `generateStaticParams` +
-`dynamicParams = false`; per-page metadata with absolute og:url. Subpage header is a slim
-`CaseStudyNav` (brand, ← Work, Resume) — the landing Nav stays anchor-based. Facts verbatim from
-resume v15.
+Fifteen static routes `/work/<slug>/` (slug = project id, one per project card) plus a `/work/`
+index page grouping studies by chapter (Sanas.ai / NovaSignal / Legend & community) with
+domain-accent dots. Content model: `caseStudySchema` collection in `src/content/caseStudies/`
+(one file per slug, ordered via `index.ts`) keyed by `projectId`; structure per page: intro +
+metric strip → Problem → Constraints → Decisions & tradeoffs → annotated inline-SVG systems
+diagram (token-driven, dark-mode automatic, `role="img"` + title/desc; registry keyed by
+`DIAGRAM_IDS`, bijection test-enforced) → Results → back link. `generateStaticParams` +
+`dynamicParams = false`; per-page metadata with absolute og:url + canonical. Subpage header is a
+slim `CaseStudyNav` (brand, "All case studies" → `/work/`, Resume) — the landing Nav stays
+anchor-based. Facts per the two-tier source policy (§2). E2E is data-driven over the collection.
 
 ## 9. Future (designed-for, not built)
 
