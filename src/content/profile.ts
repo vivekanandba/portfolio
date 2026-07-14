@@ -28,15 +28,15 @@ export const profile: Profile = {
       domain: 'aerospace',
     },
     {
-      phase: 'Founder',
+      phase: 'Electronics · Founder',
       title: 'Gadjoy Repair Services',
-      body: 'Founded and ran a repair business for four years — 1,000+ devices, 100+ customers a month, a 4.7+ satisfaction rating — and built its own ops software that increased operational efficiency by 80%.',
+      body: 'Founded and ran a gadget repair business for four years — 1,000+ devices, 100+ customers a month, a 4.7+ satisfaction rating — hands-on electronics, plus self-built ops software that increased operational efficiency by 80%.',
       domain: 'entrepreneurial',
     },
     {
-      phase: 'Electronics',
+      phase: 'Programming',
       title: 'Healthcare Robotics',
-      body: 'Engineered HIPAA/HL7/DICOM-compliant cloud microservices and serverless GCP telemetry for robotic medical devices, turning manual diagnostics into real-time fleet monitoring and predictive maintenance.',
+      body: 'The transition into software: engineered HIPAA/HL7/DICOM-compliant cloud microservices and serverless GCP telemetry for robotic medical devices, turning manual diagnostics into real-time fleet monitoring and predictive maintenance.',
       domain: 'healthcare-robotics',
     },
     {
