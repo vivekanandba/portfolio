@@ -107,7 +107,30 @@ export const aiPracticeStepSchema = z.object({
 });
 export type AiPracticeStep = z.infer<typeof aiPracticeStepSchema>;
 
-/** Long-form case study for a flagship project, rendered at /work/<slug>/. */
+/**
+ * Diagram registry keys — one per case study. The registry in
+ * src/components/diagrams/index.ts must mirror this exactly (test-enforced
+ * bijection); the enum keeps diagrams[cs.diagramId] compile-time safe.
+ */
+export const DIAGRAM_IDS = [
+  'playground',
+  'sales-copilot',
+  'consumer-app',
+  'speech-intelligence',
+  'ml-platform',
+  'ai-next',
+  'portal',
+  'telemetry',
+  'interop',
+  'qa',
+  'internal-tools',
+  'mlops-tooling',
+  'aero-tooling',
+  'defence',
+  'mapshalli',
+] as const;
+
+/** Long-form case study for a project, rendered at /work/<slug>/. */
 export const caseStudySchema = z.object({
   slug: z.string().regex(/^[a-z0-9-]+$/), // equals the project id — stable URLs
   projectId: z.string().min(1), // FK to projects[].id, test-enforced
@@ -127,7 +150,7 @@ export const caseStudySchema = z.object({
     .min(1),
   results: z.array(metricSchema).min(1),
   resultsNote: z.string().optional(),
-  diagramId: z.enum(['playground', 'sales-copilot', 'consumer-app']),
+  diagramId: z.enum(DIAGRAM_IDS),
   seoDescription: z.string().min(1),
 });
 export type CaseStudy = z.infer<typeof caseStudySchema>;
