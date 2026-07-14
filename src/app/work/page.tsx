@@ -11,13 +11,14 @@ const projectById = new Map(projects.map((p) => [p.id, p]));
 
 /** Index of every case study, grouped by chapter (org), in collection order. */
 export default function WorkIndex() {
-  const groups: { org: string; slugs: string[] }[] = [];
+  // Group by org in first-seen order — correct even if the collection ever
+  // interleaves orgs, so the grouping doesn't depend on insertion contiguity.
+  const grouped = new Map<string, string[]>();
   for (const cs of caseStudies) {
     const org = projectById.get(cs.projectId)!.org;
-    const last = groups[groups.length - 1];
-    if (last && last.org === org) last.slugs.push(cs.slug);
-    else groups.push({ org, slugs: [cs.slug] });
+    grouped.set(org, [...(grouped.get(org) ?? []), cs.slug]);
   }
+  const groups = [...grouped.entries()].map(([org, slugs]) => ({ org, slugs }));
   const bySlug = new Map(caseStudies.map((cs) => [cs.slug, cs]));
 
   return (
