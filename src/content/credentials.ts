@@ -23,8 +23,8 @@ export const patents: Patent[] = [
   },
   {
     kind: 'achievement',
-    title: 'P&W 1100G engine test-bed augmenter, installed live',
-    reference: 'Coordinated across Air India · CENCO · Pratt & Whitney',
+    title: 'P&W 1100G engine test-bed augmenter extension',
+    reference: 'Installation coordinated across Air India · CENCO · Pratt & Whitney',
   },
   {
     kind: 'achievement',
