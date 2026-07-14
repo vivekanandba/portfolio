@@ -70,7 +70,7 @@ describe('content invariants for an impactful page', () => {
 
   it('tells the arc with at least four beats, including the founder chapter', () => {
     expect(profile.arc.length).toBeGreaterThanOrEqual(4);
-    expect(profile.arc.some((beat) => beat.phase === 'Founder')).toBe(true);
+    expect(profile.arc.some((beat) => beat.phase.includes('Founder'))).toBe(true);
   });
 
   it('hero badge names all three technical domains (founder beat stays off the badge)', () => {

@@ -156,9 +156,9 @@ export const caseStudySchema = z.object({
 export type CaseStudy = z.infer<typeof caseStudySchema>;
 
 export const patentSchema = z.object({
-  kind: z.enum(['patent', 'publication']),
+  kind: z.enum(['patent', 'publication', 'achievement']),
   title: z.string().min(1),
-  reference: z.string().optional(), // patent number, etc.
+  reference: z.string().optional(), // patent number, venue, context
   href: z.string().url().optional(),
 });
 export type Patent = z.infer<typeof patentSchema>;
