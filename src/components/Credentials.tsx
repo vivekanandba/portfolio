@@ -3,10 +3,12 @@ import { education, patents } from '@/content';
 
 export function Credentials() {
   return (
-    <Section id="credentials" eyebrow="Credibility" title="Patents, publications & education">
+    <Section id="credentials" eyebrow="Credibility" title="Patents, achievements & education">
       <div className="grid gap-x-10 gap-y-10 sm:grid-cols-2">
         <div>
-          <h3 className="mb-4 text-sm font-semibold text-ink">Patents & Publications</h3>
+          <h3 className="mb-4 text-sm font-semibold text-ink">
+            Patents, Publications & Achievements
+          </h3>
           <ul className="space-y-4">
             {patents.map((p) => (
               <li key={p.title}>
