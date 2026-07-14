@@ -2,6 +2,7 @@ import { describe, it, expect } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import { axe } from 'jest-axe';
 import CaseStudyPage, { generateStaticParams } from '@/app/work/[slug]/page';
+import WorkIndex from '@/app/work/page';
 import { ProjectCard } from '@/components/ProjectCard';
 import { caseStudies, projects } from '@/content';
 
@@ -38,8 +39,34 @@ describe('case-study pages', () => {
     },
   );
 
-  it('has no axe violations (spot check: playground)', async () => {
-    const { container } = await renderCaseStudy('playground');
+  // Representative axe sample — one per page archetype (full flow, data-heavy,
+  // process diagram, compact) to keep runtime sane across 15 pages.
+  it.each(['playground', 'speech-intelligence', 'legend-defence', 'mapshalli-volunteer'])(
+    'has no axe violations (%s)',
+    async (slug) => {
+      const { container } = await renderCaseStudy(slug);
+      expect(await axe(container)).toHaveNoViolations();
+    },
+  );
+});
+
+describe('the /work/ index', () => {
+  it('lists every case study as a link, grouped by org', () => {
+    render(<WorkIndex />);
+    expect(screen.getByRole('heading', { level: 1, name: 'Case studies' })).toBeInTheDocument();
+    for (const cs of caseStudies) {
+      // next/link normalizes the trailing slash outside the real build.
+      expect(screen.getByRole('link', { name: cs.title })).toHaveAttribute(
+        'href',
+        expect.stringMatching(new RegExp(`^/work/${cs.slug}/?$`)),
+      );
+    }
+    // Chapter groupings surface the org names.
+    expect(screen.getAllByRole('heading', { level: 2 }).length).toBeGreaterThanOrEqual(3);
+  });
+
+  it('has no axe violations', async () => {
+    const { container } = render(<WorkIndex />);
     expect(await axe(container)).toHaveNoViolations();
   });
 });

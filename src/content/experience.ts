@@ -36,6 +36,8 @@ export const projects: Project[] = [
     tags: ['FastAPI', 'Triton', 'AWS EKS', 'Modal'],
     featured: true,
     domain: 'ai-native',
+    href: 'https://www.sanas.ai/#playground',
+    linkLabel: 'Live demo',
   },
   {
     id: 'sanas-for-sales',
@@ -87,6 +89,39 @@ export const projects: Project[] = [
     domain: 'ai-native',
   },
   {
+    id: 'sanas-portal',
+    title: 'Admin Portal — Releases & Timezones',
+    org: 'Sanas.ai',
+    summary:
+      'Designed a workspace-level timezone-management system and app version distribution, enabling consistent global reporting standards across India, Philippines, and US regions.',
+    metrics: [{ value: '60%', label: 'fewer support tickets' }],
+    tags: ['NestJS', 'React', 'PostgreSQL'],
+    featured: false,
+    domain: 'ai-native',
+  },
+  {
+    id: 'internal-tools',
+    title: 'Internal Tools Portal & Modernization',
+    org: 'Sanas.ai',
+    summary:
+      'Took ownership of 25+ legacy internal applications across React, Vue, Python, and Node, and built a centralized, searchable Internal Tools Portal — one place for every engineering resource, on a standardized framework for future tools.',
+    metrics: [],
+    tags: ['Vue.js', 'NestJS', 'GitHub Copilot'],
+    featured: false,
+    domain: 'ai-native',
+  },
+  {
+    id: 'mlops-tooling',
+    title: 'MLOps Observability & Model Cards',
+    org: 'Sanas.ai',
+    summary:
+      'Built the first end-to-end observability dashboard for the MLOps data pipeline (internal APIs + DynamoDB feeding automated quality, volume, and latency metrics) and a Model Card evaluation system bridging data linguists, DL specialists, and speech scientists.',
+    metrics: [],
+    tags: ['FastAPI', 'Plotly', 'DynamoDB'],
+    featured: false,
+    domain: 'ai-native',
+  },
+  {
     id: 'gcp-telemetry',
     title: 'Cloud Telemetry & Data View',
     org: 'NovaSignal / NeuraSignal',
@@ -120,17 +155,6 @@ export const projects: Project[] = [
     domain: 'healthcare-robotics',
   },
   {
-    id: 'sanas-portal',
-    title: 'Admin Portal — Releases & Timezones',
-    org: 'Sanas.ai',
-    summary:
-      'Designed a workspace-level timezone-management system and app version distribution, enabling consistent global reporting standards across India, Philippines, and US regions.',
-    metrics: [{ value: '60%', label: 'fewer support tickets' }],
-    tags: ['NestJS', 'React', 'PostgreSQL'],
-    featured: false,
-    domain: 'ai-native',
-  },
-  {
     id: 'isro-tooling',
     title: 'Aerospace Tooling — ISRO / Safran / P&W',
     org: 'Legend Technologies',
@@ -138,6 +162,17 @@ export const projects: Project[] = [
       'Design and fabrication of aerospace & locomotive jigs and fixtures for ISRO, Safran, and Pratt & Whitney, with end-to-end support across manufacturing, testing, and service — owning the entire product lifecycle.',
     metrics: [],
     tags: ['CATIA', 'Jigs & Fixtures', 'ISRO · Safran · P&W'],
+    featured: false,
+    domain: 'aerospace',
+  },
+  {
+    id: 'legend-defence',
+    title: 'Defence & Nuclear Engineering — BEL / IGCAR',
+    org: 'Legend Technologies',
+    summary:
+      'Led 3D modelling and kinematic simulation of the BMP-II turret for BEL’s FICV space studies, and designed a high-amperage slip ring for high-temperature electro-refining of spent nuclear fuel (IGCAR / Godrej) — presented at NAMS 2015.',
+    metrics: [],
+    tags: ['CATIA', 'Kinematics', 'NAMS 2015'],
     featured: false,
     domain: 'aerospace',
   },
@@ -151,6 +186,8 @@ export const projects: Project[] = [
     tags: ['Civic Tech', 'IoT'],
     featured: false,
     domain: 'community',
+    href: 'https://mapshalli.org',
+    linkLabel: 'mapshalli.org',
   },
 ];
 

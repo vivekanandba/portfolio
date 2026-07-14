@@ -129,11 +129,11 @@ describe('case-study invariants', () => {
     for (const cs of caseStudies) expect(ids.has(cs.projectId), cs.projectId).toBe(true);
   });
 
-  it('the three flagships each have a case study', () => {
+  it('projects and case studies are a bijection — every project gets a page', () => {
+    const projectIds = new Set(projects.map((p) => p.id));
     const covered = new Set(caseStudies.map((cs) => cs.projectId));
-    for (const id of ['playground', 'sanas-for-sales', 'sanas-consumer-app']) {
-      expect(covered.has(id), id).toBe(true);
-    }
+    expect(covered).toEqual(projectIds);
+    expect(caseStudies.length).toBe(projects.length);
   });
 
   it('diagram ids and the diagram registry are a bijection', () => {

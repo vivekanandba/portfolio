@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { profile } from '@/content';
+import { caseStudies, profile } from '@/content';
 
 const TITLE = `${profile.name} — ${profile.tagline}`;
 const DESCRIPTION = profile.valueProp;
@@ -42,6 +42,20 @@ export function personJsonLd() {
     worksFor: { '@type': 'Organization', name: profile.currentRole.org },
     address: { '@type': 'PostalAddress', addressLocality: profile.location },
     sameAs: profile.links.map((l) => l.href),
+  };
+}
+
+/** Metadata for the /work/ case-study index. */
+export function workIndexMetadata(): Metadata {
+  const title = `Case studies — ${profile.name}`;
+  const description = `${caseStudies.length} case studies across aerospace, healthcare robotics, and AI-native software — problem, constraints, decisions, and measured results.`;
+  const url = `${SITE_URL}/work/`;
+  return {
+    title,
+    description,
+    alternates: { canonical: url },
+    openGraph: { title, description, type: 'website', url, images: [OG_IMAGE] },
+    twitter: { card: 'summary_large_image', title, description, images: [OG_IMAGE.url] },
   };
 }
 
