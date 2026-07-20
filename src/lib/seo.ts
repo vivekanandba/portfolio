@@ -10,8 +10,15 @@ const DESCRIPTION = profile.valueProp;
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://vivekanandba.github.io/portfolio';
 const OG_IMAGE = { url: `${SITE_URL}/og.png`, width: 1200, height: 630, alt: TITLE };
 
+// metadataBase resolves file-convention images (e.g. the per-case-study
+// opengraph-image). Next already prefixes those paths with basePath, so
+// metadataBase must be the ORIGIN only — including /portfolio here would
+// double it (…/portfolio/portfolio/…). Explicit absolute URLs below
+// (canonicals, og.png) are strings and don't depend on this.
+const SITE_ORIGIN = new URL(SITE_URL).origin;
+
 export const siteMetadata: Metadata = {
-  metadataBase: new URL(SITE_URL),
+  metadataBase: new URL(SITE_ORIGIN),
   title: TITLE,
   description: DESCRIPTION,
   alternates: { canonical: `${SITE_URL}/` },
@@ -59,7 +66,10 @@ export function workIndexMetadata(): Metadata {
   };
 }
 
-/** Per-page metadata for case-study routes — absolute URLs, same reasoning as above. */
+/** Per-page metadata for case-study routes — absolute URLs, same reasoning as above.
+ *  The per-slug social image comes from the co-located opengraph-image.tsx
+ *  (generated statically at build); Next injects it into openGraph + twitter,
+ *  so no `images` are set here. */
 export function caseStudyMetadata(cs: {
   title: string;
   seoDescription: string;
@@ -76,13 +86,11 @@ export function caseStudyMetadata(cs: {
       description: cs.seoDescription,
       type: 'article',
       url,
-      images: [OG_IMAGE],
     },
     twitter: {
       card: 'summary_large_image',
       title,
       description: cs.seoDescription,
-      images: [OG_IMAGE.url],
     },
   };
 }

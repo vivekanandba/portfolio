@@ -51,6 +51,14 @@ export function Experience() {
                     </span>
                   </div>
                   <p className="mt-1 text-sm leading-relaxed text-muted">{project.summary}</p>
+                  {project.metrics.length > 0 && (
+                    <p className="tabular mt-2 text-xs font-medium text-ink">
+                      {project.metrics
+                        .slice(0, 2)
+                        .map((m) => `${m.value} ${m.label}`)
+                        .join('  ·  ')}
+                    </p>
+                  )}
                   <div className="mt-2 flex flex-wrap items-center gap-x-4 gap-y-1">
                     {project.tags.length > 0 && (
                       <p className="text-xs text-muted">{project.tags.join(' · ')}</p>

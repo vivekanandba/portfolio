@@ -12,6 +12,69 @@ const LINKS = [
   { href: '#contact', label: 'Contact' },
 ];
 
+type Theme = 'light' | 'dark';
+
+/** Manual light/dark toggle. Layers a data-theme override on top of the OS
+ *  default (see globals.css); the pre-paint script in layout.tsx applies any
+ *  saved choice before render, so this only reflects and flips it. */
+function ThemeToggle() {
+  // null until mounted so server and first client render agree (no hydration
+  // mismatch); the real value is read from the DOM/OS in the effect below.
+  const [theme, setTheme] = useState<Theme | null>(null);
+
+  useEffect(() => {
+    const chosen = document.documentElement.dataset.theme as Theme | undefined;
+    setTheme(
+      chosen ?? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'),
+    );
+  }, []);
+
+  const toggle = () => {
+    const next: Theme = theme === 'dark' ? 'light' : 'dark';
+    document.documentElement.dataset.theme = next;
+    try {
+      localStorage.setItem('theme', next);
+    } catch {
+      /* private mode / storage disabled — the choice just won't persist */
+    }
+    setTheme(next);
+  };
+
+  // Pre-mount default: assume light, so we show the "switch to dark" (moon) icon.
+  const isDark = theme === 'dark';
+  return (
+    <button
+      type="button"
+      onClick={toggle}
+      aria-label={isDark ? 'Switch to light theme' : 'Switch to dark theme'}
+      className="p-1 text-muted transition-colors hover:text-ink"
+    >
+      <svg
+        aria-hidden="true"
+        width="18"
+        height="18"
+        viewBox="0 0 20 20"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      >
+        {isDark ? (
+          // Sun
+          <>
+            <circle cx="10" cy="10" r="3.5" />
+            <path d="M10 1.5v2M10 16.5v2M1.5 10h2M16.5 10h2M4 4l1.4 1.4M14.6 14.6L16 16M16 4l-1.4 1.4M5.4 14.6L4 16" />
+          </>
+        ) : (
+          // Moon
+          <path d="M16.5 11.5A6.5 6.5 0 1 1 8.5 3.5a5 5 0 0 0 8 8Z" />
+        )}
+      </svg>
+    </button>
+  );
+}
+
 /** Sticky top nav with anchor links + a persistent resume CTA. */
 export function Nav() {
   const [open, setOpen] = useState(false);
@@ -73,6 +136,7 @@ export function Nav() {
               </li>
             ))}
           </ul>
+          <ThemeToggle />
           <a
             href={asset(profile.resumeFile)}
             className="rounded-full bg-ink px-4 py-1.5 text-sm font-medium text-paper no-underline transition-opacity hover:opacity-90"
