@@ -20,6 +20,7 @@ export function generateStaticParams() {
 // Tailwind classes, so the domain accent is inlined here).
 const DOMAIN_HEX: Record<Domain, string> = {
   aerospace: '#B45309',
+  rail: '#5B5B66',
   'healthcare-robotics': '#0F766E',
   'ai-native': '#1D4ED8',
   entrepreneurial: '#5B5B66',

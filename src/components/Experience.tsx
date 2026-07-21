@@ -12,6 +12,7 @@ const DOMAIN_LABELS: Record<Domain, string> = {
   'ai-native': 'AI-Native Software',
   'healthcare-robotics': 'Healthcare Robotics',
   aerospace: 'Aerospace',
+  rail: 'Rail',
   community: 'Civic Tech',
   entrepreneurial: 'Entrepreneurial',
 };
@@ -19,6 +20,7 @@ const CHAPTER_ORDER: Domain[] = [
   'ai-native',
   'healthcare-robotics',
   'aerospace',
+  'rail',
   'community',
   'entrepreneurial',
 ];
