@@ -40,8 +40,8 @@ describe('case-study pages', () => {
   );
 
   // Representative axe sample — one per page archetype (full flow, data-heavy,
-  // process diagram, compact) to keep runtime sane across 15 pages.
-  it.each(['playground', 'speech-intelligence', 'legend-defence', 'mapshalli-volunteer'])(
+  // process diagram, compact) to keep runtime sane across all case-study pages.
+  it.each(['playground', 'speech-intelligence', 'vssc-tooling', 'mapshalli-volunteer'])(
     'has no axe violations (%s)',
     async (slug) => {
       const { container } = await renderCaseStudy(slug);

@@ -171,30 +171,114 @@ export const projects: Project[] = [
     domain: 'healthcare-robotics',
   },
   {
-    id: 'isro-tooling',
-    title: 'Aerospace Tooling — ISRO / Safran / P&W',
+    id: 'vssc-tooling',
+    title: 'VSSC Launch-Vehicle Tooling',
     org: 'Legend Technologies',
     summary:
-      'Design and fabrication of aerospace & locomotive jigs and fixtures for ISRO, Safran, and Pratt & Whitney, with end-to-end support across manufacturing, testing, and service — owning the entire product lifecycle.',
+      'Design, fabrication, and first-article proving of launch-vehicle assembly tooling for VSSC/ISRO — the SONC nose-cone assembly jig, spinner full-weld jig, checking tools, and master tooling gauges that decide whether flight hardware can be built.',
     metrics: [
-      { value: 'ISRO · Safran · P&W', label: 'flagship clients' },
+      { value: 'VSSC · ISRO', label: 'launch-vehicle client' },
       { value: 'First-article', label: 'tool proving' },
     ],
-    tags: ['CATIA', 'Jigs & Fixtures', 'ISRO · Safran · P&W'],
+    tags: ['CATIA · UG NX', 'Jigs & Gauges', 'ISRO'],
     featured: true,
     domain: 'aerospace',
   },
   {
-    id: 'legend-defence',
-    title: 'Defence & Nuclear Engineering — BEL / IGCAR',
+    id: 'safran-a350',
+    title: 'Airbus A350 XWB — Structures & FTI',
+    org: 'Safran Engineering India',
+    summary:
+      'Primary/secondary structure installation brackets (S11–S18) and flight-test-installation harness routing for wing, pylon, and landing gear on the Airbus A350 XWB — carried from conceptual C-maturity to design-for-manufacturing, to Airbus standards.',
+    metrics: [
+      { value: 'A350 XWB', label: 'Airbus composite widebody' },
+      { value: 'C-maturity → DFM', label: 'design maturity owned' },
+    ],
+    tags: ['CATIA', 'Structures', 'FTI'],
+    featured: false,
+    domain: 'aerospace',
+  },
+  {
+    id: 'pw-augmenter',
+    title: 'P&W 1100G Test-Bed Augmenter',
     org: 'Legend Technologies',
     summary:
-      'Led 3D modelling and kinematic simulation of the BMP-II turret for BEL’s FICV space studies, and designed a high-amperage slip ring for high-temperature electro-refining of spent nuclear fuel (IGCAR / Godrej) — presented at NAMS 2015.',
+      'A movable-cart augmenter extension for testing the Pratt & Whitney PW1100G (the A320neo geared turbofan) at an existing CENCO engine test bed — engineered to install and remove cleanly on a live facility, with Air India / CENCO / P&W liaison.',
+    metrics: [
+      { value: 'PW1100G', label: 'A320neo geared turbofan' },
+      { value: 'Live test bed', label: 'install & removal design' },
+    ],
+    tags: ['CATIA', 'Test-cell tooling', 'Pratt & Whitney'],
+    featured: false,
+    domain: 'aerospace',
+  },
+  {
+    id: 'bmp2-turret',
+    title: 'BMP-II Turret — FICV Study',
+    org: 'Legend Technologies',
+    summary:
+      'Full 3D modelling and kinematic simulation of the BMP-II turret for Bharat Electronics’ Futuristic Infantry Combat Vehicle space studies — 3,000 legacy drawings reconstructed into validated, simulated geometry by an eight-engineer team in four months.',
     metrics: [
       { value: '3,000', label: 'drawing sheets modeled' },
       { value: '8', label: 'engineers led' },
     ],
-    tags: ['CATIA', 'Kinematics', 'NAMS 2015'],
+    tags: ['CATIA', 'Kinematics', 'BEL · FICV'],
+    featured: false,
+    domain: 'aerospace',
+  },
+  {
+    id: 'igcar-slipring',
+    title: 'IGCAR Nuclear Slip Ring',
+    org: 'Legend Technologies',
+    summary:
+      'A high-amperage slip ring for high-temperature electro-refining of spent nuclear fuel (IGCAR / Godrej) — engineered against ingress-protection, vibration, and thermal constraints, prototyped, compliance-tested, and published at NAMS 2015.',
+    metrics: [
+      { value: 'High-amperage', label: 'nuclear-grade slip ring' },
+      { value: 'NAMS 2015', label: 'white paper published' },
+    ],
+    tags: ['Design', 'Prototype & test', 'IGCAR'],
+    featured: false,
+    domain: 'aerospace',
+  },
+  {
+    id: 'filament-composites',
+    title: 'Filament-Wound Composites',
+    org: 'Legend Technologies',
+    summary:
+      'Manufacturing transfer and fabrication of high-glass-temperature filament-wound carbon-epoxy shells and laminates (PESIT / Siemens) — material selection, winding, oven curing, machining, and testing owned end to end.',
+    metrics: [
+      { value: 'Carbon-epoxy', label: 'filament-wound shells' },
+      { value: 'End-to-end', label: 'manufacturing transfer' },
+    ],
+    tags: ['Composites', 'Filament winding', 'PESIT · Siemens'],
+    featured: false,
+    domain: 'aerospace',
+  },
+  {
+    id: 'lca-navy',
+    title: 'LCA-Navy Opto-Electronics',
+    org: 'Legend Technologies',
+    summary:
+      'New-product-development design and analysis of opto-electronic assemblies for the LCA-Navy — India’s naval light combat aircraft — for the Aircraft Research & Design Centre at HAL, in CATIA and Abaqus.',
+    metrics: [
+      { value: 'LCA-Navy', label: 'naval combat aircraft' },
+      { value: 'ARDC · HAL', label: 'design authority' },
+    ],
+    tags: ['CATIA · Abaqus', 'NPD', 'ARDC · HAL'],
+    featured: false,
+    domain: 'aerospace',
+  },
+  {
+    id: 'aero-reverse-engineering',
+    title: 'Aerospace Reverse Engineering',
+    org: 'Legend Technologies',
+    summary:
+      'Reverse engineering, fabrication, and testing of legacy aerospace tooling and structures for VSSC/ISRO, Air India, ARDC, and ADA — reconstructing buildable CAD from hardware whose original documentation was gone.',
+    metrics: [
+      { value: 'VSSC · Air India', label: 'clients' },
+      { value: 'CATIA · NX · Abaqus', label: 'toolchain' },
+    ],
+    tags: ['Reverse engineering', 'Fabrication', 'VSSC · ARDC · ADA'],
     featured: false,
     domain: 'aerospace',
   },
