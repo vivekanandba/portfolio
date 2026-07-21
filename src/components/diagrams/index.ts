@@ -20,6 +20,7 @@ import { Bmp2TurretDiagram } from './Bmp2TurretDiagram';
 import { IgcarSlipringDiagram } from './IgcarSlipringDiagram';
 import { LcaNavyDiagram } from './LcaNavyDiagram';
 import { AeroReverseEngineeringDiagram } from './AeroReverseEngineeringDiagram';
+import { RailToolingDiagram } from './RailToolingDiagram';
 
 /** Registry keyed by caseStudySchema.diagramId — content tests assert the bijection. */
 export const diagrams = {
@@ -44,6 +45,7 @@ export const diagrams = {
   'igcar-slipring': IgcarSlipringDiagram,
   'lca-navy': LcaNavyDiagram,
   'aero-reverse-engineering': AeroReverseEngineeringDiagram,
+  'rail-tooling': RailToolingDiagram,
 } as const satisfies Record<string, ComponentType>;
 
 export type DiagramId = keyof typeof diagrams;

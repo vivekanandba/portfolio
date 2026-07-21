@@ -26,6 +26,7 @@ export type Metric = z.infer<typeof metricSchema>;
  */
 export const domainSchema = z.enum([
   'aerospace',
+  'rail',
   'healthcare-robotics',
   'ai-native',
   'entrepreneurial',
@@ -139,6 +140,7 @@ export const DIAGRAM_IDS = [
   'igcar-slipring',
   'lca-navy',
   'aero-reverse-engineering',
+  'rail-tooling',
 ] as const;
 
 /** Long-form case study for a project, rendered at /work/<slug>/. */
