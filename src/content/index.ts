@@ -33,7 +33,28 @@ export const aiPracticeSteps = z
   .parse(rawAiPracticeSteps);
 export const caseStudies = z.array(caseStudySchema).parse(rawCaseStudies);
 
-export const featuredProjects = projects.filter((p) => p.featured);
+/**
+ * Featured cards, ordered to span domains near the top (AI-native, then a
+ * healthcare-robotics and an aerospace flagship, then the rest) instead of
+ * leading with a run of AI projects. Any featured id not listed sorts last.
+ */
+const FEATURED_ORDER = [
+  'sanas-consumer-app',
+  'playground',
+  'gcp-telemetry',
+  'isro-tooling',
+  'speech-intelligence',
+  'sanas-for-sales',
+  'unified-ml-platform',
+  'ai-next-strategy',
+];
+const featuredRank = (id: string) => {
+  const i = FEATURED_ORDER.indexOf(id);
+  return i === -1 ? FEATURED_ORDER.length : i;
+};
+export const featuredProjects = projects
+  .filter((p) => p.featured)
+  .sort((a, b) => featuredRank(a.id) - featuredRank(b.id));
 export const secondaryProjects = projects.filter((p) => !p.featured);
 
 /** Card → case-study link derivation; internal URLs never live in project.href. */

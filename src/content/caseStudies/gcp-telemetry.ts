@@ -6,14 +6,14 @@ export const gcpTelemetry: CaseStudy = {
   eyebrow: 'Case Study · NovaSignal / NeuraSignal',
   title: 'Cloud Telemetry & Data View — from manual diagnostics to fleet insight',
   intro:
-    'A serverless GCP telemetry architecture for robotic medical systems deployed across hospitals — real-time monitoring, predictive maintenance, and remote diagnostics — plus the Data View application that turned that data into decisions for sales, med-ed, and leadership.',
+    'A serverless GCP telemetry architecture for NovaGuide — the first FDA-cleared, fully-automated robotic transcranial-Doppler ultrasound for cerebral blood-flow and stroke assessment — deployed across hospitals: real-time fleet monitoring, predictive maintenance, and remote diagnostics, plus the Data View application that turned that data into decisions for sales, med-ed, and leadership.',
   metrics: [
     { value: 'Serverless', label: 'Cloud Run + BigQuery' },
     { value: 'Real-time', label: 'fleet monitoring' },
     { value: 'HIPAA', label: 'compliant pipeline' },
   ],
   problem: [
-    'NovaGuide robotic systems were diagnosed manually, device by device, on site. There was no central view of the fleet — a problem that grew with every hospital deployment.',
+    'NovaGuide robotic systems — life-critical, FDA-cleared cerebral-ultrasound devices — were diagnosed manually, device by device, on site. There was no central view of the fleet, a problem that grew with every hospital deployment.',
     'The data existed but reached no one who could act on it: sales, medical education, and leadership had no visibility into how systems were actually used across hospitals.',
   ],
   constraints: [
@@ -57,5 +57,5 @@ export const gcpTelemetry: CaseStudy = {
     'Centralized telemetry reduced on-site diagnostics, improved response times, and lowered operational costs — and Data View gave sales, med-ed, and leadership their first real-time window into the deployed fleet.',
   diagramId: 'telemetry',
   seoDescription:
-    'Case study: a serverless GCP telemetry architecture (Cloud Run, BigQuery, Cloud Monitoring) for hospital-deployed robotic systems, with the Streamlit-based Data View app delivering fleet insight to business stakeholders.',
+    'Case study: a serverless GCP telemetry architecture (Cloud Run, BigQuery, Cloud Monitoring) for hospital-deployed NovaGuide robotic ultrasound systems, with the Streamlit-based Data View app delivering fleet insight to business stakeholders.',
 };

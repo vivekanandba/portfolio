@@ -13,7 +13,7 @@ export const aiDrivenQa: CaseStudy = {
     { value: 'SRS → tests', label: 'generation automated' },
   ],
   problem: [
-    'Medical-device GUI testing starts from System Requirements Specifications and ends in scripted, traceable test cases. Writing those scripts by hand was the bottleneck of every regression cycle.',
+    'The device under test was NovaGuide — an FDA-cleared robotic stroke-assessment platform — where a missed defect is a patient-safety and regulatory event, not a bug report. Its GUI testing starts from System Requirements Specifications and ends in scripted, traceable test cases, and writing those scripts by hand was the bottleneck of every regression cycle.',
     'The defect backlog had the same shape: Jira tickets triaged manually, error patterns spotted by whoever happened to remember similar tickets.',
   ],
   constraints: [
