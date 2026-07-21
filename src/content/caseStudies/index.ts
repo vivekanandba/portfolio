@@ -11,8 +11,14 @@ import { mlopsTooling } from './mlops-tooling';
 import { gcpTelemetry } from './gcp-telemetry';
 import { healthcareInterop } from './healthcare-interop';
 import { aiDrivenQa } from './ai-driven-qa';
-import { isroTooling } from './isro-tooling';
-import { legendDefence } from './legend-defence';
+import { vsscTooling } from './vssc-tooling';
+import { safranA350 } from './safran-a350';
+import { pwAugmenter } from './pw-augmenter';
+import { bmp2Turret } from './bmp2-turret';
+import { igcarSlipring } from './igcar-slipring';
+import { filamentComposites } from './filament-composites';
+import { lcaNavy } from './lca-navy';
+import { aeroReverseEngineering } from './aero-reverse-engineering';
 import { mapshalliVolunteer } from './mapshalli-volunteer';
 
 /** Ordered to mirror the project-card order (featured grid, then More work). */
@@ -29,7 +35,13 @@ export const caseStudies: CaseStudy[] = [
   gcpTelemetry,
   healthcareInterop,
   aiDrivenQa,
-  isroTooling,
-  legendDefence,
+  vsscTooling,
+  safranA350,
+  pwAugmenter,
+  bmp2Turret,
+  igcarSlipring,
+  filamentComposites,
+  lcaNavy,
+  aeroReverseEngineering,
   mapshalliVolunteer,
 ];

@@ -42,7 +42,7 @@ const FEATURED_ORDER = [
   'sanas-consumer-app',
   'playground',
   'gcp-telemetry',
-  'isro-tooling',
+  'vssc-tooling',
   'speech-intelligence',
   'sanas-for-sales',
   'unified-ml-platform',
