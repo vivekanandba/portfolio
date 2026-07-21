@@ -63,5 +63,5 @@ export const healthcareInterop: CaseStudy = {
     'The compliance tooling outlived the releases it was built for — the DICOM Decoder and SOUP Creator became standing infrastructure for audits and security reviews.',
   diagramId: 'interop',
   seoDescription:
-    'Case study: HIPAA/HL7/DICOM-compliant cloud microservices connecting robotic medical devices to hospital EMRs — with an EMR simulator, a virtual-hospital VPC, and automated DICOM conformance tooling in CI.',
+    'Case study: HIPAA/HL7/DICOM-compliant cloud microservices connecting NovaGuide robotic medical devices to hospital EMRs — with an EMR simulator, a virtual-hospital VPC, and automated DICOM conformance tooling in CI.',
 };

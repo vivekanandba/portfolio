@@ -57,5 +57,5 @@ export const gcpTelemetry: CaseStudy = {
     'Centralized telemetry reduced on-site diagnostics, improved response times, and lowered operational costs — and Data View gave sales, med-ed, and leadership their first real-time window into the deployed fleet.',
   diagramId: 'telemetry',
   seoDescription:
-    'Case study: a serverless GCP telemetry architecture (Cloud Run, BigQuery, Cloud Monitoring) for hospital-deployed robotic systems, with the Streamlit-based Data View app delivering fleet insight to business stakeholders.',
+    'Case study: a serverless GCP telemetry architecture (Cloud Run, BigQuery, Cloud Monitoring) for hospital-deployed NovaGuide robotic ultrasound systems, with the Streamlit-based Data View app delivering fleet insight to business stakeholders.',
 };
