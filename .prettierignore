@@ -1,5 +1,6 @@
 out/
 .next/
+.claude/
 .pw-site/
 node_modules/
 playwright-report/
