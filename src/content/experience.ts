@@ -283,6 +283,20 @@ export const projects: Project[] = [
     domain: 'aerospace',
   },
   {
+    id: 'rail-tooling',
+    title: 'Rolling-Stock Tooling — Metros & Locomotives',
+    org: 'Tech Mahindra',
+    summary:
+      'Manufacturing-engineering tooling for Alstom rolling-stock programs — bogie, gangway, and HVAC installation fixtures and templates across the Perth METRONET C-Series, Mumbai Metro Line 3, Singapore Metro, and the E-Loco.',
+    metrics: [
+      { value: '4 programs', label: 'metro & locomotive fleets' },
+      { value: 'Bogie · gangway · HVAC', label: 'installation fixtures' },
+    ],
+    tags: ['Jigs & Fixtures', 'Rolling Stock', 'Alstom'],
+    featured: false,
+    domain: 'rail',
+  },
+  {
     id: 'mapshalli-volunteer',
     title: 'Stop Hunger & AirCare',
     org: 'Mapshalli (volunteer)',
@@ -334,7 +348,7 @@ export const roles: Role[] = [
     period: 'Jan 2019 – Jan 2021',
     track: 'Mechanical',
     location: 'Bangalore, India',
-    domain: 'aerospace',
+    domain: 'rail',
     highlights: [
       'Designed jigs, fixtures, and installation tooling for locomotive programs — Perth Metro, Mumbai ML3 Metro, E-Loco, and Singapore Metro.',
       'Owned bogie, gangway, and HVAC installation fixtures from design through fabrication and on-site proving.',
