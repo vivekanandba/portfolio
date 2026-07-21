@@ -30,7 +30,7 @@ export const profile: Profile = {
     {
       phase: 'Electronics · Founder',
       title: 'Gadjoy Repair Services',
-      body: 'Founded and ran a gadget repair business for four years — 1,000+ devices, 100+ customers a month, a 4.7+ satisfaction rating — hands-on electronics, plus self-built ops software that increased operational efficiency by 80%.',
+      body: 'Founded a gadget repair business that still runs today under family (my mother, now my wife) — 1,000+ devices, 100+ customers a month, a 4.7+ satisfaction rating — hands-on electronics, plus self-built ops software that increased operational efficiency by 80%.',
       domain: 'entrepreneurial',
     },
     {
