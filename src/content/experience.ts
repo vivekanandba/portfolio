@@ -257,27 +257,30 @@ export const roles: Role[] = [
     ],
   },
   {
-    company: 'Gadjoy Repair Services',
-    title: 'Founder & Technician',
-    period: 'Nov 2016 – Nov 2020',
-    track: 'Entrepreneurial',
-    location: 'Bangalore, India',
-    domain: 'entrepreneurial',
-    highlights: [
-      'Founded and ran a gadget repair business — 1,000+ devices and 100+ customers/month at a 4.7+ satisfaction rating.',
-      'Built custom software (ledger, checklists, device tracking) that increased operational efficiency by 80%.',
-    ],
-  },
-  {
     company: 'Legend Technologies',
     title: 'Senior Lead Engineer',
-    period: 'Jan 2013 – Nov 2016',
+    period: 'Jan 2013 – Jan 2019',
     track: 'Mechanical',
     location: 'Bangalore, India',
     domain: 'aerospace',
     highlights: [
       'Led multidisciplinary teams designing aerospace & locomotive jigs and fixtures for ISRO, Safran, and Pratt & Whitney.',
       'Provided end-to-end support in manufacturing, testing, and service — overseeing the entire product lifecycle.',
+    ],
+  },
+  {
+    // Founder venture run in parallel with the roles above — day-to-day
+    // operations handed to family, so it's marked as a side venture (aside)
+    // rather than a competing full-time role.
+    company: 'Gadjoy Repair Services',
+    title: 'Founder',
+    period: 'Nov 2016 – Present',
+    track: 'Entrepreneurial',
+    domain: 'entrepreneurial',
+    aside: 'Side venture · family-run',
+    highlights: [
+      'Founded a gadget-repair business that still runs today — day-to-day operations handed to family (my mother, now my wife): 1,000+ devices and 100+ customers/month at a 4.7+ satisfaction rating.',
+      'Built the custom software behind it (ledger, checklists, device tracking) that increased operational efficiency by 80%.',
     ],
   },
   {
