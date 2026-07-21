@@ -13,7 +13,7 @@ export const legendDefence: CaseStudy = {
     { value: 'NAMS 2015', label: 'white paper published' },
   ],
   problem: [
-    'BEL’s FICV space studies needed the complete BMP-II turret as validated 3D — geometry and kinematics reconstructed from 3,000 legacy drawing sheets — on a four-month clock.',
+    'BEL’s FICV space studies — part of India’s flagship program to replace its Soviet-era BMP-2 infantry fighting vehicle fleet — needed the complete BMP-II turret as validated 3D, with geometry and kinematics reconstructed from 3,000 legacy drawing sheets, on a four-month clock.',
     'IGCAR needed a slip ring that survives what almost nothing survives: high amperage under the volumetric, vibration, thermal, and ingress-protection constraints of high-temperature electro-refining of spent nuclear fuel.',
   ],
   constraints: [

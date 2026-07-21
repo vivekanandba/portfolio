@@ -6,7 +6,7 @@ export const healthcareInterop: CaseStudy = {
   eyebrow: 'Case Study · NovaSignal / NeuraSignal',
   title: 'Healthcare Interoperability — HIPAA-grade exchange for robotic devices',
   intro:
-    'Secure cloud microservices connecting robotic medical devices to hospital EMR systems across the Jupiter and Venus releases — HL7, DICOM, and MLLP done properly, with the simulators and compliance tooling that made it testable at all.',
+    'Secure cloud microservices connecting NovaGuide — NovaSignal’s FDA-cleared robotic stroke-assessment platform — to hospital EMR and PACS systems across the Jupiter and Venus releases: HL7, DICOM, and MLLP done properly, with the simulators and compliance tooling that made it testable at all.',
   metrics: [
     { value: 'HIPAA · HL7 · DICOM', label: 'standards compliance' },
     { value: 'TID 5100', label: 'DICOM conformance automated' },
@@ -63,5 +63,5 @@ export const healthcareInterop: CaseStudy = {
     'The compliance tooling outlived the releases it was built for — the DICOM Decoder and SOUP Creator became standing infrastructure for audits and security reviews.',
   diagramId: 'interop',
   seoDescription:
-    'Case study: HIPAA/HL7/DICOM-compliant cloud microservices connecting robotic medical devices to hospital EMRs — with an EMR simulator, a virtual-hospital VPC, and automated DICOM conformance tooling in CI.',
+    'Case study: HIPAA/HL7/DICOM-compliant cloud microservices connecting NovaGuide robotic medical devices to hospital EMRs — with an EMR simulator, a virtual-hospital VPC, and automated DICOM conformance tooling in CI.',
 };

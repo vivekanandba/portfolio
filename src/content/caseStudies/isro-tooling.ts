@@ -13,7 +13,7 @@ export const isroTooling: CaseStudy = {
     { value: 'End-to-end', label: 'lifecycle ownership' },
   ],
   problem: [
-    'Launch-vehicle structures and engine test programs run on tooling: assembly jigs, weld fixtures, checking tools, and master gauges that define whether flight hardware can be built at all. Each tool is a one-off engineering project with its own physics.',
+    'At VSSC — ISRO’s lead launch-vehicle centre — flight structures and engine test programs run on tooling: assembly jigs, weld fixtures, checking tools, and master gauges that define whether flight hardware can be built at all. Each tool is a one-off engineering project with its own physics.',
     'The work spans stakeholders who rarely share a room — VSSC/ISRO, BEML, TASL, HAL on the launch-vehicle side; CENCO, Pratt & Whitney, and Air India around a single engine test bed — and the tooling owner sits in the middle of all of them.',
   ],
   constraints: [
@@ -32,7 +32,7 @@ export const isroTooling: CaseStudy = {
     },
     {
       decision:
-        'For the P&W 1100G augmenter extension: a movable-cart design engineered for easy installation and removal at the existing CENCO test bed, with on-site liaison across Air India, CENCO, and Pratt & Whitney.',
+        'For the P&W 1100G augmenter extension — tooling for testing the geared turbofan that powers the A320neo family — a movable-cart design engineered for easy installation and removal at the existing CENCO test bed, with on-site liaison across Air India, CENCO, and Pratt & Whitney.',
       tradeoff:
         'Liaison and documentation overhead most designers avoid — on a live test facility, coordination is the deliverable as much as the hardware.',
     },
@@ -50,7 +50,7 @@ export const isroTooling: CaseStudy = {
     },
     {
       decision:
-        'The foundation, at Safran Engineering: Airbus A350 XWB primary/secondary structure brackets (S11–S18 sections) and FTI harness routing for wing, pylon, and landing gear — carried from C-maturity to DFM.',
+        'The foundation, at Safran Engineering: on the Airbus A350 XWB — the composite widebody where Safran is a top-tier structures and systems supplier — primary/secondary structure brackets (S11–S18 sections) and FTI harness routing for wing, pylon, and landing gear, carried from C-maturity to DFM.',
       tradeoff:
         'Working to Airbus standards means the design space is mostly rules — optimizing sheet-metal, machined, and composite brackets inside them is the discipline every later jig inherited.',
     },

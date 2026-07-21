@@ -77,9 +77,9 @@ describe('Experience (Selected Work)', () => {
     expect(screen.getAllByText('430k/day').length).toBeGreaterThan(0);
   });
 
-  it('renders the "More work" list with every secondary project', () => {
+  it('renders the era chapters with every secondary project', () => {
     render(<Experience />);
-    expect(screen.getByRole('heading', { name: /more work/i })).toBeInTheDocument();
+    expect(screen.getByRole('heading', { name: /more across the arc/i })).toBeInTheDocument();
     for (const p of secondaryProjects) {
       expect(screen.getByRole('heading', { name: new RegExp(p.title) })).toBeInTheDocument();
     }
