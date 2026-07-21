@@ -36,8 +36,13 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="en" className={`${inter.variable} ${fraunces.variable}`}>
       <body>
         <script
-          // Stamp .js before paint so scroll-reveal styles only apply when JS runs.
-          dangerouslySetInnerHTML={{ __html: "document.documentElement.classList.add('js')" }}
+          // Before paint: stamp .js (so scroll-reveal styles only apply when JS
+          // runs) and apply any saved theme choice (so manual dark/light wins
+          // over the OS media query with no flash). No choice → OS auto.
+          dangerouslySetInnerHTML={{
+            __html:
+              "(function(){var d=document.documentElement;d.classList.add('js');try{var t=localStorage.getItem('theme');if(t==='dark'||t==='light')d.dataset.theme=t;}catch(e){}})()",
+          }}
         />
         <a
           href="#top"
