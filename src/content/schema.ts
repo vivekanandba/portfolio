@@ -130,9 +130,15 @@ export const DIAGRAM_IDS = [
   'qa',
   'internal-tools',
   'mlops-tooling',
-  'aero-tooling',
-  'defence',
   'mapshalli',
+  'vssc-tooling',
+  'pw-augmenter',
+  'safran-a350',
+  'filament-composites',
+  'bmp2-turret',
+  'igcar-slipring',
+  'lca-navy',
+  'aero-reverse-engineering',
 ] as const;
 
 /** Long-form case study for a project, rendered at /work/<slug>/. */
