@@ -96,6 +96,11 @@ export const roleSchema = z.object({
   location: z.string().optional(),
   highlights: z.array(z.string().min(1)).default([]),
   domain: domainSchema.optional(),
+  // Marks a parallel / side venture run alongside a primary role (e.g. a
+  // founder gig operated by family). The string is a short descriptor shown in
+  // place of the track line; its presence also renders the entry visually
+  // distinct (dashed marker) so it doesn't read as competing full-time work.
+  aside: z.string().optional(),
 });
 export type Role = z.infer<typeof roleSchema>;
 
