@@ -59,7 +59,11 @@ export const projects: Project[] = [
     org: 'Sanas.ai',
     summary:
       'Architected a privacy-first, edge-powered voice analytics platform processing high-fidelity audio locally without cloud PII exposure — a ClickHouse OLAP pipeline, queue-driven multi-track LLM workers for post-call CRM summaries, and a real-time active-call widget with a fraud dashboard.',
-    metrics: [{ value: '30s', label: 'fraud-dashboard refresh' }],
+    metrics: [
+      { value: '1–3% → 100%', label: 'conversation coverage' },
+      { value: '4s', label: 'post-call artifacts' },
+      { value: '30s', label: 'fraud-dashboard refresh' },
+    ],
     tags: ['ClickHouse', 'LLM Workers', 'Privacy-First'],
     featured: true,
     domain: 'ai-native',
@@ -105,7 +109,10 @@ export const projects: Project[] = [
     org: 'Sanas.ai',
     summary:
       'Took ownership of 25+ legacy internal applications across React, Vue, Python, and Node, and built a centralized, searchable Internal Tools Portal — one place for every engineering resource, on a standardized framework for future tools.',
-    metrics: [],
+    metrics: [
+      { value: '25+', label: 'legacy apps unified' },
+      { value: 'Hours → seconds', label: 'tool & doc discovery' },
+    ],
     tags: ['Vue.js', 'NestJS', 'GitHub Copilot'],
     featured: false,
     domain: 'ai-native',
@@ -116,7 +123,10 @@ export const projects: Project[] = [
     org: 'Sanas.ai',
     summary:
       'Built the first end-to-end observability dashboard for the MLOps data pipeline (internal APIs + DynamoDB feeding automated quality, volume, and latency metrics) and a Model Card evaluation system bridging data linguists, DL specialists, and speech scientists.',
-    metrics: [],
+    metrics: [
+      { value: 'End-to-end', label: 'pipeline visibility (first ever)' },
+      { value: '3', label: 'specialist disciplines bridged' },
+    ],
     tags: ['FastAPI', 'Plotly', 'DynamoDB'],
     featured: false,
     domain: 'ai-native',
@@ -127,7 +137,10 @@ export const projects: Project[] = [
     org: 'NovaSignal / NeuraSignal',
     summary:
       'Designed a serverless GCP telemetry architecture (Cloud Run + BigQuery) replacing manual diagnostics with real-time fleet monitoring and predictive maintenance, plus a Streamlit/Flask Data View for hospital-utilization business intelligence.',
-    metrics: [],
+    metrics: [
+      { value: 'Real-time', label: 'fleet monitoring' },
+      { value: 'Serverless', label: 'Cloud Run + BigQuery' },
+    ],
     tags: ['GCP', 'BigQuery', 'Telemetry'],
     featured: false,
     domain: 'healthcare-robotics',
@@ -138,7 +151,10 @@ export const projects: Project[] = [
     org: 'NovaSignal / NeuraSignal',
     summary:
       'Engineered secure cloud microservices compliant with HIPAA, HL7, and DICOM for seamless data exchange between robotic devices and hospital EMR systems, with automated compliance tooling (DICOM Decoder, SOUP Creator).',
-    metrics: [],
+    metrics: [
+      { value: 'HIPAA · HL7 · DICOM', label: 'standards compliance' },
+      { value: '50%', label: 'faster deployments' },
+    ],
     tags: ['HIPAA', 'HL7', 'DICOM'],
     featured: false,
     domain: 'healthcare-robotics',
@@ -160,7 +176,10 @@ export const projects: Project[] = [
     org: 'Legend Technologies',
     summary:
       'Design and fabrication of aerospace & locomotive jigs and fixtures for ISRO, Safran, and Pratt & Whitney, with end-to-end support across manufacturing, testing, and service — owning the entire product lifecycle.',
-    metrics: [],
+    metrics: [
+      { value: 'ISRO · Safran · P&W', label: 'flagship clients' },
+      { value: 'First-article', label: 'tool proving' },
+    ],
     tags: ['CATIA', 'Jigs & Fixtures', 'ISRO · Safran · P&W'],
     featured: false,
     domain: 'aerospace',
@@ -171,7 +190,10 @@ export const projects: Project[] = [
     org: 'Legend Technologies',
     summary:
       'Led 3D modelling and kinematic simulation of the BMP-II turret for BEL’s FICV space studies, and designed a high-amperage slip ring for high-temperature electro-refining of spent nuclear fuel (IGCAR / Godrej) — presented at NAMS 2015.',
-    metrics: [],
+    metrics: [
+      { value: '3,000', label: 'drawing sheets modeled' },
+      { value: '8', label: 'engineers led' },
+    ],
     tags: ['CATIA', 'Kinematics', 'NAMS 2015'],
     featured: false,
     domain: 'aerospace',
@@ -182,7 +204,10 @@ export const projects: Project[] = [
     org: 'Mapshalli (volunteer)',
     summary:
       'Contributed to a COVID-19 relief-distribution platform (Stop Hunger) and an IoT air-quality monitoring network (AirCare) in Whitefield, Bangalore.',
-    metrics: [],
+    metrics: [
+      { value: '2', label: 'platforms delivered' },
+      { value: '5+', label: 'volunteer team' },
+    ],
     tags: ['Civic Tech', 'IoT'],
     featured: false,
     domain: 'community',
@@ -211,11 +236,24 @@ export const roles: Role[] = [
     title: 'Software Engineer',
     period: 'Nov 2020 – Nov 2024',
     track: 'Programming',
+    location: 'Bangalore, India',
     domain: 'healthcare-robotics',
     highlights: [
       'Cloud telemetry, healthcare interoperability, and AI-driven QA automation for robotic medical devices.',
       'Pioneered AI-powered QA automation (OpenAI APIs — AutoUI, TestAI), reducing regression cycles by 30%.',
       'Built the Data View app (Streamlit/Flask) visualizing hospital-utilization metrics for sales and leadership.',
+    ],
+  },
+  {
+    company: 'Tech Mahindra',
+    title: 'Senior Engineer',
+    period: 'Jan 2019 – Jan 2021',
+    track: 'Mechanical',
+    location: 'Bangalore, India',
+    domain: 'aerospace',
+    highlights: [
+      'Designed jigs, fixtures, and installation tooling for locomotive programs — Perth Metro, Mumbai ML3 Metro, E-Loco, and Singapore Metro.',
+      'Owned bogie, gangway, and HVAC installation fixtures from design through fabrication and on-site proving.',
     ],
   },
   {
@@ -235,6 +273,7 @@ export const roles: Role[] = [
     title: 'Senior Lead Engineer',
     period: 'Jan 2013 – Nov 2016',
     track: 'Mechanical',
+    location: 'Bangalore, India',
     domain: 'aerospace',
     highlights: [
       'Led multidisciplinary teams designing aerospace & locomotive jigs and fixtures for ISRO, Safran, and Pratt & Whitney.',
@@ -246,6 +285,7 @@ export const roles: Role[] = [
     title: 'Trainee Engineer',
     period: 'Aug 2011 – Dec 2012',
     track: 'Mechanical',
+    location: 'Bangalore, India',
     domain: 'aerospace',
     highlights: [
       'Mechanical design and analysis of aerospace components with advanced CAD and simulation tools; developed custom software scripts to automate design tasks, reducing design time.',

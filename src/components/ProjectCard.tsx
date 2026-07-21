@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import type { Project } from '@/content/schema';
+import { asset } from '@/lib/asset';
 import { MetricBadge } from './MetricBadge';
 
 /**
@@ -15,7 +16,17 @@ export function ProjectCard({
   caseStudyHref?: string;
 }) {
   return (
-    <article className="relative flex h-full flex-col rounded-2xl border border-hairline bg-card/60 p-6 transition duration-300 hover:border-accent/40 hover:shadow-lift motion-safe:hover:-translate-y-1">
+    <article className="relative flex h-full flex-col overflow-hidden rounded-2xl border border-hairline bg-card/60 p-6 transition duration-300 hover:border-accent/40 hover:shadow-lift motion-safe:hover:-translate-y-1">
+      {/* Optional screenshot banner — the schema `image` slot. Static export
+          uses unoptimized <img>; asset() prefixes the GitHub Pages base path. */}
+      {project.image && (
+        // eslint-disable-next-line @next/next/no-img-element
+        <img
+          src={asset(project.image)}
+          alt={`${project.title} — product screenshot`}
+          className="-mx-6 -mt-6 mb-5 h-44 w-[calc(100%+3rem)] max-w-none border-b border-hairline object-cover object-top"
+        />
+      )}
       <div className="mb-3 flex items-baseline justify-between gap-3">
         <h3 className="text-lg font-semibold text-ink">{project.title}</h3>
         <span className="shrink-0 text-xs font-medium uppercase tracking-wide text-muted">

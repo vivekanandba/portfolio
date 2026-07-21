@@ -21,8 +21,10 @@
     --c-domain-health: 15 118 110; /* clinical teal #0F766E */
   }
 
+  /* Auto dark: follow the OS only when the visitor hasn't picked a theme.
+     Scoped to :root:not([data-theme]) so an explicit choice below always wins. */
   @media (prefers-color-scheme: dark) {
-    :root {
+    :root:not([data-theme]) {
       color-scheme: dark;
       --c-paper: 19 19 22;
       --c-ink: 243 243 239;
@@ -35,6 +37,30 @@
       --c-domain-aero: 245 158 11; /* #F59E0B */
       --c-domain-health: 20 184 166; /* #14B8A6 */
     }
+  }
+
+  /* Manual dark: the nav toggle stamps data-theme on <html> (persisted in
+     localStorage, applied pre-paint in layout.tsx). Values MUST mirror the
+     auto-dark block above — tests/tokens.test.ts locks the auto block's
+     contrast; keep the two in sync. */
+  :root[data-theme='dark'] {
+    color-scheme: dark;
+    --c-paper: 19 19 22;
+    --c-ink: 243 243 239;
+    --c-muted: 162 162 172;
+    --c-hairline: 42 42 48;
+    --c-card: 30 30 35;
+    --c-accent: 96 165 250;
+    --c-accent-soft: 23 33 56;
+    --c-accent-contrast: 16 19 26;
+    --c-domain-aero: 245 158 11;
+    --c-domain-health: 20 184 166;
+  }
+
+  /* Manual light: the light palette already lives in :root; only the
+     color-scheme hint needs restating so form controls / scrollbars match. */
+  :root[data-theme='light'] {
+    color-scheme: light;
   }
 
   html {
