@@ -30,7 +30,7 @@ export const mapshalliVolunteer: CaseStudy = {
     },
     {
       decision:
-        'AirCare: a community-managed network of air-quality sensors, with hands-on hardware support and analytics on the collected data.',
+        'AirCare: a community-managed network of low-cost PM2.5 sensors (~₹7,500 per citizen-hosted unit) publishing open data across Whitefield, with hands-on hardware support and analytics on what they collected.',
       tradeoff:
         'Community-managed means community-maintained — durability came from local ownership rather than central control.',
     },

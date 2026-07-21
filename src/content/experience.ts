@@ -142,7 +142,7 @@ export const projects: Project[] = [
       { value: 'Serverless', label: 'Cloud Run + BigQuery' },
     ],
     tags: ['GCP', 'BigQuery', 'Telemetry'],
-    featured: false,
+    featured: true,
     domain: 'healthcare-robotics',
   },
   {
@@ -181,7 +181,7 @@ export const projects: Project[] = [
       { value: 'First-article', label: 'tool proving' },
     ],
     tags: ['CATIA', 'Jigs & Fixtures', 'ISRO · Safran · P&W'],
-    featured: false,
+    featured: true,
     domain: 'aerospace',
   },
   {

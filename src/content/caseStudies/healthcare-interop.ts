@@ -6,7 +6,7 @@ export const healthcareInterop: CaseStudy = {
   eyebrow: 'Case Study · NovaSignal / NeuraSignal',
   title: 'Healthcare Interoperability — HIPAA-grade exchange for robotic devices',
   intro:
-    'Secure cloud microservices connecting robotic medical devices to hospital EMR systems across the Jupiter and Venus releases — HL7, DICOM, and MLLP done properly, with the simulators and compliance tooling that made it testable at all.',
+    'Secure cloud microservices connecting NovaGuide — NovaSignal’s FDA-cleared robotic stroke-assessment platform — to hospital EMR and PACS systems across the Jupiter and Venus releases: HL7, DICOM, and MLLP done properly, with the simulators and compliance tooling that made it testable at all.',
   metrics: [
     { value: 'HIPAA · HL7 · DICOM', label: 'standards compliance' },
     { value: 'TID 5100', label: 'DICOM conformance automated' },
