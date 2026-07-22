@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import type { Metadata } from 'next';
 import { CaseStudyNav } from '@/components/CaseStudyNav';
-import { caseStudies, projects } from '@/content';
+import { caseStudies, caseStudyStart, projects } from '@/content';
 import { domainColor } from '@/lib/domain';
 import { workIndexMetadata } from '@/lib/seo';
 
@@ -9,16 +9,21 @@ export const metadata: Metadata = workIndexMetadata();
 
 const projectById = new Map(projects.map((p) => [p.id, p]));
 
-/** Index of every case study, grouped by chapter (org), in collection order. */
+/** Index of every case study, grouped by chapter (org), most-recent org and study first. */
 export default function WorkIndex() {
-  // Group by org in first-seen order — correct even if the collection ever
-  // interleaves orgs, so the grouping doesn't depend on insertion contiguity.
   const grouped = new Map<string, string[]>();
   for (const cs of caseStudies) {
     const org = projectById.get(cs.projectId)!.org;
     grouped.set(org, [...(grouped.get(org) ?? []), cs.slug]);
   }
-  const groups = [...grouped.entries()].map(([org, slugs]) => ({ org, slugs }));
+  // Chronological, most-recent-first: sort studies within each org by start
+  // date, and order the org groups by their most recent study.
+  const groups = [...grouped.entries()]
+    .map(([org, slugs]) => ({
+      org,
+      slugs: [...slugs].sort((a, b) => caseStudyStart(b) - caseStudyStart(a)),
+    }))
+    .sort((a, b) => caseStudyStart(b.slugs[0]) - caseStudyStart(a.slugs[0]));
   const bySlug = new Map(caseStudies.map((cs) => [cs.slug, cs]));
 
   return (
