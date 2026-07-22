@@ -19,10 +19,11 @@ import {
 } from '@/content';
 
 describe('Hero', () => {
-  it('renders name, tagline, and primary CTAs', () => {
+  it('leads with the positioning headline, states the name, and shows the primary CTAs', () => {
     render(<Hero />);
-    expect(screen.getByRole('heading', { level: 1, name: profile.name })).toBeInTheDocument();
-    expect(screen.getByText(profile.tagline)).toBeInTheDocument();
+    // The H1 is now the positioning claim, not the name.
+    expect(screen.getByRole('heading', { level: 1 })).toHaveTextContent(/production AI/i);
+    expect(screen.getByText(profile.name)).toBeInTheDocument();
     expect(screen.getByRole('link', { name: /view work/i })).toHaveAttribute('href', '#work');
     expect(screen.getByRole('link', { name: /download resume/i })).toHaveAttribute(
       'href',
@@ -45,16 +46,20 @@ describe('Hero', () => {
     expect(screen.getByText('years of engineering')).toBeInTheDocument();
     expect(screen.getByText(profile.heroStat.value)).toBeInTheDocument();
     expect(screen.getByText(profile.heroStat.label)).toBeInTheDocument();
-    expect(screen.getByText('patent granted')).toBeInTheDocument();
+    // Patent is a clickable credential linking to the granted US patent.
+    expect(screen.getByRole('link', { name: /patent granted/i })).toHaveAttribute(
+      'href',
+      expect.stringContaining('patents.google.com'),
+    );
     expect(screen.queryByText('domains mastered')).not.toBeInTheDocument();
   });
 
-  it('states the current role under the name', () => {
+  it('states the current role and name in the hero eyebrow', () => {
     render(<Hero />);
-    expect(screen.getByText(profile.currentRole.title)).toBeInTheDocument();
-    expect(
-      screen.getByText(new RegExp(profile.currentRole.org.replace('.', '\\.'))),
-    ).toBeInTheDocument();
+    // Scope to the eyebrow line — the org also appears in the marquee and timeline.
+    const eyebrow = screen.getByText(profile.name).closest('p');
+    expect(eyebrow).toHaveTextContent(profile.currentRole.title);
+    expect(eyebrow).toHaveTextContent(profile.currentRole.org);
   });
 });
 
