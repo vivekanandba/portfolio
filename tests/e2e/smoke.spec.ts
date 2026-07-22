@@ -5,7 +5,9 @@ const SECTIONS = ['about', 'work', 'agents', 'skills', 'journey', 'credentials',
 test('landing page renders all sections', async ({ page }) => {
   await page.goto('');
 
-  await expect(page.getByRole('heading', { level: 1, name: 'Vivekanand B' })).toBeVisible();
+  // The H1 is the positioning claim; the name sits in the hero eyebrow.
+  await expect(page.getByRole('heading', { level: 1 })).toContainText(/production AI/i);
+  await expect(page.locator('#top').getByText('Vivekanand B')).toBeVisible();
 
   for (const id of SECTIONS) {
     await expect(page.locator(`#${id}`)).toBeAttached();
