@@ -12,9 +12,11 @@ import { Contact } from '@/components/Contact';
 import {
   aiPracticeSteps,
   caseStudyByProjectId,
+  certifications,
   profile,
   featuredProjects,
   featuredRecommendations,
+  languages,
   recommendations,
   secondaryProjects,
   skills,
@@ -160,7 +162,18 @@ describe('Timeline', () => {
 describe('Credentials', () => {
   it('shows the patent reference number', () => {
     render(<Credentials />);
-    expect(screen.getByText('US20230329668A1')).toBeInTheDocument();
+    expect(screen.getByText(/US20230329668A1/)).toBeInTheDocument();
+  });
+
+  it('renders every certification as a verifying link, and the languages', () => {
+    render(<Credentials />);
+    for (const c of certifications.slice(0, 3)) {
+      expect(screen.getByRole('link', { name: c.name })).toHaveAttribute('href', c.url);
+    }
+    expect(screen.getAllByRole('link', { name: certifications[0].name }).length).toBe(1);
+    for (const l of languages) {
+      expect(screen.getByText(l.name)).toBeInTheDocument();
+    }
   });
 });
 

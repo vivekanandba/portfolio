@@ -3,7 +3,17 @@ import type { SkillGroup } from './schema';
 export const skills: SkillGroup[] = [
   {
     category: 'AI & LLM',
-    items: ['RAG', 'Vector Databases', 'Prompting', 'Agentic Workflows (Cursor / Claude / Codex)'],
+    items: [
+      'Generative AI',
+      'RAG',
+      'Vector Databases',
+      'LangChain / LlamaIndex',
+      'LLMOps',
+      'Speech AI',
+      'Predictive Analytics',
+      'Prompting',
+      'Agentic Workflows (Cursor / Claude / Codex)',
+    ],
   },
   {
     category: 'Mobile & Frontend',
@@ -11,7 +21,17 @@ export const skills: SkillGroup[] = [
   },
   {
     category: 'Backend & Architecture',
-    items: ['Python (FastAPI)', 'Nest / Node.js', 'Microservices', 'WebSocket / WebRTC'],
+    items: [
+      'Python (FastAPI)',
+      'Nest / Node.js',
+      'Microservices',
+      'Distributed Systems',
+      'WebSocket / WebRTC',
+    ],
+  },
+  {
+    category: 'Testing & QA',
+    items: ['PyTest', 'Playwright', 'Selenium', 'API Testing', 'Test Automation'],
   },
   {
     category: 'Cloud & ML / DevOps',
@@ -31,6 +51,8 @@ export const skills: SkillGroup[] = [
     items: [
       'CAD/CAM (CATIA / UG NX)',
       'Finite Element Analysis (Ansys / Abaqus)',
+      'GD&T',
+      'Stress Analysis',
       'New Product Development',
       'Additive Manufacturing',
       'IoT & Sensor Analytics',

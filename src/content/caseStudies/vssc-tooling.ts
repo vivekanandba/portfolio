@@ -6,7 +6,7 @@ export const vsscTooling: CaseStudy = {
   eyebrow: 'Case Study · Legend Technologies · ISRO',
   title: 'VSSC Launch-Vehicle Tooling — jigs and gauges for flight hardware',
   intro:
-    'Design, fabrication, and first-article proving of launch-vehicle assembly tooling for VSSC, ISRO’s lead launch-vehicle centre: the SONC nose-cone assembly jig, spinner full-weld jig, forming/locating/checking tools, and master tooling gauges that decide whether flight hardware can be built at all.',
+    'Design, fabrication, and first-article proving of PSLV assembly tooling for VSSC, ISRO’s lead launch-vehicle centre: jigs for the PSOM and SITVC nose-cone assemblies and the SITVC aft shroud, a spinner full-weld jig, forming/locating/checking tools, and master tooling gauges that decide whether flight hardware can be built at all.',
   metrics: [
     { value: 'VSSC · ISRO', label: 'launch-vehicle client' },
     { value: 'First-article', label: 'tool proving' },
@@ -25,7 +25,7 @@ export const vsscTooling: CaseStudy = {
   decisions: [
     {
       decision:
-        'Develop multiple design configurations for the SONC nose-cone assembly jig, spinner full-weld jig, and master tooling gauges, and select against cost, manufacturability, and interchangeability.',
+        'Develop multiple design configurations for the PSOM/SITVC nose-cone assembly jigs, spinner full-weld jig, and master tooling gauges, and select against cost, manufacturability, and interchangeability.',
       tradeoff:
         'More design cycles up front than committing to the first workable concept — far cheaper than discovering the trade-off during fabrication.',
     },
@@ -50,5 +50,5 @@ export const vsscTooling: CaseStudy = {
     'The precision and lifecycle ownership here — the tool defines the part, and proof means a real article passing — is the discipline the rest of the portfolio was built on.',
   diagramId: 'vssc-tooling',
   seoDescription:
-    'Case study: design, fabrication, and first-article proving of VSSC/ISRO launch-vehicle assembly tooling — the SONC nose-cone jig, spinner full-weld jig, and master tooling gauges — in CATIA V5 and UG NX.',
+    'Case study: design, fabrication, and first-article proving of VSSC/ISRO PSLV assembly tooling — PSOM/SITVC nose-cone jigs, the SITVC aft shroud, a spinner full-weld jig, and master tooling gauges — in CATIA V5 and UG NX.',
 };

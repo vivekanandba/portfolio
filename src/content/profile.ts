@@ -18,7 +18,7 @@ export const profile: Profile = {
   ],
   careerStartYear: 2011,
   heroDomains: ['Aerospace', 'Healthcare Robotics', 'AI-Native'],
-  currentRole: { title: 'Staff Software Engineer & Technical Lead', org: 'Sanas.ai' },
+  currentRole: { title: 'Staff Engineer · Internal Technical Co-founder', org: 'Sanas.ai' },
   heroStat: { value: '430k/day', label: 'requests in production' },
   arc: [
     {

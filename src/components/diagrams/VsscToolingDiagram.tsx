@@ -25,7 +25,7 @@ export function VsscToolingDiagram() {
         w={500}
         h={64}
         label="Delivered tooling"
-        sublabel="SONC nose-cone assembly jig · spinner full-weld jig · forming / checking tools · master gauge"
+        sublabel="PSOM / SITVC nose-cone assembly jigs · spinner full-weld jig · forming / checking tools · master gauge"
         dashed
       />
       <DiagramNote
