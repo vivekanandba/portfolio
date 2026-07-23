@@ -171,6 +171,48 @@ export const projects: Project[] = [
     domain: 'healthcare-robotics',
   },
   {
+    id: 'data-view',
+    title: 'Data View — Hospital-Fleet Analytics',
+    org: 'NovaSignal / NeuraSignal',
+    summary:
+      'A Streamlit/Flask analytics app giving sales, medical education, and leadership real-time insight into NovaGuide utilisation and clinical outcomes across hospitals — exam utilisation, RLS detection, and hospital performance.',
+    metrics: [
+      { value: 'Real-time', label: 'hospital-utilisation BI' },
+      { value: 'Cross-hospital', label: 'comparison' },
+    ],
+    tags: ['Streamlit', 'Plotly', 'SQL · Pandas'],
+    featured: false,
+    domain: 'healthcare-robotics',
+  },
+  {
+    id: 'compliance-tooling',
+    title: 'Compliance & Test Tooling',
+    org: 'NovaSignal / NeuraSignal',
+    summary:
+      'Automated verification for a regulated pipeline — a DICOM Decoder validating against TID 5100, the SOUP Creator auto-extracting open-source dependencies for security review, and infrastructure validation — all gated in CI.',
+    metrics: [
+      { value: 'TID 5100', label: 'DICOM conformance automated' },
+      { value: 'SOUP', label: 'OSS audit automated' },
+    ],
+    tags: ['DICOM', 'Jenkins CI', 'Security'],
+    featured: false,
+    domain: 'healthcare-robotics',
+  },
+  {
+    id: 'release-engineering',
+    title: 'Release Engineering — CI/CD & Synthetic Data',
+    org: 'NovaSignal / NeuraSignal',
+    summary:
+      'The release backbone across NovaGuide View — Jenkins CI/CD fed by synthetic TCD data and FFMPEG streams, a reusable Flask framework and Linux templates, and cloud simulators — hardening releases and supporting scale.',
+    metrics: [
+      { value: '60%', label: 'manual tests automated' },
+      { value: '200%', label: 'user growth supported' },
+    ],
+    tags: ['Jenkins', 'FFMPEG', 'Flask'],
+    featured: false,
+    domain: 'healthcare-robotics',
+  },
+  {
     id: 'vssc-tooling',
     title: 'VSSC Launch-Vehicle Tooling',
     org: 'Legend Technologies',

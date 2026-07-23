@@ -22,21 +22,27 @@ export const profile: Profile = {
   heroStat: { value: '430k/day', label: 'requests in production' },
   arc: [
     {
-      phase: 'Aerospace',
+      phase: 'Aerospace · Defence · Rail',
       title: 'Mechanical Engineering',
-      body: 'Began designing and fabricating aerospace & locomotive jigs and fixtures for ISRO, Safran, and Pratt & Whitney — where precision, lifecycle ownership, and analytical rigor were non-negotiable.',
+      body: 'Designed and fabricated jigs, fixtures, and tooling for aerospace (ISRO, Safran, Pratt & Whitney), defence and nuclear programs (BEL’s FICV, IGCAR), and rolling stock (Tech Mahindra) — where precision, lifecycle ownership, and analytical rigor were non-negotiable.',
       domain: 'aerospace',
     },
     {
-      phase: 'Electronics · Founder',
+      phase: 'Entrepreneurship',
       title: 'Gadjoy Repair Services',
-      body: 'Founded a gadget repair business that still runs today under family (my mother, now my wife) — 1,000+ devices, 100+ customers a month, a 4.7+ satisfaction rating — hands-on electronics, plus self-built ops software that increased operational efficiency by 80%.',
+      body: 'Founded a gadget-repair business that still runs today under family (my mother, now my wife) — 1,000+ devices and 100+ customers a month at a 4.7+ rating — plus self-built ops software that lifted operational efficiency by 80%.',
       domain: 'entrepreneurial',
     },
     {
-      phase: 'Programming',
+      phase: 'Electronics',
+      title: 'Hands-on Hardware',
+      body: 'Chip-level board repair and Apple-product fixes across thousands of devices — the physical-systems intuition, grounded in real hardware, that later shaped how the software systems were architected.',
+      domain: 'entrepreneurial',
+    },
+    {
+      phase: 'Medical Robotics',
       title: 'Healthcare Robotics',
-      body: 'The transition into software: engineered HIPAA/HL7/DICOM-compliant cloud microservices and serverless GCP telemetry for robotic medical devices, turning manual diagnostics into real-time fleet monitoring and predictive maintenance.',
+      body: 'The transition into software: HIPAA/HL7/DICOM-compliant cloud microservices and serverless GCP telemetry for NovaGuide — an FDA-cleared robotic stroke-assessment platform — turning manual diagnostics into real-time fleet monitoring and predictive maintenance.',
       domain: 'healthcare-robotics',
     },
     {

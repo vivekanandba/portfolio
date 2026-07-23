@@ -11,7 +11,7 @@ export function About() {
         entrepreneurship, FDA-cleared medical robotics, and now zero-to-one AI as an internal
         technical co-founder — each chapter compounding into how the next was built.
       </p>
-      <ol className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
+      <ol className="grid gap-8 sm:grid-cols-2 lg:grid-cols-5">
         {profile.arc.map((beat, i) => (
           <li key={beat.phase} className="relative">
             <div className="mb-3 flex items-center gap-3">
