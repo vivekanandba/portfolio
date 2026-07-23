@@ -68,9 +68,11 @@ describe('content invariants for an impactful page', () => {
     expect(new Set(ids).size).toBe(ids.length);
   });
 
-  it('tells the arc with at least four beats, including the founder chapter', () => {
-    expect(profile.arc.length).toBeGreaterThanOrEqual(4);
-    expect(profile.arc.some((beat) => beat.phase.includes('Founder'))).toBe(true);
+  it('tells the arc with at least five beats, including the entrepreneurship/founder chapter', () => {
+    expect(profile.arc.length).toBeGreaterThanOrEqual(5);
+    expect(
+      profile.arc.some((beat) => /gadjoy/i.test(beat.title) || /entrepreneur/i.test(beat.phase)),
+    ).toBe(true);
   });
 
   it('hero badge names all three technical domains (founder beat stays off the badge)', () => {
