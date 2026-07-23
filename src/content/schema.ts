@@ -144,6 +144,7 @@ export const DIAGRAM_IDS = [
   'data-view',
   'compliance-tooling',
   'release-engineering',
+  'gadjoy',
 ] as const;
 
 /** Long-form case study for a project, rendered at /work/<slug>/. */
