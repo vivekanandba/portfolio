@@ -85,7 +85,7 @@ test('nav marks Contact active at the bottom of the page', async ({ page }) => {
 test('hero leads with the domain arc, title, and experience stats', async ({ page }) => {
   await page.goto('');
   await expect(page.getByText('Aerospace → Healthcare Robotics → AI-Native')).toBeVisible();
-  await expect(page.getByText('Staff Software Engineer & Technical Lead')).toBeVisible();
+  await expect(page.getByText('Staff Engineer · Internal Technical Co-founder')).toBeVisible();
   // exact: the footer prose also contains "years of engineering".
   await expect(page.getByText('years of engineering', { exact: true })).toBeVisible();
   // Scoped to the hero — the Playground card carries the same label.

@@ -2,7 +2,9 @@ import { z } from 'zod';
 import {
   aiPracticeStepSchema,
   caseStudySchema,
+  certificationSchema,
   educationSchema,
+  languageSchema,
   patentSchema,
   profileSchema,
   projectSchema,
@@ -17,6 +19,8 @@ import { education as rawEducation, patents as rawPatents } from './credentials'
 import { aiPracticeSteps as rawAiPracticeSteps } from './aiPractice';
 import { caseStudies as rawCaseStudies } from './caseStudies';
 import { recommendations as rawRecommendations } from './recommendations';
+import { certifications as rawCertifications } from './certifications';
+import { languages as rawLanguages } from './languages';
 
 /**
  * Validate every content source at import time. A malformed data file throws here,
@@ -38,6 +42,9 @@ export const recommendations = z.array(recommendationSchema).parse(rawRecommenda
 
 /** The curated set surfaced on the landing section; the /recommendations page shows all. */
 export const featuredRecommendations = recommendations.filter((r) => r.featured);
+
+export const certifications = z.array(certificationSchema).parse(rawCertifications);
+export const languages = z.array(languageSchema).parse(rawLanguages);
 
 /**
  * Featured cards, ordered to span domains near the top (AI-native, then a

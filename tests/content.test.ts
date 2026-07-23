@@ -3,6 +3,8 @@ import {
   aiPracticeStepSchema,
   caseStudySchema,
   educationSchema,
+  certificationSchema,
+  languageSchema,
   patentSchema,
   profileSchema,
   projectSchema,
@@ -17,6 +19,8 @@ import { education, patents } from '@/content/credentials';
 import { aiPracticeSteps } from '@/content/aiPractice';
 import { caseStudies } from '@/content/caseStudies';
 import { recommendations } from '@/content/recommendations';
+import { certifications } from '@/content/certifications';
+import { languages } from '@/content/languages';
 import { diagrams } from '@/components/diagrams';
 
 describe('content conforms to schema', () => {
@@ -58,6 +62,18 @@ describe('content conforms to schema', () => {
   it('every recommendation is valid', () => {
     expect(recommendations.length).toBeGreaterThan(0);
     for (const r of recommendations) expect(() => recommendationSchema.parse(r)).not.toThrow();
+  });
+
+  it('every certification and language is valid', () => {
+    expect(certifications.length).toBeGreaterThan(0);
+    for (const c of certifications) expect(() => certificationSchema.parse(c)).not.toThrow();
+    expect(languages.length).toBeGreaterThan(0);
+    for (const l of languages) expect(() => languageSchema.parse(l)).not.toThrow();
+  });
+
+  it('certifications are deduped (name + authority unique)', () => {
+    const keys = certifications.map((c) => `${c.name}|${c.authority}`);
+    expect(new Set(keys).size).toBe(keys.length);
   });
 });
 

@@ -217,7 +217,7 @@ export const projects: Project[] = [
     title: 'VSSC Launch-Vehicle Tooling',
     org: 'Legend Technologies',
     summary:
-      'Design, fabrication, and first-article proving of launch-vehicle assembly tooling for VSSC/ISRO — the SONC nose-cone assembly jig, spinner full-weld jig, checking tools, and master tooling gauges that decide whether flight hardware can be built.',
+      'Design, fabrication, and first-article proving of PSLV assembly tooling for VSSC/ISRO — PSOM/SITVC nose-cone assembly jigs, the SITVC aft shroud, a spinner full-weld jig, checking tools, and master tooling gauges that decide whether flight hardware can be built.',
     metrics: [
       { value: 'VSSC · ISRO', label: 'launch-vehicle client' },
       { value: 'First-article', label: 'tool proving' },

@@ -46,7 +46,7 @@ export const profileSchema = z.object({
   careerStartYear: z.number().int(), // first professional role — years of experience derive from this
   heroDomains: z.array(z.string().min(1)).min(2), // ordered domain names for the hero badge
   currentRole: z.object({
-    title: z.string().min(1), // "Staff Software Engineer & Technical Lead"
+    title: z.string().min(1), // "Staff Engineer · Internal Technical Co-founder"
     org: z.string().min(1), // "Sanas.ai"
   }),
   heroStat: metricSchema, // the hard production number in the hero stats strip
@@ -186,6 +186,22 @@ export const educationSchema = z.object({
   detail: z.string().optional(), // "First Class with Distinction · 2011"
 });
 export type Education = z.infer<typeof educationSchema>;
+
+/** A course/certification credential, grouped by category in the Credentials section. */
+export const certificationSchema = z.object({
+  name: z.string().min(1),
+  authority: z.string().min(1), // "DeepLearning.AI"
+  date: z.string().min(1), // "Jun 2024" — display string, newest-first ordering is data order
+  url: z.string().url(), // every cert must verify — the chip renders as a link
+  category: z.string().min(1), // grouping key, e.g. "AI Agents & LLM Engineering"
+});
+export type Certification = z.infer<typeof certificationSchema>;
+
+export const languageSchema = z.object({
+  name: z.string().min(1),
+  proficiency: z.string().min(1), // LinkedIn wording, e.g. "Full professional proficiency"
+});
+export type Language = z.infer<typeof languageSchema>;
 
 /**
  * A LinkedIn recommendation, republished verbatim with attribution. `excerpt`

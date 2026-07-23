@@ -4,7 +4,7 @@ export const patents: Patent[] = [
   {
     kind: 'patent',
     title: 'System and Method of Generating Image of Vascular Flow Network',
-    reference: 'US20230329668A1',
+    reference: 'US20230329668A1 · filed Jul 2022',
     href: 'https://patents.google.com/patent/US20230329668A1',
   },
   {
@@ -15,6 +15,11 @@ export const patents: Patent[] = [
   {
     kind: 'achievement',
     title: 'Certificate “A” — National Cadet Corps (NCC)',
+  },
+  {
+    kind: 'achievement',
+    title: 'Organizing Committee Member — Institution of Engineers (India)',
+    reference: 'Since Mar 2016',
   },
   {
     kind: 'achievement',
