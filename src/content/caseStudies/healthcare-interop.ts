@@ -58,6 +58,7 @@ export const healthcareInterop: CaseStudy = {
     { value: 'Seamless', label: 'device ↔ EMR data exchange' },
     { value: 'Automated', label: 'compliance validation in CI' },
     { value: '50%', label: 'reduction in deployment time' },
+    { value: '200%', label: 'user growth supported (cloud scaling)' },
   ],
   resultsNote:
     'The compliance tooling outlived the releases it was built for — the DICOM Decoder and SOUP Creator became standing infrastructure for audits and security reviews.',

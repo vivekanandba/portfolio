@@ -9,7 +9,12 @@ export const patents: Patent[] = [
   },
   {
     kind: 'publication',
-    title: 'Published research on aerospace manufacturing and slip-ring design',
+    title: 'White paper — “Design & Development of a High-Amperage Slip Ring”',
+    reference: 'NAMS 2015 · SAME / ISRO',
+  },
+  {
+    kind: 'achievement',
+    title: 'Certificate “A” — National Cadet Corps (NCC)',
   },
   {
     kind: 'achievement',
@@ -43,5 +48,13 @@ export const education: Education[] = [
     credential: 'Deep Learning & Machine Learning Specializations',
     institution: 'Andrew Ng (DeepLearning.AI)',
     detail: 'Plus multiple short courses on AI, tooling, and ops',
+  },
+  {
+    credential: 'Finite Element Method · Analysis & Design of Composite Structures',
+    institution: 'Indian Institute of Science (IISc) — Centre for Continuing Education',
+  },
+  {
+    credential: 'Diploma in 3D Modeling & Analysis (CATIA · Ansys)',
+    institution: 'CADD Centre',
   },
 ];
