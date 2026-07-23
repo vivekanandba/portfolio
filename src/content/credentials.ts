@@ -33,8 +33,9 @@ export const patents: Patent[] = [
   },
   {
     kind: 'achievement',
-    title: '1,000+ devices · 100+ customers/month · 4.7+ rating',
-    reference: 'Gadjoy Repair Services · 80% ops-efficiency lift from self-built software',
+    title: '15,000+ devices repaired · 4.7★ across 516 reviews',
+    reference:
+      'Gadjoy Repair Services · 80% ops-efficiency lift from self-built software · still running',
   },
 ];
 
