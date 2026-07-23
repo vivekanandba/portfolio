@@ -21,6 +21,9 @@ import { IgcarSlipringDiagram } from './IgcarSlipringDiagram';
 import { LcaNavyDiagram } from './LcaNavyDiagram';
 import { AeroReverseEngineeringDiagram } from './AeroReverseEngineeringDiagram';
 import { RailToolingDiagram } from './RailToolingDiagram';
+import { DataViewDiagram } from './DataViewDiagram';
+import { ComplianceToolingDiagram } from './ComplianceToolingDiagram';
+import { ReleaseEngineeringDiagram } from './ReleaseEngineeringDiagram';
 
 /** Registry keyed by caseStudySchema.diagramId — content tests assert the bijection. */
 export const diagrams = {
@@ -46,6 +49,9 @@ export const diagrams = {
   'lca-navy': LcaNavyDiagram,
   'aero-reverse-engineering': AeroReverseEngineeringDiagram,
   'rail-tooling': RailToolingDiagram,
+  'data-view': DataViewDiagram,
+  'compliance-tooling': ComplianceToolingDiagram,
+  'release-engineering': ReleaseEngineeringDiagram,
 } as const satisfies Record<string, ComponentType>;
 
 export type DiagramId = keyof typeof diagrams;

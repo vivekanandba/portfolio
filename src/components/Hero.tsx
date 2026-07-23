@@ -6,8 +6,8 @@ import { profile } from '@/content';
 // "5 fields" count is self-evident.
 const FIELDS = [
   'Aerospace, Defence & Rail',
-  'Electronics',
   'Entrepreneurship',
+  'Electronics',
   'Medical Robotics',
   'AI',
 ];

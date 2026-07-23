@@ -141,6 +141,9 @@ export const DIAGRAM_IDS = [
   'lca-navy',
   'aero-reverse-engineering',
   'rail-tooling',
+  'data-view',
+  'compliance-tooling',
+  'release-engineering',
 ] as const;
 
 /** Long-form case study for a project, rendered at /work/<slug>/. */

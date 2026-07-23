@@ -11,6 +11,9 @@ import { mlopsTooling } from './mlops-tooling';
 import { gcpTelemetry } from './gcp-telemetry';
 import { healthcareInterop } from './healthcare-interop';
 import { aiDrivenQa } from './ai-driven-qa';
+import { dataView } from './data-view';
+import { complianceTooling } from './compliance-tooling';
+import { releaseEngineering } from './release-engineering';
 import { vsscTooling } from './vssc-tooling';
 import { safranA350 } from './safran-a350';
 import { pwAugmenter } from './pw-augmenter';
@@ -36,6 +39,9 @@ export const caseStudies: CaseStudy[] = [
   gcpTelemetry,
   healthcareInterop,
   aiDrivenQa,
+  dataView,
+  complianceTooling,
+  releaseEngineering,
   vsscTooling,
   safranA350,
   pwAugmenter,
