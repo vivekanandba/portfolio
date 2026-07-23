@@ -339,6 +339,22 @@ export const projects: Project[] = [
     domain: 'rail',
   },
   {
+    id: 'gadjoy',
+    title: 'Gadjoy Repair Services — Founder',
+    org: 'Gadjoy Repair Services',
+    summary:
+      'Founded and scaled a chip-level device-repair business — phones, laptops, tablets, desktops — and built the software that ran it. Still operating under family, at 4.7★ across 516 Google reviews and 1,500+ repairs.',
+    metrics: [
+      { value: '4.7★', label: '516 Google reviews' },
+      { value: '1,500+', label: 'repairs completed' },
+    ],
+    tags: ['Founder', 'Chip-level Repair', 'Ops Software'],
+    featured: true,
+    domain: 'entrepreneurial',
+    href: 'https://gadjoy.in',
+    linkLabel: 'gadjoy.in',
+  },
+  {
     id: 'mapshalli-volunteer',
     title: 'Stop Hunger & AirCare',
     org: 'Mapshalli (volunteer)',

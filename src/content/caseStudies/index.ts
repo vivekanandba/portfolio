@@ -23,6 +23,7 @@ import { filamentComposites } from './filament-composites';
 import { lcaNavy } from './lca-navy';
 import { aeroReverseEngineering } from './aero-reverse-engineering';
 import { railTooling } from './rail-tooling';
+import { gadjoy } from './gadjoy';
 import { mapshalliVolunteer } from './mapshalli-volunteer';
 
 /** Ordered to mirror the project-card order (featured grid, then More work). */
@@ -51,5 +52,6 @@ export const caseStudies: CaseStudy[] = [
   lcaNavy,
   aeroReverseEngineering,
   railTooling,
+  gadjoy,
   mapshalliVolunteer,
 ];
