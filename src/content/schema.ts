@@ -186,3 +186,17 @@ export const educationSchema = z.object({
   detail: z.string().optional(), // "First Class with Distinction · 2011"
 });
 export type Education = z.infer<typeof educationSchema>;
+
+/**
+ * A LinkedIn recommendation, republished verbatim with attribution. `excerpt`
+ * is a pulled quote for the landing cards; `featured` marks the curated set.
+ */
+export const recommendationSchema = z.object({
+  name: z.string().min(1),
+  title: z.string().min(1),
+  company: z.string().optional(),
+  text: z.string().min(1), // full recommendation, verbatim
+  excerpt: z.string().optional(), // short pulled quote for the landing section
+  featured: z.boolean().default(false),
+});
+export type Recommendation = z.infer<typeof recommendationSchema>;

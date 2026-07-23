@@ -6,6 +6,7 @@ import {
   patentSchema,
   profileSchema,
   projectSchema,
+  recommendationSchema,
   roleSchema,
   skillGroupSchema,
 } from '@/content/schema';
@@ -15,6 +16,7 @@ import { projects, roles } from '@/content/experience';
 import { education, patents } from '@/content/credentials';
 import { aiPracticeSteps } from '@/content/aiPractice';
 import { caseStudies } from '@/content/caseStudies';
+import { recommendations } from '@/content/recommendations';
 import { diagrams } from '@/components/diagrams';
 
 describe('content conforms to schema', () => {
@@ -51,6 +53,11 @@ describe('content conforms to schema', () => {
   it('every case study is valid', () => {
     expect(caseStudies.length).toBeGreaterThan(0);
     for (const cs of caseStudies) expect(() => caseStudySchema.parse(cs)).not.toThrow();
+  });
+
+  it('every recommendation is valid', () => {
+    expect(recommendations.length).toBeGreaterThan(0);
+    for (const r of recommendations) expect(() => recommendationSchema.parse(r)).not.toThrow();
   });
 });
 
@@ -150,5 +157,19 @@ describe('case-study invariants', () => {
         Boolean(p.linkLabel),
       );
     }
+  });
+});
+
+describe('recommendation invariants', () => {
+  it('recommender names are unique (stable keys)', () => {
+    const names = recommendations.map((r) => r.name);
+    expect(new Set(names).size).toBe(names.length);
+  });
+
+  it('has a curated featured set for the landing section', () => {
+    const featured = recommendations.filter((r) => r.featured);
+    expect(featured.length).toBeGreaterThanOrEqual(6);
+    // Every featured card renders a pulled quote.
+    for (const r of featured) expect(r.excerpt, `featured ${r.name} needs an excerpt`).toBeTruthy();
   });
 });

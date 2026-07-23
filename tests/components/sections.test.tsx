@@ -5,6 +5,7 @@ import { About } from '@/components/About';
 import { Experience } from '@/components/Experience';
 import { AiPractice } from '@/components/AiPractice';
 import { Skills } from '@/components/Skills';
+import { Recommendations } from '@/components/Recommendations';
 import { Timeline } from '@/components/Timeline';
 import { Credentials } from '@/components/Credentials';
 import { Contact } from '@/components/Contact';
@@ -13,6 +14,8 @@ import {
   caseStudyByProjectId,
   profile,
   featuredProjects,
+  featuredRecommendations,
+  recommendations,
   secondaryProjects,
   skills,
   roles,
@@ -124,6 +127,22 @@ describe('Skills', () => {
     for (const group of skills) {
       expect(screen.getByText(group.category)).toBeInTheDocument();
     }
+  });
+});
+
+describe('Recommendations', () => {
+  it('shows each curated testimonial with attribution and links to the full page', () => {
+    render(<Recommendations />);
+    for (const r of featuredRecommendations) {
+      expect(screen.getByText(r.name)).toBeInTheDocument();
+    }
+    // next/link normalizes the trailing slash away outside the real build
+    // (trailingSlash lives in next.config); e2e asserts the slashed URL.
+    expect(
+      screen.getByRole('link', {
+        name: new RegExp(`all ${recommendations.length} recommendations`, 'i'),
+      }),
+    ).toHaveAttribute('href', expect.stringMatching(/^\/recommendations\/?$/));
   });
 });
 

@@ -4,6 +4,7 @@ import { About } from '@/components/About';
 import { Experience } from '@/components/Experience';
 import { AiPractice } from '@/components/AiPractice';
 import { Skills } from '@/components/Skills';
+import { Recommendations } from '@/components/Recommendations';
 import { Timeline } from '@/components/Timeline';
 import { Credentials } from '@/components/Credentials';
 import { Contact } from '@/components/Contact';
@@ -18,6 +19,7 @@ export default function Home() {
         <Experience />
         <AiPractice />
         <Skills />
+        <Recommendations />
         <Timeline />
         <Credentials />
       </main>

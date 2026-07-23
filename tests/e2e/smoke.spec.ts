@@ -1,6 +1,15 @@
 import { test, expect } from '@playwright/test';
 
-const SECTIONS = ['about', 'work', 'agents', 'skills', 'journey', 'credentials', 'contact'];
+const SECTIONS = [
+  'about',
+  'work',
+  'agents',
+  'skills',
+  'recommendations',
+  'journey',
+  'credentials',
+  'contact',
+];
 
 test('landing page renders all sections', async ({ page }) => {
   await page.goto('');
@@ -83,6 +92,19 @@ test('hero leads with the domain arc, title, and experience stats', async ({ pag
   await expect(page.locator('#top').getByText('requests in production')).toBeVisible();
   await expect(page.getByText('patent granted')).toBeVisible();
   await expect(page.getByText(/open to/i)).toHaveCount(0);
+});
+
+test('testimonials link reaches the full recommendations page', async ({ page }) => {
+  await page.goto('');
+  const link = page.locator('#recommendations').getByRole('link', {
+    name: /all \d+ recommendations/i,
+  });
+  await expect(link).toBeVisible();
+  await link.click();
+  await expect(page).toHaveURL(/\/recommendations\/$/);
+  await expect(page.getByRole('heading', { level: 1, name: /recommendations/i })).toBeVisible();
+  // Back link returns to the landing section.
+  await expect(page.getByRole('link', { name: /back to the portfolio/i })).toBeVisible();
 });
 
 test('primary CTA scrolls to work and a featured project is visible', async ({ page }) => {
