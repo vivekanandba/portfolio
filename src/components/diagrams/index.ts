@@ -24,6 +24,7 @@ import { RailToolingDiagram } from './RailToolingDiagram';
 import { DataViewDiagram } from './DataViewDiagram';
 import { ComplianceToolingDiagram } from './ComplianceToolingDiagram';
 import { ReleaseEngineeringDiagram } from './ReleaseEngineeringDiagram';
+import { GadjoyDiagram } from './GadjoyDiagram';
 
 /** Registry keyed by caseStudySchema.diagramId — content tests assert the bijection. */
 export const diagrams = {
@@ -52,6 +53,7 @@ export const diagrams = {
   'data-view': DataViewDiagram,
   'compliance-tooling': ComplianceToolingDiagram,
   'release-engineering': ReleaseEngineeringDiagram,
+  gadjoy: GadjoyDiagram,
 } as const satisfies Record<string, ComponentType>;
 
 export type DiagramId = keyof typeof diagrams;
