@@ -28,7 +28,8 @@ export const sanasForSales: CaseStudy = {
         'Two packaging targets to maintain, but the copilot overlays non-intrusively where the call actually happens — browser dialers and desktop meeting apps, on top of tools like Salesforce and HubSpot.',
     },
     {
-      decision: 'A multi-modal RAG pipeline tuned for a hard <4s answer budget.',
+      decision:
+        'A multi-modal RAG pipeline — ingesting PDFs, web links, and YouTube into a grounded knowledge base — tuned for a hard <4s answer budget.',
       tradeoff:
         'Aggressive latency budgets constrain how much context can be retrieved and re-ranked per turn; the pipeline favors fast, good-enough retrieval over exhaustive search.',
     },
@@ -48,7 +49,7 @@ export const sanasForSales: CaseStudy = {
     { value: '<4s', label: 'live objection answers' },
   ],
   resultsNote:
-    'Shipped with live objection handling, dynamic battlecards, and sentiment analysis — and the knowledge-ingestion system built for it became shared infrastructure for future AI products.',
+    'Shipped into Sanas Core6 with live objection handling, dynamic battlecards, and sentiment analysis — and the knowledge-ingestion system built for it became shared infrastructure for future AI products.',
   diagramId: 'sales-copilot',
   seoDescription:
     'Case study: a hybrid Chrome Extension / Desktop AI sales copilot with a multi-modal RAG pipeline answering live objections in under 4 seconds — concept to Enterprise GA in 3 months.',

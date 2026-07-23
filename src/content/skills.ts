@@ -23,10 +23,18 @@ export const skills: SkillGroup[] = [
       'MLflow / Kubeflow / Ray',
       'CI/CD',
       'ClickHouse',
+      'Data Science & Analytics',
     ],
   },
   {
     category: 'Core Engineering',
-    items: ['CAD/CAM (CATIA)', 'Finite Element Analysis (Ansys)', 'Industrial Automation'],
+    items: [
+      'CAD/CAM (CATIA / UG NX)',
+      'Finite Element Analysis (Ansys / Abaqus)',
+      'New Product Development',
+      'Additive Manufacturing',
+      'IoT & Sensor Analytics',
+      'Industrial Automation',
+    ],
   },
 ];
