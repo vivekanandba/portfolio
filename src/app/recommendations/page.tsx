@@ -2,14 +2,10 @@ import Link from 'next/link';
 import type { Metadata } from 'next';
 import { CaseStudyNav } from '@/components/CaseStudyNav';
 import { recommendations } from '@/content';
+import { attribution } from '@/lib/recommendation';
 import { recommendationsMetadata } from '@/lib/seo';
 
 export const metadata: Metadata = recommendationsMetadata();
-
-/** Attribution line: "Title, Company" (company omitted when unknown). */
-function attribution(r: { title: string; company?: string }) {
-  return r.company ? `${r.title}, ${r.company}` : r.title;
-}
 
 /** Every LinkedIn recommendation, republished verbatim with attribution. */
 export default function RecommendationsPage() {
