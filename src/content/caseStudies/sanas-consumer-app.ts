@@ -42,6 +42,12 @@ export const sanasConsumerApp: CaseStudy = {
     },
     {
       decision:
+        'An Expo managed-workflow stack — NativeWind, TanStack Query, Zustand, Supabase, and i18next — with PostHog for product analytics and WebRTC / Socket.io for real-time audio.',
+      tradeoff:
+        'Managed Expo gives up some native escape hatches, but a batteries-included stack is what the agents could move through fastest without bespoke native setup.',
+    },
+    {
+      decision:
         'Re-architect onboarding around a track-based voice-calibration flow with real-time visual feedback.',
       tradeoff:
         'Rebuilding a flow that technically worked — "time to magic" dropped to ~1.5 minutes, which is the number a consumer app lives or dies by.',

@@ -26,9 +26,9 @@ export const playground: CaseStudy = {
   decisions: [
     {
       decision:
-        'Triple-track asynchronous orchestration (FastAPI / Asyncio) instead of a sequential pipeline.',
+        'Triple-track asynchronous orchestration (FastAPI / Asyncio) — core translation alongside VAD masking and NVIDIA Sortformer speaker diarization — instead of a sequential pipeline.',
       tradeoff:
-        'Concurrency logic is harder to reason about than a chain, but it is the only way three tracks share one session without head-of-line blocking.',
+        'Concurrency logic is harder to reason about than a chain, but it is the only way the tracks share one session without head-of-line blocking.',
     },
     {
       decision: 'NVIDIA Triton inference served over gRPC rather than HTTP.',
@@ -41,7 +41,8 @@ export const playground: CaseStudy = {
         'Two control planes to operate — in exchange for elastic capacity across both classes of GPU hardware.',
     },
     {
-      decision: 'An eager-ingestion speculative processing layer for background voice cloning.',
+      decision:
+        'An eager-ingestion speculative layer: intercept the upload, resample to 16 kHz mono PCM, and pre-compute ElevenLabs voice cloning (IVC) and the core translation in the background before the user hits go.',
       tradeoff:
         'Spends compute on work that may be discarded, so the result is ready the moment the user asks for it.',
     },
