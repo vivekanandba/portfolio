@@ -192,7 +192,7 @@ export const certificationSchema = z.object({
   name: z.string().min(1),
   authority: z.string().min(1), // "DeepLearning.AI"
   date: z.string().min(1), // "Jun 2024" — display string, newest-first ordering is data order
-  url: z.string().url().optional(),
+  url: z.string().url(), // every cert must verify — the chip renders as a link
   category: z.string().min(1), // grouping key, e.g. "AI Agents & LLM Engineering"
 });
 export type Certification = z.infer<typeof certificationSchema>;

@@ -168,9 +168,11 @@ describe('Credentials', () => {
   it('renders every certification as a verifying link, and the languages', () => {
     render(<Credentials />);
     for (const c of certifications.slice(0, 3)) {
-      expect(screen.getByRole('link', { name: c.name })).toHaveAttribute('href', c.url);
+      // Accessible name is the aria-label: "<name> — <authority>, <date>".
+      expect(
+        screen.getByRole('link', { name: `${c.name} — ${c.authority}, ${c.date}` }),
+      ).toHaveAttribute('href', c.url);
     }
-    expect(screen.getAllByRole('link', { name: certifications[0].name }).length).toBe(1);
     for (const l of languages) {
       expect(screen.getByText(l.name)).toBeInTheDocument();
     }

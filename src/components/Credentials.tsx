@@ -73,6 +73,7 @@ export function Credentials() {
                           target="_blank"
                           rel="noopener noreferrer"
                           title={`${c.authority} · ${c.date}`}
+                          aria-label={`${c.name} — ${c.authority}, ${c.date}`}
                           className="inline-block rounded-full border border-hairline bg-card/60 px-3 py-1 text-sm text-muted no-underline transition-colors hover:border-accent/40 hover:text-ink"
                         >
                           {c.name}
