@@ -6,6 +6,7 @@ import {
   patentSchema,
   profileSchema,
   projectSchema,
+  recommendationSchema,
   roleSchema,
   skillGroupSchema,
 } from './schema';
@@ -15,6 +16,7 @@ import { projects as rawProjects, roles as rawRoles } from './experience';
 import { education as rawEducation, patents as rawPatents } from './credentials';
 import { aiPracticeSteps as rawAiPracticeSteps } from './aiPractice';
 import { caseStudies as rawCaseStudies } from './caseStudies';
+import { recommendations as rawRecommendations } from './recommendations';
 
 /**
  * Validate every content source at import time. A malformed data file throws here,
@@ -32,6 +34,10 @@ export const aiPracticeSteps = z
   .max(4)
   .parse(rawAiPracticeSteps);
 export const caseStudies = z.array(caseStudySchema).parse(rawCaseStudies);
+export const recommendations = z.array(recommendationSchema).parse(rawRecommendations);
+
+/** The curated set surfaced on the landing section; the /recommendations page shows all. */
+export const featuredRecommendations = recommendations.filter((r) => r.featured);
 
 /**
  * Featured cards, ordered to span domains near the top (AI-native, then a
