@@ -6,10 +6,10 @@ export const gadjoy: CaseStudy = {
   eyebrow: 'Case Study · Gadjoy Repair Services',
   title: 'Gadjoy — a chip-level repair business, built and still running',
   intro:
-    'Founded a device-repair business specialising in chip-level and board-level work — phones, laptops, tablets, desktops — and built the software that ran it. Nine years on it still operates under family (my mother, now my wife), at 4.7★ across 516 Google reviews and 1,500+ repairs.',
+    'Founded a device-repair business specialising in chip-level and board-level work — phones, laptops, tablets, desktops — and built the software that ran it. Nine years on it still operates under family (my mother, now my wife), at 4.7★ across 516 Google reviews and 15,000+ repairs.',
   metrics: [
     { value: '4.7★', label: '516 Google reviews' },
-    { value: '1,500+', label: 'repairs completed' },
+    { value: '15,000+', label: 'repairs completed' },
     { value: '~24h', label: 'typical turnaround' },
   ],
   problem: [
@@ -17,7 +17,7 @@ export const gadjoy: CaseStudy = {
     'And there was no off-the-shelf system to run it: intake, diagnosis, parts, repair status, warranty, and the ledger all had to be tracked without dropping a device or a promise.',
   ],
   constraints: [
-    'A small team (under five) handling 1,000+ devices a month.',
+    'A small team — under five people — running the whole operation, from intake to warranty.',
     'Quality at the hardest end — chip-level and board-level micro-soldering, with a 90-day warranty on the line.',
     'Fast turnaround (most devices back within 24 hours) without cutting corners.',
     'Trust built on transparency: free diagnosis, genuine-grade parts, no surprise bills.',
@@ -50,7 +50,7 @@ export const gadjoy: CaseStudy = {
   ],
   results: [
     { value: '4.7★', label: 'across 516 Google reviews' },
-    { value: '1,500+', label: 'devices repaired' },
+    { value: '15,000+', label: 'devices repaired' },
     { value: '80%', label: 'operational-efficiency lift from software' },
     { value: 'Still running', label: 'under family, years on' },
   ],
@@ -58,5 +58,5 @@ export const gadjoy: CaseStudy = {
     'The entrepreneurship-and-hands-on-hardware chapter of the arc — proof that the systems instinct showed up long before the software, and that things built well outlast the builder’s attention.',
   diagramId: 'gadjoy',
   seoDescription:
-    'Case study: founding and scaling Gadjoy Repair Services — a chip-level device-repair business (4.7★, 516 Google reviews, 1,500+ repairs, 24-hour turnaround) and the self-built ops software that ran it, still operating under family.',
+    'Case study: founding and scaling Gadjoy Repair Services — a chip-level device-repair business (4.7★, 516 Google reviews, 15,000+ repairs, 24-hour turnaround) and the self-built ops software that ran it, still operating under family.',
 };

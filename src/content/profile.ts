@@ -30,7 +30,7 @@ export const profile: Profile = {
     {
       phase: 'Entrepreneurship',
       title: 'Gadjoy Repair Services',
-      body: 'Founded a gadget-repair business that still runs today under family (my mother, now my wife) — 1,000+ devices and 100+ customers a month at a 4.7+ rating — plus self-built ops software that lifted operational efficiency by 80%.',
+      body: 'Founded a gadget-repair business that still runs today under family (my mother, now my wife) — 15,000+ devices repaired over the years at a 4.7★ rating — plus self-built ops software that lifted operational efficiency by 80%.',
       domain: 'entrepreneurial',
     },
     {
