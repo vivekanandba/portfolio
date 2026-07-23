@@ -343,10 +343,10 @@ export const projects: Project[] = [
     title: 'Gadjoy Repair Services — Founder',
     org: 'Gadjoy Repair Services',
     summary:
-      'Founded and scaled a chip-level device-repair business — phones, laptops, tablets, desktops — and built the software that ran it. Still operating under family, at 4.7★ across 516 Google reviews and 1,500+ repairs.',
+      'Founded and scaled a chip-level device-repair business — phones, laptops, tablets, desktops — and built the software that ran it. Still operating under family, at 4.7★ across 516 Google reviews and 15,000+ repairs.',
     metrics: [
       { value: '4.7★', label: '516 Google reviews' },
-      { value: '1,500+', label: 'repairs completed' },
+      { value: '15,000+', label: 'repairs completed' },
     ],
     tags: ['Founder', 'Chip-level Repair', 'Ops Software'],
     featured: true,
@@ -435,7 +435,7 @@ export const roles: Role[] = [
     domain: 'entrepreneurial',
     aside: 'Side venture · family-run',
     highlights: [
-      'Founded a gadget-repair business that still runs today — day-to-day operations handed to family (my mother, now my wife): 1,000+ devices and 100+ customers/month at a 4.7+ satisfaction rating.',
+      'Founded a gadget-repair business that still runs today — day-to-day operations handed to family (my mother, now my wife): 15,000+ devices repaired at a 4.7★ satisfaction rating, family-operated.',
       'Built the custom software behind it (ledger, checklists, device tracking) that increased operational efficiency by 80%.',
     ],
   },

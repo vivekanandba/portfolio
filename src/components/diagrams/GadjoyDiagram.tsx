@@ -24,7 +24,7 @@ export function GadjoyDiagram() {
       <DiagramArrow x1={450} y1={114} x2={468} y2={114} />
       <DiagramBox x={470} y={80} w={140} h={68} label="Return" sublabel="~24-hour turnaround" />
 
-      <DiagramNote x={360} y={52} text="1,500+ repairs · 4.7★ across 516 Google reviews" />
+      <DiagramNote x={360} y={52} text="15,000+ repairs · 4.7★ across 516 Google reviews" />
 
       <DiagramBox
         x={110}
