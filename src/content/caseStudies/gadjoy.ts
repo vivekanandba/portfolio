@@ -6,10 +6,11 @@ export const gadjoy: CaseStudy = {
   eyebrow: 'Case Study · Gadjoy Repair Services',
   title: 'Gadjoy — a chip-level repair business, built and still running',
   intro:
-    'Founded a device-repair business specialising in chip-level and board-level work — phones, laptops, tablets, desktops — and built the software that ran it. Nine years on it still operates under family (my mother, now my wife), at 4.7★ across 516 Google reviews and 15,000+ repairs.',
+    'Founded a device-repair business specialising in chip-level and board-level work — phones, laptops, tablets, desktops — and built the software that ran it. Nine years on it still operates under family (my mother, now my wife), at 4.7★ across 516 Google reviews and 15,000+ repairs — around 150 a month over nine years.',
   metrics: [
-    { value: '4.7★', label: '516 Google reviews' },
     { value: '15,000+', label: 'repairs completed' },
+    { value: '~150/mo', label: 'over nine years' },
+    { value: '4.7★', label: '516 Google reviews' },
     { value: '~24h', label: 'typical turnaround' },
   ],
   problem: [
