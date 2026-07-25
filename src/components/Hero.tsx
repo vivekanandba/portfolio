@@ -18,7 +18,7 @@ const PATENT_URL = 'https://patents.google.com/patent/US20230329668A1';
 const PROOFS: { value: string; label: string; href?: string }[] = [
   { value: 'GA in 3 months', label: 'concept → enterprise AI copilot' },
   { value: 'FDA-cleared', label: 'robotic platform, cloud stack' },
-  { value: 'US patent', label: 'vascular-flow imaging ↗', href: PATENT_URL },
+  { value: 'US patent', label: 'vascular-flow imaging', href: PATENT_URL },
   { value: '15,000+ repairs', label: '4.7★ · my own business' },
 ];
 // Career timeline, latest on top — includes the founder chapter.
@@ -176,7 +176,10 @@ function Proof({ value, label, link }: { value: string; label: string; link?: bo
       >
         {value}
       </span>
-      <span className={`text-sm text-muted ${link ? 'group-hover:text-ink' : ''}`}>{label}</span>
+      <span className={`text-sm text-muted ${link ? 'group-hover:text-ink' : ''}`}>
+        {label}
+        {link && <span aria-hidden="true"> ↗</span>}
+      </span>
     </div>
   );
 }
