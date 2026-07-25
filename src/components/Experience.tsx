@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import { Section } from './Section';
 import { ProjectCard } from './ProjectCard';
+import { ShowMore } from './ShowMore';
 import {
   caseStudyByProjectId,
   caseStudyStart,
@@ -38,7 +39,7 @@ export function Experience() {
   return (
     <Section id="work" eyebrow="Selected Work" title="Zero-to-one products, shipped">
       <div className="grid gap-6 sm:grid-cols-2">
-        {featuredProjects.map((project) => {
+        {featuredProjects.slice(0, 4).map((project) => {
           const caseStudy = caseStudyByProjectId.get(project.id);
           return (
             <ProjectCard
@@ -50,74 +51,96 @@ export function Experience() {
         })}
       </div>
 
+      {featuredProjects.length > 4 && (
+        <ShowMore label={`Show all ${featuredProjects.length} flagships`}>
+          <div className="mt-6 grid gap-6 sm:grid-cols-2">
+            {featuredProjects.slice(4).map((project) => {
+              const caseStudy = caseStudyByProjectId.get(project.id);
+              return (
+                <ProjectCard
+                  key={project.id}
+                  project={project}
+                  caseStudyHref={caseStudy ? `/work/${caseStudy.slug}/` : undefined}
+                />
+              );
+            })}
+          </div>
+        </ShowMore>
+      )}
+
       {secondaryProjects.length > 0 && (
         <div className="mt-16">
           <h3 className="text-sm font-medium uppercase tracking-[0.18em] text-muted">
             More across the arc
           </h3>
-          {CHAPTERS.map(({ domain, items }) => (
-            <section key={domain} className="mt-8" aria-label={DOMAIN_LABELS[domain]}>
-              <h4
-                className={`text-xs font-semibold uppercase tracking-[0.14em] ${domainColor(domain).text}`}
-              >
-                {DOMAIN_LABELS[domain]}
-              </h4>
-              <ul className="mt-3 grid gap-x-10 sm:grid-cols-2">
-                {items.map((project) => {
-                  const caseStudy = caseStudyByProjectId.get(project.id);
-                  return (
-                    <li key={project.id} className="border-t border-hairline py-4">
-                      <div className="flex items-baseline justify-between gap-3">
-                        <h5 className="flex items-baseline gap-2 text-sm font-semibold text-ink">
-                          <span
-                            aria-hidden="true"
-                            className={`inline-block h-1.5 w-1.5 shrink-0 self-center rounded-full ${domainColor(project.domain).bg}`}
-                          />
-                          {caseStudy ? (
-                            <Link
-                              href={`/work/${caseStudy.slug}/`}
-                              className="text-ink no-underline hover:underline"
-                            >
-                              {project.title}
-                            </Link>
-                          ) : (
-                            project.title
+          <ShowMore
+            label={`Explore the earlier eras (${secondaryProjects.length} more projects)`}
+            hideLabel="Collapse the earlier eras"
+          >
+            {CHAPTERS.map(({ domain, items }) => (
+              <section key={domain} className="mt-8" aria-label={DOMAIN_LABELS[domain]}>
+                <h4
+                  className={`text-xs font-semibold uppercase tracking-[0.14em] ${domainColor(domain).text}`}
+                >
+                  {DOMAIN_LABELS[domain]}
+                </h4>
+                <ul className="mt-3 grid gap-x-10 sm:grid-cols-2">
+                  {items.map((project) => {
+                    const caseStudy = caseStudyByProjectId.get(project.id);
+                    return (
+                      <li key={project.id} className="border-t border-hairline py-4">
+                        <div className="flex items-baseline justify-between gap-3">
+                          <h5 className="flex items-baseline gap-2 text-sm font-semibold text-ink">
+                            <span
+                              aria-hidden="true"
+                              className={`inline-block h-1.5 w-1.5 shrink-0 self-center rounded-full ${domainColor(project.domain).bg}`}
+                            />
+                            {caseStudy ? (
+                              <Link
+                                href={`/work/${caseStudy.slug}/`}
+                                className="text-ink no-underline hover:underline"
+                              >
+                                {project.title}
+                              </Link>
+                            ) : (
+                              project.title
+                            )}
+                          </h5>
+                          <span className="shrink-0 text-xs font-medium uppercase tracking-wide text-muted">
+                            {project.org}
+                          </span>
+                        </div>
+                        <p className="mt-1 text-sm leading-relaxed text-muted">{project.summary}</p>
+                        {project.metrics.length > 0 && (
+                          <p className="tabular mt-2 text-xs font-medium text-ink">
+                            {project.metrics
+                              .slice(0, 2)
+                              .map((m) => `${m.value} ${m.label}`)
+                              .join('  ·  ')}
+                          </p>
+                        )}
+                        <div className="mt-2 flex flex-wrap items-center gap-x-4 gap-y-1">
+                          {project.tags.length > 0 && (
+                            <p className="text-xs text-muted">{project.tags.join(' · ')}</p>
                           )}
-                        </h5>
-                        <span className="shrink-0 text-xs font-medium uppercase tracking-wide text-muted">
-                          {project.org}
-                        </span>
-                      </div>
-                      <p className="mt-1 text-sm leading-relaxed text-muted">{project.summary}</p>
-                      {project.metrics.length > 0 && (
-                        <p className="tabular mt-2 text-xs font-medium text-ink">
-                          {project.metrics
-                            .slice(0, 2)
-                            .map((m) => `${m.value} ${m.label}`)
-                            .join('  ·  ')}
-                        </p>
-                      )}
-                      <div className="mt-2 flex flex-wrap items-center gap-x-4 gap-y-1">
-                        {project.tags.length > 0 && (
-                          <p className="text-xs text-muted">{project.tags.join(' · ')}</p>
-                        )}
-                        {project.href && project.linkLabel && (
-                          <a
-                            href={project.href}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="text-xs font-medium text-muted no-underline hover:text-ink"
-                          >
-                            {project.linkLabel} ↗
-                          </a>
-                        )}
-                      </div>
-                    </li>
-                  );
-                })}
-              </ul>
-            </section>
-          ))}
+                          {project.href && project.linkLabel && (
+                            <a
+                              href={project.href}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="text-xs font-medium text-muted no-underline hover:text-ink"
+                            >
+                              {project.linkLabel} ↗
+                            </a>
+                          )}
+                        </div>
+                      </li>
+                    );
+                  })}
+                </ul>
+              </section>
+            ))}
+          </ShowMore>
           <p className="mt-10">
             <Link
               href="/work/"

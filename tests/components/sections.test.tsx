@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { render, screen } from '@testing-library/react';
+import { fireEvent, render, screen } from '@testing-library/react';
 import { Hero } from '@/components/Hero';
 import { About } from '@/components/About';
 import { Experience } from '@/components/Experience';
@@ -96,26 +96,48 @@ describe('About (The Arc)', () => {
 });
 
 describe('Experience (Selected Work)', () => {
-  it('renders a card per featured project with its first metric', () => {
+  it('renders every featured project (first four visible, the rest disclosed)', () => {
     render(<Experience />);
-    for (const p of featuredProjects) {
+    for (const p of featuredProjects.slice(0, 4)) {
       expect(screen.getByRole('heading', { name: p.title })).toBeInTheDocument();
     }
-    // Spot-check a headline metric persuades.
-    expect(screen.getAllByText('430k/day').length).toBeGreaterThan(0);
+    // The remaining flagships stay in the DOM behind the ShowMore disclosure.
+    for (const p of featuredProjects.slice(4)) {
+      expect(screen.getByRole('heading', { name: p.title, hidden: true })).toBeInTheDocument();
+    }
+    expect(
+      screen.getByRole('button', { name: new RegExp(`all ${featuredProjects.length} flagships`) }),
+    ).toHaveAttribute('aria-expanded', 'false');
   });
 
-  it('renders the era chapters with every secondary project', () => {
+  it('renders the era chapters with every secondary project (disclosed)', () => {
     render(<Experience />);
     expect(screen.getByRole('heading', { name: /more across the arc/i })).toBeInTheDocument();
     for (const p of secondaryProjects) {
-      expect(screen.getByRole('heading', { name: new RegExp(p.title) })).toBeInTheDocument();
+      expect(
+        screen.getByRole('heading', { name: new RegExp(p.title), hidden: true }),
+      ).toBeInTheDocument();
+    }
+  });
+
+  it('expands the flagship grid on ShowMore click', () => {
+    render(<Experience />);
+    const button = screen.getByRole('button', {
+      name: new RegExp(`all ${featuredProjects.length} flagships`),
+    });
+    fireEvent.click(button);
+    expect(button).toHaveAttribute('aria-expanded', 'true');
+    for (const p of featuredProjects) {
+      expect(screen.getByRole('heading', { name: p.title })).toBeInTheDocument();
     }
   });
 
   it('links every flagship with a case study and renders external proof links', () => {
     render(<Experience />);
-    const caseStudyLinks = screen.getAllByRole('link', { name: /read the full project/i });
+    const caseStudyLinks = screen.getAllByRole('link', {
+      name: /read the full project/i,
+      hidden: true,
+    });
     const flagshipsWithStudies = featuredProjects.filter((p) => caseStudyByProjectId.has(p.id));
     expect(caseStudyLinks).toHaveLength(flagshipsWithStudies.length);
     for (const link of caseStudyLinks) {
@@ -124,10 +146,10 @@ describe('Experience (Selected Work)', () => {
       expect(link).toHaveAttribute('href', expect.stringMatching(/^\/work\/[a-z0-9-]+\/?$/));
     }
     // External proof links open in a new tab with the safe rel.
-    const appStore = screen.getByRole('link', { name: /app store/i });
+    const appStore = screen.getByRole('link', { name: /app store/i, hidden: true });
     expect(appStore).toHaveAttribute('target', '_blank');
     expect(appStore).toHaveAttribute('rel', 'noopener noreferrer');
-    expect(screen.getByRole('link', { name: /product page/i })).toBeInTheDocument();
+    expect(screen.getByRole('link', { name: /product page/i, hidden: true })).toBeInTheDocument();
   });
 });
 
@@ -183,12 +205,15 @@ describe('Credentials', () => {
     expect(screen.getByText(/US20230329668A1/)).toBeInTheDocument();
   });
 
-  it('renders every certification as a verifying link, and the languages', () => {
+  it('renders every certification as a verifying link (disclosed), and the languages', () => {
     render(<Credentials />);
     for (const c of certifications.slice(0, 3)) {
-      // Accessible name is the aria-label: "<name> — <authority>, <date>".
+      // Accessible name is the aria-label; the list sits behind a ShowMore disclosure.
       expect(
-        screen.getByRole('link', { name: `${c.name} — ${c.authority}, ${c.date}` }),
+        screen.getByRole('link', {
+          name: `${c.name} — ${c.authority}, ${c.date}`,
+          hidden: true,
+        }),
       ).toHaveAttribute('href', c.url);
     }
     for (const l of languages) {

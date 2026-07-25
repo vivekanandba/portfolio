@@ -61,6 +61,16 @@ export const aiNextStrategy: CaseStudy = {
   resultsNote:
     'The framework is deliberately durable: scalable, secure, and budget-conscious — designed for long-term AI integration rather than a pilot that fades.',
   diagramId: 'ai-next',
+  docs: [
+    {
+      label: 'Effective AI-assisted software — enablement deck (PDF)',
+      file: 'docs/ai-next-effective-ai-assisted-software.pdf',
+    },
+    {
+      label: 'Vibe Coding — principles & best practices deck (PDF)',
+      file: 'docs/ai-next-vibe-coding.pdf',
+    },
+  ],
   seoDescription:
     'Project: a company-wide AI adoption strategy — Crawl/Walk/Run maturity phases, a vendor-agnostic toolchain, an investment dashboard, and TDD-first governance that took coding agents to 80% of the workforce.',
 };

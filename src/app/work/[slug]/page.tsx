@@ -4,7 +4,8 @@ import { CaseStudyNav } from '@/components/CaseStudyNav';
 import { MetricBadge } from '@/components/MetricBadge';
 import { Reveal } from '@/components/Reveal';
 import { diagrams } from '@/components/diagrams';
-import { caseStudies } from '@/content';
+import { caseStudies, projects } from '@/content';
+import { asset } from '@/lib/asset';
 import { caseStudyMetadata } from '@/lib/seo';
 
 // Static export discipline: every slug is emitted at build time; unknown slugs 404.
@@ -36,6 +37,7 @@ export default async function CaseStudyPage({ params }: Params) {
   if (!cs) notFound();
 
   const Diagram = diagrams[cs.diagramId];
+  const project = projects.find((p) => p.id === cs.projectId);
 
   return (
     <>
@@ -69,6 +71,20 @@ export default async function CaseStudyPage({ params }: Params) {
               ))}
             </div>
           </header>
+
+          {/* Real artifact image (architecture diagram, chart) when the project has one. */}
+          {project?.image && (
+            <Reveal className="mt-14">
+              <figure className="overflow-hidden rounded-xl border border-hairline bg-card/60">
+                <img
+                  src={asset(project.image)}
+                  alt={project.imageAlt ?? `${cs.title} — project artifact`}
+                  loading="lazy"
+                  className="w-full"
+                />
+              </figure>
+            </Reveal>
+          )}
 
           <Reveal className="mt-20">
             <section aria-label="Problem">
@@ -136,6 +152,29 @@ export default async function CaseStudyPage({ params }: Params) {
               )}
             </section>
           </Reveal>
+
+          {cs.docs && cs.docs.length > 0 && (
+            <Reveal className="mt-16">
+              <section aria-label="Architecture and artifacts">
+                <SectionHeading>Architecture & artifacts</SectionHeading>
+                <ul className="max-w-content space-y-3">
+                  {cs.docs.map((d) => (
+                    <li key={d.file}>
+                      <a
+                        href={asset(d.file)}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-sm font-medium text-accent no-underline hover:underline"
+                      >
+                        {d.label}
+                        <span aria-hidden="true"> ↗</span>
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </section>
+            </Reveal>
+          )}
 
           <div className="mt-20 border-t border-hairline pt-8">
             <Link

@@ -11,8 +11,9 @@ for (const cs of caseStudies) {
     await page.goto(`work/${cs.slug}/`);
     await expect(page).toHaveTitle(new RegExp('Vivekanand B'));
     await expect(page.getByRole('heading', { level: 1 })).toHaveText(cs.title);
-    // The annotated systems diagram is present and accessible.
-    await expect(page.getByRole('img')).toBeVisible();
+    // The annotated systems diagram is present and accessible (some projects
+    // also carry a real artifact image, so match the first img role).
+    await expect(page.getByRole('img').first()).toBeVisible();
     // og:url carries the base path and the route.
     const ogUrl = await page.locator('meta[property="og:url"]').getAttribute('content');
     expect(ogUrl).toContain(`/portfolio/work/${cs.slug}/`);
@@ -52,6 +53,8 @@ test('a flagship card click-through reaches its case study', async ({ page }) =>
 
 test('a More-work title links to its case study', async ({ page }) => {
   await page.goto('');
+  // Era chapters sit behind the ShowMore disclosure.
+  await page.getByRole('button', { name: /explore the earlier eras/i }).click();
   const moreWorkLink = page
     .locator('#work')
     .getByRole('link', { name: 'Admin Portal — Releases & Timezones' });

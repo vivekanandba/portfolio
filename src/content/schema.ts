@@ -80,8 +80,10 @@ export const projectSchema = z.object({
   tags: z.array(z.string().min(1)).default([]),
   featured: z.boolean().default(false),
   domain: domainSchema.optional(),
-  // Photo slot for future galleries; unused in v1.2.
+  // Hero artifact image for the project page (path under /public, e.g.
+  // "media/foo.jpg"); imageAlt is required alongside it for accessibility.
   image: z.string().optional(),
+  imageAlt: z.string().min(1).optional(),
   // External public artifact only (App Store, product page, patent). Absolute
   // URLs enforced — internal case-study links derive from caseStudies instead.
   href: z.string().url().optional(),
@@ -169,6 +171,16 @@ export const caseStudySchema = z.object({
   resultsNote: z.string().optional(),
   diagramId: z.enum(DIAGRAM_IDS),
   seoDescription: z.string().min(1),
+  // Downloadable artifacts (architecture decks, white papers, extra diagrams)
+  // served from /public — `file` is the path under public/, not an absolute URL.
+  docs: z
+    .array(
+      z.object({
+        label: z.string().min(1), // "Telemetry white paper (PDF)"
+        file: z.string().min(1), // "docs/gcp-telemetry-whitepaper.pdf"
+      }),
+    )
+    .optional(),
 });
 export type CaseStudy = z.infer<typeof caseStudySchema>;
 

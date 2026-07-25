@@ -63,6 +63,12 @@ export const speechIntelligence: CaseStudy = {
   resultsNote:
     'The rollup design also eliminated the multi-gigabyte out-of-memory query failures that plagued raw-scan analytics — strict sorted primary keys and partition-aware filtering, enforced from day one.',
   diagramId: 'speech-intelligence',
+  docs: [
+    {
+      label: 'Architecture diagram — v1 concept sketch (JPG)',
+      file: 'media/speech-intelligence-architecture-v1.jpg',
+    },
+  ],
   seoDescription:
     'Project: a privacy-first edge voice analytics platform — on-device ASR and PII redaction, queue-backed ingestion, ClickHouse incremental rollups, and dual LLM worker tracks delivering post-call artifacts in 4 seconds at 100% conversation coverage.',
 };

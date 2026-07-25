@@ -51,6 +51,9 @@ export const projects: Project[] = [
     ],
     tags: ['RAG', 'Chrome Extension', 'Real-Time'],
     featured: true,
+    image: 'media/sanas-for-sales-architecture.jpg',
+    imageAlt:
+      'Sanas for Sales architecture — web app, profile-intelligence and speech-companion services, and the Triton voice gateway',
     domain: 'ai-native',
   },
   {
@@ -66,6 +69,9 @@ export const projects: Project[] = [
     ],
     tags: ['ClickHouse', 'LLM Workers', 'Privacy-First'],
     featured: true,
+    image: 'media/speech-intelligence-architecture.jpg',
+    imageAlt:
+      'Speech Intelligence architecture — SCI backend, LLM analytics workers, ClickHouse pipeline, and the Sanas desktop stack',
     domain: 'ai-native',
     href: 'https://www.sanas.ai/speech-intelligence',
     linkLabel: 'Product page',
@@ -115,6 +121,9 @@ export const projects: Project[] = [
     ],
     tags: ['Vue.js', 'NestJS', 'GitHub Copilot'],
     featured: false,
+    image: 'media/internal-tools-roi.jpg',
+    imageAlt:
+      'ROI versus test runs — automation investment breaks even at run 8 and doubles by run 15',
     domain: 'ai-native',
   },
   {
@@ -143,6 +152,9 @@ export const projects: Project[] = [
     ],
     tags: ['GCP', 'BigQuery', 'Telemetry'],
     featured: true,
+    image: 'media/gcp-telemetry-whitepaper.jpg',
+    imageAlt:
+      'Title page of the centralized-telemetry white paper for NovaGuide robotic systems on Google Cloud',
     domain: 'healthcare-robotics',
   },
   {
@@ -157,6 +169,9 @@ export const projects: Project[] = [
     ],
     tags: ['HIPAA', 'HL7', 'DICOM'],
     featured: false,
+    image: 'media/healthcare-interop-dicom-decoder.jpg',
+    imageAlt:
+      'DICOM SR Decoder architecture — exam-side and DICOM-side data classes with TID 5100 mapping and verification',
     domain: 'healthcare-robotics',
   },
   {
@@ -168,6 +183,9 @@ export const projects: Project[] = [
     metrics: [{ value: '30%', label: 'shorter regression cycles' }],
     tags: ['OpenAI APIs', 'AutoUI', 'TestAI'],
     featured: false,
+    image: 'media/ai-driven-qa-progress.jpg',
+    imageAlt:
+      'NovaGuide GUI automation phase-2 burn-up chart — 84 of 84 features automated against target',
     domain: 'healthcare-robotics',
   },
   {

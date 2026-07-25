@@ -50,6 +50,12 @@ export const aiDrivenQa: CaseStudy = {
   resultsNote:
     'The pattern — LLM generates, engineer verifies, traceability enforced — prefigured the AI-native development practice that later scaled org-wide at Sanas.',
   diagramId: 'qa',
+  docs: [
+    {
+      label: 'TestAI — AI-based verification deck (PDF)',
+      file: 'docs/ai-driven-qa-testai-verification.pdf',
+    },
+  ],
   seoDescription:
     'Project: LLM-powered QA for medical-device software — AI-generated PyTest/Pywinauto suites from requirements, SRS-to-test-case automation with trace matrices, and an AI Jira Analyzer triaging a third of the backlog.',
 };
