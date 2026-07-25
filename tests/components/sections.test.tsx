@@ -11,6 +11,7 @@ import { Credentials } from '@/components/Credentials';
 import { Contact } from '@/components/Contact';
 import {
   aiPracticeSteps,
+  caseStudies,
   caseStudyByProjectId,
   certifications,
   profile,
@@ -44,19 +45,36 @@ describe('Hero', () => {
     expect(screen.queryByText(/open to/i)).not.toBeInTheDocument();
   });
 
-  it('shows the experience stats strip with the production stat', () => {
+  it('shows the story-proof grid and the computed breadth summary', () => {
     render(<Hero />);
-    const years = new Date().getFullYear() - profile.careerStartYear;
-    expect(screen.getByText(`${years}+`)).toBeInTheDocument();
-    expect(screen.getByText('years of engineering')).toBeInTheDocument();
-    expect(screen.getByText(profile.heroStat.value)).toBeInTheDocument();
-    expect(screen.getByText(profile.heroStat.label)).toBeInTheDocument();
-    // Patent is a clickable credential linking to the granted US patent.
-    expect(screen.getByRole('link', { name: /patent granted/i })).toHaveAttribute(
+    // One narrative proof per era.
+    expect(screen.getByText('GA in 3 months')).toBeInTheDocument();
+    expect(screen.getByText('FDA-cleared')).toBeInTheDocument();
+    expect(screen.getByText('15,000+ repairs')).toBeInTheDocument();
+    // Patent is a clickable credential linking to the US patent.
+    expect(screen.getByRole('link', { name: /US patent/i })).toHaveAttribute(
       'href',
       expect.stringContaining('patents.google.com'),
     );
-    expect(screen.queryByText('domains mastered')).not.toBeInTheDocument();
+    // Breadth summary is computed, not hardcoded.
+    const years = new Date().getFullYear() - profile.careerStartYear;
+    expect(
+      screen.getByText(
+        (_, el) =>
+          el?.tagName === 'P' &&
+          new RegExp(`${years}\\+ yrs.*5 fields.*${caseStudies.length} projects`).test(
+            el.textContent ?? '',
+          ),
+      ),
+    ).toBeInTheDocument();
+  });
+
+  it('renders the brand constellation with tiered orgs', () => {
+    render(<Hero />);
+    expect(screen.getByText('Built for · shipped at')).toBeInTheDocument();
+    for (const org of ['ISRO', 'Alstom', 'Godrej & Boyce', 'Siemens', 'BEL']) {
+      expect(screen.getByText(org)).toBeInTheDocument();
+    }
   });
 
   it('states the current role and name in the hero eyebrow', () => {
@@ -97,7 +115,7 @@ describe('Experience (Selected Work)', () => {
 
   it('links every flagship with a case study and renders external proof links', () => {
     render(<Experience />);
-    const caseStudyLinks = screen.getAllByRole('link', { name: /read the case study/i });
+    const caseStudyLinks = screen.getAllByRole('link', { name: /read the full project/i });
     const flagshipsWithStudies = featuredProjects.filter((p) => caseStudyByProjectId.has(p.id));
     expect(caseStudyLinks).toHaveLength(flagshipsWithStudies.length);
     for (const link of caseStudyLinks) {

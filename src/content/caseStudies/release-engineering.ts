@@ -3,7 +3,7 @@ import type { CaseStudy } from '../schema';
 export const releaseEngineering: CaseStudy = {
   slug: 'release-engineering',
   projectId: 'release-engineering',
-  eyebrow: 'Case Study · NovaSignal / NeuraSignal',
+  eyebrow: 'Project · NovaSignal / NeuraSignal',
   title: 'Release Engineering — synthetic data, CI/CD, and scale',
   intro:
     'The release backbone across the NovaGuide View releases: Jenkins CI/CD fed by synthetic TCD data and FFMPEG-processed streams for realistic testing without patient data, a reusable Flask backend framework and standardised Linux templates underneath, and cloud simulators for validation — hardening releases and supporting rapid scaling.',
@@ -50,5 +50,5 @@ export const releaseEngineering: CaseStudy = {
     'Spanning the Europa through Saturn releases — the unglamorous infrastructure that let the clinical features ship reliably.',
   diagramId: 'release-engineering',
   seoDescription:
-    'Case study: release engineering for NovaGuide View — Jenkins CI/CD, synthetic TCD data and FFMPEG test streams, a reusable Flask backend framework and Linux templates, and cloud simulators (60% test automation, 50% faster deploys, 200% growth).',
+    'Project: release engineering for NovaGuide View — Jenkins CI/CD, synthetic TCD data and FFMPEG test streams, a reusable Flask backend framework and Linux templates, and cloud simulators (60% test automation, 50% faster deploys, 200% growth).',
 };

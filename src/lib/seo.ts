@@ -54,8 +54,8 @@ export function personJsonLd() {
 
 /** Metadata for the /work/ case-study index. */
 export function workIndexMetadata(): Metadata {
-  const title = `Case studies — ${profile.name}`;
-  const description = `${caseStudies.length} case studies across aerospace, healthcare robotics, and AI-native software — problem, constraints, decisions, and measured results.`;
+  const title = `Projects — ${profile.name}`;
+  const description = `${caseStudies.length} projects across aerospace, healthcare robotics, and AI-native software — problem, constraints, decisions, and measured results.`;
   const url = `${SITE_URL}/work/`;
   return {
     title,

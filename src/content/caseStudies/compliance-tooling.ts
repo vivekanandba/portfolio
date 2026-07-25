@@ -3,7 +3,7 @@ import type { CaseStudy } from '../schema';
 export const complianceTooling: CaseStudy = {
   slug: 'compliance-tooling',
   projectId: 'compliance-tooling',
-  eyebrow: 'Case Study · NovaSignal / NeuraSignal',
+  eyebrow: 'Project · NovaSignal / NeuraSignal',
   title: 'Compliance & Test Tooling — proving HIPAA-grade data by machine',
   intro:
     'The automated tooling that made a regulated medical-device pipeline verifiable: a DICOM Decoder checking structured reports and images against the TID 5100 standard, the SOUP Creator auto-extracting open-source dependencies for security review, and an infrastructure-validation tool — all gated in CI so conformance and PHI protection were verified, not assumed.',
@@ -51,5 +51,5 @@ export const complianceTooling: CaseStudy = {
     'The tooling outlived the releases it was built for — the DICOM Decoder and SOUP Creator became standing infrastructure across the program.',
   diagramId: 'compliance-tooling',
   seoDescription:
-    'Case study: automated compliance and test tooling for a regulated medical-device pipeline — a DICOM Decoder (TID 5100), the SOUP Creator for OSS dependency audits, and infrastructure validation, all gated in Jenkins CI.',
+    'Project: automated compliance and test tooling for a regulated medical-device pipeline — a DICOM Decoder (TID 5100), the SOUP Creator for OSS dependency audits, and infrastructure validation, all gated in Jenkins CI.',
 };

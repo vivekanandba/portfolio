@@ -3,7 +3,7 @@ import type { CaseStudy } from '../schema';
 export const aiDrivenQa: CaseStudy = {
   slug: 'ai-driven-qa',
   projectId: 'ai-driven-qa',
-  eyebrow: 'Case Study · NovaSignal / NeuraSignal',
+  eyebrow: 'Project · NovaSignal / NeuraSignal',
   title: 'AI-Driven Test Automation — LLMs inside a medical-device QA loop',
   intro:
     'Three tools that put LLMs to work inside a regulated QA process — AutoUI generating test scripts from requirements, TestAI proving SRS-to-test-case automation, and a Jira Analyzer that triaged the backlog — years before "AI in testing" was a product category.',
@@ -51,5 +51,5 @@ export const aiDrivenQa: CaseStudy = {
     'The pattern — LLM generates, engineer verifies, traceability enforced — prefigured the AI-native development practice that later scaled org-wide at Sanas.',
   diagramId: 'qa',
   seoDescription:
-    'Case study: LLM-powered QA for medical-device software — AI-generated PyTest/Pywinauto suites from requirements, SRS-to-test-case automation with trace matrices, and an AI Jira Analyzer triaging a third of the backlog.',
+    'Project: LLM-powered QA for medical-device software — AI-generated PyTest/Pywinauto suites from requirements, SRS-to-test-case automation with trace matrices, and an AI Jira Analyzer triaging a third of the backlog.',
 };

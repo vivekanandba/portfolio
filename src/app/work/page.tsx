@@ -41,7 +41,7 @@ export default function WorkIndex() {
               style={{ animationDelay: '80ms' }}
               className="animate-fade-up font-display text-display font-semibold text-ink"
             >
-              Case studies
+              Projects
             </h1>
             <p
               style={{ animationDelay: '160ms' }}

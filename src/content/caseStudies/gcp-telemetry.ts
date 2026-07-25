@@ -3,7 +3,7 @@ import type { CaseStudy } from '../schema';
 export const gcpTelemetry: CaseStudy = {
   slug: 'gcp-telemetry',
   projectId: 'gcp-telemetry',
-  eyebrow: 'Case Study · NovaSignal / NeuraSignal',
+  eyebrow: 'Project · NovaSignal / NeuraSignal',
   title: 'Cloud Telemetry — from manual diagnostics to fleet insight',
   intro:
     'A serverless GCP telemetry architecture for NovaGuide — the first FDA-cleared, fully-automated robotic transcranial-Doppler ultrasound for cerebral blood-flow and stroke assessment — deployed across hospitals: real-time fleet monitoring, predictive maintenance, and remote diagnostics replacing manual, device-level checks.',
@@ -51,5 +51,5 @@ export const gcpTelemetry: CaseStudy = {
     'Centralized telemetry reduced on-site diagnostics, improved response times, and lowered operational costs across hospital deployments — and became the data foundation the Data View analytics app was built on.',
   diagramId: 'telemetry',
   seoDescription:
-    'Case study: a serverless GCP telemetry architecture (Cloud Run, BigQuery, Cloud Monitoring) for hospital-deployed NovaGuide robotic ultrasound systems — real-time fleet monitoring, predictive maintenance, and HIPAA-compliant data flow.',
+    'Project: a serverless GCP telemetry architecture (Cloud Run, BigQuery, Cloud Monitoring) for hospital-deployed NovaGuide robotic ultrasound systems — real-time fleet monitoring, predictive maintenance, and HIPAA-compliant data flow.',
 };

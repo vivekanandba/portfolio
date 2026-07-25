@@ -32,7 +32,7 @@ test('a case-study page has the full article structure and way back (deep check)
 
 test('the /work/ index lists every case study and navigates', async ({ page }) => {
   await page.goto('work/');
-  await expect(page.getByRole('heading', { level: 1, name: 'Case studies' })).toBeVisible();
+  await expect(page.getByRole('heading', { level: 1, name: 'Projects' })).toBeVisible();
   for (const cs of caseStudies) {
     await expect(page.getByRole('link', { name: cs.title })).toBeAttached();
   }
@@ -43,7 +43,7 @@ test('the /work/ index lists every case study and navigates', async ({ page }) =
 test('a flagship card click-through reaches its case study', async ({ page }) => {
   await page.goto('');
   await page
-    .getByRole('link', { name: /read the case study/i })
+    .getByRole('link', { name: /read the full project/i })
     .first()
     .click();
   await expect(page).toHaveURL(/\/portfolio\/work\/[a-z0-9-]+\/$/);

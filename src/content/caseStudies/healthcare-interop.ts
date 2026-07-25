@@ -3,7 +3,7 @@ import type { CaseStudy } from '../schema';
 export const healthcareInterop: CaseStudy = {
   slug: 'healthcare-interop',
   projectId: 'healthcare-interop',
-  eyebrow: 'Case Study · NovaSignal / NeuraSignal',
+  eyebrow: 'Project · NovaSignal / NeuraSignal',
   title: 'Healthcare Interoperability — HIPAA-grade exchange for robotic devices',
   intro:
     'Secure cloud microservices connecting NovaGuide — NovaSignal’s FDA-cleared robotic stroke-assessment platform — to hospital EMR and PACS systems across the Jupiter and Venus releases: HL7, DICOM, and MLLP done properly, made testable by an EMR simulator and a “virtual hospital” that mirrored real hospital ↔ cloud topology.',
@@ -51,5 +51,5 @@ export const healthcareInterop: CaseStudy = {
     'The EMR simulator and virtual-hospital VPC turned integration that could not be tested against production into ordinary, repeatable CI — the conformance and security tooling that rode on top became its own body of work.',
   diagramId: 'interop',
   seoDescription:
-    'Case study: HIPAA/HL7/DICOM-compliant cloud microservices connecting NovaGuide robotic devices to hospital EMR/PACS systems — with a full-stack EMR simulator and a virtual-hospital VPC making the integration testable in CI.',
+    'Project: HIPAA/HL7/DICOM-compliant cloud microservices connecting NovaGuide robotic devices to hospital EMR/PACS systems — with a full-stack EMR simulator and a virtual-hospital VPC making the integration testable in CI.',
 };

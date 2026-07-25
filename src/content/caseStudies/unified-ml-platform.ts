@@ -3,7 +3,7 @@ import type { CaseStudy } from '../schema';
 export const unifiedMlPlatform: CaseStudy = {
   slug: 'unified-ml-platform',
   projectId: 'unified-ml-platform',
-  eyebrow: 'Case Study · Sanas.ai',
+  eyebrow: 'Project · Sanas.ai',
   title: 'Unified ML Platform — one hub for research and production',
   intro:
     'A centralized, Kubernetes-native ML platform that replaced fragmented tooling across DevOps, MLOps, and Innovation — built by listening to the scientists first, then giving them standards they actually wanted to adopt.',
@@ -56,5 +56,5 @@ export const unifiedMlPlatform: CaseStudy = {
     'The standardized experimentation lifecycle now covers the entire science team — metrics and model lineage are tracked across the organization instead of per laptop.',
   diagramId: 'ml-platform',
   seoDescription:
-    'Case study: unifying DevOps, MLOps, and Innovation on a Kubernetes-native ML platform — hub-and-spoke architecture, MLflow model registry, and governance that automated the research-to-production handoff.',
+    'Project: unifying DevOps, MLOps, and Innovation on a Kubernetes-native ML platform — hub-and-spoke architecture, MLflow model registry, and governance that automated the research-to-production handoff.',
 };

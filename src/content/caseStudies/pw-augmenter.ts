@@ -3,7 +3,7 @@ import type { CaseStudy } from '../schema';
 export const pwAugmenter: CaseStudy = {
   slug: 'pw-augmenter',
   projectId: 'pw-augmenter',
-  eyebrow: 'Case Study · Legend Technologies · Pratt & Whitney',
+  eyebrow: 'Project · Legend Technologies · Pratt & Whitney',
   title: 'P&W 1100G Test-Bed Augmenter — tooling for a live engine test cell',
   intro:
     'An augmenter extension and movable cart for testing the Pratt & Whitney PW1100G — the geared turbofan that powers the A320neo family — at an existing CENCO engine test bed, engineered to install and remove cleanly on a live facility, with liaison across Air India, CENCO, and Pratt & Whitney.',
@@ -51,5 +51,5 @@ export const pwAugmenter: CaseStudy = {
     'Multi-party coordination on a live facility — a discipline that translated directly into leading cross-functional software delivery later.',
   diagramId: 'pw-augmenter',
   seoDescription:
-    'Case study: a movable-cart augmenter extension for testing the Pratt & Whitney PW1100G geared turbofan at an existing CENCO engine test bed, with onsite liaison across Air India, CENCO, and Pratt & Whitney.',
+    'Project: a movable-cart augmenter extension for testing the Pratt & Whitney PW1100G geared turbofan at an existing CENCO engine test bed, with onsite liaison across Air India, CENCO, and Pratt & Whitney.',
 };

@@ -3,7 +3,7 @@ import type { CaseStudy } from '../schema';
 export const igcarSlipring: CaseStudy = {
   slug: 'igcar-slipring',
   projectId: 'igcar-slipring',
-  eyebrow: 'Case Study · Legend Technologies · IGCAR',
+  eyebrow: 'Project · Legend Technologies · IGCAR',
   title: 'IGCAR Slip Ring — high amperage in a spent-fuel environment',
   intro:
     'Design and development of a high-amperage slip ring for high-temperature electro-refining of spent nuclear fuel (IGCAR / Godrej) — engineered against volumetric, vibration, thermal, and ingress-protection constraints, prototyped, and proven in compliance testing, then published as a NAMS 2015 white paper.',
@@ -50,5 +50,5 @@ export const igcarSlipring: CaseStudy = {
     'The slip-ring white paper is the aerospace-manufacturing research credential that still appears in the credentials section today.',
   diagramId: 'igcar-slipring',
   seoDescription:
-    'Case study: a high-amperage slip ring for IGCAR’s high-temperature electro-refining of spent nuclear fuel — designed against ingress/vibration/thermal constraints, prototyped, compliance-tested, and published at NAMS 2015.',
+    'Project: a high-amperage slip ring for IGCAR’s high-temperature electro-refining of spent nuclear fuel — designed against ingress/vibration/thermal constraints, prototyped, compliance-tested, and published at NAMS 2015.',
 };

@@ -8,7 +8,7 @@ import type { Domain } from '@/content/schema';
 
 export const size = { width: 1200, height: 630 };
 export const contentType = 'image/png';
-export const alt = 'Case study';
+export const alt = 'Project';
 
 // Emitted for every case-study slug; unknown slugs 404 (mirrors page.tsx).
 export const dynamicParams = false;

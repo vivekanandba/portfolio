@@ -3,7 +3,7 @@ import type { CaseStudy } from '../schema';
 export const mapshalliVolunteer: CaseStudy = {
   slug: 'mapshalli-volunteer',
   projectId: 'mapshalli-volunteer',
-  eyebrow: 'Case Study · Mapshalli (volunteer)',
+  eyebrow: 'Project · Mapshalli (volunteer)',
   title: 'Stop Hunger & AirCare — civic tech that shipped',
   intro:
     'Volunteer engineering with Mapshalli, a Bangalore non-profit working in IoT, analytics, and deep learning: a COVID-19 relief-coordination platform and a community-managed air-quality sensor network in Whitefield.',
@@ -43,5 +43,5 @@ export const mapshalliVolunteer: CaseStudy = {
     'Small systems, honestly scoped — and both did their job for the people they served.',
   diagramId: 'mapshalli',
   seoDescription:
-    'Case study: volunteer civic technology with Mapshalli — the Stop Hunger COVID-19 relief-coordination platform and the AirCare community air-quality sensor network in Whitefield, Bangalore.',
+    'Project: volunteer civic technology with Mapshalli — the Stop Hunger COVID-19 relief-coordination platform and the AirCare community air-quality sensor network in Whitefield, Bangalore.',
 };

@@ -3,7 +3,7 @@ import type { CaseStudy } from '../schema';
 export const safranA350: CaseStudy = {
   slug: 'safran-a350',
   projectId: 'safran-a350',
-  eyebrow: 'Case Study · Safran Engineering India',
+  eyebrow: 'Project · Safran Engineering India',
   title: 'Airbus A350 XWB — structure brackets and flight-test installation',
   intro:
     'The starting point of the whole arc: at Safran Engineering India, structural design for the Airbus A350 XWB — primary and secondary structure installation brackets (S11–S18) and Flight-Test-Installation harness routing for wing, pylon, and landing gear — carried from conceptual C-maturity to design-for-manufacturing, all to Airbus standards.',
@@ -51,5 +51,5 @@ export const safranA350: CaseStudy = {
     'This is where the precision and lifecycle discipline began — the habits formed on A350 structures carried through every launch-vehicle jig and, eventually, into software architecture.',
   diagramId: 'safran-a350',
   seoDescription:
-    'Case study: Airbus A350 XWB structural design at Safran Engineering India — primary/secondary structure brackets (S11–S18) and flight-test-installation harness routing, from C-maturity to DFM, to Airbus standards.',
+    'Project: Airbus A350 XWB structural design at Safran Engineering India — primary/secondary structure brackets (S11–S18) and flight-test-installation harness routing, from C-maturity to DFM, to Airbus standards.',
 };

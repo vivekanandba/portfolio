@@ -3,7 +3,7 @@ import type { CaseStudy } from '../schema';
 export const railTooling: CaseStudy = {
   slug: 'rail-tooling',
   projectId: 'rail-tooling',
-  eyebrow: 'Case Study · Tech Mahindra',
+  eyebrow: 'Project · Tech Mahindra',
   title: 'Rolling-Stock Tooling — jigs and fixtures for metros and locomotives',
   intro:
     'Manufacturing-engineering tooling for Alstom rolling-stock programs: bogie, gangway, and HVAC installation fixtures and templates across the Perth METRONET C-Series, Mumbai Metro Line 3, Singapore Metro, and the E-Loco — the jigs that decide how a rail vehicle actually goes together.',
@@ -44,5 +44,5 @@ export const railTooling: CaseStudy = {
     'The bridge chapter — the same manufacturing-engineering rigor as the aerospace tooling, now on rail, spanning the transition years into software.',
   diagramId: 'rail-tooling',
   seoDescription:
-    'Case study: rolling-stock manufacturing tooling for Alstom programs at Tech Mahindra — bogie, gangway, and HVAC installation fixtures for the Perth METRONET C-Series, Mumbai Metro Line 3, Singapore Metro, and E-Loco.',
+    'Project: rolling-stock manufacturing tooling for Alstom programs at Tech Mahindra — bogie, gangway, and HVAC installation fixtures for the Perth METRONET C-Series, Mumbai Metro Line 3, Singapore Metro, and E-Loco.',
 };

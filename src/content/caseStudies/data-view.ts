@@ -3,7 +3,7 @@ import type { CaseStudy } from '../schema';
 export const dataView: CaseStudy = {
   slug: 'data-view',
   projectId: 'data-view',
-  eyebrow: 'Case Study · NovaSignal / NeuraSignal',
+  eyebrow: 'Project · NovaSignal / NeuraSignal',
   title: 'Data View — hospital-fleet analytics for the business',
   intro:
     'A Data View application giving sales, medical education, and leadership their first real-time window into how NovaGuide robotic systems were used across hospitals — exam utilisation, RLS detection, and hospital performance — built and iterated fast with AI-assisted development.',
@@ -51,5 +51,5 @@ export const dataView: CaseStudy = {
     'Sits alongside the cloud-telemetry pipeline — telemetry centralised the data, Data View turned it into decisions.',
   diagramId: 'data-view',
   seoDescription:
-    'Case study: the Data View analytics application (SQL, Python/Pandas, Streamlit/Plotly) giving sales, med-ed, and leadership real-time insight into NovaGuide hospital-fleet utilisation and clinical outcomes.',
+    'Project: the Data View analytics application (SQL, Python/Pandas, Streamlit/Plotly) giving sales, med-ed, and leadership real-time insight into NovaGuide hospital-fleet utilisation and clinical outcomes.',
 };

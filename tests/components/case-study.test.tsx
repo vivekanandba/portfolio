@@ -53,7 +53,7 @@ describe('case-study pages', () => {
 describe('the /work/ index', () => {
   it('lists every case study as a link, grouped by org', () => {
     render(<WorkIndex />);
-    expect(screen.getByRole('heading', { level: 1, name: 'Case studies' })).toBeInTheDocument();
+    expect(screen.getByRole('heading', { level: 1, name: 'Projects' })).toBeInTheDocument();
     for (const cs of caseStudies) {
       // next/link normalizes the trailing slash outside the real build.
       expect(screen.getByRole('link', { name: cs.title })).toHaveAttribute(
@@ -80,7 +80,7 @@ describe('ProjectCard link variants', () => {
     render(<ProjectCard project={withStudy} caseStudyHref="/work/playground/" />);
     // next/link normalizes the trailing slash outside the real build; e2e
     // asserts the slashed URL against the static export.
-    expect(screen.getByRole('link', { name: /read the case study/i })).toHaveAttribute(
+    expect(screen.getByRole('link', { name: /read the full project/i })).toHaveAttribute(
       'href',
       expect.stringMatching(/^\/work\/playground\/?$/),
     );
@@ -91,7 +91,7 @@ describe('ProjectCard link variants', () => {
     const link = screen.getByRole('link', { name: new RegExp(withHref.linkLabel!) });
     expect(link).toHaveAttribute('href', withHref.href);
     expect(link).toHaveAttribute('target', '_blank');
-    expect(screen.queryByRole('link', { name: /read the case study/i })).not.toBeInTheDocument();
+    expect(screen.queryByRole('link', { name: /read the full project/i })).not.toBeInTheDocument();
   });
 
   it('renders no link footer when the project has neither', () => {

@@ -1,5 +1,6 @@
 import { asset } from '@/lib/asset';
-import { profile } from '@/content';
+import { caseStudies, profile } from '@/content';
+import { OrgConstellation } from './OrgConstellation';
 
 // The five fields the work spans (rail folded into aerospace/defence so the
 // entrepreneurship chapter earns its own slot). Enumerated in the panel so the
@@ -11,9 +12,15 @@ const FIELDS = [
   'Medical Robotics',
   'AI',
 ];
-// Marquee organizations, most-recent-first to match the inverted timeline.
-const MARQUEE = ['Sanas.ai', 'NovaSignal', 'Pratt & Whitney', 'Safran', 'ISRO'];
 const PATENT_URL = 'https://patents.google.com/patent/US20230329668A1';
+// One story-proof per career era (resume-verbatim claims) — each is a narrative,
+// not a bare number: zero-to-one speed, regulated-industry rigor, IP, founder grit.
+const PROOFS: { value: string; label: string; href?: string }[] = [
+  { value: 'GA in 3 months', label: 'concept → enterprise AI copilot' },
+  { value: 'FDA-cleared', label: 'robotic platform, cloud stack' },
+  { value: 'US patent', label: 'vascular-flow imaging ↗', href: PATENT_URL },
+  { value: '15,000+ repairs', label: '4.7★ · my own business' },
+];
 // Career timeline, latest on top — includes the founder chapter.
 const TIMELINE = [
   { org: 'Sanas.ai — zero-to-one AI', year: '2024' },
@@ -95,77 +102,81 @@ export function Hero() {
           </div>
         </div>
 
-        {/* Right — track record */}
+        {/* Right — track record. Gradient hairline ring makes the card pop
+            without leaving the token system (p-px wrapper = 1px "border"). */}
         <div
           style={{ animationDelay: '360ms' }}
-          className="animate-fade-up rounded-2xl border border-hairline bg-card/60 p-6"
+          className="animate-fade-up rounded-2xl bg-gradient-to-br from-accent/50 via-hairline to-transparent p-px"
         >
-          <p className="text-xs font-semibold uppercase tracking-[0.16em] text-muted">
-            Track record
-          </p>
-
-          <div className="mt-4 flex flex-wrap gap-x-8 gap-y-4">
-            <Stat value={`${years}+`} label="years of engineering" />
-            <Stat value={profile.heroStat.value} label={profile.heroStat.label} />
-            <a
-              href={PATENT_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="group no-underline"
-            >
-              <span className="tabular block font-display text-xl font-semibold text-ink group-hover:text-accent">
-                US
-              </span>
-              <span className="text-sm text-muted group-hover:text-ink">
-                patent granted<span aria-hidden="true"> ↗</span>
-              </span>
-            </a>
-          </div>
-
-          {/* 5 fields — enumerated so the count is self-evident. */}
-          <div className="mt-6 border-t border-hairline pt-5">
-            <p className="text-sm leading-relaxed text-muted">
-              <span className="font-display text-base font-semibold text-ink">5 fields</span>{' '}
-              <span className="text-muted/80">·</span> {FIELDS.join(' · ')}
+          <div className="rounded-2xl bg-card p-6">
+            <p className="text-xs font-semibold uppercase tracking-[0.16em] text-muted">
+              Track record
             </p>
-          </div>
 
-          {/* Marquee organizations. */}
-          <ul className="mt-5 flex flex-wrap gap-x-3 gap-y-1 border-t border-hairline pt-5 text-sm font-semibold tracking-tight text-ink">
-            {MARQUEE.map((name, i) => (
-              <li key={name} className="flex items-center gap-x-3">
-                {i > 0 && (
-                  <span aria-hidden="true" className="text-hairline">
-                    ·
+            {/* One story-proof per era, 2×2. */}
+            <div className="mt-5 grid grid-cols-2 gap-x-6 gap-y-5">
+              {PROOFS.map((p) =>
+                p.href ? (
+                  <a
+                    key={p.value}
+                    href={p.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="group no-underline"
+                  >
+                    <Proof value={p.value} label={p.label} link />
+                  </a>
+                ) : (
+                  <Proof key={p.value} value={p.value} label={p.label} />
+                ),
+              )}
+            </div>
+
+            {/* Computed breadth summary. */}
+            <p className="tabular mt-6 border-t border-hairline pt-4 text-sm font-medium text-ink">
+              {years}+ yrs <span className="text-muted/80">·</span> 5 fields{' '}
+              <span className="text-muted/80">·</span> {caseStudies.length} projects
+            </p>
+
+            {/* 5 fields — enumerated so the count is self-evident. */}
+            <div className="mt-4 border-t border-hairline pt-4">
+              <p className="text-sm leading-relaxed text-muted">{FIELDS.join(' · ')}</p>
+            </div>
+
+            {/* Career timeline — latest on top. */}
+            <ol className="mt-4 border-t border-hairline pt-4">
+              {TIMELINE.map((t) => (
+                <li key={t.year} className="flex items-baseline gap-3 py-1 text-sm">
+                  <span className="tabular w-9 shrink-0 font-medium text-accent">
+                    ’{t.year.slice(2)}
                   </span>
-                )}
-                {name}
-              </li>
-            ))}
-          </ul>
+                  <span className="text-muted">{t.org}</span>
+                </li>
+              ))}
+            </ol>
+          </div>
+        </div>
 
-          {/* Career timeline — latest on top. */}
-          <ol className="mt-5 border-t border-hairline pt-5">
-            {TIMELINE.map((t) => (
-              <li key={t.year} className="flex items-baseline gap-3 py-1 text-sm">
-                <span className="tabular w-9 shrink-0 font-medium text-accent">
-                  ’{t.year.slice(2)}
-                </span>
-                <span className="text-muted">{t.org}</span>
-              </li>
-            ))}
-          </ol>
+        {/* Full-width brand constellation under both columns. */}
+        <div style={{ animationDelay: '440ms' }} className="animate-fade-up lg:col-span-2">
+          <OrgConstellation />
         </div>
       </div>
     </section>
   );
 }
 
-function Stat({ value, label }: { value: string; label: string }) {
+function Proof({ value, label, link }: { value: string; label: string; link?: boolean }) {
   return (
     <div>
-      <span className="tabular block font-display text-xl font-semibold text-ink">{value}</span>
-      <span className="text-sm text-muted">{label}</span>
+      <span
+        className={`block font-display text-xl font-semibold leading-tight text-ink sm:text-2xl ${
+          link ? 'group-hover:text-accent' : ''
+        }`}
+      >
+        {value}
+      </span>
+      <span className={`text-sm text-muted ${link ? 'group-hover:text-ink' : ''}`}>{label}</span>
     </div>
   );
 }
