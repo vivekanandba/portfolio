@@ -1,4 +1,5 @@
 import { Section } from './Section';
+import { ShowMore } from './ShowMore';
 import { certifications, education, languages, patents } from '@/content';
 
 /** Certifications grouped by category, preserving the data's newest-first order. */
@@ -58,33 +59,38 @@ export function Credentials() {
           <h3 className="mb-4 text-sm font-semibold text-ink">
             Certifications ({certifications.length})
           </h3>
-          <dl className="space-y-6">
-            {certificationGroups().map(([category, certs]) => (
-              <div key={category}>
-                <dt className="mb-2 text-xs font-medium uppercase tracking-[0.14em] text-muted">
-                  {category} · {certs.length}
-                </dt>
-                <dd>
-                  <ul className="flex flex-wrap gap-2">
-                    {certs.map((c) => (
-                      <li key={`${c.name}-${c.authority}`}>
-                        <a
-                          href={c.url}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          title={`${c.authority} · ${c.date}`}
-                          aria-label={`${c.name} — ${c.authority}, ${c.date}`}
-                          className="inline-block rounded-full border border-hairline bg-card/60 px-3 py-1 text-sm text-muted no-underline transition-colors hover:border-accent/40 hover:text-ink"
-                        >
-                          {c.name}
-                        </a>
-                      </li>
-                    ))}
-                  </ul>
-                </dd>
-              </div>
-            ))}
-          </dl>
+          <ShowMore
+            label={`Browse all ${certifications.length} certifications`}
+            hideLabel="Collapse certifications"
+          >
+            <dl className="space-y-6">
+              {certificationGroups().map(([category, certs]) => (
+                <div key={category}>
+                  <dt className="mb-2 text-xs font-medium uppercase tracking-[0.14em] text-muted">
+                    {category} · {certs.length}
+                  </dt>
+                  <dd>
+                    <ul className="flex flex-wrap gap-2">
+                      {certs.map((c) => (
+                        <li key={`${c.name}-${c.authority}`}>
+                          <a
+                            href={c.url}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            title={`${c.authority} · ${c.date}`}
+                            aria-label={`${c.name} — ${c.authority}, ${c.date}`}
+                            className="inline-block rounded-full border border-hairline bg-card/60 px-3 py-1 text-sm text-muted no-underline transition-colors hover:border-accent/40 hover:text-ink"
+                          >
+                            {c.name}
+                          </a>
+                        </li>
+                      ))}
+                    </ul>
+                  </dd>
+                </div>
+              ))}
+            </dl>
+          </ShowMore>
         </div>
 
         <div className="sm:col-span-2">

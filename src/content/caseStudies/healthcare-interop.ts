@@ -50,6 +50,16 @@ export const healthcareInterop: CaseStudy = {
   resultsNote:
     'The EMR simulator and virtual-hospital VPC turned integration that could not be tested against production into ordinary, repeatable CI — the conformance and security tooling that rode on top became its own body of work.',
   diagramId: 'interop',
+  docs: [
+    {
+      label: 'HL7 Jupiter — integration introduction deck (PDF)',
+      file: 'docs/healthcare-interop-hl7-jupiter.pdf',
+    },
+    {
+      label: 'Hospital ↔ NGV cloud network diagram (JPG)',
+      file: 'media/healthcare-interop-ngv-network.jpg',
+    },
+  ],
   seoDescription:
     'Project: HIPAA/HL7/DICOM-compliant cloud microservices connecting NovaGuide robotic devices to hospital EMR/PACS systems — with a full-stack EMR simulator and a virtual-hospital VPC making the integration testable in CI.',
 };

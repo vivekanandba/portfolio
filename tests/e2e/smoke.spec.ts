@@ -115,3 +115,27 @@ test('primary CTA scrolls to work and a featured project is visible', async ({ p
   await expect(page).toHaveURL(/#work$/);
   await expect(page.getByRole('heading', { name: 'Sanas Consumer Mobile App' })).toBeVisible();
 });
+
+test('ShowMore reveals the hidden flagships and earlier eras', async ({ page }) => {
+  await page.goto('');
+  // Fifth flagship starts hidden, appears after the disclosure click.
+  const fifth = page.getByRole('heading', { name: 'Speech Intelligence Platform' });
+  await expect(fifth).toBeHidden();
+  await page.getByRole('button', { name: /show all \d+ flagships/i }).click();
+  await expect(fifth).toBeVisible();
+  // Era chapters disclose the same way.
+  await page.getByRole('button', { name: /explore the earlier eras/i }).click();
+  await expect(
+    page.locator('#work').getByRole('link', { name: 'Admin Portal — Releases & Timezones' }),
+  ).toBeVisible();
+});
+
+test('a project page renders its artifact image and docs list', async ({ page }) => {
+  await page.goto('work/speech-intelligence/');
+  const artifact = page.locator('img[src*="speech-intelligence-architecture"]');
+  await expect(artifact).toBeVisible();
+  await expect(page.getByRole('heading', { name: 'Architecture & artifacts' })).toBeAttached();
+  const doc = page.getByRole('link', { name: /architecture diagram — v1/i });
+  const href = await doc.getAttribute('href');
+  expect(href).toContain('/media/speech-intelligence-architecture-v1.jpg');
+});

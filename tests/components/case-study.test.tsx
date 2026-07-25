@@ -29,8 +29,11 @@ describe('case-study pages', () => {
       for (const m of cs.metrics) {
         expect(screen.getAllByText(m.value).length).toBeGreaterThan(0);
       }
-      // The annotated systems diagram is present and named for screen readers.
-      expect(screen.getByRole('img')).toHaveAccessibleName();
+      // The annotated systems diagram (plus any artifact image) is present and
+      // named for screen readers.
+      for (const img of screen.getAllByRole('img')) {
+        expect(img).toHaveAccessibleName();
+      }
       // The way back.
       expect(screen.getByRole('link', { name: /back to all work/i })).toHaveAttribute(
         'href',

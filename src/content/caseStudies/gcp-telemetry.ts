@@ -50,6 +50,12 @@ export const gcpTelemetry: CaseStudy = {
   resultsNote:
     'Centralized telemetry reduced on-site diagnostics, improved response times, and lowered operational costs across hospital deployments — and became the data foundation the Data View analytics app was built on.',
   diagramId: 'telemetry',
+  docs: [
+    {
+      label: 'Centralized-telemetry white paper (PDF)',
+      file: 'docs/gcp-telemetry-whitepaper.pdf',
+    },
+  ],
   seoDescription:
     'Project: a serverless GCP telemetry architecture (Cloud Run, BigQuery, Cloud Monitoring) for hospital-deployed NovaGuide robotic ultrasound systems — real-time fleet monitoring, predictive maintenance, and HIPAA-compliant data flow.',
 };

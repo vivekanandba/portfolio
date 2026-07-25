@@ -1,3 +1,5 @@
+import { existsSync } from 'node:fs';
+import { join } from 'node:path';
 import { describe, it, expect } from 'vitest';
 import {
   aiPracticeStepSchema,
@@ -165,6 +167,20 @@ describe('case-study invariants', () => {
     const used = new Set(caseStudies.map((cs) => cs.diagramId));
     const registered = new Set(Object.keys(diagrams));
     expect(used).toEqual(registered);
+  });
+
+  it('every referenced media/doc file exists in public/ (and images carry alt text)', () => {
+    for (const p of projects) {
+      if (p.image) {
+        expect(existsSync(join('public', p.image)), `missing ${p.image}`).toBe(true);
+        expect(p.imageAlt, `project ${p.id} image needs imageAlt`).toBeTruthy();
+      }
+    }
+    for (const cs of caseStudies) {
+      for (const d of cs.docs ?? []) {
+        expect(existsSync(join('public', d.file)), `missing ${d.file}`).toBe(true);
+      }
+    }
   });
 
   it('external proof links carry a label (and vice versa)', () => {

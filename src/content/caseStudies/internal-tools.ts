@@ -48,6 +48,12 @@ export const internalTools: CaseStudy = {
   resultsNote:
     'The portal eliminated redundant tools and standardized operations — governance as a byproduct of making the right thing the easy thing.',
   diagramId: 'internal-tools',
+  docs: [
+    {
+      label: 'Jira Analyzer — AI-based issue analysis deck (PDF)',
+      file: 'docs/internal-tools-jira-analyzer.pdf',
+    },
+  ],
   seoDescription:
     'Project: solo modernization of 25+ legacy internal applications into a unified, searchable Internal Tools Portal — AI-assisted codebase analysis, a standardized framework, and hours-to-seconds resource discovery.',
 };
