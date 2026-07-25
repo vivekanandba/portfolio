@@ -3,7 +3,7 @@ import type { CaseStudy } from '../schema';
 export const lcaNavy: CaseStudy = {
   slug: 'lca-navy',
   projectId: 'lca-navy',
-  eyebrow: 'Case Study · Legend Technologies · ARDC / HAL',
+  eyebrow: 'Project · Legend Technologies · ARDC / HAL',
   title: 'LCA-Navy Opto-Electronics — new-product development for a fighter',
   intro:
     'Design and development of opto-electronic assemblies for the LCA-Navy — India’s naval light combat aircraft — for the Aircraft Research & Design Centre at Hindustan Aeronautics Limited, taken through new-product-development design and analysis in CATIA and Abaqus.',
@@ -44,5 +44,5 @@ export const lcaNavy: CaseStudy = {
     'New-product development for a national defence-aviation program — engineering ownership from a blank sheet.',
   diagramId: 'lca-navy',
   seoDescription:
-    'Case study: new-product development of opto-electronic assemblies for the LCA-Navy (India’s naval light combat aircraft) at ARDC / HAL, designed and analyzed in CATIA and Abaqus.',
+    'Project: new-product development of opto-electronic assemblies for the LCA-Navy (India’s naval light combat aircraft) at ARDC / HAL, designed and analyzed in CATIA and Abaqus.',
 };

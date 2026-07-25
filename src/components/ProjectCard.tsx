@@ -64,7 +64,7 @@ export function ProjectCard({
               href={caseStudyHref}
               className="text-sm font-medium text-accent no-underline after:absolute after:inset-0 hover:underline"
             >
-              Read the case study
+              Read the full project
               {/* Distinct accessible names per card; the arrow is decorative. */}
               <span className="sr-only">: {project.title}</span>
               <span aria-hidden="true"> →</span>

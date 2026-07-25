@@ -151,7 +151,7 @@ export const DIAGRAM_IDS = [
 export const caseStudySchema = z.object({
   slug: z.string().regex(/^[a-z0-9-]+$/), // equals the project id — stable URLs
   projectId: z.string().min(1), // FK to projects[].id, test-enforced
-  eyebrow: z.string().min(1), // "Case Study · Sanas.ai"
+  eyebrow: z.string().min(1), // "Project · Sanas.ai"
   title: z.string().min(1),
   intro: z.string().min(1), // dek paragraph under the H1
   metrics: z.array(metricSchema).min(1), // headline strip

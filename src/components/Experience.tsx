@@ -123,7 +123,7 @@ export function Experience() {
               href="/work/"
               className="text-sm font-medium text-accent no-underline hover:underline"
             >
-              All case studies →
+              All projects →
             </Link>
           </p>
         </div>

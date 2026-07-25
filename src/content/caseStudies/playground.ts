@@ -3,7 +3,7 @@ import type { CaseStudy } from '../schema';
 export const playground: CaseStudy = {
   slug: 'playground',
   projectId: 'playground',
-  eyebrow: 'Case Study · Sanas.ai',
+  eyebrow: 'Project · Sanas.ai',
   title: 'Playground — real-time audio orchestration at 430k requests a day',
   intro:
     'An ElevenLabs-style interactive web platform where Accent Translation, Noise Cancellation, and Language Translation run concurrently in a single session — on live audio, under a hard real-time latency budget.',
@@ -61,5 +61,5 @@ export const playground: CaseStudy = {
     'Deployed live as the corporate showcase at sanas.ai/#playground — the "Live demo" link on the project card goes straight to it.',
   diagramId: 'playground',
   seoDescription:
-    'Case study: a triple-track asynchronous audio orchestration pipeline (FastAPI/Asyncio, Triton gRPC, AWS EKS + Modal) holding sub-100ms chunk latency at 430k requests a day.',
+    'Project: a triple-track asynchronous audio orchestration pipeline (FastAPI/Asyncio, Triton gRPC, AWS EKS + Modal) holding sub-100ms chunk latency at 430k requests a day.',
 };

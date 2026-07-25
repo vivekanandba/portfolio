@@ -3,7 +3,7 @@ import type { CaseStudy } from '../schema';
 export const vsscTooling: CaseStudy = {
   slug: 'vssc-tooling',
   projectId: 'vssc-tooling',
-  eyebrow: 'Case Study · Legend Technologies · ISRO',
+  eyebrow: 'Project · Legend Technologies · ISRO',
   title: 'VSSC Launch-Vehicle Tooling — jigs and gauges for flight hardware',
   intro:
     'Design, fabrication, and first-article proving of PSLV assembly tooling for VSSC, ISRO’s lead launch-vehicle centre: jigs for the PSOM and SITVC nose-cone assemblies and the SITVC aft shroud, a spinner full-weld jig, forming/locating/checking tools, and master tooling gauges that decide whether flight hardware can be built at all.',
@@ -50,5 +50,5 @@ export const vsscTooling: CaseStudy = {
     'The precision and lifecycle ownership here — the tool defines the part, and proof means a real article passing — is the discipline the rest of the portfolio was built on.',
   diagramId: 'vssc-tooling',
   seoDescription:
-    'Case study: design, fabrication, and first-article proving of VSSC/ISRO PSLV assembly tooling — PSOM/SITVC nose-cone jigs, the SITVC aft shroud, a spinner full-weld jig, and master tooling gauges — in CATIA V5 and UG NX.',
+    'Project: design, fabrication, and first-article proving of VSSC/ISRO PSLV assembly tooling — PSOM/SITVC nose-cone jigs, the SITVC aft shroud, a spinner full-weld jig, and master tooling gauges — in CATIA V5 and UG NX.',
 };

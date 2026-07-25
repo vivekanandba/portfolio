@@ -3,7 +3,7 @@ import type { CaseStudy } from '../schema';
 export const mlopsTooling: CaseStudy = {
   slug: 'mlops-tooling',
   projectId: 'mlops-tooling',
-  eyebrow: 'Case Study · Sanas.ai',
+  eyebrow: 'Project · Sanas.ai',
   title: 'MLOps Observability & Model Cards — making the pipeline visible',
   intro:
     'Two foundational tools for the ML organization: the first end-to-end observability dashboard for the MLOps data pipeline, and a Model Card system giving data linguists, DL specialists, and speech scientists a shared language for evaluating models.',
@@ -56,5 +56,5 @@ export const mlopsTooling: CaseStudy = {
     'The dashboard’s analyses fed directly into strategic pipeline-architecture improvements, and the Model Card system became the common ground where specialists compare models without reading each other’s code.',
   diagramId: 'mlops-tooling',
   seoDescription:
-    'Case study: the first end-to-end MLOps pipeline observability dashboard (FastAPI, Plotly, DynamoDB connectors) and a flexible Model Card evaluation system bridging linguists, DL specialists, and speech scientists.',
+    'Project: the first end-to-end MLOps pipeline observability dashboard (FastAPI, Plotly, DynamoDB connectors) and a flexible Model Card evaluation system bridging linguists, DL specialists, and speech scientists.',
 };

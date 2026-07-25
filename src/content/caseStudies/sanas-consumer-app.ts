@@ -3,7 +3,7 @@ import type { CaseStudy } from '../schema';
 export const sanasConsumerApp: CaseStudy = {
   slug: 'sanas-consumer-app',
   projectId: 'sanas-consumer-app',
-  eyebrow: 'Case Study · Sanas.ai',
+  eyebrow: 'Project · Sanas.ai',
   title: 'Sanas Consumer App — a production B2C app in under four weeks',
   intro:
     'A production-ready React Native app, shipped by an engineer with zero prior mobile experience — by directing a multi-agent AI workflow instead of learning the stack the slow way.',
@@ -62,5 +62,5 @@ export const sanasConsumerApp: CaseStudy = {
   resultsNote: 'Live on the App Store as Sanas Translate.',
   diagramId: 'consumer-app',
   seoDescription:
-    'Case study: shipping a production React Native app in under 4 weeks with zero prior mobile experience by directing a multi-agent AI workflow — 100% iOS/Android parity, 9 languages.',
+    'Project: shipping a production React Native app in under 4 weeks with zero prior mobile experience by directing a multi-agent AI workflow — 100% iOS/Android parity, 9 languages.',
 };

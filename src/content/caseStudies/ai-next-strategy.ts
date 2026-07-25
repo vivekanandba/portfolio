@@ -3,7 +3,7 @@ import type { CaseStudy } from '../schema';
 export const aiNextStrategy: CaseStudy = {
   slug: 'ai-next-strategy',
   projectId: 'ai-next-strategy',
-  eyebrow: 'Case Study · Sanas.ai',
+  eyebrow: 'Project · Sanas.ai',
   title: 'AI-Next — turning an engineering org into agent directors',
   intro:
     'A company-wide transformation from ad-hoc AI usage to a structured ecosystem where humans direct autonomous agents — phased deliberately, measured continuously, and governed so speed never outran rigor.',
@@ -62,5 +62,5 @@ export const aiNextStrategy: CaseStudy = {
     'The framework is deliberately durable: scalable, secure, and budget-conscious — designed for long-term AI integration rather than a pilot that fades.',
   diagramId: 'ai-next',
   seoDescription:
-    'Case study: a company-wide AI adoption strategy — Crawl/Walk/Run maturity phases, a vendor-agnostic toolchain, an investment dashboard, and TDD-first governance that took coding agents to 80% of the workforce.',
+    'Project: a company-wide AI adoption strategy — Crawl/Walk/Run maturity phases, a vendor-agnostic toolchain, an investment dashboard, and TDD-first governance that took coding agents to 80% of the workforce.',
 };

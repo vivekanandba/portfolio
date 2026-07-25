@@ -3,7 +3,7 @@ import type { CaseStudy } from '../schema';
 export const speechIntelligence: CaseStudy = {
   slug: 'speech-intelligence',
   projectId: 'speech-intelligence',
-  eyebrow: 'Case Study · Sanas.ai',
+  eyebrow: 'Project · Sanas.ai',
   title: 'Speech Intelligence — total conversation coverage without the cloud',
   intro:
     'A privacy-first, edge-powered voice analytics platform built directly on the Accent Translation / Noise Cancellation desktop stack: real-time operational metrics, automated post-call CRM documentation, and near-real-time compliance alerts — with raw audio and customer PII never leaving the edge.',
@@ -64,5 +64,5 @@ export const speechIntelligence: CaseStudy = {
     'The rollup design also eliminated the multi-gigabyte out-of-memory query failures that plagued raw-scan analytics — strict sorted primary keys and partition-aware filtering, enforced from day one.',
   diagramId: 'speech-intelligence',
   seoDescription:
-    'Case study: a privacy-first edge voice analytics platform — on-device ASR and PII redaction, queue-backed ingestion, ClickHouse incremental rollups, and dual LLM worker tracks delivering post-call artifacts in 4 seconds at 100% conversation coverage.',
+    'Project: a privacy-first edge voice analytics platform — on-device ASR and PII redaction, queue-backed ingestion, ClickHouse incremental rollups, and dual LLM worker tracks delivering post-call artifacts in 4 seconds at 100% conversation coverage.',
 };

@@ -3,7 +3,7 @@ import type { CaseStudy } from '../schema';
 export const aeroReverseEngineering: CaseStudy = {
   slug: 'aero-reverse-engineering',
   projectId: 'aero-reverse-engineering',
-  eyebrow: 'Case Study · Legend Technologies',
+  eyebrow: 'Project · Legend Technologies',
   title: 'Aerospace Reverse Engineering — rebuilding hardware without drawings',
   intro:
     'Design, reverse engineering, fabrication, and testing of a range of aerospace tooling and structures for VSSC/ISRO, Air India, ARDC, and ADA — reconstructing buildable CAD from hardware whose original documentation was gone, then re-fabricating and validating it.',
@@ -50,5 +50,5 @@ export const aeroReverseEngineering: CaseStudy = {
     'Reading intent out of an artifact and rebuilding it to spec — a habit that transfers cleanly to inheriting and modernizing undocumented software systems.',
   diagramId: 'aero-reverse-engineering',
   seoDescription:
-    'Case study: reverse engineering, fabrication, and testing of legacy aerospace tooling and structures for VSSC/ISRO, Air India, ARDC, and ADA — reconstructing buildable CAD from undocumented hardware.',
+    'Project: reverse engineering, fabrication, and testing of legacy aerospace tooling and structures for VSSC/ISRO, Air India, ARDC, and ADA — reconstructing buildable CAD from undocumented hardware.',
 };

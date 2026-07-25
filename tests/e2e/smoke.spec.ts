@@ -82,15 +82,17 @@ test('nav marks Contact active at the bottom of the page', async ({ page }) => {
   await expect(page.locator('nav a[aria-current="location"]')).toHaveText('Contact');
 });
 
-test('hero leads with the domain arc, title, and experience stats', async ({ page }) => {
+test('hero leads with the domain arc, title, story proofs, and constellation', async ({ page }) => {
   await page.goto('');
   await expect(page.getByText('Aerospace → Healthcare Robotics → AI-Native')).toBeVisible();
   await expect(page.getByText('Staff Engineer · Internal Technical Co-founder')).toBeVisible();
-  // exact: the footer prose also contains "years of engineering".
-  await expect(page.getByText('years of engineering', { exact: true })).toBeVisible();
-  // Scoped to the hero — the Playground card carries the same label.
-  await expect(page.locator('#top').getByText('requests in production')).toBeVisible();
-  await expect(page.getByText('patent granted')).toBeVisible();
+  // Story-proof grid, one per era ("FDA-cleared" also appears in prose — exact match).
+  await expect(page.getByText('GA in 3 months')).toBeVisible();
+  await expect(page.getByText('FDA-cleared', { exact: true })).toBeVisible();
+  await expect(page.getByText('15,000+ repairs', { exact: true })).toBeVisible();
+  // Brand constellation under the hero.
+  await expect(page.getByText('Built for · shipped at')).toBeVisible();
+  await expect(page.locator('#top').getByText('Godrej & Boyce')).toBeVisible();
   await expect(page.getByText(/open to/i)).toHaveCount(0);
 });
 

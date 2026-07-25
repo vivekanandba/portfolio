@@ -3,7 +3,7 @@ import type { CaseStudy } from '../schema';
 export const sanasPortal: CaseStudy = {
   slug: 'sanas-portal',
   projectId: 'sanas-portal',
-  eyebrow: 'Case Study · Sanas.ai',
+  eyebrow: 'Project · Sanas.ai',
   title: 'Admin Portal — global releases and one clock',
   intro:
     'Two portal features that made globally distributed operations behave like one system: cloud-based app version distribution with cryptographic integrity, and a workspace timezone framework that ended timestamp disagreements across India, the Philippines, and the US.',
@@ -57,5 +57,5 @@ export const sanasPortal: CaseStudy = {
     'The UTC-based data standard and audit framework became the foundation for future portal modules — consistency as infrastructure, not a patch.',
   diagramId: 'portal',
   seoDescription:
-    'Case study: cloud app-version distribution with CI/CD-automated SHA-256 integrity, and a UTC-based workspace timezone framework — ≈70% less manual release coordination and 60% fewer support tickets across three regions.',
+    'Project: cloud app-version distribution with CI/CD-automated SHA-256 integrity, and a UTC-based workspace timezone framework — ≈70% less manual release coordination and 60% fewer support tickets across three regions.',
 };

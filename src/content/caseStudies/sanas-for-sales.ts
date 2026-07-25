@@ -3,7 +3,7 @@ import type { CaseStudy } from '../schema';
 export const sanasForSales: CaseStudy = {
   slug: 'sanas-for-sales',
   projectId: 'sanas-for-sales',
-  eyebrow: 'Case Study · Sanas.ai',
+  eyebrow: 'Project · Sanas.ai',
   title: 'Sanas for Sales — concept to Enterprise GA in three months',
   intro:
     'A real-time AI copilot for sales teams: a hybrid Chrome Extension / Desktop application with a multi-modal RAG pipeline answering live objections in under four seconds.',
@@ -52,5 +52,5 @@ export const sanasForSales: CaseStudy = {
     'Shipped into Sanas Core6 with live objection handling, dynamic battlecards, and sentiment analysis — and the knowledge-ingestion system built for it became shared infrastructure for future AI products.',
   diagramId: 'sales-copilot',
   seoDescription:
-    'Case study: a hybrid Chrome Extension / Desktop AI sales copilot with a multi-modal RAG pipeline answering live objections in under 4 seconds — concept to Enterprise GA in 3 months.',
+    'Project: a hybrid Chrome Extension / Desktop AI sales copilot with a multi-modal RAG pipeline answering live objections in under 4 seconds — concept to Enterprise GA in 3 months.',
 };

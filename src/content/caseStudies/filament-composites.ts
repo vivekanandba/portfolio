@@ -3,7 +3,7 @@ import type { CaseStudy } from '../schema';
 export const filamentComposites: CaseStudy = {
   slug: 'filament-composites',
   projectId: 'filament-composites',
-  eyebrow: 'Case Study · Legend Technologies',
+  eyebrow: 'Project · Legend Technologies',
   title: 'Filament-Wound Composites — carbon-epoxy shells, owned end to end',
   intro:
     'Manufacturing transfer and fabrication of high-glass-temperature filament-wound carbon-epoxy shells and laminates (PESIT / Siemens) — owning material selection, winding, oven curing, machining, and testing rather than handing any stage off.',
@@ -44,5 +44,5 @@ export const filamentComposites: CaseStudy = {
     'Composite fabrication learned at the machine — the kind of ground-truth understanding that later made cross-disciplinary systems work feel familiar.',
   diagramId: 'filament-composites',
   seoDescription:
-    'Case study: manufacturing transfer and fabrication of high-glass-temperature filament-wound carbon-epoxy shells and laminates — material selection, winding, oven curing, machining, and testing owned end to end.',
+    'Project: manufacturing transfer and fabrication of high-glass-temperature filament-wound carbon-epoxy shells and laminates — material selection, winding, oven curing, machining, and testing owned end to end.',
 };

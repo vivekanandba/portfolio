@@ -3,7 +3,7 @@ import type { CaseStudy } from '../schema';
 export const bmp2Turret: CaseStudy = {
   slug: 'bmp2-turret',
   projectId: 'bmp2-turret',
-  eyebrow: 'Case Study · Legend Technologies · BEL',
+  eyebrow: 'Project · Legend Technologies · BEL',
   title: 'BMP-II Turret — a 3D and kinematic study for FICV',
   intro:
     'Full 3D modelling and kinematic simulation of the BMP-II turret for Bharat Electronics’ Futuristic Infantry Combat Vehicle space studies — part of India’s flagship program to replace its Soviet-era BMP-2 fleet — reconstructing 3,000 legacy drawings into validated, simulated geometry on a four-month clock.',
@@ -50,5 +50,5 @@ export const bmp2Turret: CaseStudy = {
     'Leading an eight-engineer team to a decision-grade study on a fixed clock — the first taste of technical leadership under a hard deadline.',
   diagramId: 'bmp2-turret',
   seoDescription:
-    'Case study: 3D modelling and kinematic simulation of the BMP-II turret for Bharat Electronics’ FICV space studies — an eight-engineer team reconstructing 3,000 legacy drawings in four months.',
+    'Project: 3D modelling and kinematic simulation of the BMP-II turret for Bharat Electronics’ FICV space studies — an eight-engineer team reconstructing 3,000 legacy drawings in four months.',
 };

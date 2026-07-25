@@ -3,7 +3,7 @@ import type { CaseStudy } from '../schema';
 export const internalTools: CaseStudy = {
   slug: 'internal-tools',
   projectId: 'internal-tools',
-  eyebrow: 'Case Study · Sanas.ai',
+  eyebrow: 'Project · Sanas.ai',
   title: 'Internal Tools Portal — 25+ legacy apps, one front door',
   intro:
     'Taking solo ownership of a sprawling portfolio of legacy internal applications — React, Vue, Python, Node — and replacing tool sprawl with a single searchable portal, using AI-assisted development to learn 25+ codebases in weeks instead of months.',
@@ -49,5 +49,5 @@ export const internalTools: CaseStudy = {
     'The portal eliminated redundant tools and standardized operations — governance as a byproduct of making the right thing the easy thing.',
   diagramId: 'internal-tools',
   seoDescription:
-    'Case study: solo modernization of 25+ legacy internal applications into a unified, searchable Internal Tools Portal — AI-assisted codebase analysis, a standardized framework, and hours-to-seconds resource discovery.',
+    'Project: solo modernization of 25+ legacy internal applications into a unified, searchable Internal Tools Portal — AI-assisted codebase analysis, a standardized framework, and hours-to-seconds resource discovery.',
 };
