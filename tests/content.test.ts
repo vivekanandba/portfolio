@@ -175,6 +175,14 @@ describe('case-study invariants', () => {
         expect(existsSync(join('public', p.image)), `missing ${p.image}`).toBe(true);
         expect(p.imageAlt, `project ${p.id} image needs imageAlt`).toBeTruthy();
       }
+      // Third-party imagery must carry a visible credit. The Legend-sourced
+      // aerospace photos are the only externally-owned images on the site.
+      if (p.image?.startsWith('media/vssc-')) {
+        expect(
+          p.imageCredit,
+          `project ${p.id} uses a third-party photo and needs a credit`,
+        ).toBeTruthy();
+      }
     }
     for (const cs of caseStudies) {
       for (const d of cs.docs ?? []) {

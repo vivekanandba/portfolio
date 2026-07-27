@@ -246,6 +246,7 @@ export const projects: Project[] = [
     image: 'media/vssc-psom-nose-cone-assemblies.jpg',
     imageAlt:
       'Five completed PSOM nose cone assemblies crated on pallets, each stencilled “PSOM Nose Cone Assembly” in SITVC and non-SITVC variants',
+    imageCredit: 'Photo: Legend Technologies (India) Pvt. Ltd. — published product portfolio',
     featured: true,
     domain: 'aerospace',
   },
