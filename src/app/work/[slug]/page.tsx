@@ -153,6 +153,36 @@ export default async function CaseStudyPage({ params }: Params) {
             </section>
           </Reveal>
 
+          {cs.gallery && cs.gallery.length > 0 && (
+            <Reveal className="mt-16">
+              <section aria-label="Photos from the work">
+                <SectionHeading>From the bench</SectionHeading>
+                <ul className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4">
+                  {cs.gallery.map((g) => (
+                    <li
+                      key={g.file}
+                      className={`overflow-hidden rounded-lg border border-hairline bg-card/60 ${
+                        g.wide ? 'col-span-2 sm:col-span-3 lg:col-span-4' : ''
+                      }`}
+                    >
+                      {/* eslint-disable-next-line @next/next/no-img-element */}
+                      <img
+                        src={asset(g.file)}
+                        alt={g.alt}
+                        loading="lazy"
+                        className={
+                          g.wide
+                            ? 'max-h-96 w-full bg-white object-contain'
+                            : 'h-56 w-full object-cover'
+                        }
+                      />
+                    </li>
+                  ))}
+                </ul>
+              </section>
+            </Reveal>
+          )}
+
           {cs.docs && cs.docs.length > 0 && (
             <Reveal className="mt-16">
               <section aria-label="Architecture and artifacts">

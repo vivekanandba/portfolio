@@ -181,6 +181,19 @@ export const caseStudySchema = z.object({
       }),
     )
     .optional(),
+  // Photo grid of real work (paths under public/). Alt text is mandatory —
+  // never publish an image here without auditing it for customer PII first.
+  gallery: z
+    .array(
+      z.object({
+        file: z.string().min(1), // "media/gadjoy-workshop.jpg"
+        alt: z.string().min(1),
+        // Landscape items (annotated before/after cards, wide diagrams) span the
+        // grid and are letterboxed instead of cropped, so labels stay readable.
+        wide: z.boolean().optional(),
+      }),
+    )
+    .optional(),
 });
 export type CaseStudy = z.infer<typeof caseStudySchema>;
 

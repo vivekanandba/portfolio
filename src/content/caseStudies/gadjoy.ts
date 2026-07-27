@@ -58,6 +58,40 @@ export const gadjoy: CaseStudy = {
   resultsNote:
     'The entrepreneurship-and-hands-on-hardware chapter of the arc — proof that the systems instinct showed up long before the software, and that things built well outlast the builder’s attention.',
   diagramId: 'gadjoy',
+  // Real intake photos from gadjoy.in. Every image was audited for customer PII
+  // before publishing — the shop's own before/after cards that photograph device
+  // "About" screens (owner name, serial, IMEI) are deliberately excluded.
+  gallery: [
+    {
+      file: 'media/gadjoy-iphone12-back-glass.jpg',
+      alt: 'An iPhone 12 received with its rear glass completely shattered, ready for back-glass replacement',
+    },
+    {
+      file: 'media/gadjoy-shattered-display.jpg',
+      alt: 'A phone received with a heavily spider-cracked display awaiting a screen replacement',
+    },
+    {
+      file: 'media/gadjoy-cracked-display.jpg',
+      alt: 'A phone with impact damage to the top of its display, taken in for repair',
+    },
+    {
+      file: 'media/gadjoy-scratched-display.jpg',
+      alt: 'A phone with a deeply scratched and cracked screen at intake',
+    },
+    {
+      file: 'media/gadjoy-dead-display.jpg',
+      alt: 'A phone received dead with a blank display, awaiting board-level diagnosis',
+    },
+    {
+      file: 'media/gadjoy-workshop.jpg',
+      alt: 'The Gadjoy service bench — laptops mid-repair, diagnostic tools, and parts shelving',
+    },
+    {
+      file: 'media/gadjoy-tablet-before-after.jpg',
+      alt: 'Before and after: a tablet received dead, then working again after a charging-connector replacement',
+      wide: true,
+    },
+  ],
   seoDescription:
     'Project: founding and scaling Gadjoy Repair Services — a chip-level device-repair business (4.7★, 516 Google reviews, 15,000+ repairs, 24-hour turnaround) and the self-built ops software that ran it, still operating under family.',
 };
