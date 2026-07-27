@@ -16,7 +16,9 @@ const PATENT_URL = 'https://patents.google.com/patent/US20230329668A1';
 // One story-proof per career era (resume-verbatim claims) — each is a narrative,
 // not a bare number: zero-to-one speed, regulated-industry rigor, IP, founder grit.
 const PROOFS: { value: string; label: string; href?: string }[] = [
-  { value: 'GA in 3 months', label: 'concept → enterprise AI copilot' },
+  // Scale under a hard real-time budget — the value comes from content so the
+  // number has one source of truth (see profile.heroStat).
+  { value: profile.heroStat.value, label: 'in production at sub-100ms' },
   { value: 'FDA-cleared', label: 'robotic platform, cloud stack' },
   { value: 'US patent', label: 'vascular-flow imaging', href: PATENT_URL },
   { value: '15,000+ repairs', label: '4.7★ · my own business' },

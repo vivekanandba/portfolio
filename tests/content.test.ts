@@ -180,6 +180,10 @@ describe('case-study invariants', () => {
       for (const d of cs.docs ?? []) {
         expect(existsSync(join('public', d.file)), `missing ${d.file}`).toBe(true);
       }
+      for (const g of cs.gallery ?? []) {
+        expect(existsSync(join('public', g.file)), `missing ${g.file}`).toBe(true);
+        expect(g.alt.length, `gallery ${g.file} needs real alt text`).toBeGreaterThan(10);
+      }
     }
   });
 

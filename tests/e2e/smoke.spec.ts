@@ -87,7 +87,7 @@ test('hero leads with the domain arc, title, story proofs, and constellation', a
   await expect(page.getByText('Aerospace → Healthcare Robotics → AI-Native')).toBeVisible();
   await expect(page.getByText('Staff Engineer · Internal Technical Co-founder')).toBeVisible();
   // Story-proof grid, one per era ("FDA-cleared" also appears in prose — exact match).
-  await expect(page.getByText('GA in 3 months')).toBeVisible();
+  await expect(page.getByText('in production at sub-100ms')).toBeVisible();
   await expect(page.getByText('FDA-cleared', { exact: true })).toBeVisible();
   await expect(page.getByText('15,000+ repairs', { exact: true })).toBeVisible();
   // Brand constellation under the hero.

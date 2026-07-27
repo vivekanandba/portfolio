@@ -48,7 +48,8 @@ describe('Hero', () => {
   it('shows the story-proof grid and the computed breadth summary', () => {
     render(<Hero />);
     // One narrative proof per era.
-    expect(screen.getByText('GA in 3 months')).toBeInTheDocument();
+    expect(screen.getByText(profile.heroStat.value)).toBeInTheDocument();
+    expect(screen.getByText('in production at sub-100ms')).toBeInTheDocument();
     expect(screen.getByText('FDA-cleared')).toBeInTheDocument();
     expect(screen.getByText('15,000+ repairs')).toBeInTheDocument();
     // Patent is a clickable credential linking to the US patent.
