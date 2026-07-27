@@ -84,6 +84,9 @@ export const projectSchema = z.object({
   // "media/foo.jpg"); imageAlt is required alongside it for accessibility.
   image: z.string().optional(),
   imageAlt: z.string().min(1).optional(),
+  // Visible credit line, required whenever the image isn't the author's own
+  // work product (e.g. a client's or former employer's published photo).
+  imageCredit: z.string().min(1).optional(),
   // External public artifact only (App Store, product page, patent). Absolute
   // URLs enforced — internal case-study links derive from caseStudies instead.
   href: z.string().url().optional(),

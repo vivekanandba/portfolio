@@ -82,6 +82,11 @@ export default async function CaseStudyPage({ params }: Params) {
                   loading="lazy"
                   className="w-full"
                 />
+                {project.imageCredit && (
+                  <figcaption className="border-t border-hairline px-5 py-3 text-xs text-muted">
+                    {project.imageCredit}
+                  </figcaption>
+                )}
               </figure>
             </Reveal>
           )}
