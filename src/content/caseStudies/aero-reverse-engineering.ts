@@ -55,12 +55,14 @@ export const aeroReverseEngineering: CaseStudy = {
     {
       file: 'media/legend-centre-wing-assembly-jig.jpg',
       alt: 'A tall yellow modular centre-wing assembly jig, its members stencilled with FRL, centreline and bulkhead datums plus flight-direction arrows',
-      credit: 'Photo: Legend Technologies (India) Pvt. Ltd.',
+      credit:
+        'ADE SWIFT centre-wing assembly jig — illustrative of the tooling standard this work was built to. Photo: Legend Technologies (India) Pvt. Ltd.',
     },
     {
       file: 'media/legend-machine-shop.jpg',
       alt: 'The fabrication shop — radial drilling machine, bandsaw cutting machine and bench grinder on a marked-out floor',
-      credit: 'Photo: Legend Technologies (India) Pvt. Ltd.',
+      credit:
+        'The Legend fabrication shop where this tooling was made. Photo: Legend Technologies (India) Pvt. Ltd.',
     },
   ],
   seoDescription:

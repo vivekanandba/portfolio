@@ -53,7 +53,7 @@ export const vsscTooling: CaseStudy = {
     {
       file: 'media/legend-s200-integration-fixture.jpg',
       alt: 'The S200 integration fixture — a large blue rotating platform with access stairs and railings, built for solid-booster integration',
-      credit: 'Photo: Legend Technologies (India) Pvt. Ltd.',
+      credit: 'S200 integration fixture. Photo: Legend Technologies (India) Pvt. Ltd.',
     },
   ],
   seoDescription:
