@@ -49,6 +49,13 @@ export const vsscTooling: CaseStudy = {
   resultsNote:
     'The precision and lifecycle ownership here — the tool defines the part, and proof means a real article passing — is the discipline the rest of the portfolio was built on.',
   diagramId: 'vssc-tooling',
+  gallery: [
+    {
+      file: 'media/legend-s200-integration-fixture.jpg',
+      alt: 'The S200 integration fixture — a large blue rotating platform with access stairs and railings, built for solid-booster integration',
+      credit: 'Photo: Legend Technologies (India) Pvt. Ltd.',
+    },
+  ],
   seoDescription:
     'Project: design, fabrication, and first-article proving of VSSC/ISRO PSLV assembly tooling — PSOM/SITVC nose-cone jigs, the SITVC aft shroud, a spinner full-weld jig, and master tooling gauges — in CATIA V5 and UG NX.',
 };

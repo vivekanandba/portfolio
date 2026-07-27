@@ -163,6 +163,20 @@ describe('case-study invariants', () => {
     expect(caseStudies.length).toBe(projects.length);
   });
 
+  it('metric labels are unique within each strip (MetricBadge keys on label)', () => {
+    for (const cs of caseStudies) {
+      for (const [strip, metrics] of [
+        ['metrics', cs.metrics],
+        ['results', cs.results],
+      ] as const) {
+        const labels = metrics.map((m) => m.label);
+        expect(new Set(labels).size, `${cs.slug} ${strip} has duplicate labels`).toBe(
+          labels.length,
+        );
+      }
+    }
+  });
+
   it('diagram ids and the diagram registry are a bijection', () => {
     const used = new Set(caseStudies.map((cs) => cs.diagramId));
     const registered = new Set(Object.keys(diagrams));
@@ -175,9 +189,10 @@ describe('case-study invariants', () => {
         expect(existsSync(join('public', p.image)), `missing ${p.image}`).toBe(true);
         expect(p.imageAlt, `project ${p.id} image needs imageAlt`).toBeTruthy();
       }
-      // Third-party imagery must carry a visible credit. The Legend-sourced
-      // aerospace photos are the only externally-owned images on the site.
-      if (p.image?.startsWith('media/vssc-')) {
+      // Third-party imagery must carry a visible credit. Externally-owned
+      // photos are named media/legend-* by convention so this rule can catch
+      // every one of them.
+      if (p.image?.startsWith('media/legend-')) {
         expect(
           p.imageCredit,
           `project ${p.id} uses a third-party photo and needs a credit`,
@@ -191,6 +206,9 @@ describe('case-study invariants', () => {
       for (const g of cs.gallery ?? []) {
         expect(existsSync(join('public', g.file)), `missing ${g.file}`).toBe(true);
         expect(g.alt.length, `gallery ${g.file} needs real alt text`).toBeGreaterThan(10);
+        if (g.file.startsWith('media/legend-')) {
+          expect(g.credit, `third-party photo ${g.file} needs a visible credit`).toBeTruthy();
+        }
       }
     }
   });
