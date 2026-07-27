@@ -170,6 +170,10 @@ export default async function CaseStudyPage({ params }: Params) {
                         src={asset(g.file)}
                         alt={g.alt}
                         loading="lazy"
+                        // bg-white is deliberate (not a token slip): wide items are
+                        // letterboxed with object-contain, and these annotated cards
+                        // have white backgrounds, so white bars blend invisibly in
+                        // both themes rather than framing the art with a mismatch.
                         className={
                           g.wide
                             ? 'max-h-96 w-full bg-white object-contain'
