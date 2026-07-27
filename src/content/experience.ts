@@ -241,6 +241,11 @@ export const projects: Project[] = [
       { value: 'First-article', label: 'tool proving' },
     ],
     tags: ['CATIA · UG NX', 'Jigs & Gauges', 'ISRO'],
+    // Finished PSOM nose cone assemblies — the hardware this tooling produced.
+    // Published from Legend Technologies' own public product portfolio.
+    image: 'media/vssc-psom-nose-cone-assemblies.jpg',
+    imageAlt:
+      'Five completed PSOM nose cone assemblies crated on pallets, each stencilled “PSOM Nose Cone Assembly” in SITVC and non-SITVC variants',
     featured: true,
     domain: 'aerospace',
   },
