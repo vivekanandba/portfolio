@@ -170,21 +170,28 @@ export default async function CaseStudyPage({ params }: Params) {
                         g.wide ? 'col-span-2 sm:col-span-3 lg:col-span-4' : ''
                       }`}
                     >
-                      {/* eslint-disable-next-line @next/next/no-img-element */}
-                      <img
-                        src={asset(g.file)}
-                        alt={g.alt}
-                        loading="lazy"
-                        // bg-white is deliberate (not a token slip): wide items are
-                        // letterboxed with object-contain, and these annotated cards
-                        // have white backgrounds, so white bars blend invisibly in
-                        // both themes rather than framing the art with a mismatch.
-                        className={
-                          g.wide
-                            ? 'max-h-96 w-full bg-white object-contain'
-                            : 'h-56 w-full object-cover'
-                        }
-                      />
+                      <figure>
+                        {/* eslint-disable-next-line @next/next/no-img-element */}
+                        <img
+                          src={asset(g.file)}
+                          alt={g.alt}
+                          loading="lazy"
+                          // bg-white is deliberate (not a token slip): wide items are
+                          // letterboxed with object-contain, and these annotated cards
+                          // have white backgrounds, so white bars blend invisibly in
+                          // both themes rather than framing the art with a mismatch.
+                          className={
+                            g.wide
+                              ? 'max-h-96 w-full bg-white object-contain'
+                              : 'h-56 w-full object-cover'
+                          }
+                        />
+                        {g.credit && (
+                          <figcaption className="border-t border-hairline px-3 py-2 text-[11px] leading-snug text-muted">
+                            {g.credit}
+                          </figcaption>
+                        )}
+                      </figure>
                     </li>
                   ))}
                 </ul>

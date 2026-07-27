@@ -8,8 +8,8 @@ export const aeroReverseEngineering: CaseStudy = {
   intro:
     'Design, reverse engineering, fabrication, and testing of a range of aerospace tooling and structures for VSSC/ISRO, Air India, ARDC, and ADA — reconstructing buildable CAD from hardware whose original documentation was gone, then re-fabricating and validating it.',
   metrics: [
-    { value: 'VSSC · Air India', label: 'clients' },
-    { value: 'ARDC · ADA', label: 'clients' },
+    { value: 'VSSC · Air India', label: 'space & airline clients' },
+    { value: 'ARDC · ADA', label: 'aircraft-design clients' },
     { value: 'CATIA · NX · Abaqus', label: 'toolchain' },
   ],
   problem: [
@@ -49,6 +49,22 @@ export const aeroReverseEngineering: CaseStudy = {
   resultsNote:
     'Reading intent out of an artifact and rebuilding it to spec — a habit that transfers cleanly to inheriting and modernizing undocumented software systems.',
   diagramId: 'aero-reverse-engineering',
+  // Legend's own published photos of the tooling and the shop floor it was
+  // fabricated on — the physical context this design work fed into.
+  gallery: [
+    {
+      file: 'media/legend-centre-wing-assembly-jig.jpg',
+      alt: 'A tall yellow modular centre-wing assembly jig, its members stencilled with FRL, centreline and bulkhead datums plus flight-direction arrows',
+      credit:
+        'ADE SWIFT centre-wing assembly jig — illustrative of the tooling standard this work was built to. Photo: Legend Technologies (India) Pvt. Ltd.',
+    },
+    {
+      file: 'media/legend-machine-shop.jpg',
+      alt: 'The fabrication shop — radial drilling machine, bandsaw cutting machine and bench grinder on a marked-out floor',
+      credit:
+        'The Legend fabrication shop where this tooling was made. Photo: Legend Technologies (India) Pvt. Ltd.',
+    },
+  ],
   seoDescription:
     'Project: reverse engineering, fabrication, and testing of legacy aerospace tooling and structures for VSSC/ISRO, Air India, ARDC, and ADA — reconstructing buildable CAD from undocumented hardware.',
 };
