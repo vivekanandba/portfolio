@@ -194,6 +194,9 @@ export const caseStudySchema = z.object({
         // Landscape items (annotated before/after cards, wide diagrams) span the
         // grid and are letterboxed instead of cropped, so labels stay readable.
         wide: z.boolean().optional(),
+        // Portrait items (phone screenshots) get a taller cell and are shown
+        // whole rather than cropped to a horizontal slice.
+        tall: z.boolean().optional(),
         // Visible credit, required for any image that isn't the author's own.
         credit: z.string().min(1).optional(),
       }),

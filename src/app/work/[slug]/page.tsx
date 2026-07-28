@@ -192,7 +192,9 @@ export default async function CaseStudyPage({ params }: Params) {
                             className={
                               g.wide
                                 ? 'max-h-96 w-full bg-white object-contain'
-                                : 'h-56 w-full object-cover'
+                                : g.tall
+                                  ? 'h-96 w-full object-contain'
+                                  : 'h-56 w-full object-cover'
                             }
                           />
                           <span className="sr-only">— open full size</span>
