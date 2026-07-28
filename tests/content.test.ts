@@ -25,6 +25,10 @@ import { certifications } from '@/content/certifications';
 import { languages } from '@/content/languages';
 import { diagrams } from '@/components/diagrams';
 
+/** Media owned by a client or former employer, named media/<source>-* by
+ *  convention. Anything matching must render a visible credit. */
+const THIRD_PARTY = /^media\/(legend|neurasignal)-/;
+
 describe('content conforms to schema', () => {
   it('profile is valid', () => {
     expect(() => profileSchema.parse(profile)).not.toThrow();
@@ -189,10 +193,9 @@ describe('case-study invariants', () => {
         expect(existsSync(join('public', p.image)), `missing ${p.image}`).toBe(true);
         expect(p.imageAlt, `project ${p.id} image needs imageAlt`).toBeTruthy();
       }
-      // Third-party imagery must carry a visible credit. Externally-owned
-      // photos are named media/legend-* by convention so this rule can catch
-      // every one of them.
-      if (p.image?.startsWith('media/legend-')) {
+      // Third-party imagery must carry a visible credit. Externally-owned media
+      // is named media/<source>-* by convention so this rule catches all of it.
+      if (p.image && THIRD_PARTY.test(p.image)) {
         expect(
           p.imageCredit,
           `project ${p.id} uses a third-party photo and needs a credit`,
@@ -206,7 +209,7 @@ describe('case-study invariants', () => {
       for (const g of cs.gallery ?? []) {
         expect(existsSync(join('public', g.file)), `missing ${g.file}`).toBe(true);
         expect(g.alt.length, `gallery ${g.file} needs real alt text`).toBeGreaterThan(10);
-        if (g.file.startsWith('media/legend-')) {
+        if (THIRD_PARTY.test(g.file)) {
           expect(g.credit, `third-party photo ${g.file} needs a visible credit`).toBeTruthy();
         }
       }

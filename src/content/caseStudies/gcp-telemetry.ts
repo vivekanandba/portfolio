@@ -50,6 +50,14 @@ export const gcpTelemetry: CaseStudy = {
   resultsNote:
     'Centralized telemetry reduced on-site diagnostics, improved response times, and lowered operational costs across hospital deployments — and became the data foundation the Data View analytics app was built on.',
   diagramId: 'telemetry',
+  gallery: [
+    {
+      file: 'media/neurasignal-ng2-system.jpg',
+      alt: 'The NovaGuide robotic transcranial-Doppler system on its cart — live blood-flow waveforms on the display above the twin robotic probe arms',
+      credit:
+        'The NovaGuide system this telemetry pipeline monitored across hospitals. Photo: NeuraSignal (formerly NovaSignal).',
+    },
+  ],
   docs: [
     {
       label: 'Centralized-telemetry white paper (PDF)',
