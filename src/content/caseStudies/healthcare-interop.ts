@@ -50,6 +50,15 @@ export const healthcareInterop: CaseStudy = {
   resultsNote:
     'The EMR simulator and virtual-hospital VPC turned integration that could not be tested against production into ordinary, repeatable CI — the conformance and security tooling that rode on top became its own body of work.',
   diagramId: 'interop',
+  gallery: [
+    {
+      file: 'media/neurasignal-novaguide-view-security.png',
+      alt: 'NovaGuide View security posture table — SOC 2 Type 2 private cloud, RSA 2048 signatures, TLS 1.3 transport, SSO authentication, hospital-managed authorization, HIPAA-compliant access logs retained seven years, and upload restricted to authorized NovaGuide devices',
+      wide: true,
+      credit:
+        'The published security posture of the NovaGuide View cloud application. Source: NeuraSignal (formerly NovaSignal).',
+    },
+  ],
   docs: [
     {
       label: 'HL7 Jupiter — integration introduction deck (PDF)',

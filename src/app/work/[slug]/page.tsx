@@ -171,26 +171,43 @@ export default async function CaseStudyPage({ params }: Params) {
                       }`}
                     >
                       <figure>
-                        {/* eslint-disable-next-line @next/next/no-img-element */}
-                        <img
-                          src={asset(g.file)}
-                          alt={g.alt}
-                          loading="lazy"
-                          // bg-white is deliberate (not a token slip): wide items are
-                          // letterboxed with object-contain, and these annotated cards
-                          // have white backgrounds, so white bars blend invisibly in
-                          // both themes rather than framing the art with a mismatch.
-                          className={
-                            g.wide
-                              ? 'max-h-96 w-full bg-white object-contain'
-                              : 'h-56 w-full object-cover'
-                          }
-                        />
-                        {g.credit && (
-                          <figcaption className="border-t border-hairline px-3 py-2 text-[11px] leading-snug text-muted">
-                            {g.credit}
-                          </figcaption>
-                        )}
+                        {/* Opens the original file: gallery items are constrained
+                            here, and text-bearing images (annotated cards, spec
+                            tables) are unreadable at grid scale without this. */}
+                        <a
+                          href={asset(g.file)}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="group block"
+                        >
+                          {/* eslint-disable-next-line @next/next/no-img-element */}
+                          <img
+                            src={asset(g.file)}
+                            alt={g.alt}
+                            loading="lazy"
+                            // bg-white is deliberate (not a token slip): wide items are
+                            // letterboxed with object-contain, and these annotated cards
+                            // have white backgrounds, so white bars blend invisibly in
+                            // both themes rather than framing the art with a mismatch.
+                            className={
+                              g.wide
+                                ? 'max-h-96 w-full bg-white object-contain'
+                                : 'h-56 w-full object-cover'
+                            }
+                          />
+                          <span className="sr-only">— open full size</span>
+                        </a>
+                        <figcaption className="border-t border-hairline px-3 py-2 text-[11px] leading-snug text-muted">
+                          {g.credit ? `${g.credit} ` : ''}
+                          <a
+                            href={asset(g.file)}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="whitespace-nowrap text-accent no-underline hover:underline"
+                          >
+                            View full size<span aria-hidden="true"> ↗</span>
+                          </a>
+                        </figcaption>
                       </figure>
                     </li>
                   ))}

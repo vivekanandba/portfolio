@@ -58,12 +58,6 @@ export const aeroReverseEngineering: CaseStudy = {
       credit:
         'ADE SWIFT centre-wing assembly jig — illustrative of the tooling standard this work was built to. Photo: Legend Technologies (India) Pvt. Ltd.',
     },
-    {
-      file: 'media/legend-machine-shop.jpg',
-      alt: 'The fabrication shop — radial drilling machine, bandsaw cutting machine and bench grinder on a marked-out floor',
-      credit:
-        'The Legend fabrication shop where this tooling was made. Photo: Legend Technologies (India) Pvt. Ltd.',
-    },
   ],
   seoDescription:
     'Project: reverse engineering, fabrication, and testing of legacy aerospace tooling and structures for VSSC/ISRO, Air India, ARDC, and ADA — reconstructing buildable CAD from undocumented hardware.',
