@@ -61,6 +61,22 @@ export const sanasConsumerApp: CaseStudy = {
   ],
   resultsNote: 'Live on the App Store as Sanas Translate.',
   diagramId: 'consumer-app',
+  // The shipped app, from the public App Store listing. Only the two UI-led
+  // frames are used; the lifestyle frames centred on models are not.
+  gallery: [
+    {
+      file: 'media/appstore-sanas-live-conversation.jpg',
+      alt: 'The app mid-conversation in Spanish ↔ English mode, each spoken line paired with its translation and a replay control',
+      tall: true,
+      credit: 'Sanas Translate on the App Store. Image: Sanas.ai Inc.',
+    },
+    {
+      file: 'media/appstore-sanas-live-listening.jpg',
+      alt: 'Live Listening mode — auto-detect source language into English, with Listen and Read-only options, alongside a live bilingual transcript',
+      tall: true,
+      credit: 'Sanas Translate on the App Store. Image: Sanas.ai Inc.',
+    },
+  ],
   seoDescription:
     'Project: shipping a production React Native app in under 4 weeks with zero prior mobile experience by directing a multi-agent AI workflow — 100% iOS/Android parity, 9 languages.',
 };
