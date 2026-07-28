@@ -57,6 +57,12 @@ export const gcpTelemetry: CaseStudy = {
       credit:
         'The NovaGuide system this telemetry pipeline monitored across hospitals. Photo: NeuraSignal (formerly NovaSignal).',
     },
+    {
+      file: 'media/neurasignal-ng2-headset.jpg',
+      alt: 'The NovaGuide robotic probe headset resting on a table — the cradle and articulated probe arms that position the ultrasound transducers',
+      credit:
+        'The robotic probe headset — one of the fleet components reporting telemetry. Photo: NeuraSignal (formerly NovaSignal).',
+    },
   ],
   docs: [
     {
