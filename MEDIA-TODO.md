@@ -17,16 +17,16 @@ item across the grid instead of cropping it.
 
 ## Remaining gaps
 
-| Project                                                                             | What to supply                                               | Target path                                                     |
-| ----------------------------------------------------------------------------------- | ------------------------------------------------------------ | --------------------------------------------------------------- |
-| gadjoy                                                                              | Higher-res shop front + bench (site copies are only ~512 px) | `public/media/gadjoy-shop.jpg`, `public/media/gadjoy-bench.jpg` |
-| sanas-consumer-app                                                                  | App Store / device screenshots                               | `public/media/sanas-consumer-app-01.jpg`                        |
-| playground                                                                          | Product screenshot (demo page)                               | `public/media/playground-01.jpg`                                |
-| sanas-portal                                                                        | Portal screenshot (redact tenant data)                       | `public/media/sanas-portal-01.jpg`                              |
-| unified-ml-platform                                                                 | Platform / MLflow dashboard screenshot                       | `public/media/unified-ml-platform-01.jpg`                       |
-| vssc-tooling · pw-augmenter · safran-a350 · bmp2-turret · igcar-slipring · lca-navy | Jig / CAD / workshop photos                                  | `public/media/<slug>-01.jpg`                                    |
-| rail-tooling                                                                        | Fixture / template photos (metro programs)                   | `public/media/rail-tooling-01.jpg`                              |
-| mapshalli-volunteer                                                                 | Air-quality sensor / Stop Hunger photos                      | `public/media/mapshalli-01.jpg`                                 |
+| Project                                                                             | What to supply                                               | Target path                                                        |
+| ----------------------------------------------------------------------------------- | ------------------------------------------------------------ | ------------------------------------------------------------------ |
+| gadjoy                                                                              | Higher-res shop front + bench (site copies are only ~512 px) | `public/media/gadjoy-shop.jpg`, `public/media/gadjoy-bench.jpg`    |
+| sanas-consumer-app                                                                  | App Store / device screenshots                               | `public/media/sanas-consumer-app-01.jpg`                           |
+| playground                                                                          | Product screenshot (demo page)                               | `public/media/playground-01.jpg`                                   |
+| sanas-portal                                                                        | Portal screenshot (redact tenant data)                       | `public/media/sanas-portal-01.jpg`                                 |
+| unified-ml-platform                                                                 | Platform / MLflow dashboard screenshot                       | `public/media/unified-ml-platform-01.jpg`                          |
+| vssc-tooling · pw-augmenter · safran-a350 · bmp2-turret · igcar-slipring · lca-navy | Jig / CAD / workshop photos                                  | `public/media/<slug>-01.jpg`                                       |
+| rail-tooling                                                                        | Fixture / template photos (metro programs)                   | `public/media/rail-tooling-01.jpg`                                 |
+| aircare · stop-hunger                                                               | Sensor-node build photos; Stop Hunger screenshots            | `public/media/aircare-node.jpg`, `public/media/stop-hunger-01.jpg` |
 
 ## Cautions before publishing
 

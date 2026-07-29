@@ -11,7 +11,8 @@ import { InteropDiagram } from './InteropDiagram';
 import { QaDiagram } from './QaDiagram';
 import { InternalToolsDiagram } from './InternalToolsDiagram';
 import { MlopsToolingDiagram } from './MlopsToolingDiagram';
-import { MapshalliDiagram } from './MapshalliDiagram';
+import { StopHungerDiagram } from './StopHungerDiagram';
+import { AirCareDiagram } from './AirCareDiagram';
 import { VsscToolingDiagram } from './VsscToolingDiagram';
 import { PwAugmenterDiagram } from './PwAugmenterDiagram';
 import { SafranA350Diagram } from './SafranA350Diagram';
@@ -40,7 +41,8 @@ export const diagrams = {
   qa: QaDiagram,
   'internal-tools': InternalToolsDiagram,
   'mlops-tooling': MlopsToolingDiagram,
-  mapshalli: MapshalliDiagram,
+  'stop-hunger': StopHungerDiagram,
+  aircare: AirCareDiagram,
   'vssc-tooling': VsscToolingDiagram,
   'pw-augmenter': PwAugmenterDiagram,
   'safran-a350': SafranA350Diagram,
