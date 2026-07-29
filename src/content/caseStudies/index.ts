@@ -24,7 +24,8 @@ import { lcaNavy } from './lca-navy';
 import { aeroReverseEngineering } from './aero-reverse-engineering';
 import { railTooling } from './rail-tooling';
 import { gadjoy } from './gadjoy';
-import { mapshalliVolunteer } from './mapshalli-volunteer';
+import { stopHunger } from './stop-hunger';
+import { airCare } from './aircare';
 
 /** Ordered to mirror the project-card order (featured grid, then More work). */
 export const caseStudies: CaseStudy[] = [
@@ -53,5 +54,6 @@ export const caseStudies: CaseStudy[] = [
   aeroReverseEngineering,
   railTooling,
   gadjoy,
-  mapshalliVolunteer,
+  stopHunger,
+  airCare,
 ];

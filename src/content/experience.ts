@@ -379,20 +379,37 @@ export const projects: Project[] = [
     linkLabel: 'gadjoy.in',
   },
   {
-    id: 'mapshalli-volunteer',
-    title: 'Stop Hunger & AirCare',
+    id: 'stop-hunger',
+    title: 'Stop Hunger — COVID-19 Relief Coordination',
     org: 'Mapshalli (volunteer)',
     summary:
-      'Contributed to a COVID-19 relief-distribution platform (Stop Hunger) and an IoT air-quality monitoring network (AirCare) in Whitefield, Bangalore.',
+      'A two-sided platform launched in March 2020 for Mahadevapura, Bangalore: residents register settlements that need help, NGOs shortlist unserved ones and record what they delivered — so relief stopped landing twice on the same street while other settlements went without.',
     metrics: [
-      { value: '2', label: 'platforms delivered' },
-      { value: '5+', label: 'volunteer team' },
+      { value: 'Mar 2020', label: 'launched mid-lockdown' },
+      { value: 'De-duplicated', label: 'NGO deliveries' },
     ],
-    tags: ['Civic Tech', 'IoT'],
+    tags: ['Civic Tech', 'Coordination', 'Open Data'],
     featured: false,
     domain: 'community',
-    href: 'https://mapshalli.org',
-    linkLabel: 'mapshalli.org',
+    href: 'https://stophunger.mapshalli.org',
+    linkLabel: 'stophunger.mapshalli.org',
+  },
+  {
+    id: 'aircare',
+    title: 'AirCare — Community Air-Quality Network',
+    org: 'Mapshalli (volunteer)',
+    summary:
+      'Whitefield had no street-level air data because reference-grade stations cost ~₹1 crore each. Built the instrument instead: a Plantower PMS3003 laser sensor on a Raspberry Pi 3, ~₹7,500 in parts, correlating 0.96 with reference-grade equipment — citizen-hosted across 12 sites, publishing open PM2.5 data.',
+    metrics: [
+      { value: '₹7,500', label: 'per node vs ~₹1 crore' },
+      { value: '0.96', label: 'correlation vs reference' },
+      { value: '12', label: 'citizen-hosted sites' },
+    ],
+    tags: ['IoT Hardware', 'Raspberry Pi', 'PM2.5', 'Open Data'],
+    featured: false,
+    domain: 'community',
+    href: 'https://aircare.mapshalli.org',
+    linkLabel: 'aircare.mapshalli.org',
   },
 ];
 
