@@ -7,7 +7,7 @@ export const patents: Patent[] = [
     // Granted Jul 2025 as US12343195B2 (application published as
     // US20230329668A1). Eight named inventors; filed Jul 2022 from an Apr 2022
     // Indian priority application.
-    reference: 'US12343195B2 · granted Jul 2025 · 1 of 8 inventors',
+    reference: 'US12343195B2 · granted Jul 2025 · NovaGuide · 1 of 8 inventors',
     href: 'https://patents.google.com/patent/US12343195B2',
   },
   {
