@@ -203,7 +203,7 @@ describe('Timeline', () => {
 describe('Credentials', () => {
   it('shows the patent reference number', () => {
     render(<Credentials />);
-    expect(screen.getByText(/US20230329668A1/)).toBeInTheDocument();
+    expect(screen.getByText(/US12343195B2/)).toBeInTheDocument();
   });
 
   it('renders every certification as a verifying link (disclosed), and the languages', () => {
