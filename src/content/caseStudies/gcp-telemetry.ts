@@ -6,7 +6,7 @@ export const gcpTelemetry: CaseStudy = {
   eyebrow: 'Project · NovaSignal / NeuraSignal',
   title: 'Cloud Telemetry — from manual diagnostics to fleet insight',
   intro:
-    'A serverless GCP telemetry architecture for NovaGuide — the first FDA-cleared, fully-automated robotic transcranial-Doppler ultrasound for cerebral blood-flow and stroke assessment — deployed across hospitals: real-time fleet monitoring, predictive maintenance, and remote diagnostics replacing manual, device-level checks.',
+    'A serverless GCP telemetry architecture for NovaGuide — an FDA-cleared robotic transcranial-Doppler ultrasound for cerebral blood-flow and stroke assessment (510(k) K213279, with peer-reviewed safety and efficacy data) — deployed across hospitals: real-time fleet monitoring, predictive maintenance, and remote diagnostics replacing manual, device-level checks.',
   metrics: [
     { value: 'Serverless', label: 'Cloud Run + BigQuery' },
     { value: 'Real-time', label: 'fleet monitoring' },

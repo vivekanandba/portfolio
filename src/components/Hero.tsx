@@ -12,7 +12,9 @@ const FIELDS = [
   'Medical Robotics',
   'AI',
 ];
-const PATENT_URL = 'https://patents.google.com/patent/US20230329668A1';
+// The granted patent (Jul 2025). The earlier US20230329668A1 is only the
+// pre-grant application publication, so linking it undercut "patent granted".
+const PATENT_URL = 'https://patents.google.com/patent/US12343195B2';
 // One story-proof per career era (resume-verbatim claims) — each is a narrative,
 // not a bare number: zero-to-one speed, regulated-industry rigor, IP, founder grit.
 const PROOFS: { value: string; label: string; href?: string }[] = [
