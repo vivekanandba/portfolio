@@ -94,8 +94,10 @@ const CASE_STUDY_START: Record<string, number> = {
   'compliance-tooling': 202106,
   'healthcare-interop': 202202,
   'rail-tooling': 201901,
+  // Stop Hunger's launch month is documented on the platform itself; AirCare is
+  // anchored to the documented start of the volunteering (Jan 2018).
   'stop-hunger': 202003,
-  aircare: 201811,
+  aircare: 201801,
   gadjoy: 201611,
   'pw-augmenter': 201606,
   'vssc-tooling': 201601,
