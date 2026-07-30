@@ -179,10 +179,17 @@ export const caseStudySchema = z.object({
   // served from /public — `file` is the path under public/, not an absolute URL.
   docs: z
     .array(
-      z.object({
-        label: z.string().min(1), // "Telemetry white paper (PDF)"
-        file: z.string().min(1), // "docs/gcp-telemetry-whitepaper.pdf"
-      }),
+      z
+        .object({
+          label: z.string().min(1), // "Telemetry white paper (PDF)"
+          file: z.string().min(1).optional(), // local: "docs/gcp-telemetry-whitepaper.pdf"
+          href: z.string().url().optional(), // external: a registry entry, spec, or filing
+        })
+        // Exactly one source — a local file resolves through asset(), an href
+        // is used verbatim, and having neither would render a dead link.
+        .refine((d) => Boolean(d.file) !== Boolean(d.href), {
+          message: 'a doc entry needs exactly one of file (local) or href (external)',
+        }),
     )
     .optional(),
   // Photo grid of real work (paths under public/). Alt text is mandatory —

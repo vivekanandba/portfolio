@@ -48,7 +48,7 @@ export const gcpTelemetry: CaseStudy = {
     { value: 'Auto-scaling', label: 'across hospital deployments' },
   ],
   resultsNote:
-    'Centralized telemetry reduced on-site diagnostics, improved response times, and lowered operational costs across hospital deployments — and became the data foundation the Data View analytics app was built on.',
+    'Centralized telemetry reduced on-site diagnostics, improved response times, and lowered operational costs across hospital deployments — and became the data foundation the Data View analytics app was built on. Worth stating what the fleet was: a platform under registered clinical investigation, so the bar for the data telling the truth about a device was clinical rather than commercial.',
   diagramId: 'telemetry',
   gallery: [
     {
@@ -68,6 +68,22 @@ export const gcpTelemetry: CaseStudy = {
     {
       label: 'Centralized-telemetry white paper (PDF)',
       file: 'docs/gcp-telemetry-whitepaper.pdf',
+    },
+    {
+      label: 'FDA 510(k) clearance K213279 — NovaGuide 2',
+      href: 'https://www.accessdata.fda.gov/cdrh_docs/pdf21/K213279.pdf',
+    },
+    {
+      label: 'Robotic TCD bubble study vs echocardiography (NCT04604015)',
+      href: 'https://clinicaltrials.gov/study/NCT04604015',
+    },
+    {
+      label: 'Velocity Curvature Index validation for large-vessel stroke (NCT05547412)',
+      href: 'https://clinicaltrials.gov/study/NCT05547412',
+    },
+    {
+      label: 'Feasibility of the NeuraSignal TCD robot (NCT06565442)',
+      href: 'https://clinicaltrials.gov/study/NCT06565442',
     },
   ],
   seoDescription:

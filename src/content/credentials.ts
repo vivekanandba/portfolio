@@ -21,6 +21,13 @@ export const patents: Patent[] = [
   },
   {
     kind: 'achievement',
+    title: 'NASA Space Apps Challenge 2023 — “Cadence of the Meteorites”',
+    reference:
+      'Sonified five centuries of NASA meteorite-landing data so space data could be heard, not just seen · team Cosmic Harmony, integrator',
+    href: 'https://www.spaceappschallenge.org/2023/find-a-team/cosmic-harmony',
+  },
+  {
+    kind: 'achievement',
     title: 'Organizing Committee Member — Institution of Engineers (India)',
     reference: 'Since Mar 2016',
   },
