@@ -223,19 +223,23 @@ export default async function CaseStudyPage({ params }: Params) {
               <section aria-label="Architecture and artifacts">
                 <SectionHeading>Architecture & artifacts</SectionHeading>
                 <ul className="max-w-content space-y-3">
-                  {cs.docs.map((d) => (
-                    <li key={d.file}>
-                      <a
-                        href={asset(d.file)}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="text-sm font-medium text-accent no-underline hover:underline"
-                      >
-                        {d.label}
-                        <span aria-hidden="true"> ↗</span>
-                      </a>
-                    </li>
-                  ))}
+                  {cs.docs.map((d) => {
+                    // Schema guarantees exactly one of href (external) or file (local).
+                    const url = d.href ?? asset(d.file!);
+                    return (
+                      <li key={url}>
+                        <a
+                          href={url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-sm font-medium text-accent no-underline hover:underline"
+                        >
+                          {d.label}
+                          <span aria-hidden="true"> ↗</span>
+                        </a>
+                      </li>
+                    );
+                  })}
                 </ul>
               </section>
             </Reveal>

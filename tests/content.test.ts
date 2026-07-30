@@ -204,7 +204,12 @@ describe('case-study invariants', () => {
     }
     for (const cs of caseStudies) {
       for (const d of cs.docs ?? []) {
-        expect(existsSync(join('public', d.file)), `missing ${d.file}`).toBe(true);
+        // Local docs must exist on disk; external ones are just links.
+        if (d.file) expect(existsSync(join('public', d.file)), `missing ${d.file}`).toBe(true);
+        expect(
+          Boolean(d.file) !== Boolean(d.href),
+          `doc "${d.label}" needs exactly one source`,
+        ).toBe(true);
       }
       for (const g of cs.gallery ?? []) {
         expect(existsSync(join('public', g.file)), `missing ${g.file}`).toBe(true);
