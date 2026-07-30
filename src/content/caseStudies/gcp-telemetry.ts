@@ -48,7 +48,7 @@ export const gcpTelemetry: CaseStudy = {
     { value: 'Auto-scaling', label: 'across hospital deployments' },
   ],
   resultsNote:
-    'Centralized telemetry reduced on-site diagnostics, improved response times, and lowered operational costs across hospital deployments — and became the data foundation the Data View analytics app was built on.',
+    'Centralized telemetry reduced on-site diagnostics, improved response times, and lowered operational costs across hospital deployments — and became the data foundation the Data View analytics app was built on. Worth stating what the fleet was: a platform under registered clinical investigation (ClinicalTrials.gov NCT04604015, NCT05547412, NCT06565442), so the bar for the data telling the truth about a device was clinical rather than commercial.',
   diagramId: 'telemetry',
   gallery: [
     {

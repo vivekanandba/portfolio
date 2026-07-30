@@ -14,10 +14,12 @@ export const vsscTooling: CaseStudy = {
   ],
   problem: [
     'Launch-vehicle structures are built on tooling — assembly jigs, weld fixtures, checking tools, and master gauges. Each is a one-off engineering project whose tolerances define the flyable part; a tooling miss is measured in program delay, not a bug report.',
+    'The hardware here sits on PSLV’s strap-on boosters. A PSOM is one of the six solid strap-on motors clustered around the first stage, and a subset of them also carry SITVC — Secondary Injection Thrust Vector Control, which steers the vehicle by injecting an aqueous strontium-perchlorate solution into the nozzle exhaust rather than gimbaling the nozzle, using tanks strapped to the motor and pressurised with nitrogen. That split is why the line runs SITVC and non-SITVC nose-cone variants, plus the SITVC aft shroud around the injection end.',
     'Delivery spans stakeholders who rarely share a room — VSSC/ISRO, BEML, TASL, and HAL-LSP — with the tooling owner accountable for estimation, quality plans, fabrication, and schedule across all of them.',
   ],
   constraints: [
     'Interchangeability: parts produced from the tools must interchange — the tool defines the part.',
+    'Two closely-related configurations off related tooling: cones for strap-ons with SITVC fitted and for those without, which must not be confusable on the shop floor.',
     'Every configuration is a cost / manufacturability / weight trade-off against VSSC specifications.',
     'First-article proving: the tool is not done when drawn, but when the first real article passes.',
     'Quality Assurance Plans (QAP), effort estimation, and schedule ownership alongside the engineering.',
