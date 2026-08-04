@@ -6,11 +6,14 @@ export const stopHunger: CaseStudy = {
   eyebrow: 'Project · Mapshalli (volunteer)',
   title: 'Stop Hunger — relief coordination that prevented duplicate deliveries',
   intro:
-    'Launched in March 2020 to coordinate COVID-19 relief among the NGOs working in and around Mahadevapura, Bangalore. Citizens register a settlement that needs help; any NGO can shortlist an unserved one, deliver food, rations or water, then record what they gave — so the next NGO sees current status instead of feeding the same street twice. The registry grew to 889 settlements across 37 BBMP wards — 14,178 families, 55,475 people — with deliveries logged by eleven different organisations.',
+    'Launched in March 2020 to coordinate COVID-19 relief among the NGOs working in and around Mahadevapura, Bangalore. Citizens register a settlement that needs help; any NGO can shortlist an unserved one, deliver food, rations or water, then record what they gave — so the next NGO sees current status instead of feeding the same street twice. By the dashboard snapshot published in May 2020, the registry held 889 settlements across 37 BBMP wards — 14,178 families, 55,475 people — with deliveries logged by eleven different organisations.',
+  // Two vintages on purpose: the registry totals are the May 2020 dashboard
+  // snapshot, the coverage share is what the live dashboard reports now. The
+  // labels say so, because 67% is not computed against 55,475.
   metrics: [
-    { value: '889', label: 'settlements registered' },
-    { value: '55,475', label: 'people in the registry' },
-    { value: '67%', label: 'of them reached' },
+    { value: '889', label: 'settlements registered (May 2020)' },
+    { value: '55,475', label: 'people registered (May 2020)' },
+    { value: '67%', label: 'of registered people reached' },
     { value: '37', label: 'BBMP wards' },
   ],
   problem: [
