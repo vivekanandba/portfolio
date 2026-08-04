@@ -56,7 +56,7 @@ export const airCare: CaseStudy = {
     { value: 'Open data', label: 'dashboards + analysis reports' },
   ],
   resultsNote:
-    'The engineering lesson sits in the hardware, not the dashboard: the network existed because the instrument was cheap enough to hand to a neighbour, and credible because its accuracy was measured and published rather than asserted. The payoff is visible on the live map — nodes a few kilometres apart reading anywhere from the single digits to the high fifties, which is exactly the street-level variation a single city-wide figure erases, and the reason density was worth engineering for. The project has since stopped adding nodes and now points newcomers to commercial PurpleAir units.',
+    'The engineering lesson sits in the hardware, not the dashboard: the network existed because the instrument was cheap enough to hand to a neighbour, and credible because its accuracy was measured and published rather than asserted. The payoff is visible on the live map, and in the dated snapshot below: on that afternoon, nodes a few kilometres apart read anywhere from the single digits to the high fifties. Any given reading is transient, but the spread is the point — it is the street-level variation a single city-wide figure erases, and the reason density was worth engineering for. The project has since stopped adding nodes and now points newcomers to commercial PurpleAir units.',
   diagramId: 'aircare',
   gallery: [
     {
