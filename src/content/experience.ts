@@ -383,10 +383,11 @@ export const projects: Project[] = [
     title: 'Stop Hunger — COVID-19 Relief Coordination',
     org: 'Mapshalli (volunteer)',
     summary:
-      'A two-sided platform launched in March 2020 for Mahadevapura, Bangalore: residents register settlements that need help, NGOs shortlist unserved ones and record what they delivered — so relief stopped landing twice on the same street while other settlements went without.',
+      'A two-sided platform launched in March 2020 for Mahadevapura, Bangalore: residents register settlements that need help, NGOs shortlist unserved ones and record what they delivered — so relief stopped landing twice on the same street while other settlements went without. By its May 2020 dashboard snapshot the registry held 889 settlements and 55,475 people across 37 wards, with eleven organisations logging deliveries against it.',
     metrics: [
-      { value: 'Mar 2020', label: 'launched mid-lockdown' },
-      { value: 'De-duplicated', label: 'NGO deliveries' },
+      { value: '55,475', label: 'people registered (May 2020)' },
+      { value: '67%', label: 'of registered people reached' },
+      { value: '11', label: 'organisations coordinated' },
     ],
     tags: ['Civic Tech', 'Coordination', 'Open Data'],
     featured: false,

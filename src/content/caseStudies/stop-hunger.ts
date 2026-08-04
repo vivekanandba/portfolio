@@ -6,11 +6,15 @@ export const stopHunger: CaseStudy = {
   eyebrow: 'Project · Mapshalli (volunteer)',
   title: 'Stop Hunger — relief coordination that prevented duplicate deliveries',
   intro:
-    'Launched in March 2020 to coordinate COVID-19 relief among the NGOs working in and around Mahadevapura, Bangalore. Citizens register a settlement that needs help; any NGO can shortlist an unserved one, deliver food, rations or water, then record what they gave — so the next NGO sees current status instead of feeding the same street twice.',
+    'Launched in March 2020 to coordinate COVID-19 relief among the NGOs working in and around Mahadevapura, Bangalore. Citizens register a settlement that needs help; any NGO can shortlist an unserved one, deliver food, rations or water, then record what they gave — so the next NGO sees current status instead of feeding the same street twice. By the dashboard snapshot published in May 2020, the registry held 889 settlements across 37 BBMP wards — 14,178 families, 55,475 people — with deliveries logged by eleven different organisations.',
+  // Two vintages on purpose: the registry totals are the May 2020 dashboard
+  // snapshot, the coverage share is what the live dashboard reports now. The
+  // labels say so, because 67% is not computed against 55,475.
   metrics: [
-    { value: 'Mar 2020', label: 'launched, mid-lockdown' },
-    { value: 'Mahadevapura', label: 'Bangalore wards served' },
-    { value: 'Citizens + NGOs', label: 'two-sided platform' },
+    { value: '889', label: 'settlements registered (May 2020)' },
+    { value: '55,475', label: 'people registered (May 2020)' },
+    { value: '67%', label: 'of registered people reached' },
+    { value: '37', label: 'BBMP wards' },
   ],
   problem: [
     'When the lockdown hit, relief in Bangalore was uncoordinated by default. Each NGO worked from its own list, so some settlements were served repeatedly while others were missed entirely — and nobody could see the difference in time to fix it.',
@@ -48,13 +52,29 @@ export const stopHunger: CaseStudy = {
     },
   ],
   results: [
-    { value: 'Coordinated', label: 'relief across multiple NGOs' },
-    { value: 'De-duplicated', label: 'deliveries per settlement' },
+    { value: '67% / 66% / 53%', label: 'of people / families / settlements served' },
+    { value: '11', label: 'organisations recording deliveries' },
     { value: 'Still online', label: 'years after the emergency' },
   ],
   resultsNote:
-    'Built in weeks by volunteers around day jobs, and still standing years later. The engineering was modest on purpose: the hard part was the protocol — get both sides writing to one list — not the stack.',
+    'The dashboard is candid in a way advocacy numbers usually are not: it publishes what was *not* reached as plainly as what was. Just over half the registered settlements were served, but two-thirds of the registered people were — larger settlements got reached first, which is defensible triage and only visible because coverage was measured per settlement rather than counted in meals. Deliveries came from eleven different organisations, from Whitefield Rising and Hasirudala through Rotary chapters to BBMP and the Bangalore City Police, which is the multi-NGO coordination the platform existed to make possible. Built in weeks by volunteers around day jobs; the hard part was the protocol — getting both sides writing to one list — not the stack.',
   diagramId: 'stop-hunger',
+  // Aggregate charts only. The dashboard's "Distributions: Locations" panel
+  // plots settlement coordinates, so it is deliberately not republished here.
+  gallery: [
+    {
+      file: 'media/mapshalli-stophunger-coverage.png',
+      alt: 'Three gauges from the Stop Hunger dashboard showing the share of unique registrations served: settlements 53%, families 66%, people 67%',
+      credit:
+        'Coverage against the registry — the platform reporting its own gaps. Chart: Mapshalli Stop Hunger dashboard.',
+    },
+    {
+      file: 'media/mapshalli-stophunger-organisations.png',
+      alt: 'Bar chart of recorded distributions by organisation — Whitefield Rising far ahead, followed by BBMP/Hasirudala/Rotary, Hasirudala, BBMP, Bangalore City Police, Rotary chapters and others',
+      credit:
+        'Eleven organisations writing to one shared ledger. Chart: Mapshalli Stop Hunger dashboard.',
+    },
+  ],
   seoDescription:
     'Project: Stop Hunger, a volunteer-built COVID-19 relief-coordination platform for Mahadevapura, Bangalore — a shared settlement registry and public relief map that stopped NGOs duplicating deliveries.',
 };
