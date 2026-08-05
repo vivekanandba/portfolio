@@ -161,16 +161,49 @@ The a11y suite renders the landing composition, so **it must stay in sync with `
 (a missing section there once went unnoticed). `Nav.tsx` ~78%: IntersectionObserver and theme-toggle
 branches are thinly covered.
 
-## 9. Process
+## 9. Process — spec at the start, tests at the end
 
-- **Spec first for behavioural change.** Schema fields, new sections, new routes and new invariants
-  update this file in the same PR. Pure content edits do not.
-- **Test-first where it earns its keep** — schema changes, components, invariants. For content edits
-  it is theatre; write the assertion alongside instead.
-- **Every PR runs the reviewer↔dev loop** (`scripts/ship.sh`, see `docs/pr-workflow.md`): review the
-  diff, post findings, fix or rebut, resolve threads, then merge on a green gate.
+Nothing ships without the thinking being written down first. This section is the contract; the
+`.github/pull_request_template.md` checklist is where it gets enforced per PR.
+
+### 9.1 Which changes need a spec
+
+| Change                                                           | Needs                                      |
+| ---------------------------------------------------------------- | ------------------------------------------ |
+| New schema field, section, route, component, or invariant        | **SPEC edit + ADR**, before implementation |
+| New policy (privacy, credit, terminology, verification)          | **ADR**, before implementation             |
+| Reversing or amending an earlier decision                        | **New ADR** superseding the old one        |
+| New content (a project, a metric, a photo) using existing fields | No spec; a content-test assertion instead  |
+| Refactor with no behavioural change                              | No spec; note the intent in the PR body    |
+
+Decision records live in `docs/adr/`, one per decision, in the format its README defines. Their
+structure is test-enforced (`tests/adr.test.ts`): required sections, real content in each, a valid
+status, a date, index linkage, and a superseded record naming an existing replacement.
+
+### 9.2 The order of work
+
+1. **Write the spec first.** Extend this file for _what changes_, and add an ADR for _why_, including
+   the alternatives being rejected. Commit that **before** the implementation commit, so the branch
+   history shows the thinking preceded the code.
+2. **Write the failing test** for behavioural work — schema, component, invariant. For content edits
+   this is theatre; write the assertion alongside instead.
+3. **Implement** until the test passes.
+4. **Close the loop at the end.** Before opening the PR: `quality:check`, `test:coverage` (floors
+   must hold), `build`, `test:e2e`. Add the invariant that would have caught anything found by hand.
+5. **Review** via the reviewer↔dev loop (`scripts/ship.sh`, see `docs/pr-workflow.md`): review the
+   diff, post findings, fix or rebut, resolve threads, merge on a green gate.
+6. **Verify the deploy**, not just the merge — check the live URL. Two bugs this project shipped
+   (the doubled base path, a retired certificate domain) were only ever visible off-box.
+
+### 9.3 Standing rules
+
 - **When a bug escapes to build or production, add the invariant that would have caught it.** The
   doubled base path, the duplicate metric key and the uncredited image all became tests.
+- **Never lower a coverage floor to make a build pass.** Raise them as coverage improves.
+- **Verify a gate enforces before trusting it.** Glob coverage thresholds silently do nothing if the
+  pattern misses; prove failure with a deliberately impossible value.
+- **A spec is not a record of intent, it is a record of decision.** If reality diverges, the spec is
+  wrong and gets fixed — not quietly tolerated, which is how v1.3 fell 27 commits behind.
 
 ## 10. Acceptance criteria
 
