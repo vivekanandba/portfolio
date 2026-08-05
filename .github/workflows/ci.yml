@@ -30,14 +30,21 @@ jobs:
       - name: Quality gate (lint + typecheck + format)
         run: npm run quality:check
 
-      - name: Unit / component / a11y tests
-        run: npm test
+      - name: Unit / component / a11y tests (with coverage thresholds)
+        run: npm run test:coverage
 
       - name: Build static export
         run: npm run build
         env:
           NODE_ENV: production
           BASE_PATH: /portfolio
+
+      # External links rot off-box, after merge, when someone else's site
+      # changes — no other check can catch that. Advisory only: a third party
+      # having an outage must not block our merge.
+      - name: External link integrity (advisory)
+        run: npm run check:links
+        continue-on-error: true
 
   e2e:
     runs-on: ubuntu-latest

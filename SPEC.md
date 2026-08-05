@@ -1,139 +1,203 @@
-# SPEC — Vivekanand B Portfolio (v1.3)
+# SPEC — Vivekanand B Portfolio (v1.4)
 
 > Spec-driven contract. Code follows this; if reality diverges, update this file first.
+>
+> **v1.4 reconciles three weeks of drift.** v1.3 was written when the site had 15 projects and
+> listed photo galleries and a dark-mode toggle as non-goals; both shipped, along with
+> recommendations, certifications, external media with credit rules, and progressive disclosure.
+> Everything below was checked against the code, not remembered.
 
 ## 1. Purpose & Driving Principle
 
-A single-page personal portfolio landing site that is **convincing and impactful** — this is the
-overriding principle. It is the canonical landing page for Vivekanand B "for a long time to come."
+A single-page personal portfolio landing site that is **convincing and impactful** — the overriding
+principle — plus a project page per body of work. Canonical landing page for Vivekanand B.
 
-**Primary audiences (in priority order):**
+**Primary audiences (priority order):**
 
-1. **Recruiters / hiring managers** (job search) — need to grasp seniority, breadth, and impact in
-   under 20 seconds.
-2. **VCs / investors** (fundraising) — need the founder-grade signal: zero-to-one delivery,
-   patents, ownership, intrapreneurial track record.
-3. **BD / partners** — need credibility and a clear way to make contact.
+1. **Recruiters / hiring managers** — grasp seniority, breadth and impact in under 20 seconds.
+2. **VCs / investors** — founder-grade signal: zero-to-one delivery, patents, ownership.
+3. **BD / partners** — credibility and a clear route to contact.
 
 **Success = a first-time visitor can, within ~20 seconds, state:** who he is, the rare
-Aerospace→Electronics→AI-Native arc, 2–3 quantified achievements, and how to contact / get the
-resume.
+Aerospace → Electronics → Medical Robotics → AI-Native arc, 2–3 quantified achievements, and how to
+get in touch or download the resume.
+
+### Driving standard: every claim must be checkable
+
+Impact language is worth nothing unless a sceptical reader can verify it. Where a claim has a public
+referent, link it — granted patent, FDA clearance, clinical-trial registration, App Store listing,
+live civic site. Prefer a smaller verifiable claim to a larger asserted one. Superlatives ("first",
+"only") ship **only** with a citation; otherwise they get cut.
 
 ## 2. Scope
 
-### In scope (v1.3)
+### In scope (v1.4)
 
-- One responsive landing page, anchor-nav sections (below), plus a **case-study page for every
-  project card** (15) under `/work/<slug>/` and a **`/work/` index** grouping them by chapter.
+- One responsive landing page with anchor-nav sections, **a project page for every project (27)** at
+  `/work/<slug>/`, a `/work/` index grouped by org, and a `/recommendations/` page.
 - Content governed by the **two-tier source policy** (below).
 - Downloadable resume PDF.
-- SEO + social share (OpenGraph/Twitter) + JSON-LD `Person` structured data.
+- SEO + social share (OpenGraph/Twitter, per-project OG images) + JSON-LD `Person`.
 - Accessible (WCAG AA target) and fast (static export, near-zero runtime JS).
+- **Dark mode** (CSS-variable palette + `data-theme` toggle, pre-paint script).
+- **Media**: per-project artifact image, photo galleries, downloadable/linked artifacts.
+- **Progressive disclosure** on the landing page so density stays reviewable.
+
+### Terminology
+
+User-facing copy says **"project"**, never "case study" — the latter reads as consulting jargon to an
+engineering audience. Internal identifiers (`caseStudySchema`, `src/content/caseStudies/`,
+`caseStudyStart`, `/work/` routes) keep their names; this is a copy rule, not a refactor.
 
 ### Source policy (two-tier)
 
-The **master resume** (`VIVEKANANDB-RESUME-MASTER-v2.docx`) is the fact source for all site
-content; the **served resume v15 PDF is the floor** — no site claim may _contradict_ it, but
-case-study pages may carry curated master-resume detail that v15 omits. Landing-page cards stay
-modest: ≤3 metrics, summary-level claims. Master-resume tracked-changes conflicts resolve toward
-the v15-consistent value ("Agent Directors" not "Agent Boss", unversioned model names, Gadjoy
-4.7+/80%, Legend ends Nov 2016, "Sanas Core" not "Core6"); Tech Mahindra (absent from v15) stays
-excluded. Any metric absent from v15 ships only after explicit owner approval — the v1.2 removals
-(SI coverage/SLA, Portal 70%/100%, Internal Tools card, FICV detail, A350 specifics) are
-reinstated under this policy, subject to that item-by-item approval.
+The **master resume** (`VIVEKANANDB-RESUME-MASTER-v2.docx`) is the fact source; the **served resume
+v15 PDF is the floor** — no site claim may _contradict_ it, though project pages may carry curated
+master-resume detail v15 omits. Landing cards stay modest: ≤3 metrics, summary-level claims.
+Tracked-changes conflicts resolve toward the v15-consistent value. Any metric absent from v15 ships
+only after explicit owner approval.
 
-### Out of scope (v1.3) — Non-goals
+**Third-party public sources** (a client's or employer's published site, a regulator's database, an
+app store) may supply facts and media, subject to §7.
+
+### Out of scope (v1.4) — non-goals
 
 - CMS, backend, database, server-side contact form.
-- Blog/writing engine, photo galleries (designed-for, not built).
-- Dark mode toggle, heavy animation, i18n.
+- Blog/writing engine, i18n, heavy animation.
+- Hobby/personal repos presented beside professional work (dilutes rather than adds).
+- Any private data: see §7.
 
 ## 3. Sections (order is the narrative)
 
-| #   | Section                    | Goal                       | Key content                                                                                                                                                                                                                                                                                                                                                     |
-| --- | -------------------------- | -------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| 1   | **Hero**                   | Instant identity + CTA     | Domain-arc badge (Aerospace → Healthcare Robotics → AI-Native) · Name · title line "Staff Software Engineer & Technical Lead — Sanas.ai" · "Engineer · Intrapreneur · AI-Native Architect" eyebrow · one-line value prop · CTAs: View Work, Download Resume, LinkedIn, GitHub · stats strip: 15+ years (computed) / 430k/day requests in production / US patent |
-| 2   | **The Arc** (About)        | The differentiator         | 4 beats: Aerospace Mechanical (ISRO/Safran/P&W) → Electronics · Founder (Gadjoy, 2016–20) → Programming: Healthcare Robotics (NovaSignal, the transition into software) → AI-Native Software (Sanas.ai). Intrapreneur/internal co-founder framing.                                                                                                              |
-| 3   | **Selected Work**          | Prove impact               | Project cards w/ quantified metrics (see §4 list). Flagship cards link to case-study pages; cards with public artifacts link out (App Store, product page, patent).                                                                                                                                                                                             |
-| 4   | **AI-Native Practice**     | The differentiating method | "How I direct AI agents" — 4 steps (Plan → Direct parallel agents → Human review gates → Verify & ship), each with a resume-verbatim proof metric.                                                                                                                                                                                                              |
-| 5   | **Skills**                 | Show breadth               | Grouped: AI & LLM · Mobile/Frontend · Backend/Architecture · Cloud & MLOps · Core Engineering (CATIA/Ansys)                                                                                                                                                                                                                                                     |
-| 6   | **Career Timeline**        | Show the journey           | Sanas.ai → NovaSignal/NeuraSignal → Gadjoy (Founder) → Legend Technologies → Safran. Node dots + track labels carry the domain accent hue.                                                                                                                                                                                                                      |
-| 7   | **Patents & Publications** | Credibility                | US20230329668A1; aerospace/slip-ring white papers; quantified achievements from the mechanical and founder eras (FICV 3,000 sheets/8 engineers, VSSC first-article proving, P&W test bed, Gadjoy 1,000+ devices/100+ customers/4.7+)                                                                                                                            |
-| 8   | **Education & Learning**   | Foundation                 | VTU BE Mechanical (First Class w/ Distinction, 2011); Andrew Ng DL/ML specializations + AI courses                                                                                                                                                                                                                                                              |
-| 9   | **Contact / Footer**       | Conversion                 | Email, LinkedIn, GitHub, resume download · profile-framed copy · "Last updated Month Year" (build-time)                                                                                                                                                                                                                                                         |
+| #   | Section                | Goal                       | Key content                                                                                                                                                                                                 |
+| --- | ---------------------- | -------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 1   | **Hero**               | Instant identity + proof   | Domain-arc badge · name · "Staff Engineer · Internal Technical Co-founder — Sanas.ai" · value prop · CTAs · **story-proof grid** (§4) · computed breadth line · inverted timeline · **brand constellation** |
+| 2   | **The Arc** (About)    | The differentiator         | 5 beats: Aerospace·Defence·Rail → Entrepreneurship (Gadjoy) → Electronics → Medical Robotics → AI-Native                                                                                                    |
+| 3   | **Selected Work**      | Prove impact               | 4 flagship cards visible, rest disclosed; earlier work as era chapters behind disclosure; all link to project pages                                                                                         |
+| 4   | **AI-Native Practice** | The differentiating method | "How I direct AI agents" — steps with resume-verbatim proof metrics                                                                                                                                         |
+| 5   | **Skills**             | Show breadth               | 6 groups, first 2 visible, rest disclosed                                                                                                                                                                   |
+| 6   | **Testimonials**       | Third-party credibility    | 4 of 8 curated recommendations visible, rest disclosed, link to all 25                                                                                                                                      |
+| 7   | **Career Timeline**    | Show the journey           | Sanas.ai → NovaSignal → Tech Mahindra → Gadjoy (side venture, `aside`) → Legend → Safran                                                                                                                    |
+| 8   | **Credibility**        | Verifiable credentials     | Granted patent, publications, achievements · education · **34 certifications** (disclosed, each linked) · **6 languages**                                                                                   |
+| 9   | **Contact / Footer**   | Conversion                 | Email, LinkedIn, GitHub, resume · build-time "Last updated"                                                                                                                                                 |
 
-## 4. Selected Work (featured + secondary) — metrics are verbatim from resume v15
+## 4. Hero story-proofs
 
-- **Sanas Consumer App (React Native)** — shipped production B2C in <4 weeks with zero prior mobile
-  experience via multi-agent AI workflow; 100% iOS/Android parity; 9-language localization;
-  onboarding ~1.5 min. Case study + App Store proof link.
-- **Speech Intelligence Platform** — privacy-first edge voice analytics; ClickHouse OLAP pipeline;
-  queue-driven multi-track LLM workers; real-time call widget + **30s-refresh fraud dashboard**
-  (the only v15-verbatim SI metric). Product-page proof link.
-- **Playground** — triple-track async audio orchestration (FastAPI/Asyncio); Triton/gRPC sub-100ms
-  chunk latency; AWS EKS + Modal (H100/T4) autoscaling; **430k requests/day**. Case study.
-- **Sanas for Sales (AI Copilot)** — hybrid Chrome Extension/Desktop, concept→Enterprise GA in
-  3 months; multi-modal RAG with <4s latency for live objection handling. Case study (no public
-  product page exists — verified).
-- **Unified ML Platform** — Kubernetes-native hub-and-spoke (MLflow); audits w/ 10+ research
-  scientists; resolved reproducibility, accelerated deployment.
-- **AI-Next Strategy** — democratized coding agents to **80% of workforce**; "Crawl, Walk, Run"
-  adoption; delivery timelines accelerated **40%+**.
-- (Earlier / secondary) Rendered as a quiet "More work" list under the featured grid, ordered:
-  **Admin Portal** (regions, 60% fewer tickets), **Internal Tools Portal** (restored v1.3),
-  **MLOps Observability & Model Cards** (new v1.3) (Sanas); **GCP Telemetry & Data View**,
-  **Healthcare Interoperability** (HIPAA/HL7/DICOM), **AI-Driven Test Automation** (30% shorter
-  regression cycles) (NovaSignal); **Aerospace Tooling — ISRO/Safran/P&W**, **Defence & Nuclear
-  Engineering — BEL/IGCAR** (restored v1.3) (Legend); **Mapshalli volunteer work** (Stop Hunger,
-  AirCare — mapshalli.org proof link). Every card links to its case study (titles are links);
-  every project has one (test-enforced bijection).
+The hero states **one narrative proof per era**, not raw scale — delivery speed alone no longer
+differentiates anyone:
+
+- **430k/day** — in production at sub-100ms
+- **FDA-cleared** — robotic platform, cloud stack
+- **US patent ↗** — vascular-flow imaging (links the **granted** patent, not the application)
+- **15,000+ repairs** — 4.7★, own business
+
+Plus a computed line (`{years}+ yrs · 5 fields · {caseStudies.length} projects`) and the brand
+constellation of ~17 clients/employers, tiered by prominence with domain-coloured dots.
 
 ## 5. Design (Modern Minimal)
 
-- **Palette:** base off-white `#FAFAF7`, ink `#16161A`, muted `#5B5B66`, hairline `#E6E6E0`, single
-  accent deep signal blue `#1D4ED8` (links, key metrics, CTA only). Plus two quiet domain hues at
-  hairline scale only (arc numerals, timeline dots/track labels, More-work dots): drafting amber
-  `#B45309`/`#F59E0B` (aerospace) and clinical teal `#0F766E`/`#14B8A6` (healthcare robotics);
-  AI-Native reuses the accent blue. All must hold ≥4.5:1 contrast on paper in both schemes
-  (test-enforced).
-- **Type:** clean grotesk (Inter/Geist), large confident display scale, tabular numerals for
-  metrics. Strong hierarchy over decoration.
-- **Layout:** generous whitespace, content max-width ~72ch, responsive (mobile-first), subtle
-  scroll-fade only. Avoid generic-AI aesthetic — restraint + typographic craft.
+- **Palette:** CSS variables for both schemes. Base off-white `#FAFAF7`, ink `#16161A`, muted
+  `#5B5B66`, hairline `#E6E6E0`, accent signal blue `#1D4ED8`. Two quiet domain hues at hairline
+  scale: drafting amber (aerospace), clinical teal (healthcare robotics); AI-native reuses accent.
+  All ≥4.5:1 contrast in both schemes (test-enforced). Raw Tailwind colours are a smell — the one
+  exception is `bg-white` behind letterboxed white-background artwork, which carries a comment.
+- **Type:** clean grotesk, large display scale, tabular numerals for metrics.
+- **Layout:** generous whitespace, ~72ch content width, mobile-first, subtle scroll-fade only.
 
 ## 6. Architecture
 
-- **Stack:** Next.js (App Router) + TypeScript + Tailwind CSS; `output: 'export'` (fully static).
-- **Hosting:** GitHub Pages project page from `vivekanandba/portfolio` →
-  `https://vivekanandba.github.io/portfolio/`; `basePath: '/portfolio'`, `images.unoptimized: true`.
-- **Content as typed data:** all copy/metrics live in `src/content/*` validated by Zod schemas.
-  Adding a project/metric/photo = edit one data file; components are prop-driven and untouched.
+- **Stack:** Next.js (App Router) + TypeScript + Tailwind; `output: 'export'` (fully static).
+- **Hosting:** GitHub Pages at `https://vivekanandba.github.io/portfolio/`; `basePath: '/portfolio'`,
+  `images.unoptimized: true`. `metadataBase` must be **origin-only** — Next already prefixes
+  file-convention images with the base path, so including it doubles the path. Regression-locked in
+  `tests/seo.test.ts`.
+- **Content as typed data:** all copy/metrics in `src/content/*`, validated by Zod at import so bad
+  data fails the build loudly. Adding a project = edit data files; components stay prop-driven.
+- **Invariants (test-enforced):** projects ↔ project pages ↔ diagram registry are 1:1;
+  `slug === projectId`; metric labels unique per strip (they key React lists); every referenced
+  media/doc file exists; every image has alt text; third-party media carries a visible credit.
 
-## 7. Acceptance Criteria
+## 7. Media & privacy policy
 
-- [ ] All 8 sections render with content sourced from `src/content` (verified by tests).
-- [ ] Every content data file passes its Zod schema; invalid data fails the build/tests loudly.
-- [ ] `npm run build` produces a static `out/` with correct `/portfolio` base path on assets/links.
-- [ ] Resume PDF downloads from the page.
-- [ ] Lighthouse-grade: no a11y violations (jest-axe zero violations); semantic landmarks present.
-- [ ] Playwright smoke passes on mobile + desktop viewports.
-- [ ] `npm run quality:check` (lint + typecheck + format) clean.
-- [ ] SEO: title/description, OpenGraph/Twitter tags, JSON-LD `Person` present.
+Hard-won rules; each exists because something was nearly or actually published in error.
 
-## 8. Case-study pages (v1.3)
+- **Never commit private data.** The LinkedIn full-account export (messages, connections, contact
+  details) is gitignored. Only public-profile CSVs may be read. Stage files by path — never
+  `git add .`.
+- **Audit every photo for third-party PII before publishing.** Device-repair photos that capture an
+  _About_ screen expose owner name, serial, IMEI and MAC addresses. Excluded, and recorded so it
+  cannot recur.
+- **Never publish maps that locate vulnerable people.** The Stop Hunger dashboard's locations panel
+  plots settlements needing relief; only aggregate charts ship.
+- **Identifiable individuals** in an employer's marketing photo consented to _their_ use, not this
+  site's. Prefer frames without people.
+- **Third-party media requires a visible credit**, enforced by test on the
+  `media/(legend|neurasignal|appstore|mapshalli)-*` naming convention. Preserve base-map attribution
+  rather than cropping it out.
+- **Date any live capture**, and bind time-varying figures to the dated snapshot instead of
+  presenting them as standing results.
+- **Export-control / NDA caution** on defence, ISRO and nuclear imagery; employer product
+  screenshots need sign-off. Outstanding gaps and cautions live in `MEDIA-TODO.md`.
 
-Fifteen static routes `/work/<slug>/` (slug = project id, one per project card) plus a `/work/`
-index page grouping studies by chapter (Sanas.ai / NovaSignal / Legend & community) with
-domain-accent dots. Content model: `caseStudySchema` collection in `src/content/caseStudies/`
-(one file per slug, ordered via `index.ts`) keyed by `projectId`; structure per page: intro +
-metric strip → Problem → Constraints → Decisions & tradeoffs → annotated inline-SVG systems
-diagram (token-driven, dark-mode automatic, `role="img"` + title/desc; registry keyed by
-`DIAGRAM_IDS`, bijection test-enforced) → Results → back link. `generateStaticParams` +
-`dynamicParams = false`; per-page metadata with absolute og:url + canonical. Subpage header is a
-slim `CaseStudyNav` (brand, "All case studies" → `/work/`, Resume) — the landing Nav stays
-anchor-based. Facts per the two-tier source policy (§2). E2E is data-driven over the collection.
+## 8. Quality gates
 
-## 9. Future (designed-for, not built)
+| Gate                | Command                 | Enforces                                                                             |
+| ------------------- | ----------------------- | ------------------------------------------------------------------------------------ |
+| Static quality      | `npm run quality:check` | lint + typecheck + prettier                                                          |
+| Unit/component/a11y | `npm run test:coverage` | all tests **and** coverage floors: 93% statements/lines, 86% branches, 85% functions |
+| Static export       | `npm run build`         | every route emits with the correct base path                                         |
+| End-to-end          | `npm run test:e2e`      | desktop + mobile, data-driven over the project collection                            |
+| External links      | `npm run check:links`   | every content URL resolves (advisory — a third-party outage must not block a merge)  |
 
-Photo galleries (drop images in `public/`); custom domain (`CNAME` + change `basePath`);
-writing/blog; dark mode toggle.
+Coverage floors sit a few points under measured values. **Raise them as coverage improves; never
+lower them to make a build pass.** The link check classifies Cloudflare/LinkedIn bot walls
+(403/429/999) as _unverified_ rather than failed, so it doesn't cry wolf, and ignores URL fragments
+because `fetch` never sends them.
+
+### Known coverage gaps (honest, not aspirational)
+
+`app/page.tsx` and `app/recommendations/page.tsx` sit at 0% — composition-only, never unit-rendered.
+The a11y suite renders the landing composition, so **it must stay in sync with `app/page.tsx`**
+(a missing section there once went unnoticed). `Nav.tsx` ~78%: IntersectionObserver and theme-toggle
+branches are thinly covered.
+
+## 9. Process
+
+- **Spec first for behavioural change.** Schema fields, new sections, new routes and new invariants
+  update this file in the same PR. Pure content edits do not.
+- **Test-first where it earns its keep** — schema changes, components, invariants. For content edits
+  it is theatre; write the assertion alongside instead.
+- **Every PR runs the reviewer↔dev loop** (`scripts/ship.sh`, see `docs/pr-workflow.md`): review the
+  diff, post findings, fix or rebut, resolve threads, then merge on a green gate.
+- **When a bug escapes to build or production, add the invariant that would have caught it.** The
+  doubled base path, the duplicate metric key and the uncredited image all became tests.
+
+## 10. Acceptance criteria
+
+- [ ] All sections render from `src/content` (test-verified).
+- [ ] Every content file passes its Zod schema; invalid data fails loudly.
+- [ ] `npm run build` emits a static `out/` with the correct `/portfolio` base path.
+- [ ] Resume PDF downloads.
+- [ ] Zero jest-axe violations, including disclosed (`hidden`) content.
+- [ ] Playwright passes on mobile + desktop.
+- [ ] `quality:check` clean; `test:coverage` meets floors.
+- [ ] SEO: title/description, OG/Twitter, per-project OG image, JSON-LD `Person`.
+- [ ] Every third-party image carries a visible credit; every image has alt text.
+- [ ] No private or third-party PII anywhere in the repo or the build.
+
+## 11. Project pages
+
+27 static routes `/work/<slug>/` (slug = project id) plus a `/work/` index grouped by org, ordered by
+`CASE_STUDY_START` (most recent first). Structure: intro + metric strip → optional artifact image
+(credited) → Problem → Constraints → Decisions & tradeoffs → annotated inline-SVG diagram
+(token-driven, dark-mode automatic, `role="img"` + title/desc; registry keyed by `DIAGRAM_IDS`,
+bijection test-enforced) → Results → optional "From the bench" gallery → optional "Architecture &
+artifacts" (local files or external references) → back link. `generateStaticParams` +
+`dynamicParams = false`; per-page metadata with absolute canonical; per-slug OG image via the
+co-located `opengraph-image.tsx`. Slim `CaseStudyNav` on subpages. E2E is data-driven over the
+collection, so a new project is covered automatically.
+
+## 12. Future (designed-for, not built)
+
+Custom domain (`CNAME` + `basePath` change); writing/blog; the aerospace-era media pool awaiting
+retrieval (see `MEDIA-TODO.md`).
