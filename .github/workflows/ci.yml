@@ -19,6 +19,9 @@ jobs:
     timeout-minutes: 10
     steps:
       - uses: actions/checkout@v5
+        with:
+          # Full history so the spec-discipline step can diff against the base.
+          fetch-depth: 0
 
       - uses: actions/setup-node@v5
         with:
@@ -26,6 +29,31 @@ jobs:
           cache: npm
 
       - run: npm ci
+
+      # SPEC.md §9.1: a behavioural change carries its spec. tests/adr.test.ts
+      # can only validate records that exist — it cannot see a missing one — so
+      # the presence of a spec change is guarded here instead. Ordering
+      # (spec commit before implementation) is visible in the PR's commit list
+      # but cannot be enforced from main, which is squash-merged.
+      - name: Spec discipline (schema change carries a spec change)
+        run: |
+          base="${{ github.event.pull_request.base.sha }}"
+          if [ -z "$base" ] || ! git cat-file -e "$base" 2>/dev/null; then
+            echo "::warning::base sha unavailable — skipping spec-discipline check"
+            exit 0
+          fi
+          changed=$(git diff --name-only "$base"...HEAD)
+          echo "Changed files:"; echo "$changed" | sed 's/^/  /'
+          if echo "$changed" | grep -qx 'src/content/schema.ts'; then
+            if echo "$changed" | grep -qE '^(SPEC\.md|docs/adr/)'; then
+              echo "Schema change is accompanied by a spec change."
+            else
+              echo "::error::src/content/schema.ts changed without SPEC.md or docs/adr/. See SPEC.md §9.1 — a new schema field needs a spec edit and an ADR."
+              exit 1
+            fi
+          else
+            echo "No schema change; no spec required."
+          fi
 
       - name: Quality gate (lint + typecheck + format)
         run: npm run quality:check
