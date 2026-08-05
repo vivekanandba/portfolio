@@ -41,10 +41,25 @@ jobs:
 
       # External links rot off-box, after merge, when someone else's site
       # changes — no other check can catch that. Advisory only: a third party
-      # having an outage must not block our merge.
+      # having an outage must not block our merge. But an advisory step that
+      # merely goes green is useless, because nobody reads a passing log — so
+      # the result is written to the run summary where it is actually visible.
       - name: External link integrity (advisory)
-        run: npm run check:links
-        continue-on-error: true
+        if: always()
+        run: |
+          set +e
+          npm run check:links > /tmp/links.txt 2>&1
+          status=$?
+          {
+            echo "### External link check"
+            echo ""
+            if [ "$status" -eq 0 ]; then echo "All content links resolved."; else echo "⚠️ Some links did not resolve — see below."; fi
+            echo ""
+            echo '```'
+            tail -30 /tmp/links.txt
+            echo '```'
+          } >> "$GITHUB_STEP_SUMMARY"
+          exit 0
 
   e2e:
     runs-on: ubuntu-latest
