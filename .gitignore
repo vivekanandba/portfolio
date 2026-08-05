@@ -33,3 +33,6 @@ next-env.d.ts
 
 # LinkedIn data exports — private account data, never commit
 Basic_LinkedInDataExport*
+
+# Coverage reports
+coverage/
