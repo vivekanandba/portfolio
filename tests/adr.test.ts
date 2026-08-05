@@ -11,6 +11,14 @@ import { describe, it, expect } from 'vitest';
  *
  * They deliberately do NOT judge content. A spec being *right* is a human
  * responsibility; a spec being *findable and complete* is mechanisable.
+ *
+ * They also do NOT detect a *missing* record — which is the failure mode that
+ * prompted this directory. A PR can add a schema field, skip the ADR, and every
+ * check here still passes, because these validate the records that exist rather
+ * than the ones that should. That boundary is guarded in CI instead: the
+ * "Spec discipline" step fails a PR that touches src/content/schema.ts without
+ * also touching SPEC.md or docs/adr/. Do not mistake a green run here for
+ * evidence that spec-first was followed.
  */
 const DIR = 'docs/adr';
 const REQUIRED_SECTIONS = [

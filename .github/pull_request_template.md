@@ -12,7 +12,10 @@ genuinely do not apply — but delete them deliberately, not silently.
 - [ ] **Behavioural change?** (schema field / section / route / component / invariant / policy)
   - [ ] `SPEC.md` updated for _what_ changed
   - [ ] ADR added under `docs/adr/` for _why_, with alternatives rejected
-  - [ ] Spec/ADR committed **before** the implementation commit
+  - [ ] Spec/ADR committed **before** the implementation commit — the evidence is this PR's
+        commit list, which survives on the PR page. `main` is squash-merged, so the ordering is
+        **not** recoverable there; a schema change without a spec change is caught by the
+        "Spec discipline" CI step regardless of order.
 - [ ] **Content-only?** No spec needed — a content-test assertion covers it instead
 - [ ] **Amends an earlier decision?** New ADR added; the superseded one marked
       `Superseded by ADR-NNNN`
