@@ -22,6 +22,10 @@ cd "${HYGIENE_REPO:-$(git rev-parse --show-toplevel)}" || exit 2
 
 PROTECTED="${PROTECTED_BRANCHES:-main master}"
 MAX_BYTES="${MAX_FILE_BYTES:-524288}"
+# public/ is this repo's published static asset tree: project pages link
+# downloadable decks and white papers (SPEC §11, ADR-0005), so binaries there
+# are a shipped feature, not stray artifacts. Higher ceiling, still bounded.
+MAX_PUBLIC_BYTES="${MAX_PUBLIC_BYTES:-2097152}"
 FAILED=0
 
 fail() { printf '\n\033[31mblocked:\033[0m %s\n' "$1"; FAILED=1; }
@@ -139,15 +143,18 @@ check_duplicate_migrations() {
 # The master .docx lives in Postgres; renditions are generated. Neither belongs
 # in git history, where it cannot be removed later.
 check_binary() {
-  local file="$1" size
+  local file="$1" size limit="$MAX_BYTES"
   size="$(git cat-file -s "$(git rev-parse ":$file" 2>/dev/null)" 2>/dev/null || echo 0)"
-  if [ "$size" -gt "$MAX_BYTES" ]; then
-    fail "$file is ${size} bytes (limit ${MAX_BYTES})."
+  case "$file" in public/*) limit="$MAX_PUBLIC_BYTES" ;; esac
+  if [ "$size" -gt "$limit" ]; then
+    fail "$file is ${size} bytes (limit ${limit})."
     note "Large artifacts belong in storage, not in git history."
     return
   fi
   case "$file" in
-    docs/*) return ;;
+    # public/ holds the served site: the resume PDF, project artifact decks and
+    # images. Blocking those would block the repo's normal work.
+    public/*|docs/*) return ;;
     *.docx|*.pdf|*.dump)
       fail "$file is a generated/binary artifact outside docs/."
       note "The master .docx lives in Postgres; renditions are generated on demand."
