@@ -36,3 +36,7 @@ Basic_LinkedInDataExport*
 
 # Coverage reports
 coverage/
+
+# Python bytecode (tools/)
+__pycache__/
+*.pyc

@@ -29,7 +29,6 @@ fi
 preserved=0
 for hook in "$HOOKS_DIR"/*; do
   name="$(basename "$hook")"
-  case "$name" in GATES_VERSION) continue ;; esac
   existing=".git/hooks/$name"
   if [ -f "$existing" ] && [ ! -f "$HOOKS_DIR/$name.local" ]; then
     cp "$existing" "$HOOKS_DIR/$name.local"
@@ -42,10 +41,13 @@ done
 chmod +x "$HOOKS_DIR"/* 2>/dev/null || true
 git config core.hooksPath "$HOOKS_DIR"
 
-printf '\nGates active (v%s) from %s/\n' "$(cat "$HOOKS_DIR/GATES_VERSION" 2>/dev/null || echo '?')" "$HOOKS_DIR"
+# Read the version from the hook header rather than a separate file — the
+# house-gates installer stamps it there, so two copies would drift.
+version="$(sed -n 's/^# house-gates v\([0-9.]*\).*/\1/p' "$HOOKS_DIR/pre-commit" 2>/dev/null | head -1)"
+printf '\nGates active (v%s) from %s/\n' "${version:-?}" "$HOOKS_DIR"
 for hook in "$HOOKS_DIR"/*; do
   name="$(basename "$hook")"
-  case "$name" in GATES_VERSION|*.local) continue ;; esac
+  case "$name" in *.local) continue ;; esac
   printf '  %s\n' "$name"
 done
 [ "$preserved" -gt 0 ] && printf '\n%d existing hook(s) preserved and still run first.\n' "$preserved"
