@@ -47,7 +47,7 @@ export const turningPoints: TurningPoint[] = [
     title: 'I left CAD for code',
     saw: 'The tooling I drew was finished the day it shipped; the software around it kept compounding long after.',
     bet: 'Mechanical rigour transfers — tolerances become contracts, first-article proving becomes testing, and a decade of precision is a head start, not a sunk cost.',
-    cost: 'Starting over as the least experienced programmer in the room, ten years into a career.',
+    cost: 'Starting over as the least experienced programmer in the room, nearly a decade into a career.',
     proved:
       'Cloud infrastructure for an FDA-cleared robotic stroke-assessment platform, and a granted US patent for vascular-flow imaging.',
     domain: 'healthcare-robotics',

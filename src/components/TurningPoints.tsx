@@ -35,7 +35,7 @@ export function TurningPoints() {
       </p>
       <ol className="relative space-y-12 border-l border-hairline pl-8">
         {turningPoints.map((tp) => (
-          <li key={tp.year} className="relative">
+          <li key={`${tp.year}-${tp.title}`} className="relative">
             {/* Node marker on the journey line, in the era's colour. */}
             <span
               aria-hidden="true"
