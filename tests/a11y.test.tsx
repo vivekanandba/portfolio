@@ -10,6 +10,7 @@ import { AiPractice } from '@/components/AiPractice';
 import { Skills } from '@/components/Skills';
 import { Recommendations } from '@/components/Recommendations';
 import { Timeline } from '@/components/Timeline';
+import { Now } from '@/components/Now';
 import { Credentials } from '@/components/Credentials';
 import { Contact } from '@/components/Contact';
 import NotFound from '@/app/not-found';
@@ -41,6 +42,7 @@ describe('accessibility', () => {
             <Skills />
             <Recommendations />
             <Timeline />
+            <Now />
             <Credentials />
             <Contact />
           </main>

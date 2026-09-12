@@ -7,6 +7,7 @@ import { AiPractice } from '@/components/AiPractice';
 import { Skills } from '@/components/Skills';
 import { Recommendations } from '@/components/Recommendations';
 import { Timeline } from '@/components/Timeline';
+import { Now } from '@/components/Now';
 import { Credentials } from '@/components/Credentials';
 import { Contact } from '@/components/Contact';
 
@@ -23,6 +24,7 @@ export default function Home() {
         <Skills />
         <Recommendations />
         <Timeline />
+        <Now />
         <Credentials />
       </main>
       <Contact />

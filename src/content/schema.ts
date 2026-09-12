@@ -245,6 +245,37 @@ export const turningPointSchema = z.object({
 });
 export type TurningPoint = z.infer<typeof turningPointSchema>;
 
+/**
+ * A guided audience path (ADR-0012): a curated stop sequence for one visitor
+ * intent. Targets are '#section' anchors or project ids; both test-enforced.
+ */
+export const tourSchema = z.object({
+  id: z.enum(['hiring', 'engineer', 'builder']),
+  label: z.string().min(1), // "I'm hiring"
+  stops: z
+    .array(
+      z.object({
+        target: z.string().min(1), // '#turning-points' or a project id
+        note: z.string().min(1), // one line: why this stop, for this audience
+      }),
+    )
+    .min(4)
+    .max(7),
+});
+export type Tour = z.infer<typeof tourSchema>;
+
+/**
+ * The Now section (ADR-0012): a dated snapshot of current exploration. The
+ * month is mandatory and rendered — a Now that hides its age is a lie
+ * (ADR-0008's dated-capture rule applied to prose).
+ */
+export const nowSchema = z.object({
+  month: z.string().regex(/^20\d{2}-(0[1-9]|1[0-2])$/), // "2026-09"
+  exploring: z.array(z.string().min(1)).min(1).max(4),
+  building: z.string().min(1),
+});
+export type Now = z.infer<typeof nowSchema>;
+
 /** A course/certification credential, grouped by category in the Credentials section. */
 export const certificationSchema = z.object({
   name: z.string().min(1),

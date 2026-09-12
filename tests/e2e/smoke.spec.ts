@@ -8,6 +8,7 @@ const SECTIONS = [
   'skills',
   'recommendations',
   'journey',
+  'now',
   'credentials',
   'contact',
 ];

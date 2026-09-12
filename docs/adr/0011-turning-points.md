@@ -1,7 +1,7 @@
 # ADR-0011 — Turning Points: the career told as decision records
 
 **Status:** Accepted
-**Date:** 2026-09-12 **Shipped in:** not yet shipped
+**Date:** 2026-09-12 **Shipped in:** #41
 
 ## Context
 

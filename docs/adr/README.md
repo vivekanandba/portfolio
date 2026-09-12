@@ -28,8 +28,8 @@ From ADR-0011 onward, records are written **before** implementation (see `SPEC.m
 | [0008](0008-claims-must-be-checkable.md) | Every claim links to a public referent, or is cut      | Accepted | #32, #33     |
 | [0009](0009-one-project-per-system.md)   | One project page per distinct system                   | Accepted | #31          |
 | [0010](0010-quality-gates.md)            | Enforce coverage floors and external link integrity    | Accepted | #37          |
-| [0011](0011-turning-points.md)           | Turning Points: the career told as decision records    | Accepted | pending      |
-| [0012](0012-interaction-layer.md)        | Audience paths, command palette, Now section           | Accepted | pending      |
+| [0011](0011-turning-points.md)           | Turning Points: the career told as decision records    | Accepted | #41          |
+| [0012](0012-interaction-layer.md)        | Audience paths, command palette, Now section           | Accepted | #42          |
 
 ## Format
 
