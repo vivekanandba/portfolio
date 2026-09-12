@@ -69,6 +69,7 @@ export function CommandPalette() {
   const [query, setQuery] = useState('');
   const [cursor, setCursor] = useState(0);
   const inputRef = useRef<HTMLInputElement>(null);
+  const restoreRef = useRef<HTMLElement | null>(null);
 
   const results = useMemo(() => {
     const q = query.trim().toLowerCase();
@@ -92,7 +93,28 @@ export function CommandPalette() {
   }, []);
 
   useEffect(() => {
-    if (open) inputRef.current?.focus();
+    if (open) {
+      // aria-modal is a claim; these two effects make it true. Remember where
+      // focus was, hold it inside the dialog, and give it back on close.
+      restoreRef.current = document.activeElement as HTMLElement | null;
+      inputRef.current?.focus();
+    } else {
+      restoreRef.current?.focus?.();
+      restoreRef.current = null;
+    }
+  }, [open]);
+
+  useEffect(() => {
+    if (!open) return;
+    const trap = (e: KeyboardEvent) => {
+      // The input is the only tabbable control; options are driven by arrows.
+      if (e.key === 'Tab') {
+        e.preventDefault();
+        inputRef.current?.focus();
+      }
+    };
+    window.addEventListener('keydown', trap);
+    return () => window.removeEventListener('keydown', trap);
   }, [open]);
 
   const go = (href: string) => {

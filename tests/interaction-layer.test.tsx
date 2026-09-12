@@ -92,6 +92,26 @@ describe('command palette', () => {
     expect(index.length).toBeGreaterThan(projects.length + 5);
   });
 
+  it('traps focus while open and returns it on close', () => {
+    render(
+      <>
+        <button type="button">outside</button>
+        <CommandPalette />
+      </>,
+    );
+    const outside = screen.getByRole('button', { name: 'outside' });
+    outside.focus();
+    fireEvent.keyDown(window, { key: 'k', ctrlKey: true });
+    const input = screen.getByRole('combobox');
+    expect(input).toHaveFocus();
+    // Tab must not escape the dialog.
+    fireEvent.keyDown(window, { key: 'Tab' });
+    expect(input).toHaveFocus();
+    // Focus goes back where it came from on close.
+    fireEvent.keyDown(window, { key: 'Escape' });
+    expect(outside).toHaveFocus();
+  });
+
   it('opens on ctrl-k, filters, and closes on escape', () => {
     render(<CommandPalette />);
     expect(screen.queryByRole('dialog')).not.toBeInTheDocument();

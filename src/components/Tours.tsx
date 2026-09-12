@@ -98,6 +98,17 @@ export function TourBar() {
     };
   }, []);
 
+  // Reserve room for the fixed bar so it never covers the footer or the very
+  // content a stop is pointing at.
+  useEffect(() => {
+    if (state) {
+      document.body.style.paddingBottom = '4.5rem';
+      return () => {
+        document.body.style.paddingBottom = '';
+      };
+    }
+  }, [state]);
+
   if (!state) return null;
   const tour = tours.find((t) => t.id === state.id);
   if (!tour) return null;
@@ -118,7 +129,9 @@ export function TourBar() {
       className="fixed inset-x-0 bottom-0 z-50 border-t border-hairline bg-paper/95 backdrop-blur"
     >
       <div className="mx-auto flex max-w-shell flex-wrap items-center gap-x-6 gap-y-2 px-6 py-3">
-        <p className="min-w-0 flex-1 text-sm text-muted">
+        {/* aria-live: the bar appears/changes without focus moving to it, so
+            announce each stop politely for screen-reader users. */}
+        <p aria-live="polite" className="min-w-0 flex-1 text-sm text-muted">
           <span className="font-semibold text-ink">{tour.label}</span>
           {stopLabel && <span className="text-ink"> · {stopLabel}</span>} — {stop.note}
         </p>
