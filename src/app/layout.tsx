@@ -2,6 +2,8 @@ import type { Metadata, Viewport } from 'next';
 import { Fraunces, Inter } from 'next/font/google';
 import Script from 'next/script';
 import './globals.css';
+import { TourBar } from '@/components/Tours';
+import { CommandPalette } from '@/components/CommandPalette';
 import { siteMetadata, personJsonLd } from '@/lib/seo';
 
 // GoatCounter (privacy-friendly, no cookies). Emitted only when a site code is
@@ -51,6 +53,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           Skip to content
         </a>
         {children}
+        <TourBar />
+        <CommandPalette />
         <script
           type="application/ld+json"
           // Structured data is static and self-authored — safe to inline.

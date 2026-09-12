@@ -1,6 +1,7 @@
 import { asset } from '@/lib/asset';
 import { caseStudies, profile } from '@/content';
 import { OrgConstellation } from './OrgConstellation';
+import { TourButtons } from './Tours';
 
 // The five fields the work spans (rail folded into aerospace/defence so the
 // entrepreneurship chapter earns its own slot). Enumerated in the panel so the
@@ -104,6 +105,8 @@ export function Hero() {
               </a>
             ))}
           </div>
+
+          <TourButtons />
         </div>
 
         {/* Right — track record. Gradient hairline ring makes the card pop
