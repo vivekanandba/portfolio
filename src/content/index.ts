@@ -11,6 +11,7 @@ import {
   recommendationSchema,
   roleSchema,
   skillGroupSchema,
+  turningPointSchema,
 } from './schema';
 import { profile as rawProfile } from './profile';
 import { skills as rawSkills } from './skills';
@@ -21,6 +22,7 @@ import { caseStudies as rawCaseStudies } from './caseStudies';
 import { recommendations as rawRecommendations } from './recommendations';
 import { certifications as rawCertifications } from './certifications';
 import { languages as rawLanguages } from './languages';
+import { turningPoints as rawTurningPoints } from './turningPoints';
 
 /**
  * Validate every content source at import time. A malformed data file throws here,
@@ -45,6 +47,7 @@ export const featuredRecommendations = recommendations.filter((r) => r.featured)
 
 export const certifications = z.array(certificationSchema).parse(rawCertifications);
 export const languages = z.array(languageSchema).parse(rawLanguages);
+export const turningPoints = z.array(turningPointSchema).min(4).max(6).parse(rawTurningPoints);
 
 /**
  * Featured cards, ordered to span domains near the top (AI-native, then a

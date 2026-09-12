@@ -1,6 +1,7 @@
 import { test, expect } from '@playwright/test';
 
 const SECTIONS = [
+  'turning-points',
   'about',
   'work',
   'agents',

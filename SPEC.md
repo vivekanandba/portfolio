@@ -1,8 +1,11 @@
-# SPEC — Vivekanand B Portfolio (v1.4)
+# SPEC — Vivekanand B Portfolio (v1.5)
 
 > Spec-driven contract. Code follows this; if reality diverges, update this file first.
 >
-> **v1.4 reconciles three weeks of drift.** v1.3 was written when the site had 15 projects and
+> **v1.5 adds the lived-experience layer** (ADR-0011/0012): Turning Points, audience paths, a
+> command palette and a Now section — written before implementation, per §9.
+>
+> **v1.4 reconciled three weeks of drift.** v1.3 was written when the site had 15 projects and
 > listed photo galleries and a dark-mode toggle as non-goals; both shipped, along with
 > recommendations, certifications, external media with credit rules, and progressive disclosure.
 > Everything below was checked against the code, not remembered.
@@ -42,6 +45,11 @@ live civic site. Prefer a smaller verifiable claim to a larger asserted one. Sup
 - **Dark mode** (CSS-variable palette + `data-theme` toggle, pre-paint script).
 - **Media**: per-project artifact image, photo galleries, downloadable/linked artifacts.
 - **Progressive disclosure** on the landing page so density stays reviewable.
+- **Turning Points**: the career as 4–6 decision records — Saw / Bet / Cost / Proved — each linking
+  its era's projects (ADR-0011). First-person voice permitted; owner reviews wording.
+- **Interaction layer** (ADR-0012): audience-path tours from the hero, a ⌘K command palette over a
+  build-time index, and a dated Now section derived from the newest certifications. All progressive
+  enhancement — the site remains fully functional without JavaScript.
 
 ### Terminology
 
@@ -72,13 +80,15 @@ app store) may supply facts and media, subject to §7.
 | #   | Section                | Goal                       | Key content                                                                                                                                                                                                 |
 | --- | ---------------------- | -------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | 1   | **Hero**               | Instant identity + proof   | Domain-arc badge · name · "Staff Engineer · Internal Technical Co-founder — Sanas.ai" · value prop · CTAs · **story-proof grid** (§4) · computed breadth line · inverted timeline · **brand constellation** |
-| 2   | **The Arc** (About)    | The differentiator         | 5 beats: Aerospace·Defence·Rail → Entrepreneurship (Gadjoy) → Electronics → Medical Robotics → AI-Native                                                                                                    |
+| 2   | **Turning Points**     | The intentionality         | 4–6 pivots as decision records (Saw/Bet/Cost/Proved), era-coloured, linking each era's projects                                                                                                             |
+| 2b  | **The Arc** (About)    | The differentiator         | 5 beats: Aerospace·Defence·Rail → Entrepreneurship (Gadjoy) → Electronics → Medical Robotics → AI-Native                                                                                                    |
 | 3   | **Selected Work**      | Prove impact               | 4 flagship cards visible, rest disclosed; earlier work as era chapters behind disclosure; all link to project pages                                                                                         |
 | 4   | **AI-Native Practice** | The differentiating method | "How I direct AI agents" — steps with resume-verbatim proof metrics                                                                                                                                         |
 | 5   | **Skills**             | Show breadth               | 6 groups, first 2 visible, rest disclosed                                                                                                                                                                   |
 | 6   | **Testimonials**       | Third-party credibility    | 4 of 8 curated recommendations visible, rest disclosed, link to all 25                                                                                                                                      |
 | 7   | **Career Timeline**    | Show the journey           | Sanas.ai → NovaSignal → Tech Mahindra → Gadjoy (side venture, `aside`) → Legend → Safran                                                                                                                    |
 | 8   | **Credibility**        | Verifiable credentials     | Granted patent, publications, achievements · education · **34 certifications** (disclosed, each linked) · **6 languages**                                                                                   |
+| 8b  | **Now**                | Current AI/ML pulse        | Dated "exploring now" — newest certifications surfaced automatically + hand-written line                                                                                                                    |
 | 9   | **Contact / Footer**   | Conversion                 | Email, LinkedIn, GitHub, resume · build-time "Last updated"                                                                                                                                                 |
 
 ## 4. Hero story-proofs
