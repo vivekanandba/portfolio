@@ -228,6 +228,23 @@ export const educationSchema = z.object({
 });
 export type Education = z.infer<typeof educationSchema>;
 
+/**
+ * A career pivot told as a decision record (ADR-0011): what was seen, what was
+ * bet, what it cost, what it proved. `proved` must stay checkable against the
+ * linked projects; linkage is test-enforced.
+ */
+export const turningPointSchema = z.object({
+  year: z.number().int(),
+  title: z.string().min(1),
+  saw: z.string().min(1),
+  bet: z.string().min(1),
+  cost: z.string().min(1),
+  proved: z.string().min(1),
+  domain: domainSchema,
+  projects: z.array(z.string().min(1)).min(1), // FK to projects[].id
+});
+export type TurningPoint = z.infer<typeof turningPointSchema>;
+
 /** A course/certification credential, grouped by category in the Credentials section. */
 export const certificationSchema = z.object({
   name: z.string().min(1),

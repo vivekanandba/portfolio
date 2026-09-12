@@ -5,6 +5,7 @@ import { asset } from '@/lib/asset';
 import { profile } from '@/content';
 
 const LINKS = [
+  { href: '#turning-points', label: 'Why' },
   { href: '#work', label: 'Work' },
   { href: '#agents', label: 'Agents' },
   { href: '#skills', label: 'Skills' },
