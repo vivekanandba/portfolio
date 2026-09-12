@@ -1,7 +1,7 @@
 # ADR-0012 — Interaction layer: audience paths, command palette, Now section
 
 **Status:** Accepted
-**Date:** 2026-09-12 **Shipped in:** not yet shipped
+**Date:** 2026-09-12 **Shipped in:** #42
 
 ## Context
 
