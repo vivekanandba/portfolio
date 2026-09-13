@@ -407,7 +407,7 @@ _Body omitted: biography of a third party._
 - Simulations run for all the mechanisms in the turret.
 - BEL’s Clients were also pleased with the work done
 - media: media/s35-bmp2-turret-overview.png — bmp2 turret overview
-- clip pending re-encode (s35-bmp2-elevation-and-traverse.mp4): 6.9 MB original exceeds the 2 MiB ceiling; re-encode with ffmpeg (ADR-0014 pipeline)
+- clip pending re-encode (s35-bmp2-elevation-and-traverse.mp4): 6.9 MB original exceeds the 2 MiB ceiling; a re-encoded copy under 2 MiB is published on the site (see scripts/media-web.json)
 - media: media/s35-bmp2-elevation-manual-poster.png — bmp2 elevation manual poster
 - clip: clips/s35-bmp2-elevation-manual.mp4 — elevation drive, manual mode — kinematic simulation (21 s) (shape “ELEV_MANUAL_FASTER”)
 - media: media/s35-bmp2-elevation-motor-poster.png — bmp2 elevation motor poster
@@ -445,15 +445,15 @@ _Body omitted: biography of a third party._
 - Prototypes done and shown to the pilots with composites for proof of concept
 - Miniaturization of the design with DFM being used extensively.
 - media: media/s37-position-light-fea-altitude.png — position light fea altitude
-- clip pending re-encode (s37-position-light-fea-altitude.mp4): 2.0 MB original just exceeds the 2 MiB ceiling; re-encode with ffmpeg
+- clip pending re-encode (s37-position-light-fea-altitude.mp4): 2.0 MB original just exceeds the 2 MiB ceiling; a re-encoded copy under 2 MiB is published on the site (see scripts/media-web.json)
 - media: media/s37-position-light-fea-high-temp.png — position light fea high temp
-- clip pending re-encode (s37-position-light-fea-high-temp.mp4): 2.0 MB original just exceeds the 2 MiB ceiling; re-encode with ffmpeg
+- clip pending re-encode (s37-position-light-fea-high-temp.mp4): 2.0 MB original just exceeds the 2 MiB ceiling; a re-encoded copy under 2 MiB is published on the site (see scripts/media-web.json)
 - media: media/s37-position-light-fea-low-temp.png — position light fea low temp
-- clip pending re-encode (s37-position-light-fea-low-temp.mp4): 2.9 MB original exceeds the 2 MiB ceiling; re-encode with ffmpeg
+- clip pending re-encode (s37-position-light-fea-low-temp.mp4): 2.9 MB original exceeds the 2 MiB ceiling; a re-encoded copy under 2 MiB is published on the site (see scripts/media-web.json)
 - media: media/s37-position-light-fea-thermal-shock.png — position light fea thermal shock
-- clip pending re-encode (s37-position-light-fea-thermal-shock.mp4): 3.5 MB original exceeds the 2 MiB ceiling; re-encode with ffmpeg
+- clip pending re-encode (s37-position-light-fea-thermal-shock.mp4): 3.5 MB original exceeds the 2 MiB ceiling; a re-encoded copy under 2 MiB is published on the site (see scripts/media-web.json)
 - media: media/s37-position-light-fea-natural-frequency.png — position light fea natural frequency
-- clip pending re-encode (s37-position-light-fea-natural-frequency.mp4): 4.7 MB original exceeds the 2 MiB ceiling; re-encode with ffmpeg
+- clip pending re-encode (s37-position-light-fea-natural-frequency.mp4): 4.7 MB original exceeds the 2 MiB ceiling; a re-encoded copy under 2 MiB is published on the site (see scripts/media-web.json)
 - media: media/s37-position-light-fea-transit-drop-stress.png — position light fea transit drop stress
 - media: media/s37-position-light-fea-transit-drop-time.png — position light fea transit drop time
 - broken media link in the original (NULL) — nothing to extract

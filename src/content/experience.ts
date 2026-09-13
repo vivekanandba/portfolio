@@ -241,12 +241,13 @@ export const projects: Project[] = [
       { value: 'First-article', label: 'tool proving' },
     ],
     tags: ['CATIA · UG NX', 'Jigs & Gauges', 'ISRO'],
-    // Finished PSOM nose cone assemblies — the hardware this tooling produced.
-    // Published from Legend Technologies' own public product portfolio.
-    image: 'media/legend-psom-nose-cone-assemblies.jpg',
+    // A finished SITVC nose cone beside its aft shroud, part numbers stencilled —
+    // the flight hardware this tooling produced. Source: Legend deck v5.5, slide 15.
+    image: 'media/legend-sitvc-nose-cone-and-aft-shroud.jpg',
     imageAlt:
-      'Five completed PSOM nose cone assemblies crated on pallets, each stencilled “PSOM Nose Cone Assembly” in SITVC and non-SITVC variants',
-    imageCredit: 'Photo: Legend Technologies (India) Pvt. Ltd. — published product portfolio',
+      'A riveted aluminium PSLV strap-on nose cone standing beside its cylindrical SITVC aft shroud, both stencilled with part numbers and weights',
+    imageCredit:
+      'SITVC nose cone and aft shroud for PSLV, VSSC/ISRO. Photo: Legend Technologies (India) Pvt. Ltd. — capability deck v5.5, slide 15',
     featured: true,
     domain: 'aerospace',
   },
@@ -289,6 +290,13 @@ export const projects: Project[] = [
       { value: '8', label: 'engineers led' },
     ],
     tags: ['CATIA', 'Kinematics', 'BEL · FICV'],
+    // Overview render of the reconstructed turret — the poster frame of the
+    // combined elevation-and-traverse simulation. Source: ENTI deck v1.4, slide 35.
+    image: 'media/enti-bmp2-turret-overview.jpg',
+    imageAlt:
+      'Grey CAD render of the complete BMP-II turret reconstructed in 3D, sighting periscopes and hatch on top, drive mechanisms visible beneath the ring',
+    imageCredit:
+      'BMP-II turret, 3D reconstruction for BEL’s FICV study. Render: ENTI Innovations Pvt. Ltd. — corporate deck v1.4, slide 35',
     featured: false,
     domain: 'aerospace',
   },
@@ -303,6 +311,12 @@ export const projects: Project[] = [
       { value: 'NAMS 2015', label: 'white paper published' },
     ],
     tags: ['Design', 'Prototype & test', 'IGCAR'],
+    // Exploded CAD of the high-amperage slip ring. Source: Legend deck v5.5, slide 58.
+    image: 'media/legend-igcar-slipring-cad.jpg',
+    imageAlt:
+      'Exploded CAD view of a high-amperage stacked slip ring: end flange, blue rotor housing, contact stack and red brush block laid out along one axis',
+    imageCredit:
+      'High-amperage slip ring for IGCAR / Godrej, exploded view. Render: Legend Technologies (India) Pvt. Ltd. — capability deck v5.5, slide 58',
     featured: false,
     domain: 'aerospace',
   },
@@ -331,6 +345,12 @@ export const projects: Project[] = [
       { value: 'ARDC · HAL', label: 'design authority' },
     ],
     tags: ['CATIA · Abaqus', 'NPD', 'ARDC · HAL'],
+    // CAD of the position-light housing — the 100×90×50 mm envelope. Source: ENTI deck v1.4, slide 36.
+    image: 'media/enti-position-light-cad.jpg',
+    imageAlt:
+      'CAD render of a compact grey aircraft position-light housing with a faceted lens face and a flanged base',
+    imageCredit:
+      'LCA-Navy position light housing. Render: ENTI Innovations Pvt. Ltd. — corporate deck v1.4, slide 36',
     featured: false,
     domain: 'aerospace',
   },
