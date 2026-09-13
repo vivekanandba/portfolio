@@ -270,7 +270,10 @@ describe('case-study invariants', () => {
   it('site copy is first person — the word "owner" never renders (ownership is fine)', () => {
     // This is Vivek's portfolio in Vivek's voice. "The owner" was engineering
     // shorthand that leaked into captions and markers once; this keeps it out.
-    // Comments are stripped first so dev-facing notes are not policed.
+    // Comments are stripped first so dev-facing notes are not policed. The
+    // line-comment strip is best-effort: a string containing "//" (not "://")
+    // is truncated there, which can only hide text from the guard, never
+    // invent a hit.
     const walk = (dir: string): string[] =>
       readdirSync(dir, { withFileTypes: true }).flatMap((d) =>
         d.isDirectory() ? walk(join(dir, d.name)) : [join(dir, d.name)],

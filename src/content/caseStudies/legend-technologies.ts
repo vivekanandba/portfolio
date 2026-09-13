@@ -39,7 +39,7 @@ export const legendTechnologies: CaseStudy = {
   ],
   constraints: [
     'Aerospace batches: small quantities, flight-hardware tolerances, first-article proving on most tooling jobs.',
-    'Me across bid, design, prototype, production, process documentation, inspection and handover — while managing the design team.',
+    'I carried bid, design, prototype, production, process documentation, inspection and handover myself — while managing the design team.',
     'GD&T and production tolerances decided in design, not discovered on the floor; design-for-manufacturability and design-for-testability as standing disciplines.',
     'Evidence discipline for this page (ADR-0008): stages attested by a third party say so; the shop-floor detail only I can vouch for is marked “my account only”.',
   ],
