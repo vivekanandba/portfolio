@@ -3,20 +3,14 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { caseStudies, certifications, projects } from '@/content';
-
-type Entry = {
-  label: string;
-  detail: string;
-  href: string; // '#section' or '/work/<slug>/'
-  keywords: string; // lower-cased haystack for matching
-};
+import type { PaletteEntry as Entry } from '@/lib/palette';
 
 /**
  * Build-time index over content (ADR-0012): projects, sections and
  * certifications. Plain data, no search library — the corpus is small enough
  * that substring matching over a keyword haystack is instant and predictable.
  */
-export function buildIndex(): Entry[] {
+export function buildIndex(extra: Entry[] = []): Entry[] {
   const entries: Entry[] = [];
   const sections: [string, string][] = [
     ['Turning points', '#turning-points'],
@@ -52,6 +46,8 @@ export function buildIndex(): Entry[] {
       keywords: `${c.name} ${c.authority} ${c.category}`.toLowerCase(),
     });
   }
+  // Server-provided rows (archive entries, later posts) — ADR-0016.
+  entries.push(...extra);
   return entries;
 }
 
@@ -63,7 +59,7 @@ const MAX_RESULTS = 8;
  * JavaScript this renders nothing and the site is unchanged. Keyboard-complete:
  * open on ⌘K, filter as you type, arrows to move, enter to go, escape to close.
  */
-export function CommandPalette() {
+export function CommandPalette({ extra = [] }: { extra?: Entry[] } = {}) {
   const router = useRouter();
   const [open, setOpen] = useState(false);
   const [query, setQuery] = useState('');
@@ -71,11 +67,12 @@ export function CommandPalette() {
   const inputRef = useRef<HTMLInputElement>(null);
   const restoreRef = useRef<HTMLElement | null>(null);
 
+  const index = useMemo(() => (extra.length ? [...INDEX, ...extra] : INDEX), [extra]);
   const results = useMemo(() => {
     const q = query.trim().toLowerCase();
-    if (!q) return INDEX.slice(0, MAX_RESULTS);
-    return INDEX.filter((e) => e.keywords.includes(q)).slice(0, MAX_RESULTS);
-  }, [query]);
+    if (!q) return index.slice(0, MAX_RESULTS);
+    return index.filter((e) => e.keywords.includes(q)).slice(0, MAX_RESULTS);
+  }, [query, index]);
 
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
@@ -120,12 +117,15 @@ export function CommandPalette() {
   const go = (href: string) => {
     setOpen(false);
     if (href.startsWith('#')) {
-      // Anchors live on the landing page. From a subpage, route home first;
-      // the router handles basePath in both cases.
-      if (window.location.pathname.includes('/work/')) {
-        router.push(`/${href}`);
-      } else {
+      // Anchors live on the landing page. Decide by the document, not the
+      // pathname (ADR-0016): if the section is here, scroll to it; otherwise
+      // route home — the router handles basePath in both cases.
+      const el = document.getElementById(href.slice(1));
+      if (el) {
         window.location.hash = href;
+        el.scrollIntoView?.({ behavior: 'smooth' });
+      } else {
+        router.push(`/${href}`);
       }
     } else {
       router.push(href);

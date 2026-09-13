@@ -30,18 +30,19 @@ E. Ranga Reddy, already named on the live site, is the one exception). Slide bod
 reason: 71–73 (biographies of third parties), 77 (private company financials), 99 (contact details).
 E-mail addresses and phone-shaped numbers are scrubbed as a safety net.
 
-**Media** — 72 of 188 files excluded:
+**Media** — 74 of 188 files excluded:
 
-| Files | Reason                                                                                         |
-| ----- | ---------------------------------------------------------------------------------------------- |
-| 33    | company or customer logo — trademark; the customer list is kept as text                        |
-| 23    | identifiable people in frame (ADR-0007: prefer people-free frames)                             |
-| 4     | award-ceremony photograph — identifiable people; award names and years kept as text            |
-| 4     | near-duplicate thumbnail under 300 px                                                          |
-| 4     | portrait of a third party                                                                      |
-| 2     | vehicle number plate legible                                                                   |
-| 1     | EMF vector drawing — unsupported format; the same jig is shown in the photographs on the slide |
-| 1     | controlled quality-manual page (organisation chart) — not mine to publish                      |
+| Files | Reason                                                                                                                                      |
+| ----- | ------------------------------------------------------------------------------------------------------------------------------------------- |
+| 33    | company or customer logo — trademark; the customer list is kept as text                                                                     |
+| 23    | identifiable people in frame (ADR-0007: prefer people-free frames)                                                                          |
+| 4     | award-ceremony photograph — identifiable people; award names and years kept as text                                                         |
+| 4     | near-duplicate thumbnail under 300 px                                                                                                       |
+| 4     | portrait of a third party                                                                                                                   |
+| 2     | vehicle number plate legible                                                                                                                |
+| 2     | certificate carries the certifying body's signatory's signature — third-party personal data; the certification facts stay in the transcript |
+| 1     | EMF vector drawing — unsupported format; the same jig is shown in the photographs on the slide                                              |
+| 1     | controlled quality-manual page (organisation chart) — not mine to publish                                                                   |
 
 **Edits.** `s37-lca-mockup-road-transport.jpeg` is cropped to remove two cars whose number plates were
 legible and has two faces blurred (declared in the rules file; re-encoded by Pillow, so this one file is

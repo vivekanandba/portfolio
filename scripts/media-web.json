@@ -337,6 +337,58 @@
     {
       "from": "source/decks/legend-company-v5.5/media/s59-slipring-division-building.jpeg",
       "to": "legend-slipring-division-building.jpg"
+    },
+    {
+      "from": "source/decks/legend-company-v5.5/media/s09-lch-tail-boom-jig-cad.png",
+      "to": "legend-lch-tail-boom-jig-cad.jpg"
+    },
+    {
+      "from": "source/decks/legend-company-v5.5/media/s28-racing-car-components-1.jpeg",
+      "to": "legend-racing-car-components.jpg"
+    },
+    {
+      "from": "source/decks/legend-company-v5.5/media/s29-uav-launch-canister-components-1.jpeg",
+      "to": "legend-uav-launch-canister-component.jpg"
+    },
+    {
+      "from": "source/decks/legend-company-v5.5/media/s30-a320-emergency-door-components-1.jpeg",
+      "to": "legend-a320-emergency-door-component.jpg"
+    },
+    {
+      "from": "source/decks/legend-company-v5.5/media/s31-cnc-turned-components-1.jpeg",
+      "to": "legend-cnc-turned-components.jpg"
+    },
+    {
+      "from": "source/decks/legend-company-v5.5/media/s50-6ch-windmill-slipring-cad-1.jpeg",
+      "to": "legend-6ch-windmill-slipring-cad.jpg"
+    },
+    {
+      "from": "source/decks/legend-company-v5.5/media/s80-office-block.jpeg",
+      "to": "legend-admin-block.jpg"
+    },
+    {
+      "from": "source/decks/legend-company-v5.5/media/s82-cnc-turning-centre.jpeg",
+      "to": "legend-cnc-turning-centre.jpg"
+    },
+    {
+      "from": "source/decks/legend-company-v5.5/media/s83-radial-drilling-machine.jpeg",
+      "to": "legend-radial-drilling-machine.jpg"
+    },
+    {
+      "from": "source/decks/legend-company-v5.5/media/s83-heating-oven.jpeg",
+      "to": "legend-heating-oven.jpg"
+    },
+    {
+      "from": "source/decks/enti-corporate-v1.4-taml/media/s04-enti-services-wheel.png",
+      "to": "enti-services-wheel.jpg"
+    },
+    {
+      "from": "source/decks/enti-corporate-v1.4-taml/media/s28-composite-canopy-trolley-cad.png",
+      "to": "enti-composite-canopy-trolley-cad.jpg"
+    },
+    {
+      "from": "source/decks/enti-corporate-v1.4-taml/media/s29-composite-canopy-trolleys.png",
+      "to": "enti-composite-canopy-trolleys.jpg"
     }
   ],
   "clips": [
@@ -396,12 +448,12 @@
     },
     {
       "to": "enti-position-light-fea-transit-drop-3d.mp4",
-      "original": "ppt/media/media13.wmv (127 MB, 3 min 18 s) \u2014 first 70 s at 2\u00d7 speed",
+      "original": "ppt/media/media13.wmv (127 MB, 3 min 18 s) — first 70 s at 2× speed",
       "ffmpeg": "ffmpeg -y -ss 0 -t 70 -i <original from the release asset> -an -vf \"setpts=0.5*PTS,scale=-2:720\" -r 20 -c:v libx264 -preset slow -pix_fmt yuv420p -movflags +faststart -crf 32 enti-position-light-fea-transit-drop-3d.mp4"
     },
     {
       "to": "enti-position-light-fea-transit-drop-section.mp4",
-      "original": "ppt/media/media14.wmv (63 MB, 3 min 18 s) \u2014 first 70 s at 2\u00d7 speed",
+      "original": "ppt/media/media14.wmv (63 MB, 3 min 18 s) — first 70 s at 2× speed",
       "ffmpeg": "ffmpeg -y -ss 0 -t 70 -i <original from the release asset> -an -vf \"setpts=0.5*PTS,scale=-2:720\" -r 20 -c:v libx264 -preset slow -pix_fmt yuv420p -movflags +faststart -crf 28 enti-position-light-fea-transit-drop-section.mp4"
     }
   ]

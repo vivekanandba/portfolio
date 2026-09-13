@@ -4,6 +4,7 @@ import Script from 'next/script';
 import './globals.css';
 import { TourBar } from '@/components/Tours';
 import { CommandPalette } from '@/components/CommandPalette';
+import { archivePaletteEntries } from '@/lib/palette';
 import { siteMetadata, personJsonLd } from '@/lib/seo';
 
 // GoatCounter (privacy-friendly, no cookies). Emitted only when a site code is
@@ -54,7 +55,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         </a>
         {children}
         <TourBar />
-        <CommandPalette />
+        <CommandPalette extra={archivePaletteEntries()} />
         <script
           type="application/ld+json"
           // Structured data is static and self-authored — safe to inline.

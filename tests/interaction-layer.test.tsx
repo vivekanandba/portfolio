@@ -1,4 +1,4 @@
-import { describe, it, expect } from 'vitest';
+import { describe, it, expect, vi } from 'vitest';
 import { fireEvent, render, screen } from '@testing-library/react';
 import { nowSchema, tourSchema } from '@/content/schema';
 import { tours } from '@/content/tours';
@@ -7,6 +7,15 @@ import { projects } from '@/content/experience';
 import { certifications } from '@/content/certifications';
 import { Now } from '@/components/Now';
 import { CommandPalette, buildIndex } from '@/components/CommandPalette';
+import { archivePaletteEntries } from '@/lib/palette';
+
+// A shared router stub so navigation decisions can be asserted (setup.ts's
+// default returns a fresh fn per call, which cannot be observed).
+const push = vi.fn();
+vi.mock('next/navigation', () => ({
+  useRouter: () => ({ push, prefetch: vi.fn() }),
+  usePathname: () => '/',
+}));
 
 /**
  * Interaction layer (ADR-0012): audience-path tours, a command palette over a
@@ -125,5 +134,46 @@ describe('command palette', () => {
     ).toBeInTheDocument();
     fireEvent.keyDown(window, { key: 'Escape' });
     expect(screen.queryByRole('dialog')).not.toBeInTheDocument();
+  });
+});
+
+describe('command palette — routes outside /work/ (ADR-0016)', () => {
+  it('indexes server-provided extra entries, such as the archive', () => {
+    const extra = archivePaletteEntries();
+    expect(extra.length).toBeGreaterThan(20);
+    for (const e of extra) expect(e.href).toMatch(/^\/archive\/[a-z]+\/$/);
+    const index = buildIndex(extra);
+    expect(index.length).toBe(buildIndex().length + extra.length);
+    render(<CommandPalette extra={extra} />);
+    fireEvent.keyDown(window, { key: 'k', ctrlKey: true });
+    fireEvent.change(screen.getByRole('combobox'), { target: { value: 'windmill' } });
+    expect(screen.getByRole('option', { name: /windmill/i })).toBeInTheDocument();
+  });
+
+  it('scrolls to a section that exists on the current page instead of routing home', () => {
+    push.mockClear();
+    render(
+      <>
+        <section id="turning-points" />
+        <CommandPalette />
+      </>,
+    );
+    fireEvent.keyDown(window, { key: 'k', ctrlKey: true });
+    fireEvent.change(screen.getByRole('combobox'), { target: { value: 'turning points' } });
+    expect(screen.getByRole('option', { name: /turning points/i })).toBeInTheDocument();
+    fireEvent.keyDown(screen.getByRole('combobox'), { key: 'Enter' }); // the first result is the section
+    expect(push).not.toHaveBeenCalled();
+    expect(window.location.hash).toBe('#turning-points');
+  });
+
+  it('routes home when the section is absent — whatever the pathname is', () => {
+    push.mockClear();
+    window.location.hash = '';
+    render(<CommandPalette />);
+    fireEvent.keyDown(window, { key: 'k', ctrlKey: true });
+    fireEvent.change(screen.getByRole('combobox'), { target: { value: 'the arc' } });
+    expect(screen.getByRole('option', { name: /the arc/i })).toBeInTheDocument();
+    fireEvent.keyDown(screen.getByRole('combobox'), { key: 'Enter' });
+    expect(push).toHaveBeenCalledWith('/#about');
   });
 });

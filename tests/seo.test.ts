@@ -3,6 +3,7 @@ import {
   caseStudyMetadata,
   personJsonLd,
   recommendationsMetadata,
+  archiveMetadata,
   siteMetadata,
   workIndexMetadata,
 } from '@/lib/seo';
@@ -118,5 +119,26 @@ describe('personJsonLd', () => {
   it('lists every profile link in sameAs', () => {
     expect(ld.sameAs).toEqual(profile.links.map((l) => l.href));
     expect(ld.sameAs.length).toBeGreaterThan(0);
+  });
+});
+
+describe('archiveMetadata', () => {
+  const meta = archiveMetadata('legend');
+
+  it('canonicalises to /archive/legend/ and counts entries from content', () => {
+    expect(meta.alternates?.canonical).toBe(
+      'https://vivekanandba.github.io/portfolio/archive/legend/',
+    );
+    expect(String(meta.title)).toMatch(/archive/i);
+    expect(String(meta.description)).toMatch(/\d+ items/);
+  });
+
+  it('falls back to generic wording for an era it does not know (never throws at build)', () => {
+    const unknown = archiveMetadata('no-such-era');
+    expect(String(unknown.title)).toMatch(/^Archive — /);
+    expect(String(unknown.description)).toMatch(/^0 items from the source decks/);
+    expect(unknown.alternates?.canonical).toBe(
+      'https://vivekanandba.github.io/portfolio/archive/no-such-era/',
+    );
   });
 });
