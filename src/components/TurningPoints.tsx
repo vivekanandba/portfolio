@@ -5,6 +5,10 @@ import { domainColor } from '@/lib/domain';
 
 const projectById = new Map(projects.map((p) => [p.id, p]));
 
+// The intro names the node count in words; it follows the data so adding a
+// turning point can never leave the sentence one behind (it did, once).
+const COUNT_WORDS = ['Zero', 'One', 'Two', 'Three', 'Four', 'Five', 'Six', 'Seven', 'Eight'];
+
 /** One labelled line of the decision record. */
 function Field({ label, children }: { label: string; children: string }) {
   return (
@@ -30,8 +34,9 @@ export function TurningPoints() {
       className="border-t border-hairline"
     >
       <p className="-mt-4 mb-12 max-w-content text-lg leading-relaxed text-muted">
-        Five decisions explain everything on this site. Each one is written the way engineers record
-        decisions — what I saw, what I bet, what it cost, and what it proved.
+        {COUNT_WORDS[turningPoints.length] ?? turningPoints.length} decisions explain everything on
+        this site. Each one is written the way engineers record decisions — what I saw, what I bet,
+        what it cost, and what it proved.
       </p>
       <ol className="relative space-y-12 border-l border-hairline pl-8">
         {turningPoints.map((tp) => (

@@ -75,6 +75,14 @@ describe('<TurningPoints />', () => {
     }
   });
 
+  it('states the node count in words, matching the data', () => {
+    render(<TurningPoints />);
+    const words = ['Zero', 'One', 'Two', 'Three', 'Four', 'Five', 'Six', 'Seven', 'Eight'];
+    expect(
+      screen.getByText(new RegExp(`^${words[turningPoints.length]} decisions explain`)),
+    ).toBeInTheDocument();
+  });
+
   it('labels the section for the accessibility tree', () => {
     render(<TurningPoints />);
     expect(screen.getByRole('region', { name: /turning points/i })).toBeInTheDocument();

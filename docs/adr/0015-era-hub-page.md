@@ -1,7 +1,7 @@
 # ADR-0015 — An era hub page for the Legend years
 
 **Status:** Accepted
-**Date:** 2026-09-13 **Shipped in:** not yet shipped
+**Date:** 2026-09-13 **Shipped in:** #45
 
 ## Context
 

@@ -24,7 +24,7 @@ export const profile: Profile = {
     {
       phase: 'Aerospace · Defence · Rail',
       title: 'Mechanical Engineering',
-      body: 'Designed and fabricated jigs, fixtures, and tooling for aerospace (ISRO, Safran, Pratt & Whitney), defence and nuclear programs (BEL’s FICV, IGCAR), and rolling stock (Tech Mahindra) — where precision, lifecycle ownership, and analytical rigor were non-negotiable.',
+      body: 'Designed and fabricated jigs, fixtures, and tooling for aerospace (ISRO, Safran, Pratt & Whitney), defence and nuclear programs (BEL’s FICV, IGCAR), and rolling stock (Tech Mahindra) — where precision, lifecycle ownership, and analytical rigor were non-negotiable. At Legend Technologies that meant owning products bid to handover, as designer and design-team lead at once.',
       domain: 'aerospace',
     },
     {

@@ -505,7 +505,7 @@ export const roles: Role[] = [
   {
     company: 'Tech Mahindra',
     title: 'Senior Engineer',
-    period: 'Jan 2019 – Jan 2021',
+    period: 'Jan 2018 – Jan 2021',
     track: 'Mechanical',
     location: 'Bangalore, India',
     domain: 'rail',
@@ -515,15 +515,22 @@ export const roles: Role[] = [
     ],
   },
   {
+    // Dates and titles follow the owner's 2026-09-13 decision (LinkedIn Positions;
+    // see source/resume/README.md for the records that still disagree). The ENTI
+    // seat is from the ENTI deck's org chart (source/decks, slide 18); the
+    // end-to-end span from the MD's recommendation (live on /recommendations/);
+    // the loop itself from owner note 2026-09-13 (self-reported where noted on the
+    // hub page, /work/legend-technologies/).
     company: 'Legend Technologies',
-    title: 'Senior Lead Engineer',
-    period: 'Jan 2013 – Jan 2019',
+    title: 'Engineer → Senior Engineer → Lead Project Engineer',
+    period: 'Jan 2013 – Jan 2018',
     track: 'Mechanical',
     location: 'Bangalore, India',
     domain: 'aerospace',
     highlights: [
-      'Led multidisciplinary teams designing aerospace & locomotive jigs and fixtures for ISRO, Safran, and Pratt & Whitney.',
-      'Provided end-to-end support in manufacturing, testing, and service — overseeing the entire product lifecycle.',
+      'Owned mechanical products end to end at a medium-scale aerospace tooling house — bid, price and technical negotiation, design with GD&T and a design-QA cycle, prototype, batch production on the shop floor, process sheets, first-article proving, handover — as an individual contributor while leading the design team.',
+      'Joined the group’s design arm, ENTI Innovations, as a designer and its Technical Manager, and moved with the work into Legend, the production arm; held the design seat of the VSSC-licensed slip-ring division. Clients across ISRO, HAL, Safran / CENCO, Pratt & Whitney, Air India and BEL — “end-to-end support… from bidding and cost estimation to design, production, and testing” (the MD’s recommendation).',
+      'Ran sales and marketing initiatives, the website and social media, and authored the capability decks presented to Tata Advanced Materials and Kinetix — now in this repository as source material.',
     ],
   },
   {

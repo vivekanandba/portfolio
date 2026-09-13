@@ -22,9 +22,22 @@ export const turningPoints: TurningPoint[] = [
     projects: ['safran-a350', 'vssc-tooling'],
   },
   {
+    // Owner note 2026-09-13 is the source; the MD's recommendation and the ENTI
+    // org chart corroborate the span and the seat. Pending owner wording review.
+    year: 2013,
+    title: 'The whole product, or none of it',
+    saw: 'At Safran I would have owned one bracket of one aircraft for years. At Legend Technologies — a medium-scale aerospace tooling house in Bangalore — one engineer could carry a product from the bid to the handover, and the company was willing to let me.',
+    bet: 'Take the smaller company for the whole loop: bid it, price it, design it with my team, prototype it, stand on the floor while it is machined and welded, write the process sheets, prove the first article, hand it over — as an individual contributor and the design team’s manager at once.',
+    cost: 'Five years off the MNC ladder, a title that trailed the work — Engineer, Senior Engineer, Lead Project Engineer — and every gate’s failure landing on me rather than on a department.',
+    proved:
+      'The MD’s words on record — “end-to-end support… from bidding and cost estimation to design, production, and testing” — the design seat of a VSSC-licensed slip-ring division, and Gadjoy, founded from inside this loop.',
+    domain: 'aerospace',
+    projects: ['legend-technologies', 'slipring-line'],
+  },
+  {
     year: 2016,
     title: 'A salary bet on a repair bench',
-    saw: 'Engineers around me designed hardware they had never repaired — and repair is where a design confesses what it really is.',
+    saw: 'Nearly four years into carrying products bid-to-handover at Legend, I could see that the engineers around me designed hardware they had never repaired — and repair is where a design confesses what it really is.',
     bet: 'Found a chip-level repair business on the side, and build it to run without me.',
     cost: 'Nights and weekends for nine years, and accepting that a business only counts if it survives without its founder.',
     proved: '15,000+ repairs at 4.7★ across 516 reviews — still operating today, run by my family.',
