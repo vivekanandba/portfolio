@@ -5,7 +5,8 @@
 > **v1.6 adds owner-authored source material** (ADR-0013): the two Legend/ENTI capability decks and
 > the owner's dated statements live under `source/`, redacted and test-checked; originals are release
 > assets. Site claims may cite them; claims resting only on an owner statement are marked
-> _self-reported_.
+> _self-reported_. **v1.6 also adds motion evidence** (ADR-0014): short, silent simulation clips as a
+> fourth media slot — poster, controls, `preload="none"`, never autoplay, ≤ 2 MiB by test.
 >
 > **v1.5 adds the lived-experience layer** (ADR-0011/0012): Turning Points, audience paths, a
 > command palette and a Now section — written before implementation, per §9.
@@ -48,7 +49,7 @@ live civic site. Prefer a smaller verifiable claim to a larger asserted one. Sup
 - SEO + social share (OpenGraph/Twitter, per-project OG images) + JSON-LD `Person`.
 - Accessible (WCAG AA target) and fast (static export, near-zero runtime JS).
 - **Dark mode** (CSS-variable palette + `data-theme` toggle, pre-paint script).
-- **Media**: per-project artifact image, photo galleries, downloadable/linked artifacts.
+- **Media**: per-project artifact image, photo galleries, short silent clips, downloadable/linked artifacts.
 - **Progressive disclosure** on the landing page so density stays reviewable.
 - **Turning Points**: the career as 4–6 decision records — Saw / Bet / Cost / Proved — each linking
   its era's projects (ADR-0011). First-person voice permitted; owner reviews wording.
@@ -168,17 +169,23 @@ Hard-won rules; each exists because something was nearly or actually published i
   e-mail address under `source/`, any orphaned or missing media file, and any file over 2 MiB.
 - **Prior publication is not consent.** A deck once shown to clients, or a photo once on a company
   website, does not license republishing the people or the private data in it.
+- **Clips are evidence, not decoration** (ADR-0014). MP4/H.264, ≤ 2 MiB, ≤ 35 s, ≤ 720 p, silent, with
+  a mandatory poster (≤ 300 KB), alt text and third-party credit; rendered with the browser's own
+  controls and `preload="none"`, never autoplaying. The size budget is a content test that reads file
+  sizes from disk. Web copies are produced from `source/` by `scripts/media-web.py` from a checked-in
+  manifest; re-encoded clips record their ffmpeg command there.
 
 ## 8. Quality gates
 
-| Gate                | Command                 | Enforces                                                                                    |
-| ------------------- | ----------------------- | ------------------------------------------------------------------------------------------- |
-| Static quality      | `npm run quality:check` | lint + typecheck + prettier                                                                 |
-| Unit/component/a11y | `npm run test:coverage` | all tests **and** coverage floors: 93% statements/lines, 86% branches, 85% functions        |
-| Static export       | `npm run build`         | every route emits with the correct base path                                                |
-| End-to-end          | `npm run test:e2e`      | desktop + mobile, data-driven over the project collection                                   |
-| External links      | `npm run check:links`   | every content URL resolves (advisory — a third-party outage must not block a merge)         |
-| Source material     | part of `npm test`      | `source/` tree shape, no PII, media references resolve, sizes ≤ 2 MiB, sha256 lines present |
+| Gate                | Command                 | Enforces                                                                                                                                             |
+| ------------------- | ----------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Static quality      | `npm run quality:check` | lint + typecheck + prettier                                                                                                                          |
+| Unit/component/a11y | `npm run test:coverage` | all tests **and** coverage floors: 93% statements/lines, 86% branches, 85% functions                                                                 |
+| Static export       | `npm run build`         | every route emits with the correct base path                                                                                                         |
+| End-to-end          | `npm run test:e2e`      | desktop + mobile, data-driven over the project collection                                                                                            |
+| External links      | `npm run check:links`   | every content URL resolves (advisory — a third-party outage must not block a merge)                                                                  |
+| Source material     | part of `npm test`      | `source/` tree shape, no PII, media references resolve, sizes ≤ 2 MiB, sha256 lines present                                                          |
+| Media budgets       | part of `npm test`      | every clip ≤ 2 MiB and every poster ≤ 300 KB on disk; alt, poster and credit present; every project has a chronological anchor; no `TODO` in content |
 
 Coverage floors sit a few points under measured values. **Raise them as coverage improves; never
 lower them to make a build pass.** The link check classifies Cloudflare/LinkedIn bot walls
@@ -255,8 +262,9 @@ status, a date, index linkage, and a superseded record naming an existing replac
 `CASE_STUDY_START` (most recent first). Structure: intro + metric strip → optional artifact image
 (credited) → Problem → Constraints → Decisions & tradeoffs → annotated inline-SVG diagram
 (token-driven, dark-mode automatic, `role="img"` + title/desc; registry keyed by `DIAGRAM_IDS`,
-bijection test-enforced) → Results → optional "From the bench" gallery → optional "Architecture &
-artifacts" (local files or external references) → back link. `generateStaticParams` +
+bijection test-enforced) → Results → optional "From the bench" gallery → optional "In motion" clips
+(ADR-0014: poster, controls, silent, `preload="none"`) → optional "Architecture & artifacts" (local
+files or external references) → back link. `generateStaticParams` +
 `dynamicParams = false`; per-page metadata with absolute canonical; per-slug OG image via the
 co-located `opengraph-image.tsx`. Slim `CaseStudyNav` on subpages. E2E is data-driven over the
 collection, so a new project is covered automatically.
