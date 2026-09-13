@@ -2,6 +2,11 @@
 
 > Spec-driven contract. Code follows this; if reality diverges, update this file first.
 >
+> **v1.7 adds the era archive** (ADR-0016): `/archive/<era>/` catalogues every slide of the era's source
+> decks as a typed entry with a tri-state date, a role tag and its sources — or lists the slide as
+> excluded, with the reason. Coverage is test-enforced; requested dates map to rows in
+> `source/records/`. The palette and tours navigate correctly from any route.
+>
 > **v1.6 adds source material in Vivek's own hand** (ADR-0013): the two Legend/ENTI capability decks and
 > Vivek's dated notes live under `source/`, redacted and test-checked; originals are release
 > assets. Site claims may cite them; claims resting only on one of those notes are marked
@@ -62,6 +67,10 @@ live civic site. Prefer a smaller verifiable claim to a larger asserted one. Sup
 - **Source material** (ADR-0013): a `source/` tree holding the redacted transcripts and screened media
   of Vivek's own capability decks, the resume sources, and Vivek's dated notes — the checkable
   origin of the 2013–2018 claims. Originals are GitHub Release assets, never git objects.
+- **Era archive** (ADR-0016): `/archive/<era>/` — every catalogued item from an era's source material
+  as a card with a tri-state date (`known` · `unknown` · `requested`), a role tag from the closed
+  vocabulary, its deck + slide sources and, where one exists, a link to the project page; every slide
+  not catalogued is listed as excluded with a reason, and a test enforces that nothing is neither.
 
 ### Terminology
 
@@ -180,15 +189,16 @@ Hard-won rules; each exists because something was nearly or actually published i
 
 ## 8. Quality gates
 
-| Gate                | Command                 | Enforces                                                                                                                                             |
-| ------------------- | ----------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Static quality      | `npm run quality:check` | lint + typecheck + prettier                                                                                                                          |
-| Unit/component/a11y | `npm run test:coverage` | all tests **and** coverage floors: 93% statements/lines, 86% branches, 85% functions                                                                 |
-| Static export       | `npm run build`         | every route emits with the correct base path                                                                                                         |
-| End-to-end          | `npm run test:e2e`      | desktop + mobile, data-driven over the project collection                                                                                            |
-| External links      | `npm run check:links`   | every content URL resolves (advisory — a third-party outage must not block a merge)                                                                  |
-| Source material     | part of `npm test`      | `source/` tree shape, no PII, media references resolve, sizes ≤ 2 MiB, sha256 lines present                                                          |
-| Media budgets       | part of `npm test`      | every clip ≤ 2 MiB and every poster ≤ 300 KB on disk; alt, poster and credit present; every project has a chronological anchor; no `TODO` in content |
+| Gate                | Command                 | Enforces                                                                                                                                                         |
+| ------------------- | ----------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Static quality      | `npm run quality:check` | lint + typecheck + prettier                                                                                                                                      |
+| Unit/component/a11y | `npm run test:coverage` | all tests **and** coverage floors: 93% statements/lines, 86% branches, 85% functions                                                                             |
+| Static export       | `npm run build`         | every route emits with the correct base path                                                                                                                     |
+| End-to-end          | `npm run test:e2e`      | desktop + mobile, data-driven over the project collection                                                                                                        |
+| External links      | `npm run check:links`   | every content URL resolves (advisory — a third-party outage must not block a merge)                                                                              |
+| Source material     | part of `npm test`      | `source/` tree shape, no PII, media references resolve, sizes ≤ 2 MiB, sha256 lines present                                                                      |
+| Media budgets       | part of `npm test`      | every clip ≤ 2 MiB and every poster ≤ 300 KB on disk; alt, poster and credit present; every project has a chronological anchor; no `TODO` in content             |
+| Archive coverage    | part of `npm test`      | every slide of every deck is either an archive entry's source or an exclusion with a reason; `requested` dates map to records rows; media exist and are credited |
 
 Coverage floors sit a few points under measured values. **Raise them as coverage improves; never
 lower them to make a build pass.** The link check classifies Cloudflare/LinkedIn bot walls
@@ -274,6 +284,15 @@ files or external references) → back link. `generateStaticParams` +
 `dynamicParams = false`; per-page metadata with absolute canonical; per-slug OG image via the
 co-located `opengraph-image.tsx`. Slim `CaseStudyNav` on subpages. E2E is data-driven over the
 collection, so a new project is covered automatically.
+
+**Archive pages** (ADR-0016): one static route per era at `/archive/<era>/` (`generateStaticParams` +
+`dynamicParams = false`; metadata via `archiveMetadata`). Structure: first-person header stating the
+rule (everything in the decks is here or listed as excluded) with counts → category sections of
+entry cards (title · customer · date badge · role tag · summary · credited thumbnails · deck + slide
+links into the committed transcript · project link) → "What was left out, and why" (the exclusions)
+→ back links. Project pages referenced by archive entries show an "In the archive" block; the
+`/work/` index links the archive. The command palette indexes archive entries via `buildIndex(extra)`,
+and palette/tour anchor navigation checks `document.getElementById` instead of the pathname.
 
 ## 12. Future (designed-for, not built)
 
