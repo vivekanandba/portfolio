@@ -102,3 +102,30 @@ describe('ProjectCard link variants', () => {
     expect(screen.queryByRole('link')).not.toBeInTheDocument();
   });
 });
+
+describe('In motion — the clips block (ADR-0014)', () => {
+  const withClips = caseStudies.filter((cs) => (cs.clips ?? []).length > 0);
+
+  it('at least one project carries clips', () => {
+    expect(withClips.length).toBeGreaterThan(0);
+  });
+
+  it.each(withClips.map((cs) => [cs.slug, cs] as const))(
+    '%s renders one silent, non-autoplaying, poster-backed video per clip',
+    async (_slug, cs) => {
+      const { container } = await renderCaseStudy(cs.slug);
+      expect(screen.getByRole('heading', { name: 'In motion' })).toBeInTheDocument();
+      const videos = Array.from(container.querySelectorAll('video'));
+      expect(videos).toHaveLength(cs.clips!.length);
+      videos.forEach((v, i) => {
+        const clip = cs.clips![i];
+        expect(v.getAttribute('poster')).toContain(clip.poster.split('/').pop()!);
+        expect(v.hasAttribute('controls')).toBe(true);
+        expect(v.getAttribute('preload')).toBe('none');
+        expect(v.hasAttribute('autoplay')).toBe(false);
+        expect(v.muted).toBe(true);
+        expect(v.getAttribute('aria-label')).toBe(clip.alt);
+      });
+    },
+  );
+});
