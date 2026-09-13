@@ -1,4 +1,4 @@
-Source: owner, 2026-09-13
+Source: my own account, 2026-09-13
 
 # Owning a mechanical product end to end — Legend Technologies, 2013–2018
 
@@ -20,7 +20,7 @@ aerospace industry that I primarily worked under.
 Once that is done, first-article proving used to be done, and each one of those productions had
 multiple challenges that I would have personally listed. There were production-related tolerances and
 GD&T tolerances that we needed to take care of in design. We used to do design for manufacturability,
-design for testability — design for multiple such things [the owner could not recall the rest of the
+design for testability — design for multiple such things [I could not recall the rest of the
 "design-for-X" list at the time].
 
 I used to go to the production floor: sit with the lathe operator, sit with all the different

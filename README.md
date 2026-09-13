@@ -19,15 +19,15 @@ npm run test:e2e        # playwright: builds with BASE_PATH=/portfolio, stages u
 
 ## Editing content
 
-| What                                                 | Where                                                 |
-| ---------------------------------------------------- | ----------------------------------------------------- |
-| Name, tagline, bio arc, links, email                 | `src/content/profile.ts`                              |
-| Projects (cards in Selected Work)                    | `src/content/experience.ts` (`projects`)              |
-| Career timeline                                      | `src/content/experience.ts` (`roles`)                 |
-| Skill groups                                         | `src/content/skills.ts`                               |
-| Patents / publications / education                   | `src/content/credentials.ts`                          |
-| Schemas (shape + invariants)                         | `src/content/schema.ts`                               |
-| Source material (decks, resume sources, owner notes) | `source/` — see `source/README.md` for how to cite it |
+| What                                              | Where                                                 |
+| ------------------------------------------------- | ----------------------------------------------------- |
+| Name, tagline, bio arc, links, email              | `src/content/profile.ts`                              |
+| Projects (cards in Selected Work)                 | `src/content/experience.ts` (`projects`)              |
+| Career timeline                                   | `src/content/experience.ts` (`roles`)                 |
+| Skill groups                                      | `src/content/skills.ts`                               |
+| Patents / publications / education                | `src/content/credentials.ts`                          |
+| Schemas (shape + invariants)                      | `src/content/schema.ts`                               |
+| Source material (decks, resume sources, my notes) | `source/` — see `source/README.md` for how to cite it |
 
 Notes:
 

@@ -8,9 +8,9 @@ import type { CaseStudy } from '../schema';
 // (division team table: "Design — Vivekanand B"), slide 61 (facilities), slide
 // 64 (customers and quantities), slide 86 (rotational test rig); ENTI deck
 // v1.4, slides 32–33 (miniaturisation, 5 µm tolerances, indigenisation against
-// imports). Which configurations passed through the owner's hands in 2013–2018
+// imports). Which configurations passed through Vivek's hands in 2013–2018
 // is not recorded anywhere; the division table records the seat, not the parts —
-// so the page is written at division level (owner decision pending, ADR-0015).
+// so the page is written at division level (Vivek's decision pending, ADR-0015).
 const PHOTO = 'Photo: Legend Technologies (India) Pvt. Ltd. — capability deck v5.5';
 const RENDER = 'Render: Legend Technologies (India) Pvt. Ltd. — capability deck v5.5';
 

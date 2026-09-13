@@ -2,13 +2,13 @@ import { describe, it, expect } from 'vitest';
 import { roles, turningPoints, caseStudyStart } from '@/content';
 
 /**
- * The Legend-era facts the owner decided on 2026-09-13 (recorded in
+ * The Legend-era facts Vivek decided on 2026-09-13 (recorded in
  * source/resume/README.md): Legend ran Jan 2013 – Jan 2018 and Tech Mahindra
  * followed from Jan 2018. These guards stop a future "helpful" revert to the
  * Jan 2019 dates the served resume still carries, and pin the sixth Turning
  * Point — the bid-to-handover loop — to the era pages. Written red (PR-4).
  */
-describe('Legend-era dates (owner decision, 2026-09-13)', () => {
+describe('Legend-era dates (Vivek’s decision, 2026-09-13)', () => {
   const legend = roles.find((r) => r.company.startsWith('Legend'));
   const techm = roles.find((r) => r.company === 'Tech Mahindra');
 

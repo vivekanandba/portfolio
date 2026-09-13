@@ -6,7 +6,7 @@
 ## Context
 
 The Mapshalli volunteer work shipped as a single project, "Stop Hunger & AirCare", because both were
-volunteer civic tech at the same organisation in overlapping years. The owner rejected the grouping:
+volunteer civic tech at the same organisation in overlapping years. Vivek rejected the grouping:
 _"those are two separate projects stop hunger and air care… for air care there was another added
 element of adding a device in itself to support that cost. So separating it out would make sense."_
 

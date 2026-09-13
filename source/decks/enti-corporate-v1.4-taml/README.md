@@ -10,8 +10,8 @@
 | sha256            | `75218317c1468df14084ab2458420a3a88eee9d0075bb040f9abb6028504f793`                                                                                                                        |
 | Extracted with    | `scripts/deck-extract.py` + `scripts/deck-rules/enti-corporate-v1.4-taml.json` (reproducible; see below)                                                                                  |
 
-The deck carries the company's own "confidential" footers. The owner authored it, states it was presented
-to clients and posted publicly, and has directed its use here. Third-party **personal** data is redacted
+The deck carries the company's own "confidential" footers. I authored it, presented it to clients and posted it
+publicly, and I have directed its use here. Third-party **personal** data is redacted
 regardless (ADR-0007: prior publication is not consent).
 
 ## What is here
@@ -33,7 +33,7 @@ regardless (ADR-0007: prior publication is not consent).
 **Text.** Names of third parties are replaced with `[name withheld]` (23 strings; the founder is the one
 exception). Slide bodies omitted with a stated reason: 16 (management roster), 17 (advisory board),
 19, 20, 22 (biographies), 48 (e-mail addresses). The organisation chart on slide 18 keeps its structure
-and the owner's own line — "Vivekanand B (Technical Manager)" — with all other staff names withheld.
+and my own line — "Vivekanand B (Technical Manager)" — with all other staff names withheld.
 
 **Media** — 56 excluded and 6 pending of 102 files:
 

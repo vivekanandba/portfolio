@@ -6,10 +6,10 @@
 ## Context
 
 The hero's "Track Record" panel originally read: `15+ years of engineering`, `430k/day requests in
-production`, `US patent granted`. The owner's assessment was that the middle one did not land —
+production`, `US patent granted`. Vivek's assessment was that the middle one did not land —
 a request count with no context is a number, not evidence.
 
-The first replacement was **"GA in 3 months — concept → enterprise AI copilot"**. The owner rejected
+The first replacement was **"GA in 3 months — concept → enterprise AI copilot"**. Vivek rejected
 that too, with a sharper point: _"in the era of AI it doesn't stand ground."_ Shipping speed has been
 commoditised; three months to GA no longer distinguishes anyone.
 
@@ -44,9 +44,9 @@ rather than a headline.
 
 ## Alternatives rejected
 
-- **Keep "430k/day requests in production" alone.** The owner's original objection: unconvincing
+- **Keep "430k/day requests in production" alone.** Vivek's original objection: unconvincing
   without the latency constraint that makes it hard.
-- **"GA in 3 months."** Rejected by the owner as no longer differentiating in an AI era.
+- **"GA in 3 months."** Rejected by Vivek as no longer differentiating in an AI era.
 - **"40 hospitals, HIPAA compliant."** Strong, but the claim rests on a recommender's wording rather
   than a document we can link.
 - **Marquee of client logos.** Logo walls imply endorsement and need trademark care; names with

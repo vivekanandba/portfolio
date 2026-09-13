@@ -503,7 +503,7 @@ _Body omitted: biography of a third party._
 
 ## Slide 76 — ORGANISATION CHART
 
-- media withheld (1): image — controlled quality-manual page (organisation chart) — not the owner’s to publish
+- media withheld (1): image — controlled quality-manual page (organisation chart) — not mine to publish
 
 ## Slide 77 — FINANCIAL STATUS
 

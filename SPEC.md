@@ -2,10 +2,11 @@
 
 > Spec-driven contract. Code follows this; if reality diverges, update this file first.
 >
-> **v1.6 adds owner-authored source material** (ADR-0013): the two Legend/ENTI capability decks and
-> the owner's dated statements live under `source/`, redacted and test-checked; originals are release
-> assets. Site claims may cite them; claims resting only on an owner statement are marked
-> _self-reported_. **v1.6 also adds motion evidence** (ADR-0014): short, silent simulation clips as a
+> **v1.6 adds source material in Vivek's own hand** (ADR-0013): the two Legend/ENTI capability decks and
+> Vivek's dated notes live under `source/`, redacted and test-checked; originals are release
+> assets. Site claims may cite them; claims resting only on one of those notes are marked
+> _my account only_. The site speaks in the first person — the word "owner" never renders
+> (test-enforced). **v1.6 also adds motion evidence** (ADR-0014): short, silent simulation clips as a
 > fourth media slot — poster, controls, `preload="none"`, never autoplay, ≤ 2 MiB by test — and the
 > **era hub page** pattern (ADR-0015): a project page about a way of working rather than a system,
 > whose gallery captions each carry a `Role:` tag from a closed vocabulary.
@@ -54,12 +55,12 @@ live civic site. Prefer a smaller verifiable claim to a larger asserted one. Sup
 - **Media**: per-project artifact image, photo galleries, short silent clips, downloadable/linked artifacts.
 - **Progressive disclosure** on the landing page so density stays reviewable.
 - **Turning Points**: the career as 4–6 decision records — Saw / Bet / Cost / Proved — each linking
-  its era's projects (ADR-0011). First-person voice permitted; owner reviews wording.
+  its era's projects (ADR-0011). First-person voice permitted; Vivek reviews wording.
 - **Interaction layer** (ADR-0012): audience-path tours from the hero, a ⌘K command palette over a
   build-time index, and a dated Now section derived from the newest certifications. All progressive
   enhancement — the site remains fully functional without JavaScript.
 - **Source material** (ADR-0013): a `source/` tree holding the redacted transcripts and screened media
-  of the owner's own capability decks, the resume sources, and dated owner statements — the checkable
+  of Vivek's own capability decks, the resume sources, and Vivek's dated notes — the checkable
   origin of the 2013–2018 claims. Originals are GitHub Release assets, never git objects.
 
 ### Terminology
@@ -74,15 +75,15 @@ The **master resume** (`source/resume/VIVEKANANDB-RESUME-MASTER-v2.docx`) is the
 **served resume v15 PDF is the floor** — no site claim may _contradict_ it, though project pages may
 carry curated master-resume detail v15 omits. Landing cards stay modest: ≤3 metrics, summary-level
 claims. Tracked-changes conflicts resolve toward the v15-consistent value. Any metric absent from v15
-ships only after explicit owner approval — such approvals are recorded in the content-file comment.
+ships only after Vivek's explicit approval — such approvals are recorded in the content-file comment.
 
 **Third-party public sources** (a client's or employer's published site, a regulator's database, an
 app store) may supply facts and media, subject to §7.
 
-**Owner-authored source material** (`source/`, ADR-0013) — the owner's own capability decks, redacted,
-and dated first-person statements — may supply facts and media. A claim drawn from it cites deck + slide
-or the note's date in the content-file comment. A claim resting **only** on an owner statement renders
-with a visible _self-reported_ marker; a claim corroborated by a third-party record carries none.
+**Source material in Vivek's own hand** (`source/`, ADR-0013) — the capability decks Vivek authored, redacted,
+and dated first-person notes — may supply facts and media. A claim drawn from it cites deck + slide
+or the note's date in the content-file comment. A claim resting **only** on one of those notes renders
+with a visible _my account only_ marker; a claim corroborated by a third-party record carries none.
 
 ### Out of scope (v1.4) — non-goals
 
@@ -151,7 +152,7 @@ Hard-won rules; each exists because something was nearly or actually published i
   details) is gitignored. Only public-profile CSVs may be read. Stage files by path — never
   `git add .`.
 - **Audit every photo for third-party PII before publishing.** Device-repair photos that capture an
-  _About_ screen expose owner name, serial, IMEI and MAC addresses. Excluded, and recorded so it
+  _About_ screen expose the customer's name, serial, IMEI and MAC addresses. Excluded, and recorded so it
   cannot recur.
 - **Never publish maps that locate vulnerable people.** The Stop Hunger dashboard's locations panel
   plots settlements needing relief; only aggregate charts ship.
@@ -276,7 +277,7 @@ collection, so a new project is covered automatically.
 
 ## 12. Future (designed-for, not built)
 
-- An LCA-mockups page split out of the Legend hub gallery, if the owner supplies per-item role lines
+- An LCA-mockups page split out of the Legend hub gallery, if Vivek supplies per-item role lines
   (ADR-0015 §4).
 
 Custom domain (`CNAME` + `basePath` change); writing/blog; the aerospace-era media pool awaiting

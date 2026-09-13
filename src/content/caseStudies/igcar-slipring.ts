@@ -45,7 +45,7 @@ export const igcarSlipring: CaseStudy = {
     },
     {
       decision:
-        'Carry the part as designer, production and purchase liaison, testing liaison and project manager — one owner from drawing to the installation at the customer.',
+        'Carry the part as designer, production and purchase liaison, testing liaison and project manager — me, from drawing to the installation at the customer.',
       tradeoff:
         'One person across every function is the small-company way; it is also why the installation photographs exist — the designer was there.',
     },

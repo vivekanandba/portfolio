@@ -1,7 +1,7 @@
 import { DiagramArrow, DiagramBox, DiagramNote, DiagramShell } from './primitives';
 
 /**
- * The bid-to-handover loop one engineer carried at Legend (ADR-0015): seven
+ * The bid-to-handover loop Vivek carried at Legend (ADR-0015): seven
  * stages with the two gates where it fails — design QA and inspection — drawn
  * dashed, and the return arrow because a handover is where the next bid begins.
  */
@@ -10,13 +10,13 @@ export function LegendTechnologiesDiagram() {
     <DiagramShell
       id="legend-technologies-diagram"
       title="Bid-to-handover loop for a one-off mechanical product"
-      desc="Seven stages carried by one owner at a medium-scale aerospace tooling house: bid (pre-sales, price and technical negotiation), design with the team through a design-QA gate, prototype, batch production on the shop floor, process documentation for production and quality, inspection and first-article proving, and handover at the customer — which is where the next enquiry starts. The design-QA and inspection gates are where the loop fails."
+      desc="Seven stages I carried at a medium-scale aerospace tooling house: bid (pre-sales, price and technical negotiation), design with the team through a design-QA gate, prototype, batch production on the shop floor, process documentation for production and quality, inspection and first-article proving, and handover at the customer — which is where the next enquiry starts. The design-QA and inspection gates are where the loop fails."
       viewBox="0 0 720 300"
     >
       <DiagramNote
         x={360}
         y={24}
-        text="one owner in both seats — individual contributor and design-team lead"
+        text="me in both seats — individual contributor and design-team lead"
       />
 
       <DiagramBox x={12} y={44} w={84} h={64} label="1 Bid" sublabel="price · technical" />

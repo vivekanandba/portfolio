@@ -4,11 +4,11 @@ import { join } from 'node:path';
 import { describe, it, expect } from 'vitest';
 
 /**
- * Owner-authored source material (ADR-0013). These checks keep the `source/`
+ * Source material in Vivek's own hand (ADR-0013). These checks keep the `source/`
  * tree honest in the ways a machine can: nothing private leaks (no phone
  * numbers, no e-mail addresses), every media reference resolves and no media
  * file is orphaned, every file respects the 2 MiB hygiene ceiling, originals
- * are pinned by sha256 to a named release, and owner statements are dated.
+ * are pinned by sha256 to a named release, and Vivek's notes are dated.
  *
  * They do NOT judge redaction quality — whether a third party's name slipped
  * through is a human review responsibility, recorded in each deck README's
@@ -34,7 +34,7 @@ const sha256 = (p: string) => createHash('sha256').update(readFileSync(p)).diges
 
 describe('source/ tree shape', () => {
   it('has the README and the three sub-trees', () => {
-    for (const p of ['README.md', 'decks', 'resume', 'owner-notes']) {
+    for (const p of ['README.md', 'decks', 'resume', 'my-notes']) {
       expect(existsSync(join(ROOT, p)), `source/${p} missing`).toBe(true);
     }
   });
@@ -164,8 +164,8 @@ describe('source/resume', () => {
   });
 });
 
-describe('source/owner-notes', () => {
-  const dir = join(ROOT, 'owner-notes');
+describe('source/my-notes', () => {
+  const dir = join(ROOT, 'my-notes');
   const notes = () => readdirSync(dir).filter((f) => f !== 'README.md');
 
   it('has at least one note', () => {
@@ -177,8 +177,8 @@ describe('source/owner-notes', () => {
       const m = f.match(/^(\d{4}-\d{2}-\d{2})-[a-z0-9-]+\.md$/);
       expect(m, `${f} must be YYYY-MM-DD-slug.md`).toBeTruthy();
       const text = readFileSync(join(dir, f), 'utf8');
-      expect(text, `${f} needs a "Source: owner, <date>" header`).toContain(
-        `Source: owner, ${m![1]}`,
+      expect(text, `${f} needs a "Source: my own account, <date>" header`).toContain(
+        `Source: my own account, ${m![1]}`,
       );
     }
   });

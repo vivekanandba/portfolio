@@ -1,4 +1,4 @@
-# Media to add (owner: Vivek)
+# Media to add (mine to fill)
 
 The LinkedIn rich-media harvest already filled these slots (live on the site): Speech
 Intelligence + Sanas for Sales architecture diagrams, DICOM decoder + NGV network diagrams,
@@ -36,7 +36,7 @@ item across the grid instead of cropping it.
 ## Cautions before publishing
 
 - **Audit every repair/device photo for customer PII before it ships.** Several before/after
-  cards on gadjoy.in photograph the device's _About_ screen, which exposes the owner's name,
+  cards on gadjoy.in photograph the device's _About_ screen, which exposes the customer's name,
   serial number, IMEIs, and MAC addresses — e.g. "Sheikh's iPad" (serial + Wi-Fi/Bluetooth MAC)
   and "Dipti's A03" (serial + both IMEIs). Those are excluded here and should come down from
   gadjoy.in too. Only hardware-damage shots and screens with no identifiers are safe.

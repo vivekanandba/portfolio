@@ -237,7 +237,7 @@ export const projects: Project[] = [
     summary:
       'Five years at a medium-scale aerospace tooling house, carrying one-off mechanical products through every gate — bid, design with GD&T, prototype, batch production on the shop floor, process sheets, first-article proving, handover — as an individual contributor and design-team lead at once. The loop the entrepreneurial arc was founded from.',
     metrics: [
-      { value: 'Bid → handover', label: 'seven stages, one owner' },
+      { value: 'Bid → handover', label: 'seven stages, one pair of hands' },
       { value: '2013 – 2018', label: 'Engineer → Lead Project Engineer' },
     ],
     tags: ['End-to-end ownership', 'IC + design lead', 'ISRO · HAL · Safran · P&W · BEL'],
@@ -515,11 +515,11 @@ export const roles: Role[] = [
     ],
   },
   {
-    // Dates and titles follow the owner's 2026-09-13 decision (LinkedIn Positions;
+    // Dates and titles follow Vivek's 2026-09-13 decision (LinkedIn Positions;
     // see source/resume/README.md for the records that still disagree). The ENTI
     // seat is from the ENTI deck's org chart (source/decks, slide 18); the
     // end-to-end span from the MD's recommendation (live on /recommendations/);
-    // the loop itself from owner note 2026-09-13 (self-reported where noted on the
+    // the loop itself from Vivek's note of 2026-09-13 (“my account only” where noted on the
     // hub page, /work/legend-technologies/).
     company: 'Legend Technologies',
     title: 'Engineer → Senior Engineer → Lead Project Engineer',

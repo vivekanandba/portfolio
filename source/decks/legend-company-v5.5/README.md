@@ -10,8 +10,8 @@
 | sha256            | `0a83f9e215367fa9fefb9ddb03d539efb021d0279a7f2ee9eae9565a72effdba`                                                                        |
 | Extracted with    | `scripts/deck-extract.py` + `scripts/deck-rules/legend-company-v5.5.json` (reproducible; see below)                                       |
 
-The deck carries the company's own "confidential" footers. The owner authored it, states it was presented
-to clients and posted publicly, and has directed its use here. Third-party **personal** data is redacted
+The deck carries the company's own "confidential" footers. I authored it, presented it to clients and posted it
+publicly, and I have directed its use here. Third-party **personal** data is redacted
 regardless (ADR-0007: prior publication is not consent).
 
 ## What is here
@@ -41,7 +41,7 @@ E-mail addresses and phone-shaped numbers are scrubbed as a safety net.
 | 4     | portrait of a third party                                                                      |
 | 2     | vehicle number plate legible                                                                   |
 | 1     | EMF vector drawing — unsupported format; the same jig is shown in the photographs on the slide |
-| 1     | controlled quality-manual page (organisation chart) — not the owner’s to publish               |
+| 1     | controlled quality-manual page (organisation chart) — not mine to publish                      |
 
 **Edits.** `s37-lca-mockup-road-transport.jpeg` is cropped to remove two cars whose number plates were
 legible and has two faces blurred (declared in the rules file; re-encoded by Pillow, so this one file is
@@ -59,7 +59,7 @@ not byte-identical to its original).
 | **60**      | **Slip-ring division team table: "Design — Vivekanand B"**                                                                                                                                                                                              |
 | 66–69       | LCA TD1/TD2 modification and transport, composite canopy trolley, GSLV access platform                                                                                                                                                                  |
 | 80–86       | Facilities: hangar, CNC turning and machining centres, clean room, inspection room, rotational test rig                                                                                                                                                 |
-| 97–98       | ISO 9001:2015 and AS9100D certificates dated 30 May 2018 — **after the owner's tenure (to Jan 2018); not claimed on the site**                                                                                                                          |
+| 97–98       | ISO 9001:2015 and AS9100D certificates dated 30 May 2018 — **after my time there (to Jan 2018); not claimed on the site**                                                                                                                               |
 
 ## Reproduce
 

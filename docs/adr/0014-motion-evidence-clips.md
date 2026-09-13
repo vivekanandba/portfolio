@@ -55,7 +55,7 @@ distraction at best and an accessibility failure at worst. And the hygiene gate 
   content type. A unit test renders the block and checks one `<video>` per clip with its accessible name.
 - Caption text is where the simulation's _meaning_ goes ("elevation drive, motorised — the gearing the
   resume mentions"), because the video itself cannot carry the claim.
-- The BMP-II material is a defence programme (BEL's FICV). The owner directed publication; the company
+- The BMP-II material is a defence programme (BEL's FICV). Vivek directed publication; the company
   itself presented the deck externally; the renders show a 1980s Soviet-origin vehicle documented in open
   literature. Recorded here so the decision is visible, not assumed.
 

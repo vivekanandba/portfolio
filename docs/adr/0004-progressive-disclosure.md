@@ -6,7 +6,7 @@
 ## Context
 
 The landing page had grown to nine sections carrying 9 flagship cards, 18 era-chapter entries, 6
-skill groups, 8 testimonials and 34 certifications. The owner's read: _"it feels a little bit bland
+skill groups, 8 testimonials and 34 certifications. Vivek's read: _"it feels a little bit bland
 and too much of information… maybe we can be hidden away into separate sections that can be clicked
 and gone through."_
 
@@ -48,5 +48,5 @@ for depth.
   losing SEO and in-page search for exactly the material that proves breadth.
 - **Move depth to separate subpages.** Cleanest landing page, but a recruiter skimming for 20 seconds
   will not click through, so the breadth would go unseen.
-- **Keep everything expanded, fix pacing with visual rhythm only.** Considered and offered; the owner
+- **Keep everything expanded, fix pacing with visual rhythm only.** Considered and offered; Vivek
   chose disclosure.
