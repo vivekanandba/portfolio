@@ -4,6 +4,16 @@ import type { CaseStudy } from '@/content/schema';
 type Clip = NonNullable<CaseStudy['clips']>[number];
 
 /**
+ * Captions for a silent clip, inline as a WebVTT data: URL — one cue for the
+ * whole clip saying it is silent and what happens in it (WCAG 1.2.2 via axe's
+ * video-caption rule). No extra files, and it stays in lockstep with `alt`.
+ */
+function captionsTrack(alt: string): string {
+  const vtt = `WEBVTT\n\n00:00:00.000 --> 00:00:35.000\n[Silent simulation] ${alt}`;
+  return `data:text/vtt;charset=utf-8,${encodeURIComponent(vtt)}`;
+}
+
+/**
  * Motion evidence (ADR-0014): short, silent simulation clips. Nothing downloads
  * or plays until the reader presses play — `preload="none"`, no autoplay, the
  * browser's own controls — and every clip carries a real poster still from the
@@ -27,7 +37,15 @@ export function ClipGrid({ clips }: { clips: Clip[] }) {
               preload="none"
               aria-label={c.alt}
               className="aspect-video w-full bg-black object-contain"
-            />
+            >
+              <track
+                kind="captions"
+                srcLang="en"
+                label="English"
+                src={captionsTrack(c.alt)}
+                default
+              />
+            </video>
             <figcaption className="border-t border-hairline px-3 py-2 text-[11px] leading-snug text-muted">
               {c.caption && <span className="text-ink">{c.caption} </span>}
               {c.credit ? `${c.credit} ` : ''}

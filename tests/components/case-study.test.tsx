@@ -44,7 +44,7 @@ describe('case-study pages', () => {
 
   // Representative axe sample — one per page archetype (full flow, data-heavy,
   // process diagram, compact) to keep runtime sane across all case-study pages.
-  it.each(['playground', 'speech-intelligence', 'vssc-tooling', 'aircare'])(
+  it.each(['playground', 'speech-intelligence', 'vssc-tooling', 'aircare', 'bmp2-turret'])(
     'has no axe violations (%s)',
     async (slug) => {
       const { container } = await renderCaseStudy(slug);
@@ -125,6 +125,10 @@ describe('In motion — the clips block (ADR-0014)', () => {
         expect(v.hasAttribute('autoplay')).toBe(false);
         expect(v.muted).toBe(true);
         expect(v.getAttribute('aria-label')).toBe(clip.alt);
+        // WCAG 1.2.2: a captions track, even for a silent clip — it says so.
+        const track = v.querySelector('track[kind="captions"]');
+        expect(track).not.toBeNull();
+        expect(decodeURIComponent(track!.getAttribute('src')!)).toContain(clip.alt);
       });
     },
   );

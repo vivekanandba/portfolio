@@ -5,7 +5,7 @@ import type { CaseStudy } from '../schema';
 // HAL); ENTI deck v1.4, slides 36–39 (position light 100×90×50 mm on the
 // landing gear, wander light 110×110×50 mm with a 1.5 m retractable cord,
 // composite prototypes shown to pilots, DFM-driven miniaturisation) and the
-// seven qualification animations on slide 37 (altitude, high-temperature
+// seven qualification animations (six load cases) on slide 37 (altitude, high-temperature
 // storage/operation, low-temperature operation, thermal shock, natural-
 // frequency sweep, transit drop). The two transit-drop clips are 35 s excerpts
 // of 3-minute recordings (first 70 s at 2× speed); see scripts/media-web.json.
@@ -21,7 +21,7 @@ export const lcaNavy: CaseStudy = {
     'Indigenisation of two imported opto-electronic units for the LCA-Navy — India’s naval light combat aircraft — for the Aircraft Research & Design Centre at HAL: an external position light that had to fit a 100 × 90 × 50 mm envelope on the landing gear and survive the aircraft’s environment, and a cockpit wander light with a 1.5 m retractable cord in 110 × 110 × 50 mm. Designed in CATIA, qualified in simulation before a prototype was cut.',
   metrics: [
     { value: '100×90×50 mm', label: 'position-light envelope' },
-    { value: '7 load cases', label: 'qualification simulated first' },
+    { value: '6 load cases', label: 'qualification simulated first' },
     { value: 'ARDC · HAL', label: 'design authority' },
   ],
   problem: [
@@ -46,7 +46,7 @@ export const lcaNavy: CaseStudy = {
       decision:
         'Simulate the qualification envelope before the real tests: altitude, high-temperature storage and operation, low-temperature operation, thermal shock, a natural-frequency sweep, and the transit-drop impact.',
       tradeoff:
-        'Seven analyses before a single part exists is slow up front — and it is why the prototypes went to environmental test with the failure modes already known. The animations below are those runs.',
+        'Six analyses before a single part exists is slow up front — and it is why the prototypes went to environmental test with the failure modes already known. The animations below are those runs (the transit drop in two views).',
     },
     {
       decision:
@@ -62,7 +62,7 @@ export const lcaNavy: CaseStudy = {
   ],
   results: [
     { value: 'Prototyped', label: 'composite proof-of-concept units' },
-    { value: 'Simulated', label: '7 qualification cases before test' },
+    { value: 'Simulated', label: '6 qualification cases before test' },
     { value: 'Shown to pilots', label: 'for LCA-Navy via ARDC / HAL' },
   ],
   resultsNote:
@@ -148,5 +148,5 @@ export const lcaNavy: CaseStudy = {
     },
   ],
   seoDescription:
-    'Project: indigenised position light and wander light for the LCA-Navy at ARDC / HAL — 100×90×50 mm and 110×110×50 mm envelopes, seven qualification cases simulated before hardware, composite prototypes shown to pilots.',
+    'Project: indigenised position light and wander light for the LCA-Navy at ARDC / HAL — 100×90×50 mm and 110×110×50 mm envelopes, six qualification cases simulated before hardware, composite prototypes shown to pilots.',
 };
