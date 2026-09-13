@@ -2,6 +2,11 @@
 
 > Spec-driven contract. Code follows this; if reality diverges, update this file first.
 >
+> **v1.8 adds Writing** (ADR-0017): learnings, findings and field notes as Markdown posts under
+> `src/content/writing/`, compiled at build to sanitised HTML with strict YAML frontmatter; the routes
+> (`/writing/`, `/writing/<slug>/`, an Atom feed, a sitemap) and the landing section follow in the next
+> change. The §2 non-goal "blog/writing engine" is withdrawn.
+>
 > **v1.7 adds the era archive** (ADR-0016): `/archive/<era>/` catalogues every slide of the era's source
 > decks as a typed entry with a tri-state date, a role tag and its sources — or lists the slide as
 > excluded, with the reason. Coverage is test-enforced; requested dates map to rows in
@@ -71,6 +76,11 @@ live civic site. Prefer a smaller verifiable claim to a larger asserted one. Sup
   as a card with a tri-state date (`known` · `unknown` · `requested`), a role tag from the closed
   vocabulary, its deck + slide sources and, where one exists, a link to the project page; every slide
   not catalogued is listed as excluded with a reason, and a test enforces that nothing is neither.
+- **Writing** (ADR-0017): my learnings, findings and field notes as Markdown posts with strict
+  frontmatter (`title`, `date`, `summary`, `kind`, `tags`, `projects`, `draft`), compiled at build to
+  sanitised HTML — no raw HTML, images local and captioned, first person and dated by construction —
+  listed at `/writing/`, one page per post, an Atom feed, and "Notes from this project" on the project
+  pages a post cites.
 
 ### Terminology
 
@@ -97,7 +107,7 @@ with a visible _my account only_ marker; a claim corroborated by a third-party r
 ### Out of scope (v1.4) — non-goals
 
 - CMS, backend, database, server-side contact form.
-- Blog/writing engine, i18n, heavy animation.
+- i18n, heavy animation. For Writing: comments, reactions, a newsletter, scheduled publishing.
 - Hobby/personal repos presented beside professional work (dilutes rather than adds).
 - Any private data: see §7.
 
@@ -115,6 +125,7 @@ with a visible _my account only_ marker; a claim corroborated by a third-party r
 | 7   | **Career Timeline**    | Show the journey           | Sanas.ai → NovaSignal → Tech Mahindra → Gadjoy (side venture, `aside`) → Legend → Safran                                                                                                                    |
 | 8   | **Credibility**        | Verifiable credentials     | Granted patent, publications, achievements · education · **34 certifications** (disclosed, each linked) · **6 languages**                                                                                   |
 | 8b  | **Now**                | Current AI/ML pulse        | Dated "exploring now" — newest certifications surfaced automatically + hand-written line                                                                                                                    |
+| 8c  | **Writing**            | Learnings in my own words  | Latest 3 posts — kind · date · title · summary — linking `/writing/` (ADR-0017)                                                                                                                             |
 | 9   | **Contact / Footer**   | Conversion                 | Email, LinkedIn, GitHub, resume · build-time "Last updated"                                                                                                                                                 |
 
 ## 4. Hero story-proofs
@@ -152,6 +163,13 @@ constellation of ~17 clients/employers, tiered by prominence with domain-coloure
 - **Invariants (test-enforced):** projects ↔ project pages ↔ diagram registry are 1:1;
   `slug === projectId`; metric labels unique per strip (they key React lists); every referenced
   media/doc file exists; every image has alt text; third-party media carries a visible credit.
+- **Writing compiled at build** (ADR-0017): Markdown posts with strict YAML frontmatter validated by
+  Zod (`yaml@2` keeps dates as strings); a synchronous unified pipeline (`remark-parse → remark-gfm →
+remark-rehype → rehype-sanitize → rehype-slug → policy → rehype-stringify`) drops raw HTML, sanitises,
+  refuses an `h1` in the body and any image not under `/media/` or without alt text, and prefixes
+  root-relative links with the base path. The fs-backed library is `src/lib/writing.ts`; no
+  `'use client'` file may import it (test-enforced). Zero published posts fails the export build by
+  design.
 
 ## 7. Media & privacy policy
 
@@ -189,16 +207,17 @@ Hard-won rules; each exists because something was nearly or actually published i
 
 ## 8. Quality gates
 
-| Gate                | Command                 | Enforces                                                                                                                                                         |
-| ------------------- | ----------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Static quality      | `npm run quality:check` | lint + typecheck + prettier                                                                                                                                      |
-| Unit/component/a11y | `npm run test:coverage` | all tests **and** coverage floors: 93% statements/lines, 86% branches, 85% functions                                                                             |
-| Static export       | `npm run build`         | every route emits with the correct base path                                                                                                                     |
-| End-to-end          | `npm run test:e2e`      | desktop + mobile, data-driven over the project collection                                                                                                        |
-| External links      | `npm run check:links`   | every content URL resolves (advisory — a third-party outage must not block a merge)                                                                              |
-| Source material     | part of `npm test`      | `source/` tree shape, no PII, media references resolve, sizes ≤ 2 MiB, sha256 lines present                                                                      |
-| Media budgets       | part of `npm test`      | every clip ≤ 2 MiB and every poster ≤ 300 KB on disk; alt, poster and credit present; every project has a chronological anchor; no `TODO` in content             |
-| Archive coverage    | part of `npm test`      | every slide of every deck is either an archive entry's source or an exclusion with a reason; `requested` dates map to records rows; media exist and are credited |
+| Gate                | Command                 | Enforces                                                                                                                                                                                                                           |
+| ------------------- | ----------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Static quality      | `npm run quality:check` | lint + typecheck + prettier                                                                                                                                                                                                        |
+| Unit/component/a11y | `npm run test:coverage` | all tests **and** coverage floors: 93% statements/lines, 86% branches, 85% functions                                                                                                                                               |
+| Static export       | `npm run build`         | every route emits with the correct base path                                                                                                                                                                                       |
+| End-to-end          | `npm run test:e2e`      | desktop + mobile, data-driven over the project collection                                                                                                                                                                          |
+| External links      | `npm run check:links`   | every content URL resolves (advisory — a third-party outage must not block a merge)                                                                                                                                                |
+| Source material     | part of `npm test`      | `source/` tree shape, no PII, media references resolve, sizes ≤ 2 MiB, sha256 lines present                                                                                                                                        |
+| Media budgets       | part of `npm test`      | every clip ≤ 2 MiB and every poster ≤ 300 KB on disk; alt, poster and credit present; every project has a chronological anchor; no `TODO` in content                                                                               |
+| Archive coverage    | part of `npm test`      | every slide of every deck is either an archive entry's source or an exclusion with a reason; `requested` dates map to records rows; media exist and are credited                                                                   |
+| Writing             | part of `npm test`      | every post parses under the strict frontmatter schema and renders under the policy; each malformed fixture fails naming file and field; sanitisation strips scripts, handlers and `javascript:` URLs; the Atom feed is well-formed |
 
 Coverage floors sit a few points under measured values. **Raise them as coverage improves; never
 lower them to make a build pass.** The link check classifies Cloudflare/LinkedIn bot walls
@@ -268,6 +287,7 @@ status, a date, index linkage, and a superseded record naming an existing replac
 - [ ] SEO: title/description, OG/Twitter, per-project OG image, JSON-LD `Person`.
 - [ ] Every third-party image carries a visible credit; every image has alt text.
 - [ ] No private or third-party PII anywhere in the repo or the build.
+- [ ] Every Markdown post parses and renders; a malformed post fails the build naming the file and the field.
 
 ## 11. Project pages
 
@@ -294,10 +314,19 @@ links into the committed transcript · project link) → "What was left out, and
 `/work/` index links the archive. The command palette indexes archive entries via `buildIndex(extra)`,
 and palette/tour anchor navigation checks `document.getElementById` instead of the pathname.
 
+**Writing** (ADR-0017; routes land in the change after the engine): `/writing/` (newest first, kind
+label per post), `/writing/<slug>/` (`generateStaticParams` over published posts, `dynamicParams =
+false`, `notFound()` guard, absolute canonical, article OpenGraph with published/modified times, a
+co-located typographic `opengraph-image.tsx`), `/feed.xml` (Atom 1.0, summary-only, `dynamic =
+'force-static'`), `/sitemap.xml` for every route. Slug = filename stem. Drafts render only outside
+production, labelled. Project pages referenced by a post's `projects` show "Notes from this project".
+
 ## 12. Future (designed-for, not built)
 
 - An LCA-mockups page split out of the Legend hub gallery, if Vivek supplies per-item role lines
   (ADR-0015 §4).
 
-Custom domain (`CNAME` + `basePath` change); writing/blog; the aerospace-era media pool awaiting
-retrieval (see `MEDIA-TODO.md`).
+- A syntax highlighter for code fences and per-kind index pages for Writing (ADR-0017).
+
+Custom domain (`CNAME` + `basePath` change); the aerospace-era media pool awaiting retrieval (see
+`MEDIA-TODO.md`).
