@@ -197,7 +197,14 @@ describe('source/records — the intake table for the Legend years (PR-B)', () =
   ];
   const rows = () => {
     const lines = readFileSync(file, 'utf8').split('\n');
-    const table = lines.filter((l) => /^\|/.test(l));
+    // The first contiguous run of table lines only — a second table added to the
+    // intro later must not be merged into the rows under test (CON-VER-005).
+    const start = lines.findIndex((l) => /^\|/.test(l));
+    const table: string[] = [];
+    for (const l of lines.slice(start)) {
+      if (!/^\|/.test(l)) break;
+      table.push(l);
+    }
     const cells = (l: string) =>
       l
         .trim()

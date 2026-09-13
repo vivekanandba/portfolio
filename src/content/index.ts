@@ -116,7 +116,8 @@ const CASE_STUDY_START: Record<string, number> = {
   'vssc-tooling': 201601,
   'aero-reverse-engineering': 201506,
   // Public LinkedIn Projects export (2026-07-23), Legend-era rows — the record
-  // replaces the earlier inferences (source/records/legend-programmes.md, row 22):
+  // replaces the earlier inferences (source/records/legend-programmes.md, the
+  // "Start months corrected from the public LinkedIn Projects record" row):
   'igcar-slipring': 201509, // Sep 2015 – Dec 2015
   'bmp2-turret': 201411, // Nov 2014 – Mar 2015
   'filament-composites': 201503, // Mar 2015 – Aug 2015
