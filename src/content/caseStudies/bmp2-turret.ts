@@ -5,7 +5,7 @@ import type { CaseStudy } from '../schema';
 // ("single-handedly formed and led a dedicated team on-site" in Chennai);
 // ENTI deck v1.4, slides 34–35 (renders and the seven kinematic clips; the
 // deck's 2013 estimate of "2,000 drawings" is recorded in the source transcript —
-// the owner keeps the resume figure). Clips re-encoded per scripts/media-web.json.
+// Vivek keeps the resume figure). Clips re-encoded per scripts/media-web.json.
 const CREDIT = 'Animation: ENTI Innovations Pvt. Ltd. — corporate deck v1.4, slide 35';
 
 export const bmp2Turret: CaseStudy = {

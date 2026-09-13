@@ -5,7 +5,7 @@
 
 ## Context
 
-The owner asked three questions the repository could not answer: where deployment bugs were coming
+Vivek asked three questions the repository could not answer: where deployment bugs were coming
 from, how good the test suite was, and what the coverage was.
 
 The answer to the third was that **nobody knew** — there was no coverage provider installed, no
@@ -16,7 +16,7 @@ with the real gaps concentrated in logic: `src/lib/seo.ts` at **49% statements /
 Reviewing where defects had actually been caught was more revealing. The suite caught structural
 faults reliably — schema violations, broken bijections, missing files, missing alt text, a11y
 landmarks. It caught nothing about **truthfulness**: the wrong patent link, stale figures,
-uncredited media and customer PII were all found by a person reading, or by the owner. One class was
+uncredited media and customer PII were all found by a person reading, or by Vivek. One class was
 purely external: links rot off-box, after merge, when someone else's site changes.
 
 ## Decision

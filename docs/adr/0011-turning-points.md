@@ -5,7 +5,7 @@
 
 ## Context
 
-The owner's brief: the site "looks too generic… it should be more than a portfolio that just
+Vivek's brief: the site "looks too generic… it should be more than a portfolio that just
 showcases my work. More like it shows the intentionality of whatever I have done." The current
 structure proves _what_ was built (27 project pages, evidence, credits) but the _why_ of each pivot —
 aerospace → founder → electronics → medical robotics → AI — exists only as inference. The Arc names
@@ -30,7 +30,7 @@ Each node links to the projects of its era (`projects: [id]`, resolution test-en
 typed data (`turningPointSchema`) like everything else. Claims obey ADR-0008: `proved` lines must be
 consistent with the project pages they link to; no new unverifiable figures.
 
-First-person voice is allowed here — it is explicitly a narrative section — but **the owner reviews
+First-person voice is allowed here — it is explicitly a narrative section — but **Vivek reviews
 the wording before it ships**, since these are interpretive statements about their intent, drafted
 from the session record rather than dictated by them.
 
@@ -42,7 +42,7 @@ from the session record rather than dictated by them.
   Points _is_ the narrative spine, so it earns above-the-fold placement and is not disclosed away.
 - The `cost` field commits the site to admitting costs, which most portfolios omit — that asymmetry
   is the credibility mechanism, same as Stop Hunger's unflattering coverage gauges (ADR-0008).
-- Interpretive claims can drift from the owner's own telling; owner review is the gate.
+- Interpretive claims can drift from Vivek's own telling; Vivek's review is the gate.
 
 ## Alternatives rejected
 

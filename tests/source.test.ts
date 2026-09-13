@@ -4,7 +4,7 @@ import { join } from 'node:path';
 import { describe, it, expect } from 'vitest';
 
 /**
- * Owner-authored source material (ADR-0013). These checks keep the `source/`
+ * Source material in Vivek's own hand (ADR-0013). These checks keep the `source/`
  * tree honest in the ways a machine can: nothing private leaks (no phone
  * numbers, no e-mail addresses), every media reference resolves and no media
  * file is orphaned, every file respects the 2 MiB hygiene ceiling, originals

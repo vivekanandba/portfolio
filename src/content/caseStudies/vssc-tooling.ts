@@ -26,7 +26,7 @@ export const vsscTooling: CaseStudy = {
   problem: [
     'Launch-vehicle structures are built on tooling — assembly jigs, weld fixtures, checking tools, and master gauges. Each is a one-off engineering project whose tolerances define the flyable part; a tooling miss is measured in program delay, not a bug report.',
     'The hardware here sits on PSLV’s strap-on boosters. A PSOM is one of the six solid strap-on motors clustered around the first stage, and a subset of them also carry SITVC — Secondary Injection Thrust Vector Control, which steers the vehicle by injecting an aqueous strontium-perchlorate solution into the nozzle exhaust rather than gimbaling the nozzle, using tanks strapped to the motor and pressurised with nitrogen. That split is why the line runs SITVC and non-SITVC nose-cone variants, plus the SITVC aft shroud around the injection end.',
-    'Delivery spans stakeholders who rarely share a room — VSSC/ISRO, BEML, TASL, and HAL-LSP — with the tooling owner accountable for estimation, quality plans, fabrication, and schedule across all of them.',
+    'Delivery spans stakeholders who rarely share a room — VSSC/ISRO, BEML, TASL, and HAL-LSP — with me accountable for estimation, quality plans, fabrication, and schedule across all of them.',
   ],
   constraints: [
     'Interchangeability: parts produced from the tools must interchange — the tool defines the part.',

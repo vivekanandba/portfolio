@@ -60,7 +60,7 @@ export const gadjoy: CaseStudy = {
   diagramId: 'gadjoy',
   // Real intake photos from gadjoy.in. Every image was audited for customer PII
   // before publishing — the shop's own before/after cards that photograph device
-  // "About" screens (owner name, serial, IMEI) are deliberately excluded.
+  // "About" screens (customer name, serial, IMEI) are deliberately excluded.
   gallery: [
     {
       file: 'media/gadjoy-iphone12-back-glass.jpg',

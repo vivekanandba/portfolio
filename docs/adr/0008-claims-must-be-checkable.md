@@ -40,7 +40,7 @@ number is stale or a link points at the wrong document.
   stranded in prose.
 - `npm run check:links` (ADR-0010) guards the links, but **not their correctness** — it would have
   reported the pre-grant patent URL as perfectly healthy. Only reading the source catches that class.
-- Some claims read as more modest than the owner might prefer. That is the point: modest and checkable
+- Some claims read as more modest than Vivek might prefer. That is the point: modest and checkable
   outperforms bold and unverifiable with the audiences this site targets.
 
 ## Alternatives rejected
@@ -48,5 +48,5 @@ number is stale or a link points at the wrong document.
 - **Keep unsourced superlatives because they read stronger.** One informed reader disproving "first"
   discredits the whole page.
 - **Cite everything, including routine claims.** Citation clutter; reserve links for load-bearing claims.
-- **Rely on the resume as the sole source of truth.** The resume is the owner's own assertion; it cannot
+- **Rely on the resume as the sole source of truth.** The resume is Vivek's own assertion; it cannot
   corroborate itself, and it was the resume that recorded the patent as merely filed.

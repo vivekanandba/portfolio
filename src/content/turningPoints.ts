@@ -6,7 +6,7 @@ import type { TurningPoint } from './schema';
  * must stay consistent with the project pages it links; the linkage and the
  * presence of a real `cost` are test-enforced.
  *
- * DRAFTED FROM THE RECORD, PENDING OWNER WORDING REVIEW (ADR-0011): the facts
+ * DRAFTED FROM THE RECORD, PENDING VIVEK'S WORDING REVIEW (ADR-0011): the facts
  * are the site's own; the framing of intent is interpretive.
  */
 export const turningPoints: TurningPoint[] = [
@@ -22,8 +22,8 @@ export const turningPoints: TurningPoint[] = [
     projects: ['safran-a350', 'vssc-tooling'],
   },
   {
-    // Owner note 2026-09-13 is the source; the MD's recommendation and the ENTI
-    // org chart corroborate the span and the seat. Pending owner wording review.
+    // Vivek's note of 2026-09-13 is the source; the MD's recommendation and the ENTI
+    // org chart corroborate the span and the seat. Pending Vivek's wording review.
     year: 2013,
     title: 'The whole product, or none of it',
     saw: 'At Safran I would have owned one bracket of one aircraft for years. At Legend Technologies — a medium-scale aerospace tooling house in Bangalore — one engineer could carry a product from the bid to the handover, and the company was willing to let me.',

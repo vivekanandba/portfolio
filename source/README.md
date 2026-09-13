@@ -1,15 +1,15 @@
 # Source material
 
-Owner-authored material the site's claims can cite (ADR-0013, SPEC §2 "three-tier source policy").
+Material in my own hand that the site's claims can cite (ADR-0013, SPEC §2 "three-tier source policy").
 Everything here is public the moment it is committed, so it is **redacted before it lands** and
 checked by `tests/source.test.ts` (no phone numbers or e-mail addresses, every media reference
-resolves, every file ≤ 2 MiB, originals pinned to a release by sha256, owner notes dated).
+resolves, every file ≤ 2 MiB, originals pinned to a release by sha256, my notes dated).
 
-| Folder         | What it holds                                                                                                                     |
-| -------------- | --------------------------------------------------------------------------------------------------------------------------------- |
-| `decks/`       | Redacted transcripts + screened images of the two capability decks the owner authored at Legend Technologies / ENTI Innovations.  |
-| `resume/`      | The master resume (the fact source) and the served v15 PDF's provenance.                                                          |
-| `owner-notes/` | Dated, first-person statements by the owner, verbatim with light punctuation — citable, and labelled _self-reported_ on the site. |
+| Folder      | What it holds                                                                                                            |
+| ----------- | ------------------------------------------------------------------------------------------------------------------------ |
+| `decks/`    | Redacted transcripts + screened images of the two capability decks I authored at Legend Technologies / ENTI Innovations. |
+| `resume/`   | The master resume (the fact source) and the served v15 PDF's provenance.                                                 |
+| `my-notes/` | Dated statements in my own words, verbatim with light punctuation — citable, and labelled _my account only_ on the site. |
 
 ## How to cite
 
@@ -17,10 +17,10 @@ In a content file, the comment above a claim names its origin:
 
 ```ts
 // Source: Legend deck v5.5, slide 60 — division team table, "Design — Vivekanand B".
-// Source: owner note 2026-09-13 (self-reported; no third-party record).
+// Source: my note of 2026-09-13 (my account only; no third-party record).
 ```
 
-A claim resting **only** on an owner note renders with a visible _self-reported_ marker. A claim
+A claim resting **only** on one of my notes renders with a visible _my account only_ marker. A claim
 corroborated by a third-party record (a LinkedIn recommendation, a regulator, a client's site) carries
 none. That is the whole point of keeping the two apart.
 

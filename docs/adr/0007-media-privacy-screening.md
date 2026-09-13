@@ -7,13 +7,13 @@
 
 This rule exists because of two near-misses and one actual incident.
 
-**The incident.** The owner's full LinkedIn account export — 48 CSVs including ~5,183 private
+**The incident.** Vivek's full LinkedIn account export — 48 CSVs including ~5,183 private
 messages, 339 connections with their email addresses, phone and WhatsApp numbers, receipts and
 ad-targeting data — was committed by a broad `git add` and pushed to a **public** repository, where
 it sat in `main` until discovered. It required a `git filter-repo` history rewrite and a force-push.
 
 **Near-miss one.** Harvesting repair photos from gadjoy.in for the Gadjoy gallery, several
-before/after cards turned out to photograph the device's _About_ screen — publishing the owner's
+before/after cards turned out to photograph the device's _About_ screen — publishing the customer's
 name, serial number, IMEIs and MAC addresses of real customers ("Sheikh's iPad", "Dipti's A03").
 These were caught only because each image was opened and read before use.
 
@@ -29,7 +29,7 @@ not consent for republication here.
 **Every image is opened and inspected before it is published.** Never publish based on a filename, a
 thumbnail, or an assumption. Specifically:
 
-- **Reject** device screens showing owner names, serial numbers, IMEIs or MAC addresses.
+- **Reject** device screens showing customer names, serial numbers, IMEIs or MAC addresses.
 - **Reject** any map or dataset that locates vulnerable people.
 - **Prefer frames without identifiable people.** An individual in an employer's marketing photo
   consented to _their_ use of it, not to appearing on a personal portfolio. A CNC-machine photo was
@@ -47,7 +47,7 @@ sees why a panel is missing rather than adding it back.
 - Some genuinely better material is refused — the locations map is the most compelling panel on the
   Stop Hunger dashboard.
 - `.gitignore` blocks `Basic_LinkedInDataExport*`; `MEDIA-TODO.md` carries the standing cautions.
-- Two findings belong to third parties and were reported to the owner rather than fixed here: the
+- Two findings belong to third parties and were reported to Vivek rather than fixed here: the
   gadjoy.in cards still carry customer identifiers, and Legend's WordPress media API publicly serves
   40+ job applicants' résumés.
 

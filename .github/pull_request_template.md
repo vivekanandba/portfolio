@@ -31,7 +31,7 @@ genuinely do not apply — but delete them deliberately, not silently.
 
 ## Media & privacy (SPEC.md §7, ADR-0006, ADR-0007)
 
-- [ ] Every new image **opened and inspected** — no owner names, serials, IMEIs, MAC addresses
+- [ ] Every new image **opened and inspected** — no customer names, serials, IMEIs, MAC addresses
 - [ ] No map or dataset locating vulnerable people
 - [ ] No identifiable third party who did not consent to appearing here
 - [ ] Third-party media carries a **visible credit**; base-map attribution preserved

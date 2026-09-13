@@ -8,7 +8,7 @@
 The long-form pages were built and labelled "case studies" throughout — page H1, card eyebrows
 ("Case Study · Sanas.ai"), link text ("Read the case study →"), SEO descriptions and OG alt text.
 
-The owner corrected this directly: _"In our industry, we don't call it case study, we call it
+Vivek corrected this directly: _"In our industry, we don't call it case study, we call it
 projects."_ The audience is engineers and engineering leaders, to whom "case study" reads as
 consulting or marketing register. It quietly signals that the page is a sales artefact rather than a
 description of work.
@@ -35,4 +35,4 @@ This is a copy rule, not a refactor. URLs especially stay put — they are alrea
   test, changes no user-visible behaviour, and risks breaking the enforced bijections for cosmetics.
 - **Change the routes to `/projects/`.** The URLs are public and already linked from the live site;
   breaking them to match vocabulary is a bad trade.
-- **Keep "case studies".** Rejected by the owner, who knows the audience.
+- **Keep "case studies".** Rejected by Vivek, who knows the audience.

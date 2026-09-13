@@ -13,8 +13,8 @@ import type { CaseStudy } from '../schema';
 // erected at the client's premises); Legend deck v5.5, slide 60 (division team
 // table: "Design — Vivekanand B"); master resume (effort estimation, tool
 // fabrication quotes, QAP, first-article proving, installation liaison);
-// owner note 2026-09-13 (the account itself — self-reported where nothing
-// else records it, and marked so).
+// my note of 2026-09-13 (the account itself — marked “my account only” where
+// nothing else records it).
 const PHOTO = 'Photo: Legend Technologies (India) Pvt. Ltd. — capability deck v5.5';
 const RENDER = 'Render: Legend Technologies (India) Pvt. Ltd. — capability deck v5.5';
 const BEFORE = 'Role: company programme (before my time — shown as the standard I worked to).';
@@ -26,29 +26,29 @@ export const legendTechnologies: CaseStudy = {
   eyebrow: 'Project · Legend Technologies · ENTI Innovations · 2013–2018',
   title: 'Legend Technologies — owning a mechanical product end to end, bid to handover',
   intro:
-    'Five years at a medium-scale aerospace tooling house in Bangalore, where one engineer carried a one-off product through every gate: bid it, price it, design it with a team, prototype it, stand on the shop floor while it was machined and welded, write the process sheets, prove the first article, hand it over. Individual contributor and design-team lead at the same time. This is the loop the rest of the site was built from — and the reason a repair business got founded from inside it.',
+    'Five years at a medium-scale aerospace tooling house in Bangalore, where I carried one-off products through every gate: bid it, price it, design it with my team, prototype it, stand on the shop floor while it was machined and welded, write the process sheets, prove the first article, hand it over. Individual contributor and design-team lead at the same time. This is the loop the rest of the site was built from — and the reason a repair business got founded from inside it.',
   metrics: [
-    { value: 'Bid → handover', label: 'seven stages, one owner' },
+    { value: 'Bid → handover', label: 'seven stages, one pair of hands' },
     { value: '2013 – 2018', label: 'Engineer → Lead Project Engineer' },
     { value: 'IC + lead', label: 'designer and design-team manager at once' },
   ],
   problem: [
-    'At a medium-scale company there is no hand-off between sales, design, production and quality. The same engineer who priced the job has to make the tolerance he promised machinable, and then stand at the inspection table when the first article is measured.',
-    'Each gate fails in its own way — a mispriced bid, a GD&T callout the lathe cannot hold, a process sheet the quality team cannot follow, a first article that does not pass — and every failure lands on the one owner rather than on a department.',
-    'The company’s programme portfolio (jigs for the LCA, LCH, ALH, GSLV and PSLV; slip rings for ISRO, DRDO labs and BEL; test cells for Safran and Pratt & Whitney) spans two decades. Some of it predates 2013; what the owner touched, and how, is recorded against each item below rather than implied by a gallery.',
+    'At a medium-scale company there is no hand-off between sales, design, production and quality. I priced the job, so I had to make the tolerance I promised machinable, and then stand at the inspection table when the first article was measured.',
+    'Each gate fails in its own way — a mispriced bid, a GD&T callout the lathe cannot hold, a process sheet the quality team cannot follow, a first article that does not pass — and every failure landed on me rather than on a department.',
+    'The company’s programme portfolio (jigs for the LCA, LCH, ALH, GSLV and PSLV; slip rings for ISRO, DRDO labs and BEL; test cells for Safran and Pratt & Whitney) spans two decades. Some of it predates 2013; what I touched, and how, is recorded against each item below rather than implied by a gallery.',
   ],
   constraints: [
     'Aerospace batches: small quantities, flight-hardware tolerances, first-article proving on most tooling jobs.',
-    'One owner across bid, design, prototype, production, process documentation, inspection and handover — while managing the design team.',
+    'Me across bid, design, prototype, production, process documentation, inspection and handover — while managing the design team.',
     'GD&T and production tolerances decided in design, not discovered on the floor; design-for-manufacturability and design-for-testability as standing disciplines.',
-    'Evidence discipline for this page (ADR-0008): stages attested by a third party say so; the shop-floor detail attested only by the owner is marked self-reported.',
+    'Evidence discipline for this page (ADR-0008): stages attested by a third party say so; the shop-floor detail only I can vouch for is marked “my account only”.',
   ],
   decisions: [
     {
       decision:
         '1 · Bid. Go and bid for the project: pre-sales, price negotiation, the technical bid, the technical discussions that convince the customer — and take the job on.',
       tradeoff:
-        'Estimating a one-off jig you have not yet designed is where the loop is riskiest; it is also what the MD’s recommendation names first — “end-to-end support… from bidding and cost estimation to design, production, and testing” — and what the two capability decks in this repository were for. That the bidding authority itself was mine to exercise is self-reported — owner note 2026-09-13.',
+        'Estimating a one-off jig you have not yet designed is where the loop is riskiest; it is also what the MD’s recommendation names first — “end-to-end support… from bidding and cost estimation to design, production, and testing” — and what the two capability decks in this repository were for. That the bidding authority itself was mine to exercise is my account only — my note of 2026-09-13.',
     },
     {
       decision:
@@ -65,7 +65,7 @@ export const legendTechnologies: CaseStudy = {
       decision:
         '4 · Batch production. Produce in aerospace batches, on the floor: sit with the lathe, CNC, milling and welding operators, and check the quality team’s work as it happens.',
       tradeoff:
-        'Floor time is time not spent designing; it is also the only way a tolerance callout survives contact with a machine. The production and testing span is attested by the MD (“design, production, and testing”) and the resume (production and purchase liaison on every Legend project); the operator-level detail is self-reported — owner note 2026-09-13.',
+        'Floor time is time not spent designing; it is also the only way a tolerance callout survives contact with a machine. The production and testing span is attested by the MD (“design, production, and testing”) and the resume (production and purchase liaison on every Legend project); the operator-level detail is my account only — my note of 2026-09-13.',
     },
     {
       decision:
@@ -91,7 +91,7 @@ export const legendTechnologies: CaseStudy = {
     { value: '2 decks', label: 'authored — now source material here' },
   ],
   resultsNote:
-    '“So I was involved end to end. That is the reason it gave me a lot of impetus on my own personal entrepreneurial journey.” — owner note, 2026-09-13.',
+    '“So I was involved end to end. That is the reason it gave me a lot of impetus on my own personal entrepreneurial journey.” — in my own words, 13 September 2026.',
   diagramId: 'legend-technologies',
   gallery: [
     {
@@ -219,8 +219,8 @@ export const legendTechnologies: CaseStudy = {
       href: 'https://github.com/vivekanandba/portfolio/releases/tag/source-decks-2026-09',
     },
     {
-      label: 'My account of the loop, verbatim — owner note 2026-09-13',
-      href: 'https://github.com/vivekanandba/portfolio/blob/main/source/owner-notes/2026-09-13-legend-end-to-end.md',
+      label: 'My account of the loop, verbatim — my note of 2026-09-13',
+      href: 'https://github.com/vivekanandba/portfolio/blob/main/source/my-notes/2026-09-13-legend-end-to-end.md',
     },
   ],
   seoDescription:

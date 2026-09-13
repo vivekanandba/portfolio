@@ -16,7 +16,7 @@ Also in the brief: making the "enormous interest in AI and ML" visible as _curre
 
 ## Decision
 
-Three additions, all static-friendly, chosen with the owner:
+Three additions, all static-friendly, chosen with Vivek:
 
 1. **Audience paths.** Three buttons in the hero — _I'm hiring / I'm an engineer / I'm building
    something_ — each starting a curated tour of five-to-six stops (sections and project pages) with
