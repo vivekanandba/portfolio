@@ -267,6 +267,26 @@ describe('case-study invariants', () => {
     }
   });
 
+  it('site copy is first person — the word "owner" never renders (ownership is fine)', () => {
+    // This is Vivek's portfolio in Vivek's voice. "The owner" was engineering
+    // shorthand that leaked into captions and markers once; this keeps it out.
+    // Comments are stripped first so dev-facing notes are not policed.
+    const walk = (dir: string): string[] =>
+      readdirSync(dir, { withFileTypes: true }).flatMap((d) =>
+        d.isDirectory() ? walk(join(dir, d.name)) : [join(dir, d.name)],
+      );
+    const stripComments = (src: string) =>
+      src.replace(/\/\*[\s\S]*?\*\//g, '').replace(/(^|[^:])\/\/.*$/gm, '$1');
+    const files = ['src/content', 'src/components', 'src/app']
+      .flatMap(walk)
+      .filter((f) => /\.(ts|tsx)$/.test(f));
+    for (const f of files) {
+      const code = stripComments(readFileSync(f, 'utf8'));
+      const hit = code.match(/.*\bowner\b.*/i);
+      expect(hit, `${f} renders "owner": ${hit?.[0]?.trim()}`).toBeNull();
+    }
+  });
+
   it('external proof links carry a label (and vice versa)', () => {
     for (const p of projects) {
       expect(Boolean(p.href), `project ${p.id} href/linkLabel must pair`).toBe(

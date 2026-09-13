@@ -4,9 +4,9 @@ import { caseStudies, projects } from '@/content';
 /**
  * The era hub page (ADR-0015). Three invariants keep it honest: the seven
  * lifecycle stages are all named (the spine cannot be edited away quietly),
- * every gallery caption says what the owner's part was from a closed
- * vocabulary, and any claim marked self-reported cites the owner note it rests
- * on (ADR-0013). Written before the page existed (SPEC §9.2).
+ * every gallery caption says what Vivek's part was from a closed
+ * vocabulary, and any claim marked 'my account only' cites the dated note it
+ * rests on (ADR-0013). Written before the page existed (SPEC §9.2).
  */
 const STAGES = [
   /bid/,
@@ -38,6 +38,11 @@ describe('the Legend era hub', () => {
     }
   });
 
+  it('marks the shop-floor detail as my account only, citing the note', () => {
+    const marked = (hub?.decisions ?? []).filter((d) => /my account only/i.test(d.tradeoff));
+    expect(marked.length, 'the hub carries at least one my-account-only marker').toBeGreaterThan(0);
+  });
+
   it('every gallery caption carries a Role: tag from the closed vocabulary', () => {
     const gallery = hub?.gallery ?? [];
     expect(gallery.length, 'the hub has a programme gallery').toBeGreaterThan(5);
@@ -47,16 +52,16 @@ describe('the Legend era hub', () => {
   });
 });
 
-describe('self-reported claims (ADR-0013)', () => {
-  it('cite the owner note they rest on, wherever the marker appears', () => {
+describe('my-account-only claims (ADR-0013)', () => {
+  it('cite the dated note they rest on, wherever the marker appears', () => {
     for (const cs of caseStudies) {
       for (const d of cs.decisions) {
         const text = `${d.decision} ${d.tradeoff}`;
-        if (/self-reported/i.test(text)) {
+        if (/my account only/i.test(text)) {
           expect(
             text,
-            `${cs.slug}: a self-reported claim must cite "owner note YYYY-MM-DD"`,
-          ).toMatch(/owner note \d{4}-\d{2}-\d{2}/);
+            `${cs.slug}: a my-account-only claim must cite "my note of YYYY-MM-DD"`,
+          ).toMatch(/my note of \d{4}-\d{2}-\d{2}/);
         }
       }
     }
