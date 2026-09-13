@@ -86,6 +86,19 @@ describe('parsePost — malformed posts fail naming the file and the field', () 
     expect(p.readingMinutes).toBe(1);
   });
 
+  it('accepts a date that is "tomorrow" in UTC (the author writes in IST) but not a month out', () => {
+    const src = read(GOOD, 'older-post.md');
+    const tomorrow = src.replace('date: 2026-07-01', 'date: 2026-09-14');
+    expect(() => parsePost('x/tomorrow.md', tomorrow, TODAY)).not.toThrow();
+    const monthOut = src.replace('date: 2026-07-01', 'date: 2026-10-13');
+    expect(() => parsePost('x/month-out.md', monthOut, TODAY)).toThrow(/in the future/);
+  });
+
+  it('renderPost names the file a post was read from in its errors', () => {
+    const post = parsePost(join(BAD, 'body-h1.md'), read(BAD, 'body-h1.md'), TODAY);
+    expect(() => renderPost(post)).toThrow(join(BAD, 'body-h1.md'));
+  });
+
   it('rejects a slug that is reserved or not slug-shaped', () => {
     const src = read(GOOD, 'older-post.md');
     expect(() => parsePost('x/feed.xml.md', src, TODAY)).toThrow(/reserved/);

@@ -29,6 +29,7 @@ const RESERVED_SLUGS = new Set(['feed.xml', 'kind']);
 export type Heading = { depth: 2 | 3; id: string; text: string };
 export type Post = PostFrontmatter & {
   slug: string;
+  file: string; // the path the post was read from — error messages name it
   body: string; // raw Markdown after the frontmatter
   readingMinutes: number;
 };
@@ -82,9 +83,11 @@ export function parsePost(file: string, source: string, today = new Date()): Pos
     if (value && !isRealDate(value))
       throw new PostError(file, `frontmatter.${field}: ${value} is not a real calendar date`);
   }
-  const todayIso = today.toISOString().slice(0, 10);
-  if (fm.date > todayIso)
-    throw new PostError(file, `frontmatter.date: ${fm.date} is in the future`);
+  // "Not in the future" with the author's wall clock in mind: the build runs in UTC and
+  // Vivek writes in IST (+5:30), so a post dated today by his clock can be tomorrow by the
+  // build's. Allow 36 hours of skew — a real typo (a month out, 2099) still fails.
+  const limit = new Date(today.getTime() + 36 * 60 * 60 * 1000).toISOString().slice(0, 10);
+  if (fm.date > limit) throw new PostError(file, `frontmatter.date: ${fm.date} is in the future`);
   if (fm.updated && fm.updated < fm.date)
     throw new PostError(file, `frontmatter.updated: ${fm.updated} is before date ${fm.date}`);
   const known = new Set(projects.map((p) => p.id));
@@ -94,7 +97,13 @@ export function parsePost(file: string, source: string, today = new Date()): Pos
     .replace(/```[\s\S]*?```/g, ' ')
     .split(/\s+/)
     .filter(Boolean).length;
-  return { ...fm, slug, body, readingMinutes: Math.max(1, Math.round(words / WORDS_PER_MINUTE)) };
+  return {
+    ...fm,
+    slug,
+    file,
+    body,
+    readingMinutes: Math.max(1, Math.round(words / WORDS_PER_MINUTE)),
+  };
 }
 
 /** Every post on disk, newest first (date desc, slug asc). Drafts only outside production. */
@@ -205,7 +214,7 @@ export function renderMarkdown(
 }
 
 export function renderPost(post: Post): RenderedPost {
-  return { ...post, ...renderMarkdown(`${WRITING_DIR}/${post.slug}.md`, post.body) };
+  return { ...post, ...renderMarkdown(post.file, post.body) };
 }
 
 /* ---------------------------------------------------------------------- feed */
