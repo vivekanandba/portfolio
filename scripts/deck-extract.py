@@ -153,7 +153,8 @@ class Redactor:
 
 # ----------------------------------------------------------------------------- media hygiene
 def strip_jpeg(data: bytes) -> bytes:
-    """Drop APP1 (EXIF/XMP), APP2 (ICC is kept — colour), APP13 (Photoshop IRB) segments."""
+    """Drop APP1 (EXIF/XMP), APP13 (Photoshop IRB) and COM (free-text comment) segments.
+    APP2 (ICC colour profile) is kept — it affects rendering, not privacy."""
     if data[:2] != b"\xff\xd8":
         return data
     out = bytearray(b"\xff\xd8")
@@ -167,7 +168,7 @@ def strip_jpeg(data: bytes) -> bytes:
             return bytes(out)
         length = struct.unpack(">H", data[i + 2 : i + 4])[0]
         seg = data[i : i + 2 + length]
-        if marker not in (0xE1, 0xED):  # APP1, APP13
+        if marker not in (0xE1, 0xED, 0xFE):  # APP1, APP13, COM
             out += seg
         i += 2 + length
     return bytes(out)
@@ -290,7 +291,7 @@ def extract(pptx: Path, rules: dict, out: Path) -> tuple[str, dict, dict[str, by
                 rule = table.get(fn)
                 if rule is None:
                     raise SystemExit(f"slide {n}: no rule for media file {fn!r} — every file needs a decision")
-                entry = media_map.setdefault(fn, {"slide": n, **({} if "name" not in rule else {})})
+                entry = media_map.setdefault(fn, {"slide": n})
                 if "exclude" in rule:
                     entry.update(status="excluded", reason=rule["exclude"])
                     withheld.append(f"{key} — {rule['exclude']}")

@@ -102,7 +102,12 @@ describe.each(DECKS)('deck %s', (deck) => {
     for (const ref of refs) {
       expect(existsSync(join(dir, ref)), `${deck}: ${ref} referenced but missing`).toBe(true);
     }
-    const present = walk(join(dir, 'media')).map((p) => p.slice(dir.length + 1));
+    // Clips are the files most likely to be added by hand (PR-2), so they are
+    // orphan-checked too; the folder is absent for a deck with no clips.
+    const present = ['media', 'clips']
+      .filter((sub) => existsSync(join(dir, sub)))
+      .flatMap((sub) => walk(join(dir, sub)))
+      .map((p) => p.slice(dir.length + 1));
     for (const p of present) {
       expect(refs.has(p), `${deck}: ${p} is not referenced from slides.md`).toBe(true);
     }
