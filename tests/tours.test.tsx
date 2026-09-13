@@ -1,4 +1,4 @@
-import { beforeEach, describe, expect, it } from 'vitest';
+import { beforeEach, describe, expect, it, vi } from 'vitest';
 import { fireEvent, render, screen } from '@testing-library/react';
 import { TourBar, TourButtons } from '@/components/Tours';
 import { tours } from '@/content/tours';
@@ -10,6 +10,12 @@ import { projects } from '@/content/experience';
  * next/prev, exit. jsdom provides sessionStorage natively.
  */
 const hiring = tours.find((t) => t.id === 'hiring')!;
+
+const push = vi.fn();
+vi.mock('next/navigation', () => ({
+  useRouter: () => ({ push, prefetch: vi.fn() }),
+  usePathname: () => '/',
+}));
 
 beforeEach(() => {
   sessionStorage.clear();
@@ -89,5 +95,33 @@ describe('<TourBar />', () => {
     sessionStorage.setItem('portfolio-tour', JSON.stringify({ id: 'no-such-tour', step: 0 }));
     render(<TourBar />);
     expect(screen.queryByRole('region', { name: /guided tour/i })).not.toBeInTheDocument();
+  });
+});
+
+describe('tour navigation from any route (ADR-0016)', () => {
+  const anchorStop = tours.flatMap((t) => t.stops).find((s) => s.target.startsWith('#'))!;
+  const tourWithAnchor = tours.find((t) => t.stops[0].target.startsWith('#'))!;
+
+  it('routes home when the target section is not on the page', () => {
+    push.mockClear();
+    render(<TourButtons />);
+    fireEvent.click(screen.getByRole('button', { name: tourWithAnchor.label }));
+    expect(push).toHaveBeenCalledWith(`/${tourWithAnchor.stops[0].target}`);
+  });
+
+  it('scrolls in place when the target section exists', () => {
+    push.mockClear();
+    render(
+      <>
+        <section id={anchorStop.target.slice(1)} />
+        <TourButtons />
+      </>,
+    );
+    const tour = tours.find((t) => t.stops[0].target === anchorStop.target) ?? tourWithAnchor;
+    fireEvent.click(screen.getByRole('button', { name: tour.label }));
+    if (tour.stops[0].target === anchorStop.target) {
+      expect(push).not.toHaveBeenCalled();
+      expect(window.location.hash).toBe(anchorStop.target);
+    }
   });
 });
