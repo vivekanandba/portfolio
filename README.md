@@ -19,19 +19,20 @@ npm run test:e2e        # playwright: builds with BASE_PATH=/portfolio, stages u
 
 ## Editing content
 
-| What                                 | Where                                    |
-| ------------------------------------ | ---------------------------------------- |
-| Name, tagline, bio arc, links, email | `src/content/profile.ts`                 |
-| Projects (cards in Selected Work)    | `src/content/experience.ts` (`projects`) |
-| Career timeline                      | `src/content/experience.ts` (`roles`)    |
-| Skill groups                         | `src/content/skills.ts`                  |
-| Patents / publications / education   | `src/content/credentials.ts`             |
-| Schemas (shape + invariants)         | `src/content/schema.ts`                  |
+| What                                                 | Where                                                 |
+| ---------------------------------------------------- | ----------------------------------------------------- |
+| Name, tagline, bio arc, links, email                 | `src/content/profile.ts`                              |
+| Projects (cards in Selected Work)                    | `src/content/experience.ts` (`projects`)              |
+| Career timeline                                      | `src/content/experience.ts` (`roles`)                 |
+| Skill groups                                         | `src/content/skills.ts`                               |
+| Patents / publications / education                   | `src/content/credentials.ts`                          |
+| Schemas (shape + invariants)                         | `src/content/schema.ts`                               |
+| Source material (decks, resume sources, owner notes) | `source/` — see `source/README.md` for how to cite it |
 
 Notes:
 
 - Project `id`s must be unique and at least three projects must be `featured` — enforced by `tests/content.test.ts`.
-- To update the resume, replace `public/Vivekanandb-Resume.pdf` (filename is referenced via `profile.resumeFile`).
+- To update the resume, replace `public/Vivekanandb-Resume.pdf` (filename is referenced via `profile.resumeFile`) and the copy under `source/resume/` — a test checks the two are byte-identical.
 - SEO/OpenGraph metadata lives in `src/lib/seo.ts`.
 
 ## Design tokens

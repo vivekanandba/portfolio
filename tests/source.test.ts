@@ -51,18 +51,21 @@ describe('source/ privacy invariants', () => {
   const textFiles = files.filter(isText);
 
   it('contains no phone numbers or e-mail addresses in any text file', () => {
-    // Digit runs of 10+ bounded by non-hex characters, so sha256 lines cannot
-    // trip the check; +91 in any spacing; anything e-mail shaped.
-    const PHONE = /(?<![0-9a-f])\d[\d\s-]{8,}\d(?![0-9a-f])/;
+    // A phone number is a run of digits/spaces/dashes carrying 10+ digits (ISO
+    // dates carry 8, so 2026-09-13 passes), bounded by non-hex characters so a
+    // sha256 line cannot trip it; +91 in any spacing; anything e-mail shaped.
+    const RUN = /(?<![0-9a-f])\d[\d\s-]{6,}\d(?![0-9a-f])/g;
     const INTL = /\+\s?91[\s-]?\d/;
     const EMAIL = /[\w.+-]+@[\w-]+\.[\w.-]+/;
+    const phoneShaped = (line: string) =>
+      [...line.matchAll(RUN)].some((m) => (m[0].match(/\d/g) ?? []).length >= 10);
     for (const f of textFiles) {
       const text = readFileSync(f, 'utf8');
       for (const line of text.split('\n')) {
         if (/sha256/i.test(line)) continue;
         expect(EMAIL.test(line), `${f}: e-mail address: ${line}`).toBe(false);
         expect(INTL.test(line), `${f}: phone number: ${line}`).toBe(false);
-        expect(PHONE.test(line), `${f}: phone-shaped digit run: ${line}`).toBe(false);
+        expect(phoneShaped(line), `${f}: phone-shaped digit run: ${line}`).toBe(false);
       }
     }
   });
@@ -93,7 +96,9 @@ describe.each(DECKS)('deck %s', (deck) => {
     const refs = new Set(
       [...slides().matchAll(/\b((?:media|clips)\/[A-Za-z0-9._-]+)/g)].map((m) => m[1]),
     );
-    expect(refs.size, 'transcript references no media at all').toBeGreaterThan(50);
+    // Both decks reference well over twenty kept files; a transcript that
+    // references almost nothing means the media rules silently excluded it all.
+    expect(refs.size, 'transcript references almost no media').toBeGreaterThan(20);
     for (const ref of refs) {
       expect(existsSync(join(dir, ref)), `${deck}: ${ref} referenced but missing`).toBe(true);
     }

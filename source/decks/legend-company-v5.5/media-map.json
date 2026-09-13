@@ -1,0 +1,942 @@
+{
+  "image1.png": {
+    "slide": 62,
+    "status": "excluded",
+    "reason": "company or customer logo — trademark; the customer list is kept as text"
+  },
+  "image2.png": {
+    "slide": 1,
+    "status": "excluded",
+    "reason": "company or customer logo — trademark; the customer list is kept as text"
+  },
+  "image3.png": {
+    "slide": 2,
+    "status": "excluded",
+    "reason": "company or customer logo — trademark; the customer list is kept as text"
+  },
+  "image5.png": {
+    "slide": 7,
+    "status": "kept",
+    "name": "media/s07-lca-front-fuselage-jig-cad.png"
+  },
+  "image8.png": {
+    "slide": 8,
+    "status": "kept",
+    "name": "media/s08-lch-coupling-jig-cad-1.png"
+  },
+  "image11.png": {
+    "slide": 8,
+    "status": "kept",
+    "name": "media/s08-lch-coupling-jig-cad-2.png"
+  },
+  "image12.png": {
+    "slide": 9,
+    "status": "kept",
+    "name": "media/s09-lch-tail-boom-jig-cad.png"
+  },
+  "image14.emf": {
+    "slide": 10,
+    "status": "excluded",
+    "reason": "EMF vector drawing — unsupported format; the same jig is shown in the photographs on the slide"
+  },
+  "image15.png": {
+    "slide": 10,
+    "status": "kept",
+    "name": "media/s10-rlv-td-on-assembly-jig.png"
+  },
+  "image19.jpg": {
+    "slide": 11,
+    "status": "excluded",
+    "reason": "identifiable people in frame (ADR-0007: prefer people-free frames)"
+  },
+  "image27.png": {
+    "slide": 14,
+    "status": "kept",
+    "name": "media/s14-gslv-fin-panel.png"
+  },
+  "image32.jpg": {
+    "slide": 15,
+    "status": "excluded",
+    "reason": "identifiable people in frame (ADR-0007: prefer people-free frames)"
+  },
+  "image37.png": {
+    "slide": 18,
+    "status": "kept",
+    "name": "media/s18-lca-centre-fuselage-jig-cad.png"
+  },
+  "image4.jpeg": {
+    "slide": 5,
+    "status": "kept",
+    "name": "media/s05-legend-office-building.jpeg"
+  },
+  "image42.png": {
+    "slide": 21,
+    "status": "kept",
+    "name": "media/s21-cfm56-workstation-adapter.png"
+  },
+  "image43.png": {
+    "slide": 21,
+    "status": "excluded",
+    "reason": "identifiable people in frame (ADR-0007: prefer people-free frames)"
+  },
+  "image44.png": {
+    "slide": 21,
+    "status": "kept",
+    "name": "media/s21-cfm56-workstation-adapter-cad.png"
+  },
+  "image48.png": {
+    "slide": 24,
+    "status": "kept",
+    "name": "media/s24-s200-integration-fixture-cad.png"
+  },
+  "image49.png": {
+    "slide": 24,
+    "status": "kept",
+    "name": "media/s24-s200-integration-fixture.png"
+  },
+  "image6.jpeg": {
+    "slide": 7,
+    "status": "kept",
+    "name": "media/s07-lca-front-fuselage-jig.jpeg"
+  },
+  "image7.jpeg": {
+    "slide": 7,
+    "status": "kept",
+    "name": "media/s07-lca-front-fuselage-jig-in-bay.jpeg"
+  },
+  "image9.jpeg": {
+    "slide": 8,
+    "status": "kept",
+    "name": "media/s08-lch-coupling-jig.jpeg"
+  },
+  "image99.jpg": {
+    "slide": 51,
+    "status": "kept",
+    "name": "media/s51-6ch-miniature-slipring-photo.jpg"
+  },
+  "image10.jpeg": {
+    "slide": 8,
+    "status": "excluded",
+    "reason": "identifiable people in frame (ADR-0007: prefer people-free frames)"
+  },
+  "image106.jpg": {
+    "slide": 53,
+    "status": "kept",
+    "name": "media/s53-57ch-naval-slipring-cad-cutaway.jpg"
+  },
+  "image112.png": {
+    "slide": 54,
+    "status": "kept",
+    "name": "media/s54-109ch-slipring-capsule-photo.png"
+  },
+  "image116.png": {
+    "slide": 55,
+    "status": "kept",
+    "name": "media/s55-37ch-pancake-slipring-photo.png"
+  },
+  "image126.png": {
+    "slide": 58,
+    "status": "kept",
+    "name": "media/s58-igcar-high-amperage-slipring-cad.png"
+  },
+  "image128.png": {
+    "slide": 62,
+    "status": "excluded",
+    "reason": "company or customer logo — trademark; the customer list is kept as text"
+  },
+  "image13.jpeg": {
+    "slide": 9,
+    "status": "kept",
+    "name": "media/s09-lch-tail-boom-jig.jpeg"
+  },
+  "image131.png": {
+    "slide": 62,
+    "status": "excluded",
+    "reason": "company or customer logo — trademark; the customer list is kept as text"
+  },
+  "image132.png": {
+    "slide": 62,
+    "status": "excluded",
+    "reason": "company or customer logo — trademark; the customer list is kept as text"
+  },
+  "image145.png": {
+    "slide": 72,
+    "status": "excluded",
+    "reason": "portrait of a third party"
+  },
+  "image146.png": {
+    "slide": 73,
+    "status": "excluded",
+    "reason": "portrait of a third party"
+  },
+  "image147.png": {
+    "slide": 74,
+    "status": "excluded",
+    "reason": "portrait of a third party"
+  },
+  "image148.png": {
+    "slide": 76,
+    "status": "excluded",
+    "reason": "controlled quality-manual page (organisation chart) — not the owner’s to publish"
+  },
+  "image16.jpeg": {
+    "slide": 10,
+    "status": "kept",
+    "name": "media/s10-rlv-td-assembly-jig.jpeg"
+  },
+  "image160.png": {
+    "slide": 88,
+    "status": "excluded",
+    "reason": "company or customer logo — trademark; the customer list is kept as text"
+  },
+  "image162.png": {
+    "slide": 88,
+    "status": "excluded",
+    "reason": "company or customer logo — trademark; the customer list is kept as text"
+  },
+  "image164.png": {
+    "slide": 88,
+    "status": "excluded",
+    "reason": "company or customer logo — trademark; the customer list is kept as text"
+  },
+  "image165.png": {
+    "slide": 88,
+    "status": "excluded",
+    "reason": "company or customer logo — trademark; the customer list is kept as text"
+  },
+  "image167.png": {
+    "slide": 89,
+    "status": "excluded",
+    "reason": "company or customer logo — trademark; the customer list is kept as text"
+  },
+  "image169.png": {
+    "slide": 89,
+    "status": "excluded",
+    "reason": "company or customer logo — trademark; the customer list is kept as text"
+  },
+  "image17.jpeg": {
+    "slide": 11,
+    "status": "excluded",
+    "reason": "identifiable people in frame (ADR-0007: prefer people-free frames)"
+  },
+  "image170.png": {
+    "slide": 89,
+    "status": "excluded",
+    "reason": "company or customer logo — trademark; the customer list is kept as text"
+  },
+  "image171.png": {
+    "slide": 89,
+    "status": "excluded",
+    "reason": "company or customer logo — trademark; the customer list is kept as text"
+  },
+  "image172.png": {
+    "slide": 89,
+    "status": "excluded",
+    "reason": "company or customer logo — trademark; the customer list is kept as text"
+  },
+  "image174.png": {
+    "slide": 89,
+    "status": "excluded",
+    "reason": "company or customer logo — trademark; the customer list is kept as text"
+  },
+  "image175.png": {
+    "slide": 89,
+    "status": "excluded",
+    "reason": "company or customer logo — trademark; the customer list is kept as text"
+  },
+  "image176.png": {
+    "slide": 90,
+    "status": "excluded",
+    "reason": "company or customer logo — trademark; the customer list is kept as text"
+  },
+  "image177.png": {
+    "slide": 90,
+    "status": "excluded",
+    "reason": "company or customer logo — trademark; the customer list is kept as text"
+  },
+  "image178.png": {
+    "slide": 90,
+    "status": "excluded",
+    "reason": "company or customer logo — trademark; the customer list is kept as text"
+  },
+  "image179.png": {
+    "slide": 90,
+    "status": "excluded",
+    "reason": "company or customer logo — trademark; the customer list is kept as text"
+  },
+  "image18.jpeg": {
+    "slide": 11,
+    "status": "excluded",
+    "reason": "identifiable people in frame (ADR-0007: prefer people-free frames)"
+  },
+  "image185.png": {
+    "slide": 97,
+    "status": "kept",
+    "name": "media/s97-iso-9001-2015-certificate.png"
+  },
+  "image186.png": {
+    "slide": 98,
+    "status": "kept",
+    "name": "media/s98-as9100d-certificate.png"
+  },
+  "image20.jpeg": {
+    "slide": 12,
+    "status": "kept",
+    "name": "media/s12-alh-deck-assembly-jig.jpeg"
+  },
+  "image21.jpeg": {
+    "slide": 12,
+    "status": "kept",
+    "name": "media/s12-alh-deck-machined-details.jpeg"
+  },
+  "image22.jpeg": {
+    "slide": 12,
+    "status": "kept",
+    "name": "media/s12-alh-deck-jig-detail.jpeg"
+  },
+  "image23.jpeg": {
+    "slide": 13,
+    "status": "kept",
+    "name": "media/s13-gslv-mk3-middle-assembly-jig.jpeg"
+  },
+  "image24.jpeg": {
+    "slide": 13,
+    "status": "excluded",
+    "reason": "identifiable people in frame (ADR-0007: prefer people-free frames)"
+  },
+  "image25.jpeg": {
+    "slide": 13,
+    "status": "kept",
+    "name": "media/s13-gslv-mk3-middle-assembly-structure.jpeg"
+  },
+  "image26.jpeg": {
+    "slide": 13,
+    "status": "excluded",
+    "reason": "identifiable people in frame (ADR-0007: prefer people-free frames)"
+  },
+  "image28.jpeg": {
+    "slide": 14,
+    "status": "excluded",
+    "reason": "identifiable people in frame (ADR-0007: prefer people-free frames)"
+  },
+  "image29.jpeg": {
+    "slide": 15,
+    "status": "kept",
+    "name": "media/s15-sitvc-nose-cone-jig.jpeg"
+  },
+  "image30.jpeg": {
+    "slide": 15,
+    "status": "kept",
+    "name": "media/s15-sitvc-nose-cone-and-aft-shroud.jpeg"
+  },
+  "image31.jpeg": {
+    "slide": 15,
+    "status": "kept",
+    "name": "media/s15-sitvc-aft-shroud-jig.jpeg"
+  },
+  "image33.jpeg": {
+    "slide": 15,
+    "status": "kept",
+    "name": "media/s15-sitvc-cones-and-shrouds.jpeg"
+  },
+  "image34.jpeg": {
+    "slide": 16,
+    "status": "kept",
+    "name": "media/s16-psom-nose-cone-assembly.jpeg"
+  },
+  "image35.jpeg": {
+    "slide": 16,
+    "status": "excluded",
+    "reason": "identifiable people in frame (ADR-0007: prefer people-free frames)"
+  },
+  "image36.jpeg": {
+    "slide": 16,
+    "status": "kept",
+    "name": "media/s16-sonc-nose-cone-assembly-jig.jpeg"
+  },
+  "image38.jpeg": {
+    "slide": 18,
+    "status": "excluded",
+    "reason": "identifiable people in frame (ADR-0007: prefer people-free frames)"
+  },
+  "image39.jpeg": {
+    "slide": 19,
+    "status": "kept",
+    "name": "media/s19-jaguar-station-25-assembly-fixture.jpeg"
+  },
+  "image40.jpeg": {
+    "slide": 20,
+    "status": "kept",
+    "name": "media/s20-boeing-cargo-door-jig-1.jpeg"
+  },
+  "image41.jpeg": {
+    "slide": 20,
+    "status": "kept",
+    "name": "media/s20-boeing-cargo-door-jig-2.jpeg"
+  },
+  "image45.jpeg": {
+    "slide": 22,
+    "status": "kept",
+    "name": "media/s22-vssc-lifting-tilting-fixture-1.jpeg"
+  },
+  "image46.jpeg": {
+    "slide": 22,
+    "status": "kept",
+    "name": "media/s22-vssc-lifting-tilting-fixture-2.jpeg"
+  },
+  "image47.jpeg": {
+    "slide": 23,
+    "status": "kept",
+    "name": "media/s23-beml-metro-spot-welding-fixture.jpeg"
+  },
+  "image50.jpeg": {
+    "slide": 25,
+    "status": "excluded",
+    "reason": "identifiable people in frame (ADR-0007: prefer people-free frames)"
+  },
+  "image51.jpeg": {
+    "slide": 25,
+    "status": "kept",
+    "name": "media/s25-pw1100g-test-cell.jpeg"
+  },
+  "image52.jpeg": {
+    "slide": 25,
+    "status": "excluded",
+    "reason": "identifiable people in frame (ADR-0007: prefer people-free frames)"
+  },
+  "image53.jpeg": {
+    "slide": 25,
+    "status": "kept",
+    "name": "media/s25-pw1100g-augmenter-detail.jpeg"
+  },
+  "image54.jpeg": {
+    "slide": 25,
+    "status": "excluded",
+    "reason": "identifiable people in frame (ADR-0007: prefer people-free frames)"
+  },
+  "image55.jpeg": {
+    "slide": 26,
+    "status": "kept",
+    "name": "media/s26-nagpur-test-cell-1.jpeg"
+  },
+  "image56.jpeg": {
+    "slide": 26,
+    "status": "kept",
+    "name": "media/s26-nagpur-test-cell-2.jpeg"
+  },
+  "image57.jpeg": {
+    "slide": 26,
+    "status": "kept",
+    "name": "media/s26-nagpur-test-cell-3.jpeg"
+  },
+  "image58.jpeg": {
+    "slide": 28,
+    "status": "kept",
+    "name": "media/s28-racing-car-components-1.jpeg"
+  },
+  "image59.jpeg": {
+    "slide": 28,
+    "status": "kept",
+    "name": "media/s28-racing-car-components-2.jpeg"
+  },
+  "image60.jpeg": {
+    "slide": 28,
+    "status": "kept",
+    "name": "media/s28-racing-car-components-3.jpeg"
+  },
+  "image61.jpeg": {
+    "slide": 29,
+    "status": "kept",
+    "name": "media/s29-uav-launch-canister-components-1.jpeg"
+  },
+  "image62.jpeg": {
+    "slide": 29,
+    "status": "kept",
+    "name": "media/s29-uav-launch-canister-components-2.jpeg"
+  },
+  "image63.jpeg": {
+    "slide": 30,
+    "status": "kept",
+    "name": "media/s30-a320-emergency-door-components-1.jpeg"
+  },
+  "image64.jpeg": {
+    "slide": 30,
+    "status": "kept",
+    "name": "media/s30-a320-emergency-door-components-2.jpeg"
+  },
+  "image65.jpeg": {
+    "slide": 31,
+    "status": "kept",
+    "name": "media/s31-cnc-turned-components-1.jpeg"
+  },
+  "image66.jpeg": {
+    "slide": 31,
+    "status": "kept",
+    "name": "media/s31-cnc-turned-components-2.jpeg"
+  },
+  "image67.jpeg": {
+    "slide": 31,
+    "status": "excluded",
+    "reason": "near-duplicate thumbnail under 300 px"
+  },
+  "image68.jpeg": {
+    "slide": 31,
+    "status": "excluded",
+    "reason": "near-duplicate thumbnail under 300 px"
+  },
+  "image69.jpeg": {
+    "slide": 31,
+    "status": "excluded",
+    "reason": "near-duplicate thumbnail under 300 px"
+  },
+  "image70.jpeg": {
+    "slide": 31,
+    "status": "kept",
+    "name": "media/s31-cnc-turned-components-3.jpeg"
+  },
+  "image71.jpeg": {
+    "slide": 31,
+    "status": "kept",
+    "name": "media/s31-cnc-turned-components-4.jpeg"
+  },
+  "image72.jpeg": {
+    "slide": 31,
+    "status": "excluded",
+    "reason": "near-duplicate thumbnail under 300 px"
+  },
+  "image73.jpeg": {
+    "slide": 31,
+    "status": "kept",
+    "name": "media/s31-cnc-turned-components-5.jpeg"
+  },
+  "image74.jpeg": {
+    "slide": 33,
+    "status": "kept",
+    "name": "media/s33-tejas-trainer-mockup-republic-day.jpeg"
+  },
+  "image75.jpeg": {
+    "slide": 34,
+    "status": "kept",
+    "name": "media/s34-lca-mockup-modification-aero-india-2015.jpeg"
+  },
+  "image76.jpeg": {
+    "slide": 35,
+    "status": "excluded",
+    "reason": "identifiable people in frame (ADR-0007: prefer people-free frames)"
+  },
+  "image77.jpeg": {
+    "slide": 35,
+    "status": "excluded",
+    "reason": "identifiable people in frame (ADR-0007: prefer people-free frames)"
+  },
+  "image78.jpeg": {
+    "slide": 35,
+    "status": "excluded",
+    "reason": "identifiable people in frame (ADR-0007: prefer people-free frames)"
+  },
+  "image79.jpeg": {
+    "slide": 37,
+    "status": "excluded",
+    "reason": "identifiable people in frame (ADR-0007: prefer people-free frames)"
+  },
+  "image80.jpeg": {
+    "slide": 37,
+    "status": "excluded",
+    "reason": "identifiable people in frame (ADR-0007: prefer people-free frames)"
+  },
+  "image81.jpeg": {
+    "slide": 37,
+    "status": "kept",
+    "name": "media/s37-lca-mockup-road-transport.jpeg"
+  },
+  "image82.jpeg": {
+    "slide": 46,
+    "status": "kept",
+    "name": "media/s46-8ch-stacked-slipring-cad-1.jpeg"
+  },
+  "image83.jpeg": {
+    "slide": 46,
+    "status": "kept",
+    "name": "media/s46-8ch-stacked-slipring-cad-2.jpeg"
+  },
+  "image84.jpeg": {
+    "slide": 46,
+    "status": "kept",
+    "name": "media/s46-8ch-stacked-slipring-cad-3.jpeg"
+  },
+  "image85.jpeg": {
+    "slide": 46,
+    "status": "kept",
+    "name": "media/s46-8ch-stacked-slipring-cad-4.jpeg"
+  },
+  "image86.jpeg": {
+    "slide": 47,
+    "status": "kept",
+    "name": "media/s47-10ch-miniature-slipring-1.jpeg"
+  },
+  "image87.jpeg": {
+    "slide": 47,
+    "status": "kept",
+    "name": "media/s47-10ch-miniature-slipring-2.jpeg"
+  },
+  "image88.jpeg": {
+    "slide": 48,
+    "status": "kept",
+    "name": "media/s48-6ch-stacked-slipring-cad-1.jpeg"
+  },
+  "image89.jpeg": {
+    "slide": 48,
+    "status": "kept",
+    "name": "media/s48-6ch-stacked-slipring-cad-2.jpeg"
+  },
+  "image90.jpeg": {
+    "slide": 48,
+    "status": "kept",
+    "name": "media/s48-6ch-stacked-slipring-cad-3.jpeg"
+  },
+  "image91.jpeg": {
+    "slide": 49,
+    "status": "kept",
+    "name": "media/s49-24ch-stacked-slipring-cad-1.jpeg"
+  },
+  "image92.jpeg": {
+    "slide": 49,
+    "status": "kept",
+    "name": "media/s49-24ch-stacked-slipring-cad-2.jpeg"
+  },
+  "image93.jpeg": {
+    "slide": 49,
+    "status": "kept",
+    "name": "media/s49-24ch-stacked-slipring-cad-3.jpeg"
+  },
+  "image94.jpeg": {
+    "slide": 50,
+    "status": "kept",
+    "name": "media/s50-6ch-windmill-slipring-cad-1.jpeg"
+  },
+  "image95.jpeg": {
+    "slide": 50,
+    "status": "kept",
+    "name": "media/s50-6ch-windmill-slipring-cad-2.jpeg"
+  },
+  "image96.jpeg": {
+    "slide": 50,
+    "status": "kept",
+    "name": "media/s50-6ch-windmill-slipring-cad-3.jpeg"
+  },
+  "image97.jpeg": {
+    "slide": 51,
+    "status": "kept",
+    "name": "media/s51-6ch-rotary-table-slipring-cad-1.jpeg"
+  },
+  "image98.jpeg": {
+    "slide": 51,
+    "status": "kept",
+    "name": "media/s51-6ch-rotary-table-slipring-cad-2.jpeg"
+  },
+  "image100.jpeg": {
+    "slide": 51,
+    "status": "kept",
+    "name": "media/s51-6ch-rotary-table-slipring-cad-3.jpeg"
+  },
+  "image101.jpeg": {
+    "slide": 52,
+    "status": "kept",
+    "name": "media/s52-27ch-stacked-slipring-1.jpeg"
+  },
+  "image102.jpeg": {
+    "slide": 52,
+    "status": "kept",
+    "name": "media/s52-27ch-stacked-slipring-2.jpeg"
+  },
+  "image103.jpeg": {
+    "slide": 52,
+    "status": "kept",
+    "name": "media/s52-27ch-stacked-slipring-3.jpeg"
+  },
+  "image104.jpeg": {
+    "slide": 52,
+    "status": "kept",
+    "name": "media/s52-27ch-stacked-slipring-cad.jpeg"
+  },
+  "image105.jpeg": {
+    "slide": 53,
+    "status": "kept",
+    "name": "media/s53-57ch-naval-slipring-assembly.jpeg"
+  },
+  "image107.jpeg": {
+    "slide": 53,
+    "status": "kept",
+    "name": "media/s53-57ch-naval-slipring-cad.jpeg"
+  },
+  "image108.jpeg": {
+    "slide": 53,
+    "status": "kept",
+    "name": "media/s53-57ch-naval-slipring-housing.jpeg"
+  },
+  "image109.jpeg": {
+    "slide": 54,
+    "status": "kept",
+    "name": "media/s54-108ch-aerospace-slipring-cad-exploded.jpeg"
+  },
+  "image110.jpeg": {
+    "slide": 54,
+    "status": "kept",
+    "name": "media/s54-108ch-aerospace-slipring-cad.jpeg"
+  },
+  "image111.jpeg": {
+    "slide": 54,
+    "status": "kept",
+    "name": "media/s54-108ch-aerospace-slipring-cad-transparent.jpeg"
+  },
+  "image113.jpeg": {
+    "slide": 55,
+    "status": "kept",
+    "name": "media/s55-37ch-pancake-slipring-cad-1.jpeg"
+  },
+  "image114.jpeg": {
+    "slide": 55,
+    "status": "kept",
+    "name": "media/s55-37ch-pancake-slipring-cad-2.jpeg"
+  },
+  "image115.jpeg": {
+    "slide": 55,
+    "status": "kept",
+    "name": "media/s55-37ch-pancake-slipring-cad-3.jpeg"
+  },
+  "image117.jpeg": {
+    "slide": 56,
+    "status": "kept",
+    "name": "media/s56-48ch-stacked-slipring-cad-1.jpeg"
+  },
+  "image118.jpeg": {
+    "slide": 56,
+    "status": "kept",
+    "name": "media/s56-48ch-stacked-slipring-cad-2.jpeg"
+  },
+  "image119.jpeg": {
+    "slide": 56,
+    "status": "kept",
+    "name": "media/s56-48ch-stacked-slipring-cad-3.jpeg"
+  },
+  "image120.jpeg": {
+    "slide": 57,
+    "status": "kept",
+    "name": "media/s57-70ch-slipring-repair-1.jpeg"
+  },
+  "image121.jpeg": {
+    "slide": 57,
+    "status": "kept",
+    "name": "media/s57-70ch-slipring-repair-2.jpeg"
+  },
+  "image122.jpeg": {
+    "slide": 57,
+    "status": "kept",
+    "name": "media/s57-70ch-slipring-repair-3.jpeg"
+  },
+  "image123.jpeg": {
+    "slide": 57,
+    "status": "kept",
+    "name": "media/s57-70ch-slipring-repair-4.jpeg"
+  },
+  "image124.jpeg": {
+    "slide": 58,
+    "status": "kept",
+    "name": "media/s58-igcar-high-amperage-slipring-installation-1.jpeg"
+  },
+  "image125.jpeg": {
+    "slide": 58,
+    "status": "kept",
+    "name": "media/s58-igcar-high-amperage-slipring-installation-2.jpeg"
+  },
+  "image127.jpeg": {
+    "slide": 59,
+    "status": "kept",
+    "name": "media/s59-slipring-division-building.jpeg"
+  },
+  "image129.jpeg": {
+    "slide": 62,
+    "status": "excluded",
+    "reason": "company or customer logo — trademark; the customer list is kept as text"
+  },
+  "image130.jpeg": {
+    "slide": 62,
+    "status": "excluded",
+    "reason": "company or customer logo — trademark; the customer list is kept as text"
+  },
+  "image133.jpeg": {
+    "slide": 63,
+    "status": "excluded",
+    "reason": "company or customer logo — trademark; the customer list is kept as text"
+  },
+  "image134.jpeg": {
+    "slide": 63,
+    "status": "excluded",
+    "reason": "company or customer logo — trademark; the customer list is kept as text"
+  },
+  "image135.jpeg": {
+    "slide": 63,
+    "status": "excluded",
+    "reason": "company or customer logo — trademark; the customer list is kept as text"
+  },
+  "image136.jpeg": {
+    "slide": 63,
+    "status": "excluded",
+    "reason": "company or customer logo — trademark; the customer list is kept as text"
+  },
+  "image137.jpeg": {
+    "slide": 66,
+    "status": "excluded",
+    "reason": "identifiable people in frame (ADR-0007: prefer people-free frames)"
+  },
+  "image138.jpeg": {
+    "slide": 66,
+    "status": "excluded",
+    "reason": "identifiable people in frame (ADR-0007: prefer people-free frames)"
+  },
+  "image139.jpeg": {
+    "slide": 66,
+    "status": "kept",
+    "name": "media/s66-lca-td1-on-display-pylon.jpeg"
+  },
+  "image140.jpeg": {
+    "slide": 67,
+    "status": "excluded",
+    "reason": "identifiable people in frame (ADR-0007: prefer people-free frames)"
+  },
+  "image141.jpeg": {
+    "slide": 67,
+    "status": "excluded",
+    "reason": "identifiable people in frame (ADR-0007: prefer people-free frames)"
+  },
+  "image142.jpeg": {
+    "slide": 68,
+    "status": "kept",
+    "name": "media/s68-lca-composite-canopy-trolley.jpeg"
+  },
+  "image143.jpeg": {
+    "slide": 69,
+    "status": "kept",
+    "name": "media/s69-gslv-access-platform.jpeg"
+  },
+  "image144.jpeg": {
+    "slide": 71,
+    "status": "excluded",
+    "reason": "portrait of a third party"
+  },
+  "image149.jpeg": {
+    "slide": 80,
+    "status": "kept",
+    "name": "media/s80-office-block.jpeg"
+  },
+  "image150.jpeg": {
+    "slide": 80,
+    "status": "excluded",
+    "reason": "vehicle number plate legible"
+  },
+  "image151.jpeg": {
+    "slide": 81,
+    "status": "kept",
+    "name": "media/s81-aircraft-hangar.jpeg"
+  },
+  "image152.jpeg": {
+    "slide": 82,
+    "status": "kept",
+    "name": "media/s82-cnc-turning-centre.jpeg"
+  },
+  "image153.jpeg": {
+    "slide": 82,
+    "status": "kept",
+    "name": "media/s82-haas-cnc-machining-centre.jpeg"
+  },
+  "image154.jpeg": {
+    "slide": 83,
+    "status": "kept",
+    "name": "media/s83-radial-drilling-machine.jpeg"
+  },
+  "image155.jpeg": {
+    "slide": 83,
+    "status": "kept",
+    "name": "media/s83-heating-oven.jpeg"
+  },
+  "image156.jpeg": {
+    "slide": 84,
+    "status": "kept",
+    "name": "media/s84-assembly-and-soldering-room.jpeg"
+  },
+  "image157.jpeg": {
+    "slide": 84,
+    "status": "kept",
+    "name": "media/s84-clean-room-entrance.jpeg"
+  },
+  "image158.jpeg": {
+    "slide": 85,
+    "status": "kept",
+    "name": "media/s85-inspection-room.jpeg"
+  },
+  "image159.jpeg": {
+    "slide": 86,
+    "status": "kept",
+    "name": "media/s86-slipring-rotational-test-rig.jpeg"
+  },
+  "image161.jpeg": {
+    "slide": 88,
+    "status": "excluded",
+    "reason": "company or customer logo — trademark; the customer list is kept as text"
+  },
+  "image163.jpeg": {
+    "slide": 88,
+    "status": "excluded",
+    "reason": "company or customer logo — trademark; the customer list is kept as text"
+  },
+  "image166.jpeg": {
+    "slide": 89,
+    "status": "excluded",
+    "reason": "company or customer logo — trademark; the customer list is kept as text"
+  },
+  "image168.jpeg": {
+    "slide": 89,
+    "status": "excluded",
+    "reason": "company or customer logo — trademark; the customer list is kept as text"
+  },
+  "image173.jpeg": {
+    "slide": 89,
+    "status": "excluded",
+    "reason": "company or customer logo — trademark; the customer list is kept as text"
+  },
+  "image180.jpeg": {
+    "slide": 90,
+    "status": "excluded",
+    "reason": "company or customer logo — trademark; the customer list is kept as text"
+  },
+  "image181.jpeg": {
+    "slide": 92,
+    "status": "excluded",
+    "reason": "award-ceremony photograph — identifiable people; award names and years kept as text"
+  },
+  "image182.jpeg": {
+    "slide": 93,
+    "status": "excluded",
+    "reason": "award-ceremony photograph — identifiable people; award names and years kept as text"
+  },
+  "image183.jpeg": {
+    "slide": 94,
+    "status": "excluded",
+    "reason": "award-ceremony photograph — identifiable people; award names and years kept as text"
+  },
+  "image184.jpeg": {
+    "slide": 95,
+    "status": "excluded",
+    "reason": "award-ceremony photograph — identifiable people; award names and years kept as text"
+  },
+  "image187.jpeg": {
+    "slide": 99,
+    "status": "kept",
+    "name": "media/s99-factory-gate.jpeg"
+  },
+  "image188.jpeg": {
+    "slide": 99,
+    "status": "excluded",
+    "reason": "vehicle number plate legible"
+  }
+}
