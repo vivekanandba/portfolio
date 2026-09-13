@@ -38,13 +38,7 @@ export function ClipGrid({ clips }: { clips: Clip[] }) {
               aria-label={c.alt}
               className="aspect-video w-full bg-black object-contain"
             >
-              <track
-                kind="captions"
-                srcLang="en"
-                label="English"
-                src={captionsTrack(c.alt)}
-                default
-              />
+              <track kind="captions" srcLang="en" label="English" src={captionsTrack(c.alt)} />
             </video>
             <figcaption className="border-t border-hairline px-3 py-2 text-[11px] leading-snug text-muted">
               {c.caption && <span className="text-ink">{c.caption} </span>}
