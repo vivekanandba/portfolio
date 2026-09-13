@@ -411,6 +411,7 @@ export const archiveEraSchema = z.object({
   title: z.string().min(1), // "The Legend archive"
   eyebrow: z.string().min(1),
   intro: z.string().min(40), // first person: the rule and what the reader is looking at
+  subject: z.string().min(1), // what the entries come from, for metadata: "the … capability decks"
   decks: z.array(z.enum(DECK_IDS)).min(1),
 });
 export type ArchiveEra = z.infer<typeof archiveEraSchema>;

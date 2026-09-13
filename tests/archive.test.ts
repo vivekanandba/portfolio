@@ -151,7 +151,7 @@ describe('archive entries bind to the rest of the site', () => {
       expect(claimed.has(id), `records row ${id} has no archive entry`).toBe(true);
   });
 
-  it('the requested/unknown items are the minority — most entries are dated', () => {
+  it('most entries carry a date — a smoke check against blanket requested, not a guarantee', () => {
     const known = archiveEntries.filter((e) => e.when.status === 'known').length;
     expect(known).toBeGreaterThan(archiveEntries.length / 3);
   });

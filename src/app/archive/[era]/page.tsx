@@ -43,7 +43,7 @@ const ROLE_LABELS: Record<ArchiveEntry['role'], string> = {
   designed: 'Role: designed',
   delivered: 'Role: delivered',
   supported: 'Role: supported',
-  workplace: 'Role: my workplace',
+  workplace: 'My workplace',
   'company-before': 'Company programme · before my time',
   'company-undated': 'Company programme · date not recorded',
   'company-after': 'Company · after my time',

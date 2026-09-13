@@ -71,7 +71,7 @@ export function archiveMetadata(era: string): Metadata {
   const meta = archiveEras.find((e) => e.id === era);
   const count = archiveEntries.filter((e) => e.era === era).length;
   const title = `${meta?.title ?? 'Archive'} — ${profile.name}`;
-  const description = `${count} items from the Legend Technologies and ENTI Innovations capability decks — dated or not, each with its source slide and my part in it.`;
+  const description = `${count} items from ${meta?.subject ?? 'the source decks'} — dated or not, each with its source slide and my part in it.`;
   const url = `${SITE_URL}/archive/${era}/`;
   return {
     title,
