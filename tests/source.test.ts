@@ -33,8 +33,8 @@ const isText = (p: string) => /\.(md|json|txt)$/.test(p);
 const sha256 = (p: string) => createHash('sha256').update(readFileSync(p)).digest('hex');
 
 describe('source/ tree shape', () => {
-  it('has the README and the three sub-trees', () => {
-    for (const p of ['README.md', 'decks', 'resume', 'my-notes']) {
+  it('has the README and the five sub-trees', () => {
+    for (const p of ['README.md', 'decks', 'resume', 'my-notes', 'records', 'my-photos']) {
       expect(existsSync(join(ROOT, p)), `source/${p} missing`).toBe(true);
     }
   });
@@ -180,6 +180,102 @@ describe('source/my-notes', () => {
       expect(text, `${f} needs a "Source: my own account, <date>" header`).toContain(
         `Source: my own account, ${m![1]}`,
       );
+    }
+  });
+});
+
+describe('source/records — the intake table for the Legend years (PR-B)', () => {
+  const file = join(ROOT, 'records', 'legend-programmes.md');
+  const COLUMNS = [
+    'Item',
+    'Where it shows',
+    'What the site says now',
+    'Month / year',
+    'My role',
+    'One sentence',
+    'Photos folder',
+  ];
+  const rows = () => {
+    const lines = readFileSync(file, 'utf8').split('\n');
+    // The first contiguous run of table lines only — a second table added to the
+    // intro later must not be merged into the rows under test (CON-VER-005).
+    const start = lines.findIndex((l) => /^\|/.test(l));
+    const table: string[] = [];
+    for (const l of lines.slice(start)) {
+      if (!/^\|/.test(l)) break;
+      table.push(l);
+    }
+    const cells = (l: string) =>
+      l
+        .trim()
+        .replace(/^\||\|$/g, '')
+        .split('|')
+        .map((c) => c.trim());
+    return { header: cells(table[0] ?? ''), body: table.slice(2).map(cells) };
+  };
+
+  it('exists and carries exactly the seven agreed columns, in order', () => {
+    expect(existsSync(file), 'source/records/legend-programmes.md missing').toBe(true);
+    expect(rows().header).toEqual(COLUMNS);
+  });
+
+  it('every row has a cell for every column, names the item and what the site says now', () => {
+    const { body } = rows();
+    expect(body.length, 'the table lists the open items').toBeGreaterThanOrEqual(30);
+    for (const r of body) {
+      expect(r, `row "${r[0]}" has ${r.length} cells, not ${COLUMNS.length}`).toHaveLength(
+        COLUMNS.length,
+      );
+      expect(r[0], 'Item is never blank').not.toBe('');
+      expect(r[2], `"${r[0]}": say what the site says now`).not.toBe('');
+    }
+  });
+
+  it('gives every item a photos folder id under my-photos/, unique across the table (or — when photos do not apply)', () => {
+    const ids = rows()
+      .body.map((r) => r[6])
+      .filter((c) => c !== '—');
+    for (const id of ids) expect(id).toMatch(/^`my-photos\/[a-z0-9-]+\/`$/);
+    expect(new Set(ids).size, 'duplicate photos folder').toBe(ids.length);
+  });
+});
+
+describe('source/my-photos — where my own photographs come in (PR-B)', () => {
+  const dir = join(ROOT, 'my-photos');
+  const FIELDS = ['file', 'item', 'month', 'caption'] as const;
+
+  it('README explains the folder-per-item layout, the manifest fields and the screening rule', () => {
+    const text = readFileSync(join(dir, 'README.md'), 'utf8');
+    for (const f of FIELDS) expect(text, `README must document "${f}"`).toContain(`"${f}"`);
+    expect(text).toMatch(/manifest\.json/);
+    expect(text).toMatch(/ADR-0007/);
+    expect(text).toMatch(/legend-programmes\.md/);
+  });
+
+  it('every item folder has a manifest whose entries name existing files, an item id and a month', () => {
+    const folders = readdirSync(dir, { withFileTypes: true }).filter((d) => d.isDirectory());
+    for (const f of folders) {
+      const manifestPath = join(dir, f.name, 'manifest.json');
+      expect(existsSync(manifestPath), `${f.name}/manifest.json missing`).toBe(true);
+      const manifest = JSON.parse(readFileSync(manifestPath, 'utf8')) as Record<string, unknown>[];
+      expect(Array.isArray(manifest), `${f.name}: manifest must be an array`).toBe(true);
+      const listed = new Set<string>();
+      for (const e of manifest) {
+        for (const k of FIELDS)
+          expect(typeof e[k], `${f.name}: "${k}" must be a string`).toBe('string');
+        expect(e.file as string).toMatch(/^[a-z0-9-]+\.(jpe?g|png)$/);
+        expect(
+          existsSync(join(dir, f.name, e.file as string)),
+          `${f.name}/${e.file} listed but missing`,
+        ).toBe(true);
+        expect(e.item, `${f.name}: item id must match the folder`).toBe(f.name);
+        expect(e.month as string).toMatch(/^(\d{4}-\d{2}|unknown)$/);
+        listed.add(e.file as string);
+      }
+      for (const p of readdirSync(join(dir, f.name))) {
+        if (p === 'manifest.json') continue;
+        expect(listed.has(p), `${f.name}/${p} is not in the manifest`).toBe(true);
+      }
     }
   });
 });

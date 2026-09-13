@@ -33,6 +33,10 @@ item across the grid instead of cropping it.
 | rail-tooling          | Fixture / template photos (metro programs)                                                              | `public/media/rail-tooling-01.jpg`                                 |
 | aircare · stop-hunger | Sensor-node build photos; Stop Hunger screenshots                                                       | `public/media/aircare-node.jpg`, `public/media/stop-hunger-01.jpg` |
 
+**Legend years (2013–2018):** every undated item, unstated role and inferred start month is listed in
+`source/records/legend-programmes.md`; my photographs go to `source/my-photos/<item>/` (README there).
+Not repeated in the table above.
+
 ## Cautions before publishing
 
 - **Audit every repair/device photo for customer PII before it ships.** Several before/after
