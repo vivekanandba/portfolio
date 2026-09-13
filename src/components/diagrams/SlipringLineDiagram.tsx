@@ -28,35 +28,36 @@ export function SlipringLineDiagram() {
         dashed
       />
 
+      {/* Components sit below the housing's centred label so nothing overlaps. */}
       <DiagramBox
         x={72}
-        y={124}
+        y={166}
         w={200}
-        h={72}
+        h={64}
         label="Rotor rings"
         sublabel="electrode-grade Cu · U-groove · gold"
       />
-      <DiagramArrow x1={272} y1={148} x2={324} y2={148} />
-      <DiagramArrow x1={324} y1={172} x2={272} y2={172} />
+      <DiagramArrow x1={272} y1={188} x2={324} y2={188} />
+      <DiagramArrow x1={324} y1={208} x2={272} y2={208} />
       <DiagramBox
         x={324}
-        y={124}
+        y={166}
         w={168}
-        h={72}
+        h={64}
         label="Brush wires"
         sublabel="beryllium copper · gold-plated"
       />
-      <DiagramArrow x1={492} y1={160} x2={540} y2={160} />
-      <DiagramBox x={540} y={124} w={116} h={72} label="PCB" sublabel="channel termination" />
+      <DiagramArrow x1={492} y1={198} x2={540} y2={198} />
+      <DiagramBox x={540} y={166} w={116} h={64} label="PCB" sublabel="channel termination" />
 
       <DiagramNote
         x={360}
-        y={224}
+        y={260}
         text="replaced: coin-silver rings + silver-graphite brushes (ToT 2000) — powder, shorts, lubrication"
       />
       <DiagramNote
         x={360}
-        y={276}
+        y={286}
         text="assembled in a class-10,000 clean room · proven on the division’s rotational test rig"
       />
     </DiagramShell>
