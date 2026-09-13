@@ -1,7 +1,7 @@
 # ADR-0016 — Era archive: every source item surfaces, or its exclusion is written down
 
 **Status:** Accepted
-**Date:** 2026-09-13 **Shipped in:** pending
+**Date:** 2026-09-13 **Shipped in:** #49
 
 ## Context
 
