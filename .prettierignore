@@ -10,3 +10,5 @@ test-results/
 package-lock.json
 source/decks/*/slides.md
 source/decks/*/media-map.json
+tests/fixtures/writing/
+src/content/writing/
