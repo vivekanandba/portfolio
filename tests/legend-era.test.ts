@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { roles, turningPoints, caseStudyStart } from '@/content';
+import { caseStudies, roles, turningPoints, caseStudyStart } from '@/content';
 
 /**
  * The Legend-era facts Vivek decided on 2026-09-13 (recorded in
@@ -29,6 +29,30 @@ describe('Legend-era dates (Vivek’s decision, 2026-09-13)', () => {
     expect(text).toMatch(/ENTI/);
     expect(text).toMatch(/bid/i);
     expect(text).toMatch(/handover/i);
+  });
+});
+
+describe('Legend-era project start months follow the public LinkedIn Projects record (PR-B)', () => {
+  // Basic_LinkedInDataExport (public-profile Projects.csv, exported 2026-07-23):
+  // IGCAR slip ring Sep 2015 – Dec 2015; BMP-II turret Nov 2014 – Mar 2015;
+  // filament-wound shells Mar 2015 – Aug 2015; LCA-Navy opto-electronics
+  // Jan 2016 – Jun 2016. The site had placed these by inference; the record wins.
+  it.each([
+    ['igcar-slipring', 201509],
+    ['bmp2-turret', 201411],
+    ['filament-composites', 201503],
+    ['lca-navy', 201601],
+  ])('%s starts %i', (id, start) => {
+    expect(caseStudyStart(id)).toBe(start);
+  });
+});
+
+describe('the slip-ring line page points at the IGCAR deep dive (PR-B)', () => {
+  it('carries the IGCAR exploded CAD in its gallery with a caption naming the project page', () => {
+    const line = caseStudies.find((cs) => cs.slug === 'slipring-line');
+    const item = line?.gallery?.find((g) => g.file === 'media/legend-igcar-slipring-cad.jpg');
+    expect(item, 'IGCAR CAD in the slip-ring line gallery').toBeDefined();
+    expect(item!.credit ?? '').toMatch(/IGCAR Nuclear Slip Ring/);
   });
 });
 
