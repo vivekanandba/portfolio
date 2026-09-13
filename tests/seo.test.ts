@@ -132,4 +132,13 @@ describe('archiveMetadata', () => {
     expect(String(meta.title)).toMatch(/archive/i);
     expect(String(meta.description)).toMatch(/\d+ items/);
   });
+
+  it('falls back to generic wording for an era it does not know (never throws at build)', () => {
+    const unknown = archiveMetadata('no-such-era');
+    expect(String(unknown.title)).toMatch(/^Archive — /);
+    expect(String(unknown.description)).toMatch(/^0 items from the source decks/);
+    expect(unknown.alternates?.canonical).toBe(
+      'https://vivekanandba.github.io/portfolio/archive/no-such-era/',
+    );
+  });
 });
