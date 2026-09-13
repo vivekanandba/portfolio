@@ -21,6 +21,9 @@ export function CaseStudyNav() {
           <Link href="/work/" className="text-sm text-muted no-underline hover:text-ink">
             All projects
           </Link>
+          <Link href="/writing/" className="text-sm text-muted no-underline hover:text-ink">
+            Writing
+          </Link>
           <a
             href={asset(profile.resumeFile)}
             className="rounded-full bg-ink px-4 py-1.5 text-sm font-medium text-paper no-underline transition-opacity hover:opacity-90"

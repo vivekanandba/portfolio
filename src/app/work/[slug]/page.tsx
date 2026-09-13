@@ -2,6 +2,7 @@ import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { CaseStudyNav } from '@/components/CaseStudyNav';
 import { ClipGrid } from '@/components/ClipGrid';
+import { ProjectNotes } from '@/components/ProjectNotes';
 import { MetricBadge } from '@/components/MetricBadge';
 import { Reveal } from '@/components/Reveal';
 import { diagrams } from '@/components/diagrams';
@@ -261,6 +262,10 @@ export default async function CaseStudyPage({ params }: Params) {
               </section>
             </Reveal>
           )}
+
+          <Reveal className="mt-16">
+            <ProjectNotes projectId={cs.projectId} />
+          </Reveal>
 
           {archiveEra && (
             <Reveal className="mt-16">
