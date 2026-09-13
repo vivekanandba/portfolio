@@ -31,7 +31,8 @@ From ADR-0011 onward, records are written **before** implementation (see `SPEC.m
 | [0011](0011-turning-points.md)           | Turning Points: the career told as decision records       | Accepted | #41          |
 | [0012](0012-interaction-layer.md)        | Audience paths, command palette, Now section              | Accepted | #42          |
 | [0013](0013-source-material-in-repo.md)  | Source material in the repo, redacted; originals released | Accepted | #43          |
-| [0014](0014-motion-evidence-clips.md)    | Motion evidence: short muted clips with posters           | Accepted | pending      |
+| [0014](0014-motion-evidence-clips.md)    | Motion evidence: short muted clips with posters           | Accepted | #44          |
+| [0015](0015-era-hub-page.md)             | An era hub page for the Legend years                      | Accepted | pending      |
 
 ## Format
 

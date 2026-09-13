@@ -1,7 +1,7 @@
 # ADR-0014 — Motion evidence: short, muted clips with posters
 
 **Status:** Accepted
-**Date:** 2026-09-13 **Shipped in:** not yet shipped
+**Date:** 2026-09-13 **Shipped in:** #44
 
 ## Context
 
