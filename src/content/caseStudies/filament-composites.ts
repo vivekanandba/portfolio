@@ -1,12 +1,18 @@
 import type { CaseStudy } from '../schema';
 
+// Sources: master resume / LinkedIn Projects ("Fabrication of Filament Wound
+// Carbon Epoxy Shells & Laminates", Mar–Aug 2015; PESIT / Siemens; production &
+// purchase liaison, testing liaison; onsite Vijayawada); ENTI deck v1.4, slide
+// 40 ("Filament winding for gas pipelines — Siemens", the two shell photographs).
+const PHOTO = 'Photo: ENTI Innovations Pvt. Ltd. — corporate deck v1.4, slide 40';
+
 export const filamentComposites: CaseStudy = {
   slug: 'filament-composites',
   projectId: 'filament-composites',
   eyebrow: 'Project · Legend Technologies',
   title: 'Filament-Wound Composites — carbon-epoxy shells, owned end to end',
   intro:
-    'Manufacturing transfer and fabrication of high-glass-temperature filament-wound carbon-epoxy shells and laminates (PESIT / Siemens) — owning material selection, winding, oven curing, machining, and testing rather than handing any stage off.',
+    'Manufacturing transfer and fabrication of high-glass-temperature filament-wound carbon-epoxy shells and laminates for a Siemens gas-pipeline application (with PESIT) — owning material selection, winding, oven curing, machining, and testing rather than handing any stage off.',
   metrics: [
     { value: 'Carbon-epoxy', label: 'filament-wound shells' },
     { value: 'High-Tg', label: 'glass-transition composites' },
@@ -43,6 +49,18 @@ export const filamentComposites: CaseStudy = {
   resultsNote:
     'Composite fabrication learned at the machine — the kind of ground-truth understanding that later made cross-disciplinary systems work feel familiar.',
   diagramId: 'filament-composites',
+  gallery: [
+    {
+      file: 'media/enti-filament-wound-shells-1.jpg',
+      alt: 'A single filament-wound cylindrical shell resting on plastic sheeting on a workshop floor, its wound surface catching the light',
+      credit: `Filament-wound shell for the Siemens gas-pipeline programme. ${PHOTO}`,
+    },
+    {
+      file: 'media/enti-filament-wound-shells-2.jpg',
+      alt: 'Two filament-wound shells of different diameters side by side on the workshop floor',
+      credit: `Two shells, machined to length. ${PHOTO}`,
+    },
+  ],
   seoDescription:
-    'Project: manufacturing transfer and fabrication of high-glass-temperature filament-wound carbon-epoxy shells and laminates — material selection, winding, oven curing, machining, and testing owned end to end.',
+    'Project: manufacturing transfer and fabrication of high-glass-temperature filament-wound carbon-epoxy shells and laminates for a Siemens gas-pipeline programme — material selection, winding, oven curing, machining, and testing owned end to end.',
 };

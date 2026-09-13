@@ -94,7 +94,9 @@ describe.each(DECKS)('deck %s', (deck) => {
 
   it('every media/ and clips/ reference in slides.md exists, and nothing is orphaned', () => {
     const refs = new Set(
-      [...slides().matchAll(/\b((?:media|clips)\/[A-Za-z0-9._-]+)/g)].map((m) => m[1]),
+      // (?<!public/) — the transcript may mention site paths in prose; only deck-relative
+      // references are checked.
+      [...slides().matchAll(/(?<!public\/)\b((?:media|clips)\/[A-Za-z0-9._-]+)/g)].map((m) => m[1]),
     );
     // Both decks reference well over twenty kept files; a transcript that
     // references almost nothing means the media rules silently excluded it all.

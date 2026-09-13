@@ -378,33 +378,33 @@
     },
     "media1.mp4": {
       "name": "s35-bmp2-elevation-and-traverse.mp4",
-      "pending": "6.9 MB original exceeds the 2 MiB ceiling; re-encode with ffmpeg (ADR-0014 pipeline)"
+      "pending": "6.9 MB original exceeds the 2 MiB ceiling; a re-encoded copy under 2 MiB is published on the site (see scripts/media-web.json)"
     },
     "media8.mp4": {
       "name": "s37-position-light-fea-altitude.mp4",
-      "pending": "2.0 MB original just exceeds the 2 MiB ceiling; re-encode with ffmpeg"
+      "pending": "2.0 MB original just exceeds the 2 MiB ceiling; a re-encoded copy under 2 MiB is published on the site (see scripts/media-web.json)"
     },
     "media9.mp4": {
       "name": "s37-position-light-fea-high-temp.mp4",
-      "pending": "2.0 MB original just exceeds the 2 MiB ceiling; re-encode with ffmpeg"
+      "pending": "2.0 MB original just exceeds the 2 MiB ceiling; a re-encoded copy under 2 MiB is published on the site (see scripts/media-web.json)"
     },
     "media10.mp4": {
       "name": "s37-position-light-fea-low-temp.mp4",
-      "pending": "2.9 MB original exceeds the 2 MiB ceiling; re-encode with ffmpeg"
+      "pending": "2.9 MB original exceeds the 2 MiB ceiling; a re-encoded copy under 2 MiB is published on the site (see scripts/media-web.json)"
     },
     "media11.mp4": {
       "name": "s37-position-light-fea-thermal-shock.mp4",
-      "pending": "3.5 MB original exceeds the 2 MiB ceiling; re-encode with ffmpeg"
+      "pending": "3.5 MB original exceeds the 2 MiB ceiling; a re-encoded copy under 2 MiB is published on the site (see scripts/media-web.json)"
     },
     "media12.mp4": {
       "name": "s37-position-light-fea-natural-frequency.mp4",
-      "pending": "4.7 MB original exceeds the 2 MiB ceiling; re-encode with ffmpeg"
+      "pending": "4.7 MB original exceeds the 2 MiB ceiling; a re-encoded copy under 2 MiB is published on the site (see scripts/media-web.json)"
     },
     "media13.wmv": {
-      "exclude": "raw WMV recording, 127 MB — contents not yet inspected; remains inside the release-asset .pptx only"
+      "exclude": "raw WMV recording, 127 MB, 3 min 18 s — an LS-DYNA transit-drop simulation (3D stress view); a 35 s excerpt is published on the site as enti-position-light-fea-transit-drop-3d.mp4; the full recording stays inside the release asset"
     },
     "media14.wmv": {
-      "exclude": "raw WMV recording, 63 MB — contents not yet inspected; remains inside the release-asset .pptx only"
+      "exclude": "raw WMV recording, 63 MB, 3 min 18 s — an LS-DYNA transit-drop simulation (cross-section); a 35 s excerpt is published on the site as enti-position-light-fea-transit-drop-section.mp4; the full recording stays inside the release asset"
     }
   }
 }

@@ -1,5 +1,14 @@
 import type { CaseStudy } from '../schema';
 
+// Sources: master resume / LinkedIn Projects ("Design and Fabrication of
+// Augmenter Extension — Safran CENCO", Jun 2016–Jun 2017; designer, production
+// & purchase liaison, installation liaison, project manager; onsite New Delhi);
+// MD's LinkedIn recommendation ("custom scripts streamlined the production of
+// augmenter extensions for Pratt & Whitney"); Legend deck v5.5, slides 25–26
+// (the PW1100G test cell and the related Nagpur airflow-ramp test cell for
+// Safran / CENCO).
+const PHOTO = 'Photo: Legend Technologies (India) Pvt. Ltd. — capability deck v5.5';
+
 export const pwAugmenter: CaseStudy = {
   slug: 'pw-augmenter',
   projectId: 'pw-augmenter',
@@ -31,6 +40,12 @@ export const pwAugmenter: CaseStudy = {
     },
     {
       decision:
+        'Script the repetitive production drawings for the extension instead of drafting each variant by hand.',
+      tradeoff:
+        'Writing tooling for drawings is a detour from the drawings themselves — the MD’s recommendation singles it out as what “streamlined the production of augmenter extensions”, and it was the first time programming paid for itself on a shop floor.',
+    },
+    {
+      decision:
         'Act as designer, production/purchase liaison, installation liaison, and project manager — owning coordination, not just drawings.',
       tradeoff:
         'Wearing every hat is heavier than pure design work — on a live test facility, coordination is the deliverable as much as the hardware.',
@@ -50,6 +65,37 @@ export const pwAugmenter: CaseStudy = {
   resultsNote:
     'Multi-party coordination on a live facility — a discipline that translated directly into leading cross-functional software delivery later.',
   diagramId: 'pw-augmenter',
+  gallery: [
+    {
+      file: 'media/legend-pw1100g-test-cell.jpg',
+      alt: 'The engine test cell before the engine: the augmenter tube mouth at the far wall, acoustic lining, a staircase and railings in green-lit concrete',
+      wide: true,
+      credit: `The CENCO test cell with the augmenter extension in place. ${PHOTO}, slide 25`,
+    },
+    {
+      file: 'media/legend-pw1100g-augmenter-detail.jpg',
+      alt: 'Close view of the augmenter extension’s flanged joint and its blue support frame',
+      tall: true,
+      credit: `Augmenter extension, joint detail. ${PHOTO}, slide 25`,
+    },
+    {
+      file: 'media/legend-nagpur-test-cell-1.jpg',
+      alt: 'A white-walled airflow-ramp test cell under construction, the blue ramp structure hanging from an overhead beam',
+      credit: `Airflow-ramp test cell structure, Nagpur — the related Safran / CENCO cell job. ${PHOTO}, slide 26`,
+    },
+    {
+      file: 'media/legend-nagpur-test-cell-2.jpg',
+      alt: 'Looking down the Nagpur test cell at the augmenter tube opening, yellow access platforms in the foreground',
+      tall: true,
+      credit: `Nagpur test cell, augmenter opening. ${PHOTO}, slide 26`,
+    },
+    {
+      file: 'media/legend-nagpur-test-cell-3.jpg',
+      alt: 'The Nagpur test cell’s augmenter tube from the front, a cherry-picker and yellow platforms below the overhead crane',
+      wide: true,
+      credit: `Nagpur test cell, front view. ${PHOTO}, slide 26`,
+    },
+  ],
   seoDescription:
     'Project: a movable-cart augmenter extension for testing the Pratt & Whitney PW1100G geared turbofan at an existing CENCO engine test bed, with onsite liaison across Air India, CENCO, and Pratt & Whitney.',
 };

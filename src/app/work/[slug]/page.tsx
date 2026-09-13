@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { CaseStudyNav } from '@/components/CaseStudyNav';
+import { ClipGrid } from '@/components/ClipGrid';
 import { MetricBadge } from '@/components/MetricBadge';
 import { Reveal } from '@/components/Reveal';
 import { diagrams } from '@/components/diagrams';
@@ -214,6 +215,18 @@ export default async function CaseStudyPage({ params }: Params) {
                     </li>
                   ))}
                 </ul>
+              </section>
+            </Reveal>
+          )}
+
+          {cs.clips && cs.clips.length > 0 && (
+            <Reveal className="mt-16">
+              <section aria-label="In motion">
+                <SectionHeading>In motion</SectionHeading>
+                <p className="mb-6 max-w-content text-sm leading-relaxed text-muted">
+                  Short, silent simulation clips. Nothing downloads or plays until you press play.
+                </p>
+                <ClipGrid clips={cs.clips} />
               </section>
             </Reveal>
           )}

@@ -67,3 +67,33 @@ test('unknown case-study slugs get the custom 404', async ({ page }) => {
   expect(res?.status()).toBe(404);
   await expect(page.getByText(/doesn’t exist/i)).toBeVisible();
 });
+
+// Motion evidence (ADR-0014): Playwright cannot assert playback, so it asserts
+// the contract — poster and controls present, nothing preloads or autoplays,
+// and the MP4 and poster are really served with the right content types.
+for (const cs of caseStudies.filter((c) => (c.clips ?? []).length > 0)) {
+  test(`case study ${cs.slug} clips honour the motion-evidence contract`, async ({
+    page,
+    baseURL,
+  }) => {
+    await page.goto(`work/${cs.slug}/`);
+    const videos = page.locator('video');
+    await expect(videos).toHaveCount(cs.clips!.length);
+    for (let i = 0; i < cs.clips!.length; i++) {
+      const v = videos.nth(i);
+      await expect(v).toHaveAttribute('controls', '');
+      await expect(v).toHaveAttribute('preload', 'none');
+      expect(await v.getAttribute('autoplay')).toBeNull();
+      expect(await v.getAttribute('poster')).toContain(cs.clips![i].poster.split('/').pop()!);
+    }
+    const src = await videos.first().getAttribute('src');
+    const clip = await page.request.get(new URL(src!, baseURL).toString());
+    expect(clip.status()).toBe(200);
+    expect(clip.headers()['content-type']).toContain('video/mp4');
+    const poster = await page.request.get(
+      new URL((await videos.first().getAttribute('poster'))!, baseURL).toString(),
+    );
+    expect(poster.status()).toBe(200);
+    expect(poster.headers()['content-type']).toContain('image/');
+  });
+}

@@ -6,7 +6,7 @@
 | Presented to      | Kinetix Engineering Pvt. Ltd.                                                                                                             |
 | Date (by content) | 2017–2018 — the deck shows Aero India 2017 and FY2016–17 figures; the intro text ("fourteen years") was written earlier and never updated |
 | Slides            | 99                                                                                                                                        |
-| Original          | GitHub Release **`source-decks-2026-09`**, asset `Legend Company - V5.5.pptx`, 28,169,926 bytes                                           |
+| Original          | GitHub Release **`source-decks-2026-09`**, asset `Legend.Company.-.V5.5.pptx` (GitHub replaces spaces with dots), 28,169,926 bytes        |
 | sha256            | `0a83f9e215367fa9fefb9ddb03d539efb021d0279a7f2ee9eae9565a72effdba`                                                                        |
 | Extracted with    | `scripts/deck-extract.py` + `scripts/deck-rules/legend-company-v5.5.json` (reproducible; see below)                                       |
 

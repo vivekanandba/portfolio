@@ -1,4 +1,4 @@
-import { existsSync } from 'node:fs';
+import { existsSync, readdirSync, readFileSync, statSync } from 'node:fs';
 import { join } from 'node:path';
 import { describe, it, expect } from 'vitest';
 import {
@@ -24,10 +24,11 @@ import { recommendations } from '@/content/recommendations';
 import { certifications } from '@/content/certifications';
 import { languages } from '@/content/languages';
 import { diagrams } from '@/components/diagrams';
+import { caseStudyStart } from '@/content';
 
 /** Media owned by a client or former employer, named media/<source>-* by
  *  convention. Anything matching must render a visible credit. */
-const THIRD_PARTY = /^media\/(legend|neurasignal|appstore|mapshalli)-/;
+const THIRD_PARTY = /^media\/(legend|enti|neurasignal|appstore|mapshalli)-/;
 
 describe('content conforms to schema', () => {
   it('profile is valid', () => {
@@ -218,6 +219,51 @@ describe('case-study invariants', () => {
           expect(g.credit, `third-party photo ${g.file} needs a visible credit`).toBeTruthy();
         }
       }
+    }
+  });
+
+  it('clips carry a poster, alt text and credit, and respect the size budgets (ADR-0014)', () => {
+    const CLIP_MAX = 2 * 1024 * 1024;
+    const POSTER_MAX = 300 * 1024;
+    const withClips = caseStudies.filter((cs) => (cs.clips ?? []).length > 0);
+    expect(withClips.length, 'the media model has clips but no project uses them').toBeGreaterThan(
+      0,
+    );
+    for (const cs of withClips) {
+      for (const c of cs.clips!) {
+        expect(c.file, `${cs.slug}: clips are MP4`).toMatch(/\.mp4$/);
+        expect(existsSync(join('public', c.file)), `missing ${c.file}`).toBe(true);
+        expect(existsSync(join('public', c.poster)), `missing poster ${c.poster}`).toBe(true);
+        expect(statSync(join('public', c.file)).size, `${c.file} over 2 MiB`).toBeLessThanOrEqual(
+          CLIP_MAX,
+        );
+        expect(
+          statSync(join('public', c.poster)).size,
+          `${c.poster} over 300 KB`,
+        ).toBeLessThanOrEqual(POSTER_MAX);
+        expect(c.alt.length, `clip ${c.file} needs real alt text`).toBeGreaterThan(10);
+        if (THIRD_PARTY.test(c.file)) {
+          expect(c.credit, `third-party clip ${c.file} needs a visible credit`).toBeTruthy();
+        }
+      }
+    }
+  });
+
+  it('every project page has a chronological anchor (no silent fallback to 0)', () => {
+    for (const cs of caseStudies) {
+      expect(caseStudyStart(cs.slug), `${cs.slug} missing from CASE_STUDY_START`).toBeGreaterThan(
+        0,
+      );
+    }
+  });
+
+  it('content carries no TODO/TBD placeholders', () => {
+    const walk = (dir: string): string[] =>
+      readdirSync(dir, { withFileTypes: true }).flatMap((d) =>
+        d.isDirectory() ? walk(join(dir, d.name)) : [join(dir, d.name)],
+      );
+    for (const f of walk('src/content')) {
+      expect(/\b(TODO|TBD)\b/.test(readFileSync(f, 'utf8')), `${f} has a placeholder`).toBe(false);
     }
   });
 

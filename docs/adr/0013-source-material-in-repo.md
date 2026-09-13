@@ -1,7 +1,7 @@
 # ADR-0013 — Source material lives in the repo, redacted; originals are release assets
 
 **Status:** Accepted
-**Date:** 2026-09-13 **Shipped in:** not yet shipped
+**Date:** 2026-09-13 **Shipped in:** #43
 
 ## Context
 

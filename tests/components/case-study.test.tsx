@@ -44,12 +44,16 @@ describe('case-study pages', () => {
 
   // Representative axe sample — one per page archetype (full flow, data-heavy,
   // process diagram, compact) to keep runtime sane across all case-study pages.
-  it.each(['playground', 'speech-intelligence', 'vssc-tooling', 'aircare'])(
+  // Explicit budget: a page with seven <video> elements and their tracks takes
+  // axe well past vitest's 5 s default under parallel load, and a timed-out axe
+  // run leaves its global lock set, failing the next axe test too.
+  it.each(['playground', 'speech-intelligence', 'vssc-tooling', 'aircare', 'bmp2-turret'])(
     'has no axe violations (%s)',
     async (slug) => {
       const { container } = await renderCaseStudy(slug);
       expect(await axe(container)).toHaveNoViolations();
     },
+    40_000,
   );
 });
 
@@ -101,4 +105,35 @@ describe('ProjectCard link variants', () => {
     render(<ProjectCard project={plain} />);
     expect(screen.queryByRole('link')).not.toBeInTheDocument();
   });
+});
+
+describe('In motion — the clips block (ADR-0014)', () => {
+  const withClips = caseStudies.filter((cs) => (cs.clips ?? []).length > 0);
+
+  it('at least one project carries clips', () => {
+    expect(withClips.length).toBeGreaterThan(0);
+  });
+
+  it.each(withClips.map((cs) => [cs.slug, cs] as const))(
+    '%s renders one silent, non-autoplaying, poster-backed video per clip',
+    async (_slug, cs) => {
+      const { container } = await renderCaseStudy(cs.slug);
+      expect(screen.getByRole('heading', { name: 'In motion' })).toBeInTheDocument();
+      const videos = Array.from(container.querySelectorAll('video'));
+      expect(videos).toHaveLength(cs.clips!.length);
+      videos.forEach((v, i) => {
+        const clip = cs.clips![i];
+        expect(v.getAttribute('poster')).toContain(clip.poster.split('/').pop()!);
+        expect(v.hasAttribute('controls')).toBe(true);
+        expect(v.getAttribute('preload')).toBe('none');
+        expect(v.hasAttribute('autoplay')).toBe(false);
+        expect(v.muted).toBe(true);
+        expect(v.getAttribute('aria-label')).toBe(clip.alt);
+        // WCAG 1.2.2: a captions track, even for a silent clip — it says so.
+        const track = v.querySelector('track[kind="captions"]');
+        expect(track).not.toBeNull();
+        expect(decodeURIComponent(track!.getAttribute('src')!)).toContain(clip.alt);
+      });
+    },
+  );
 });

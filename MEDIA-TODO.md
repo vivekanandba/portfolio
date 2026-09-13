@@ -8,6 +8,11 @@ ROI charts, and the two AI-Next enablement decks.
 Seven photos pulled from gadjoy.in also went live in the Gadjoy "From the bench" grid
 (five intake shots, the service bench, and one before/after card).
 
+The two Legend/ENTI capability decks (`source/decks/`, ADR-0013) filled the 2013–2018 pages: VSSC
+tooling, the PW1100G augmenter, the BMP-II turret (with kinematic clips), the IGCAR slip ring, the
+LCA-Navy opto-electronics (with qualification-simulation clips), filament composites and the CFM56
+adapter. Web copies are produced by `scripts/media-web.py` from `scripts/media-web.json`.
+
 **How to add a new item:** drop the file at the path below, then either set `image` +
 `imageAlt` on the project in `src/content/experience.ts` (one artifact under the intro), add a
 `docs: [{ label, file }]` entry in the matching `src/content/caseStudies/*.ts` ("Architecture
@@ -17,16 +22,16 @@ item across the grid instead of cropping it.
 
 ## Remaining gaps
 
-| Project                                                                             | What to supply                                               | Target path                                                        |
-| ----------------------------------------------------------------------------------- | ------------------------------------------------------------ | ------------------------------------------------------------------ |
-| gadjoy                                                                              | Higher-res shop front + bench (site copies are only ~512 px) | `public/media/gadjoy-shop.jpg`, `public/media/gadjoy-bench.jpg`    |
-| sanas-consumer-app                                                                  | App Store / device screenshots                               | `public/media/sanas-consumer-app-01.jpg`                           |
-| playground                                                                          | Product screenshot (demo page)                               | `public/media/playground-01.jpg`                                   |
-| sanas-portal                                                                        | Portal screenshot (redact tenant data)                       | `public/media/sanas-portal-01.jpg`                                 |
-| unified-ml-platform                                                                 | Platform / MLflow dashboard screenshot                       | `public/media/unified-ml-platform-01.jpg`                          |
-| vssc-tooling · pw-augmenter · safran-a350 · bmp2-turret · igcar-slipring · lca-navy | Jig / CAD / workshop photos                                  | `public/media/<slug>-01.jpg`                                       |
-| rail-tooling                                                                        | Fixture / template photos (metro programs)                   | `public/media/rail-tooling-01.jpg`                                 |
-| aircare · stop-hunger                                                               | Sensor-node build photos; Stop Hunger screenshots            | `public/media/aircare-node.jpg`, `public/media/stop-hunger-01.jpg` |
+| Project               | What to supply                                                                                          | Target path                                                        |
+| --------------------- | ------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------ |
+| gadjoy                | Higher-res shop front + bench (site copies are only ~512 px)                                            | `public/media/gadjoy-shop.jpg`, `public/media/gadjoy-bench.jpg`    |
+| sanas-consumer-app    | App Store / device screenshots                                                                          | `public/media/sanas-consumer-app-01.jpg`                           |
+| playground            | Product screenshot (demo page)                                                                          | `public/media/playground-01.jpg`                                   |
+| sanas-portal          | Portal screenshot (redact tenant data)                                                                  | `public/media/sanas-portal-01.jpg`                                 |
+| unified-ml-platform   | Platform / MLflow dashboard screenshot                                                                  | `public/media/unified-ml-platform-01.jpg`                          |
+| safran-a350           | Any A350-era artefact you are permitted to show (the Legend/ENTI decks do not cover Safran Engineering) | `public/media/safran-a350-01.jpg`                                  |
+| rail-tooling          | Fixture / template photos (metro programs)                                                              | `public/media/rail-tooling-01.jpg`                                 |
+| aircare · stop-hunger | Sensor-node build photos; Stop Hunger screenshots                                                       | `public/media/aircare-node.jpg`, `public/media/stop-hunger-01.jpg` |
 
 ## Cautions before publishing
 

@@ -1,0 +1,260 @@
+{
+  "_readme": "Maps source/ files to public/media/ web copies (ADR-0014). Images are resized/re-encoded by scripts/media-web.py; clips with \"from\" are copied verbatim; clips with \"ffmpeg\" derive from release-asset originals and are only checked.",
+  "defaults": {
+    "max_edge": 2000,
+    "quality": 85,
+    "max_kb": 300
+  },
+  "images": [
+    {
+      "from": "source/decks/legend-company-v5.5/media/s15-sitvc-nose-cone-and-aft-shroud.jpeg",
+      "to": "legend-sitvc-nose-cone-and-aft-shroud.jpg"
+    },
+    {
+      "from": "source/decks/legend-company-v5.5/media/s15-sitvc-cones-and-shrouds.jpeg",
+      "to": "legend-sitvc-cones-and-shrouds.jpg"
+    },
+    {
+      "from": "source/decks/legend-company-v5.5/media/s15-sitvc-nose-cone-jig.jpeg",
+      "to": "legend-sitvc-nose-cone-jig.jpg"
+    },
+    {
+      "from": "source/decks/legend-company-v5.5/media/s15-sitvc-aft-shroud-jig.jpeg",
+      "to": "legend-sitvc-aft-shroud-jig.jpg"
+    },
+    {
+      "from": "source/decks/legend-company-v5.5/media/s16-psom-nose-cone-assembly.jpeg",
+      "to": "legend-psom-nose-cone-assembly.jpg"
+    },
+    {
+      "from": "source/decks/legend-company-v5.5/media/s16-sonc-nose-cone-assembly-jig.jpeg",
+      "to": "legend-sonc-nose-cone-assembly-jig.jpg"
+    },
+    {
+      "from": "source/decks/legend-company-v5.5/media/s24-s200-integration-fixture-cad.png",
+      "to": "legend-s200-integration-fixture-cad.jpg"
+    },
+    {
+      "from": "source/decks/legend-company-v5.5/media/s24-s200-integration-fixture.png",
+      "to": "legend-s200-integration-fixture.jpg"
+    },
+    {
+      "from": "source/decks/legend-company-v5.5/media/s22-vssc-lifting-tilting-fixture-1.jpeg",
+      "to": "legend-vssc-lifting-tilting-fixture.jpg"
+    },
+    {
+      "from": "source/decks/legend-company-v5.5/media/s14-gslv-fin-panel.png",
+      "to": "legend-gslv-fin-panel.jpg"
+    },
+    {
+      "from": "source/decks/legend-company-v5.5/media/s69-gslv-access-platform.jpeg",
+      "to": "legend-gslv-access-platform.jpg"
+    },
+    {
+      "from": "source/decks/enti-corporate-v1.4-taml/media/s30-strap-on-nose-cone-cad.png",
+      "to": "enti-strap-on-nose-cone-cad.jpg"
+    },
+    {
+      "from": "source/decks/legend-company-v5.5/media/s25-pw1100g-test-cell.jpeg",
+      "to": "legend-pw1100g-test-cell.jpg"
+    },
+    {
+      "from": "source/decks/legend-company-v5.5/media/s25-pw1100g-augmenter-detail.jpeg",
+      "to": "legend-pw1100g-augmenter-detail.jpg"
+    },
+    {
+      "from": "source/decks/legend-company-v5.5/media/s26-nagpur-test-cell-1.jpeg",
+      "to": "legend-nagpur-test-cell-1.jpg"
+    },
+    {
+      "from": "source/decks/legend-company-v5.5/media/s26-nagpur-test-cell-2.jpeg",
+      "to": "legend-nagpur-test-cell-2.jpg"
+    },
+    {
+      "from": "source/decks/legend-company-v5.5/media/s26-nagpur-test-cell-3.jpeg",
+      "to": "legend-nagpur-test-cell-3.jpg"
+    },
+    {
+      "from": "source/decks/enti-corporate-v1.4-taml/media/s35-bmp2-turret-overview.png",
+      "to": "enti-bmp2-turret-overview.jpg"
+    },
+    {
+      "from": "source/decks/enti-corporate-v1.4-taml/media/s35-bmp2-elevation-manual-poster.png",
+      "to": "enti-bmp2-elevation-manual-poster.jpg"
+    },
+    {
+      "from": "source/decks/enti-corporate-v1.4-taml/media/s35-bmp2-elevation-motor-poster.png",
+      "to": "enti-bmp2-elevation-motor-poster.jpg"
+    },
+    {
+      "from": "source/decks/enti-corporate-v1.4-taml/media/s35-bmp2-traverse-motor-poster.png",
+      "to": "enti-bmp2-traverse-motor-poster.jpg"
+    },
+    {
+      "from": "source/decks/enti-corporate-v1.4-taml/media/s35-bmp2-traverse-manual-poster.png",
+      "to": "enti-bmp2-traverse-manual-poster.jpg"
+    },
+    {
+      "from": "source/decks/enti-corporate-v1.4-taml/media/s35-bmp2-ammo-supply-pos2-poster.png",
+      "to": "enti-bmp2-ammo-supply-pos2-poster.jpg"
+    },
+    {
+      "from": "source/decks/enti-corporate-v1.4-taml/media/s35-bmp2-ammo-supply-pos1-2-poster.png",
+      "to": "enti-bmp2-ammo-supply-pos1-2-poster.jpg"
+    },
+    {
+      "from": "source/decks/legend-company-v5.5/media/s58-igcar-high-amperage-slipring-cad.png",
+      "to": "legend-igcar-slipring-cad.jpg"
+    },
+    {
+      "from": "source/decks/legend-company-v5.5/media/s58-igcar-high-amperage-slipring-installation-1.jpeg",
+      "to": "legend-igcar-slipring-installation-1.jpg"
+    },
+    {
+      "from": "source/decks/legend-company-v5.5/media/s58-igcar-high-amperage-slipring-installation-2.jpeg",
+      "to": "legend-igcar-slipring-installation-2.jpg"
+    },
+    {
+      "from": "source/decks/legend-company-v5.5/media/s86-slipring-rotational-test-rig.jpeg",
+      "to": "legend-slipring-rotational-test-rig.jpg"
+    },
+    {
+      "from": "source/decks/legend-company-v5.5/media/s84-assembly-and-soldering-room.jpeg",
+      "to": "legend-slipring-assembly-room.jpg"
+    },
+    {
+      "from": "source/decks/enti-corporate-v1.4-taml/media/s36-position-light-cad.png",
+      "to": "enti-position-light-cad.jpg"
+    },
+    {
+      "from": "source/decks/enti-corporate-v1.4-taml/media/s36-position-light-exploded-1.png",
+      "to": "enti-position-light-exploded-1.jpg"
+    },
+    {
+      "from": "source/decks/enti-corporate-v1.4-taml/media/s36-position-light-exploded-2.png",
+      "to": "enti-position-light-exploded-2.jpg"
+    },
+    {
+      "from": "source/decks/enti-corporate-v1.4-taml/media/s38-wander-light-catia-1.jpeg",
+      "to": "enti-wander-light-catia-1.jpg"
+    },
+    {
+      "from": "source/decks/enti-corporate-v1.4-taml/media/s38-wander-light-catia-2.jpeg",
+      "to": "enti-wander-light-catia-2.jpg"
+    },
+    {
+      "from": "source/decks/enti-corporate-v1.4-taml/media/s39-wander-light-exploded.png",
+      "to": "enti-wander-light-exploded.jpg"
+    },
+    {
+      "from": "source/decks/enti-corporate-v1.4-taml/media/s37-position-light-fea-altitude.png",
+      "to": "enti-position-light-fea-altitude-poster.jpg"
+    },
+    {
+      "from": "source/decks/enti-corporate-v1.4-taml/media/s37-position-light-fea-high-temp.png",
+      "to": "enti-position-light-fea-high-temp-poster.jpg"
+    },
+    {
+      "from": "source/decks/enti-corporate-v1.4-taml/media/s37-position-light-fea-low-temp.png",
+      "to": "enti-position-light-fea-low-temp-poster.jpg"
+    },
+    {
+      "from": "source/decks/enti-corporate-v1.4-taml/media/s37-position-light-fea-thermal-shock.png",
+      "to": "enti-position-light-fea-thermal-shock-poster.jpg"
+    },
+    {
+      "from": "source/decks/enti-corporate-v1.4-taml/media/s37-position-light-fea-natural-frequency.png",
+      "to": "enti-position-light-fea-natural-frequency-poster.jpg"
+    },
+    {
+      "from": "source/decks/enti-corporate-v1.4-taml/media/s37-position-light-fea-transit-drop-stress.png",
+      "to": "enti-position-light-fea-transit-drop-3d-poster.jpg"
+    },
+    {
+      "from": "source/decks/enti-corporate-v1.4-taml/media/s37-position-light-fea-transit-drop-time.png",
+      "to": "enti-position-light-fea-transit-drop-section-poster.jpg"
+    },
+    {
+      "from": "source/decks/enti-corporate-v1.4-taml/media/s40-filament-wound-shells-1.jpeg",
+      "to": "enti-filament-wound-shells-1.jpg"
+    },
+    {
+      "from": "source/decks/enti-corporate-v1.4-taml/media/s40-filament-wound-shells-2.jpeg",
+      "to": "enti-filament-wound-shells-2.jpg"
+    },
+    {
+      "from": "source/decks/legend-company-v5.5/media/s21-cfm56-workstation-adapter.png",
+      "to": "legend-cfm56-workstation-adapter.jpg"
+    },
+    {
+      "from": "source/decks/legend-company-v5.5/media/s21-cfm56-workstation-adapter-cad.png",
+      "to": "legend-cfm56-workstation-adapter-cad.jpg"
+    }
+  ],
+  "clips": [
+    {
+      "from": "source/decks/enti-corporate-v1.4-taml/clips/s35-bmp2-elevation-manual.mp4",
+      "to": "enti-bmp2-elevation-manual.mp4"
+    },
+    {
+      "from": "source/decks/enti-corporate-v1.4-taml/clips/s35-bmp2-elevation-motor.mp4",
+      "to": "enti-bmp2-elevation-motor.mp4"
+    },
+    {
+      "from": "source/decks/enti-corporate-v1.4-taml/clips/s35-bmp2-traverse-motor.mp4",
+      "to": "enti-bmp2-traverse-motor.mp4"
+    },
+    {
+      "from": "source/decks/enti-corporate-v1.4-taml/clips/s35-bmp2-traverse-manual.mp4",
+      "to": "enti-bmp2-traverse-manual.mp4"
+    },
+    {
+      "from": "source/decks/enti-corporate-v1.4-taml/clips/s35-bmp2-ammo-supply-pos2.mp4",
+      "to": "enti-bmp2-ammo-supply-pos2.mp4"
+    },
+    {
+      "from": "source/decks/enti-corporate-v1.4-taml/clips/s35-bmp2-ammo-supply-pos1-2.mp4",
+      "to": "enti-bmp2-ammo-supply-pos1-2.mp4"
+    },
+    {
+      "to": "enti-bmp2-elevation-and-traverse.mp4",
+      "original": "ppt/media/media1.mp4 (6.9 MB, 34 s)",
+      "ffmpeg": "ffmpeg -y -i <original from the release asset> -an -vf scale=-2:720 -c:v libx264 -preset slow -pix_fmt yuv420p -movflags +faststart -crf 30 enti-bmp2-elevation-and-traverse.mp4"
+    },
+    {
+      "to": "enti-position-light-fea-altitude.mp4",
+      "original": "ppt/media/media8.mp4",
+      "ffmpeg": "ffmpeg -y -i <original from the release asset> -an -vf scale=-2:720 -c:v libx264 -preset slow -pix_fmt yuv420p -movflags +faststart -crf 26 enti-position-light-fea-altitude.mp4"
+    },
+    {
+      "to": "enti-position-light-fea-high-temp.mp4",
+      "original": "ppt/media/media9.mp4",
+      "ffmpeg": "ffmpeg -y -i <original from the release asset> -an -vf scale=-2:720 -c:v libx264 -preset slow -pix_fmt yuv420p -movflags +faststart -crf 26 enti-position-light-fea-high-temp.mp4"
+    },
+    {
+      "to": "enti-position-light-fea-low-temp.mp4",
+      "original": "ppt/media/media10.mp4",
+      "ffmpeg": "ffmpeg -y -i <original from the release asset> -an -vf scale=-2:720 -c:v libx264 -preset slow -pix_fmt yuv420p -movflags +faststart -crf 26 enti-position-light-fea-low-temp.mp4"
+    },
+    {
+      "to": "enti-position-light-fea-thermal-shock.mp4",
+      "original": "ppt/media/media11.mp4",
+      "ffmpeg": "ffmpeg -y -i <original from the release asset> -an -vf scale=-2:720 -c:v libx264 -preset slow -pix_fmt yuv420p -movflags +faststart -crf 26 enti-position-light-fea-thermal-shock.mp4"
+    },
+    {
+      "to": "enti-position-light-fea-natural-frequency.mp4",
+      "original": "ppt/media/media12.mp4",
+      "ffmpeg": "ffmpeg -y -i <original from the release asset> -an -vf scale=-2:720 -c:v libx264 -preset slow -pix_fmt yuv420p -movflags +faststart -crf 26 enti-position-light-fea-natural-frequency.mp4"
+    },
+    {
+      "to": "enti-position-light-fea-transit-drop-3d.mp4",
+      "original": "ppt/media/media13.wmv (127 MB, 3 min 18 s) \u2014 first 70 s at 2\u00d7 speed",
+      "ffmpeg": "ffmpeg -y -ss 0 -t 70 -i <original from the release asset> -an -vf \"setpts=0.5*PTS,scale=-2:720\" -r 20 -c:v libx264 -preset slow -pix_fmt yuv420p -movflags +faststart -crf 32 enti-position-light-fea-transit-drop-3d.mp4"
+    },
+    {
+      "to": "enti-position-light-fea-transit-drop-section.mp4",
+      "original": "ppt/media/media14.wmv (63 MB, 3 min 18 s) \u2014 first 70 s at 2\u00d7 speed",
+      "ffmpeg": "ffmpeg -y -ss 0 -t 70 -i <original from the release asset> -an -vf \"setpts=0.5*PTS,scale=-2:720\" -r 20 -c:v libx264 -preset slow -pix_fmt yuv420p -movflags +faststart -crf 28 enti-position-light-fea-transit-drop-section.mp4"
+    }
+  ]
+}

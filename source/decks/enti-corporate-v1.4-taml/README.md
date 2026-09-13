@@ -1,14 +1,14 @@
 # ENTI Innovations — corporate presentation v1.4 (to Tata Advanced Materials)
 
-|                   |                                                                                                                                                        |
-| ----------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| Author            | Vivekanand B (at ENTI Innovations Pvt. Ltd., the design arm of the Legend Technologies group)                                                          |
-| Presented by / to | Dr. E. Ranga Reddy (founder) to Tata Advanced Materials                                                                                                |
-| Date (by content) | 2013 — Aero India 2013, Indian Technology Congress 2013, India Composites Show 2013                                                                    |
-| Slides            | 48                                                                                                                                                     |
-| Original          | GitHub Release **`source-decks-2026-09`**, asset `Enti-Corporate v1.4 - TAML.pptx`, 259,083,567 bytes (two embedded WMV recordings account for 190 MB) |
-| sha256            | `75218317c1468df14084ab2458420a3a88eee9d0075bb040f9abb6028504f793`                                                                                     |
-| Extracted with    | `scripts/deck-extract.py` + `scripts/deck-rules/enti-corporate-v1.4-taml.json` (reproducible; see below)                                               |
+|                   |                                                                                                                                                                                           |
+| ----------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Author            | Vivekanand B (at ENTI Innovations Pvt. Ltd., the design arm of the Legend Technologies group)                                                                                             |
+| Presented by / to | Dr. E. Ranga Reddy (founder) to Tata Advanced Materials                                                                                                                                   |
+| Date (by content) | 2013 — Aero India 2013, Indian Technology Congress 2013, India Composites Show 2013                                                                                                       |
+| Slides            | 48                                                                                                                                                                                        |
+| Original          | GitHub Release **`source-decks-2026-09`**, asset `Enti-Corporate.v1.4.-.TAML.pptx` (GitHub replaces spaces with dots), 259,083,567 bytes (two embedded WMV recordings account for 190 MB) |
+| sha256            | `75218317c1468df14084ab2458420a3a88eee9d0075bb040f9abb6028504f793`                                                                                                                        |
+| Extracted with    | `scripts/deck-extract.py` + `scripts/deck-rules/enti-corporate-v1.4-taml.json` (reproducible; see below)                                                                                  |
 
 The deck carries the company's own "confidential" footers. The owner authored it, states it was presented
 to clients and posted publicly, and has directed its use here. Third-party **personal** data is redacted
@@ -21,8 +21,10 @@ regardless (ADR-0007: prior publication is not consent).
 - `media/` — 34 screened images at original resolution (CAD renders, FEA plots, photographs), metadata
   stripped losslessly.
 - `clips/` — 6 kinematic-simulation clips of the BMP-II turret study, copied verbatim (each under the
-  2 MiB ceiling). Six further clips are **pending** re-encoding under the ceiling (ADR-0014 pipeline):
-  the combined elevation-and-traverse simulation and the five position-light qualification animations.
+  2 MiB ceiling). The six clips over the ceiling (the combined elevation-and-traverse simulation and the
+  five position-light qualification animations) and 35-second excerpts of the two transit-drop
+  recordings are published re-encoded under `public/media/enti-*.mp4`; `scripts/media-web.json` records
+  the exact ffmpeg command for each (ADR-0014). The full-length originals stay inside the release asset.
 - `media-map.json` — every one of the 102 media files in the original: kept, excluded (with reason),
   or pending (with reason).
 

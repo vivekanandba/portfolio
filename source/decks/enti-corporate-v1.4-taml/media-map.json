@@ -42,7 +42,7 @@
   "media1.mp4": {
     "slide": 35,
     "status": "pending",
-    "reason": "6.9 MB original exceeds the 2 MiB ceiling; re-encode with ffmpeg (ADR-0014 pipeline)",
+    "reason": "6.9 MB original exceeds the 2 MiB ceiling; a re-encoded copy under 2 MiB is published on the site (see scripts/media-web.json)",
     "name": "s35-bmp2-elevation-and-traverse.mp4"
   },
   "media2.mp4": {
@@ -78,13 +78,13 @@
   "media8.mp4": {
     "slide": 37,
     "status": "pending",
-    "reason": "2.0 MB original just exceeds the 2 MiB ceiling; re-encode with ffmpeg",
+    "reason": "2.0 MB original just exceeds the 2 MiB ceiling; a re-encoded copy under 2 MiB is published on the site (see scripts/media-web.json)",
     "name": "s37-position-light-fea-altitude.mp4"
   },
   "media9.mp4": {
     "slide": 37,
     "status": "pending",
-    "reason": "2.0 MB original just exceeds the 2 MiB ceiling; re-encode with ffmpeg",
+    "reason": "2.0 MB original just exceeds the 2 MiB ceiling; a re-encoded copy under 2 MiB is published on the site (see scripts/media-web.json)",
     "name": "s37-position-light-fea-high-temp.mp4"
   },
   "image11.png": {
@@ -420,19 +420,19 @@
   "media10.mp4": {
     "slide": 37,
     "status": "pending",
-    "reason": "2.9 MB original exceeds the 2 MiB ceiling; re-encode with ffmpeg",
+    "reason": "2.9 MB original exceeds the 2 MiB ceiling; a re-encoded copy under 2 MiB is published on the site (see scripts/media-web.json)",
     "name": "s37-position-light-fea-low-temp.mp4"
   },
   "media11.mp4": {
     "slide": 37,
     "status": "pending",
-    "reason": "3.5 MB original exceeds the 2 MiB ceiling; re-encode with ffmpeg",
+    "reason": "3.5 MB original exceeds the 2 MiB ceiling; a re-encoded copy under 2 MiB is published on the site (see scripts/media-web.json)",
     "name": "s37-position-light-fea-thermal-shock.mp4"
   },
   "media12.mp4": {
     "slide": 37,
     "status": "pending",
-    "reason": "4.7 MB original exceeds the 2 MiB ceiling; re-encode with ffmpeg",
+    "reason": "4.7 MB original exceeds the 2 MiB ceiling; a re-encoded copy under 2 MiB is published on the site (see scripts/media-web.json)",
     "name": "s37-position-light-fea-natural-frequency.mp4"
   },
   "media13.wmv": {

@@ -210,6 +210,20 @@ export const caseStudySchema = z.object({
       }),
     )
     .optional(),
+  // Motion evidence (ADR-0014): short, silent simulation clips. MP4 ≤ 2 MiB,
+  // ≤ 35 s, ≤ 720p, poster mandatory; rendered with browser controls and
+  // preload="none", never autoplaying. Sizes are test-enforced from disk.
+  clips: z
+    .array(
+      z.object({
+        file: z.string().min(1), // "media/enti-bmp2-elevation-manual.mp4"
+        poster: z.string().min(1), // still from the same source, ≤ 300 KB
+        alt: z.string().min(1), // what the reader would see happen
+        caption: z.string().min(1).optional(), // the claim the motion supports
+        credit: z.string().min(1).optional(), // required for third-party prefixes
+      }),
+    )
+    .optional(),
 });
 export type CaseStudy = z.infer<typeof caseStudySchema>;
 
