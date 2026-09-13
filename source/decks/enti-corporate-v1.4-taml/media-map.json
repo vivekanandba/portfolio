@@ -1,0 +1,518 @@
+{
+  "image1.png": {
+    "slide": 0,
+    "status": "excluded",
+    "reason": "not referenced by any slide (layout/master asset)"
+  },
+  "image2.png": {
+    "slide": 1,
+    "status": "excluded",
+    "reason": "company logo — trademark"
+  },
+  "image3.png": {
+    "slide": 2,
+    "status": "excluded",
+    "reason": "company logo — trademark"
+  },
+  "image5.png": {
+    "slide": 4,
+    "status": "excluded",
+    "reason": "company logo — trademark"
+  },
+  "image6.png": {
+    "slide": 4,
+    "status": "kept",
+    "name": "media/s04-enti-services-wheel.png"
+  },
+  "image7.png": {
+    "slide": 6,
+    "status": "excluded",
+    "reason": "stock-photo industry collage — not the company’s imagery"
+  },
+  "image8.png": {
+    "slide": 7,
+    "status": "excluded",
+    "reason": "stock-photo industry collage — not the company’s imagery"
+  },
+  "image9.png": {
+    "slide": 8,
+    "status": "excluded",
+    "reason": "stock-photo industry collage — not the company’s imagery"
+  },
+  "media1.mp4": {
+    "slide": 35,
+    "status": "pending",
+    "reason": "6.9 MB original exceeds the 2 MiB ceiling; re-encode with ffmpeg (ADR-0014 pipeline)",
+    "name": "s35-bmp2-elevation-and-traverse.mp4"
+  },
+  "media2.mp4": {
+    "slide": 35,
+    "status": "kept",
+    "name": "clips/s35-bmp2-elevation-manual.mp4"
+  },
+  "media3.mp4": {
+    "slide": 35,
+    "status": "kept",
+    "name": "clips/s35-bmp2-elevation-motor.mp4"
+  },
+  "media4.mp4": {
+    "slide": 35,
+    "status": "kept",
+    "name": "clips/s35-bmp2-traverse-motor.mp4"
+  },
+  "media5.mp4": {
+    "slide": 35,
+    "status": "kept",
+    "name": "clips/s35-bmp2-traverse-manual.mp4"
+  },
+  "media6.mp4": {
+    "slide": 35,
+    "status": "kept",
+    "name": "clips/s35-bmp2-ammo-supply-pos2.mp4"
+  },
+  "media7.mp4": {
+    "slide": 35,
+    "status": "kept",
+    "name": "clips/s35-bmp2-ammo-supply-pos1-2.mp4"
+  },
+  "media8.mp4": {
+    "slide": 37,
+    "status": "pending",
+    "reason": "2.0 MB original just exceeds the 2 MiB ceiling; re-encode with ffmpeg",
+    "name": "s37-position-light-fea-altitude.mp4"
+  },
+  "media9.mp4": {
+    "slide": 37,
+    "status": "pending",
+    "reason": "2.0 MB original just exceeds the 2 MiB ceiling; re-encode with ffmpeg",
+    "name": "s37-position-light-fea-high-temp.mp4"
+  },
+  "image11.png": {
+    "slide": 13,
+    "status": "excluded",
+    "reason": "accreditation or partner logo — trademark; the accreditation is kept as text"
+  },
+  "image12.png": {
+    "slide": 13,
+    "status": "excluded",
+    "reason": "accreditation or partner logo — trademark; the accreditation is kept as text"
+  },
+  "image13.png": {
+    "slide": 13,
+    "status": "excluded",
+    "reason": "accreditation or partner logo — trademark; the accreditation is kept as text"
+  },
+  "image14.png": {
+    "slide": 13,
+    "status": "excluded",
+    "reason": "accreditation or partner logo — trademark; the accreditation is kept as text"
+  },
+  "image15.png": {
+    "slide": 13,
+    "status": "excluded",
+    "reason": "accreditation or partner logo — trademark; the accreditation is kept as text"
+  },
+  "image16.png": {
+    "slide": 13,
+    "status": "excluded",
+    "reason": "accreditation or partner logo — trademark; the accreditation is kept as text"
+  },
+  "image17.png": {
+    "slide": 14,
+    "status": "excluded",
+    "reason": "accreditation or partner logo — trademark; the accreditation is kept as text"
+  },
+  "image18.png": {
+    "slide": 14,
+    "status": "excluded",
+    "reason": "accreditation or partner logo — trademark; the accreditation is kept as text"
+  },
+  "image20.png": {
+    "slide": 16,
+    "status": "excluded",
+    "reason": "portrait of a third party"
+  },
+  "image21.png": {
+    "slide": 16,
+    "status": "excluded",
+    "reason": "portrait of a third party"
+  },
+  "image22.png": {
+    "slide": 16,
+    "status": "excluded",
+    "reason": "portrait of a third party"
+  },
+  "image23.png": {
+    "slide": 16,
+    "status": "excluded",
+    "reason": "portrait of a third party"
+  },
+  "image25.png": {
+    "slide": 16,
+    "status": "excluded",
+    "reason": "portrait of a third party"
+  },
+  "image26.png": {
+    "slide": 17,
+    "status": "excluded",
+    "reason": "portrait of a third party"
+  },
+  "image27.png": {
+    "slide": 17,
+    "status": "excluded",
+    "reason": "portrait of a third party"
+  },
+  "image28.png": {
+    "slide": 17,
+    "status": "excluded",
+    "reason": "portrait of a third party"
+  },
+  "image29.png": {
+    "slide": 17,
+    "status": "excluded",
+    "reason": "portrait of a third party"
+  },
+  "image30.png": {
+    "slide": 17,
+    "status": "excluded",
+    "reason": "portrait of a third party"
+  },
+  "image31.png": {
+    "slide": 17,
+    "status": "excluded",
+    "reason": "portrait of a third party"
+  },
+  "image32.png": {
+    "slide": 17,
+    "status": "excluded",
+    "reason": "portrait of a third party"
+  },
+  "image33.png": {
+    "slide": 19,
+    "status": "excluded",
+    "reason": "portrait of a third party"
+  },
+  "image34.png": {
+    "slide": 20,
+    "status": "excluded",
+    "reason": "portrait of a third party"
+  },
+  "image35.png": {
+    "slide": 21,
+    "status": "excluded",
+    "reason": "portrait of a third party"
+  },
+  "image37.png": {
+    "slide": 24,
+    "status": "kept",
+    "name": "media/s24-cfm56-adapter-cad.png"
+  },
+  "image38.png": {
+    "slide": 25,
+    "status": "kept",
+    "name": "media/s25-cfm56-adapter-installed.png"
+  },
+  "image39.png": {
+    "slide": 26,
+    "status": "kept",
+    "name": "media/s26-s200-integration-fixture-cad.png"
+  },
+  "image4.jpeg": {
+    "slide": 2,
+    "status": "excluded",
+    "reason": "company logo — trademark"
+  },
+  "image40.png": {
+    "slide": 27,
+    "status": "kept",
+    "name": "media/s27-s200-integration-fixture.png"
+  },
+  "image41.png": {
+    "slide": 28,
+    "status": "kept",
+    "name": "media/s28-composite-canopy-trolley-cad.png"
+  },
+  "image42.png": {
+    "slide": 29,
+    "status": "kept",
+    "name": "media/s29-composite-canopy-trolleys.png"
+  },
+  "image43.png": {
+    "slide": 30,
+    "status": "kept",
+    "name": "media/s30-strap-on-nose-cone-cad.png"
+  },
+  "image45.png": {
+    "slide": 31,
+    "status": "excluded",
+    "reason": "identifiable people in frame (ADR-0007: prefer people-free frames)"
+  },
+  "image47.png": {
+    "slide": 33,
+    "status": "kept",
+    "name": "media/s33-57ch-slipring-photo.png"
+  },
+  "image48.jpg": {
+    "slide": 34,
+    "status": "kept",
+    "name": "media/s34-bmp2-turret-reference.jpg"
+  },
+  "image49.png": {
+    "slide": 35,
+    "status": "kept",
+    "name": "media/s35-bmp2-turret-overview.png"
+  },
+  "image50.png": {
+    "slide": 35,
+    "status": "kept",
+    "name": "media/s35-bmp2-elevation-manual-poster.png"
+  },
+  "image51.png": {
+    "slide": 35,
+    "status": "kept",
+    "name": "media/s35-bmp2-elevation-motor-poster.png"
+  },
+  "image52.png": {
+    "slide": 35,
+    "status": "kept",
+    "name": "media/s35-bmp2-traverse-motor-poster.png"
+  },
+  "image53.png": {
+    "slide": 35,
+    "status": "kept",
+    "name": "media/s35-bmp2-traverse-manual-poster.png"
+  },
+  "image54.png": {
+    "slide": 35,
+    "status": "kept",
+    "name": "media/s35-bmp2-ammo-supply-pos2-poster.png"
+  },
+  "image55.png": {
+    "slide": 35,
+    "status": "kept",
+    "name": "media/s35-bmp2-ammo-supply-pos1-2-poster.png"
+  },
+  "image56.png": {
+    "slide": 36,
+    "status": "kept",
+    "name": "media/s36-position-light-cad.png"
+  },
+  "image57.PNG": {
+    "slide": 36,
+    "status": "kept",
+    "name": "media/s36-position-light-exploded-1.png"
+  },
+  "image58.PNG": {
+    "slide": 36,
+    "status": "kept",
+    "name": "media/s36-position-light-exploded-2.png"
+  },
+  "image59.png": {
+    "slide": 37,
+    "status": "kept",
+    "name": "media/s37-position-light-fea-altitude.png"
+  },
+  "image60.png": {
+    "slide": 37,
+    "status": "kept",
+    "name": "media/s37-position-light-fea-high-temp.png"
+  },
+  "image61.png": {
+    "slide": 37,
+    "status": "kept",
+    "name": "media/s37-position-light-fea-low-temp.png"
+  },
+  "image62.png": {
+    "slide": 37,
+    "status": "kept",
+    "name": "media/s37-position-light-fea-thermal-shock.png"
+  },
+  "image63.png": {
+    "slide": 37,
+    "status": "kept",
+    "name": "media/s37-position-light-fea-natural-frequency.png"
+  },
+  "image64.png": {
+    "slide": 37,
+    "status": "kept",
+    "name": "media/s37-position-light-fea-transit-drop-stress.png"
+  },
+  "image65.png": {
+    "slide": 37,
+    "status": "kept",
+    "name": "media/s37-position-light-fea-transit-drop-time.png"
+  },
+  "image68.png": {
+    "slide": 39,
+    "status": "kept",
+    "name": "media/s39-wander-light-exploded.png"
+  },
+  "image74.png": {
+    "slide": 43,
+    "status": "excluded",
+    "reason": "company logo — trademark"
+  },
+  "image75.png": {
+    "slide": 43,
+    "status": "excluded",
+    "reason": "event photograph with identifiable people; the event is kept as text"
+  },
+  "image76.png": {
+    "slide": 44,
+    "status": "excluded",
+    "reason": "event photograph with identifiable people; the event is kept as text"
+  },
+  "image77.png": {
+    "slide": 45,
+    "status": "excluded",
+    "reason": "event photograph with identifiable people; the event is kept as text"
+  },
+  "image78.png": {
+    "slide": 46,
+    "status": "excluded",
+    "reason": "event photograph with identifiable people; the event is kept as text"
+  },
+  "image79.png": {
+    "slide": 47,
+    "status": "excluded",
+    "reason": "customer logo — trademark; the customer list is kept as text"
+  },
+  "image80.png": {
+    "slide": 47,
+    "status": "excluded",
+    "reason": "customer logo — trademark; the customer list is kept as text"
+  },
+  "image82.png": {
+    "slide": 47,
+    "status": "excluded",
+    "reason": "customer logo — trademark; the customer list is kept as text"
+  },
+  "image83.png": {
+    "slide": 47,
+    "status": "excluded",
+    "reason": "customer logo — trademark; the customer list is kept as text"
+  },
+  "image84.png": {
+    "slide": 47,
+    "status": "excluded",
+    "reason": "customer logo — trademark; the customer list is kept as text"
+  },
+  "image85.png": {
+    "slide": 47,
+    "status": "excluded",
+    "reason": "customer logo — trademark; the customer list is kept as text"
+  },
+  "image86.png": {
+    "slide": 47,
+    "status": "excluded",
+    "reason": "customer logo — trademark; the customer list is kept as text"
+  },
+  "image87.png": {
+    "slide": 47,
+    "status": "excluded",
+    "reason": "customer logo — trademark; the customer list is kept as text"
+  },
+  "image88.png": {
+    "slide": 47,
+    "status": "excluded",
+    "reason": "customer logo — trademark; the customer list is kept as text"
+  },
+  "media10.mp4": {
+    "slide": 37,
+    "status": "pending",
+    "reason": "2.9 MB original exceeds the 2 MiB ceiling; re-encode with ffmpeg",
+    "name": "s37-position-light-fea-low-temp.mp4"
+  },
+  "media11.mp4": {
+    "slide": 37,
+    "status": "pending",
+    "reason": "3.5 MB original exceeds the 2 MiB ceiling; re-encode with ffmpeg",
+    "name": "s37-position-light-fea-thermal-shock.mp4"
+  },
+  "media12.mp4": {
+    "slide": 37,
+    "status": "pending",
+    "reason": "4.7 MB original exceeds the 2 MiB ceiling; re-encode with ffmpeg",
+    "name": "s37-position-light-fea-natural-frequency.mp4"
+  },
+  "media13.wmv": {
+    "slide": 0,
+    "status": "excluded",
+    "reason": "not referenced by any slide (layout/master asset)"
+  },
+  "media14.wmv": {
+    "slide": 0,
+    "status": "excluded",
+    "reason": "not referenced by any slide (layout/master asset)"
+  },
+  "image10.jpeg": {
+    "slide": 9,
+    "status": "excluded",
+    "reason": "stock-photo industry collage — not the company’s imagery"
+  },
+  "image19.jpeg": {
+    "slide": 15,
+    "status": "excluded",
+    "reason": "company logo — trademark"
+  },
+  "image24.jpeg": {
+    "slide": 16,
+    "status": "excluded",
+    "reason": "portrait of a third party"
+  },
+  "image36.jpeg": {
+    "slide": 22,
+    "status": "excluded",
+    "reason": "portrait of a third party"
+  },
+  "image44.jpeg": {
+    "slide": 31,
+    "status": "kept",
+    "name": "media/s31-psom-nose-cone-assembly.jpeg"
+  },
+  "image46.jpeg": {
+    "slide": 32,
+    "status": "kept",
+    "name": "media/s32-miniature-slipring-cad.jpeg"
+  },
+  "image66.jpeg": {
+    "slide": 38,
+    "status": "kept",
+    "name": "media/s38-wander-light-catia-1.jpeg"
+  },
+  "image67.jpeg": {
+    "slide": 38,
+    "status": "kept",
+    "name": "media/s38-wander-light-catia-2.jpeg"
+  },
+  "image69.jpeg": {
+    "slide": 40,
+    "status": "kept",
+    "name": "media/s40-filament-wound-shells-1.jpeg"
+  },
+  "image70.jpeg": {
+    "slide": 40,
+    "status": "kept",
+    "name": "media/s40-filament-wound-shells-2.jpeg"
+  },
+  "image71.jpeg": {
+    "slide": 41,
+    "status": "excluded",
+    "reason": "identifiable people in frame (ADR-0007: prefer people-free frames)"
+  },
+  "image72.jpeg": {
+    "slide": 41,
+    "status": "excluded",
+    "reason": "identifiable people in frame (ADR-0007: prefer people-free frames)"
+  },
+  "image73.jpeg": {
+    "slide": 41,
+    "status": "excluded",
+    "reason": "identifiable people in frame (ADR-0007: prefer people-free frames)"
+  },
+  "image81.jpeg": {
+    "slide": 47,
+    "status": "excluded",
+    "reason": "customer logo — trademark; the customer list is kept as text"
+  }
+}

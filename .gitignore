@@ -40,3 +40,8 @@ coverage/
 # Python bytecode (tools/)
 __pycache__/
 *.pyc
+
+# Presentation originals are GitHub Release assets (ADR-0013), never git objects
+/*.pptx
+/*.ppt
+/*.key

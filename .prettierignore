@@ -8,3 +8,5 @@ test-results/
 *.pdf
 *.docx
 package-lock.json
+source/decks/*/slides.md
+source/decks/*/media-map.json
