@@ -11,7 +11,7 @@ import sitemap from '@/app/sitemap';
 import { Writing } from '@/components/Writing';
 import { ProjectNotes } from '@/components/ProjectNotes';
 import { formatDate } from '@/components/PostMeta';
-import { caseStudies } from '@/content';
+import { caseStudies, projects } from '@/content';
 import { listPosts, renderPost } from '@/lib/writing';
 
 // next/og renders with Satori and a bundled font; in jsdom we only need to know
@@ -65,15 +65,16 @@ describe('/writing/[slug]/', () => {
     for (const t of first.tags)
       expect(within(screen.getByRole('list', { name: 'Tags' })).getByText(t)).toBeInTheDocument();
     const { headings } = renderPost(first);
-    for (const h of headings) expect(container.querySelector(`#${h.id}`)).not.toBeNull();
+    for (const h of headings) expect(container.querySelector(`[id="${h.id}"]`)).not.toBeNull();
     expect(container.querySelector('.post-body h1')).toBeNull();
+    const fromTheWork = within(screen.getByRole('region', { name: 'From the work' }));
     for (const id of first.projects) {
+      const project = projects.find((p) => p.id === id)!;
       const cs = caseStudies.find((c) => c.projectId === id)!;
-      expect(
-        screen.getByRole('link', {
-          name: new RegExp(cs.slug === 'legend-technologies' ? 'Legend Technologies' : '.'),
-        }),
-      ).toBeInTheDocument();
+      expect(fromTheWork.getByRole('link', { name: new RegExp(project.title) })).toHaveAttribute(
+        'href',
+        expect.stringMatching(new RegExp(`^/work/${cs.slug}/?$`)),
+      );
     }
     for (const img of screen.queryAllByRole('img')) expect(img).toHaveAccessibleName();
     expect(await axe(container)).toHaveNoViolations();

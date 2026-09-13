@@ -12,6 +12,7 @@ import { unified } from 'unified';
 import { visit } from 'unist-util-visit';
 import { parse as parseYaml } from 'yaml';
 import { projects } from '@/content';
+import type { PaletteEntry } from '@/lib/palette';
 import { type PostFrontmatter, postFrontmatterSchema } from '@/content/schema';
 
 /**
@@ -256,4 +257,16 @@ export function buildFeed(
 ${entries}
 </feed>
 `;
+}
+
+/* ------------------------------------------------------------------ palette */
+
+/** Posts as ⌘K palette rows (ADR-0017), built on the server and passed to the palette as props. */
+export function postPaletteEntries(): PaletteEntry[] {
+  return listPosts().map((p) => ({
+    label: p.title,
+    detail: `Writing · ${p.kind.replace('-', ' ')} · ${p.date}`,
+    href: `/writing/${p.slug}/`,
+    keywords: `${p.title} ${p.summary} ${p.tags.join(' ')} ${p.kind}`.toLowerCase(),
+  }));
 }

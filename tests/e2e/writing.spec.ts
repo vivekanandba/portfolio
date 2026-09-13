@@ -21,7 +21,10 @@ test('the writing index lists every published post', async ({ page }) => {
   for (const p of posts) await expect(page.getByRole('link', { name: p.title })).toBeAttached();
 });
 
-test('a post renders with its h1 and base-path-aware og:url and og:image', async ({ page }) => {
+test('a post renders with its h1 and base-path-aware og:url and og:image', async ({
+  page,
+  baseURL,
+}) => {
   const p = posts[0];
   await page.goto(`writing/${p.slug}/`);
   await expect(page.getByRole('heading', { level: 1 })).toHaveText(p.title);
@@ -29,9 +32,12 @@ test('a post renders with its h1 and base-path-aware og:url and og:image', async
   expect(ogUrl).toContain(`/portfolio/writing/${p.slug}/`);
   const ogImage = await page.locator('meta[property="og:image"]').getAttribute('content');
   expect(ogImage).toContain(`/portfolio/writing/${p.slug}/opengraph-image`);
-  const img = await page.request.get(ogImage!);
+  // The meta carries the production origin; fetch the same path from the server under test.
+  // The file is emitted without an extension, so check the PNG signature, not the MIME type.
+  const target = new URL(ogImage!);
+  const img = await page.request.get(new URL(target.pathname + target.search, baseURL).toString());
   expect(img.status()).toBe(200);
-  expect(img.headers()['content-type']).toContain('image/png');
+  expect((await img.body()).subarray(0, 4).toString('hex')).toBe('89504e47');
 });
 
 test('the Atom feed and the sitemap are served as XML', async ({ page, baseURL }) => {

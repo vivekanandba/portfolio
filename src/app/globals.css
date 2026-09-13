@@ -118,6 +118,65 @@
   }
 
   /* Print never scrolls, so reveals would leave sections blank on paper. */
+
+  /* Writing (ADR-0017): compiled Markdown. Tokens only — no new --c-* variables. */
+  .post-body {
+    @apply text-base leading-relaxed text-ink;
+  }
+  .post-body > * + * {
+    @apply mt-5;
+  }
+  .post-body h2 {
+    @apply mt-12 font-display text-2xl font-semibold text-ink;
+  }
+  .post-body h3 {
+    @apply mt-8 font-display text-xl font-semibold text-ink;
+  }
+  .post-body p,
+  .post-body li {
+    @apply text-muted;
+  }
+  .post-body strong {
+    @apply font-semibold text-ink;
+  }
+  .post-body a {
+    @apply text-accent underline decoration-accent/40 underline-offset-4 hover:decoration-accent;
+  }
+  .post-body ul {
+    @apply list-disc pl-6;
+  }
+  .post-body ol {
+    @apply list-decimal pl-6;
+  }
+  .post-body li + li {
+    @apply mt-2;
+  }
+  .post-body blockquote {
+    @apply border-l-2 border-accent/60 pl-4 italic text-muted;
+  }
+  .post-body pre {
+    @apply overflow-x-auto rounded-lg border border-hairline bg-card/60 p-4 text-sm;
+  }
+  .post-body code {
+    @apply rounded bg-card px-1 py-0.5 text-[0.9em] text-ink;
+  }
+  .post-body pre code {
+    @apply bg-transparent p-0;
+  }
+  .post-body table {
+    @apply w-full text-left text-sm;
+  }
+  .post-body th,
+  .post-body td {
+    @apply border-b border-hairline px-3 py-2 align-top;
+  }
+  .post-body img {
+    @apply rounded-lg border border-hairline;
+  }
+  .post-body hr {
+    @apply border-hairline;
+  }
+
   @media print {
     .js .reveal {
       opacity: 1;
