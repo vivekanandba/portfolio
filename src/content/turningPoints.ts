@@ -37,7 +37,7 @@ export const turningPoints: TurningPoint[] = [
   {
     year: 2016,
     title: 'A salary bet on a repair bench',
-    saw: 'Three years into carrying products bid-to-handover at Legend, I could see that the engineers around me designed hardware they had never repaired — and repair is where a design confesses what it really is.',
+    saw: 'Nearly four years into carrying products bid-to-handover at Legend, I could see that the engineers around me designed hardware they had never repaired — and repair is where a design confesses what it really is.',
     bet: 'Found a chip-level repair business on the side, and build it to run without me.',
     cost: 'Nights and weekends for nine years, and accepting that a business only counts if it survives without its founder.',
     proved: '15,000+ repairs at 4.7★ across 516 reviews — still operating today, run by my family.',
