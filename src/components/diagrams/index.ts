@@ -26,6 +26,8 @@ import { DataViewDiagram } from './DataViewDiagram';
 import { ComplianceToolingDiagram } from './ComplianceToolingDiagram';
 import { ReleaseEngineeringDiagram } from './ReleaseEngineeringDiagram';
 import { GadjoyDiagram } from './GadjoyDiagram';
+import { LegendTechnologiesDiagram } from './LegendTechnologiesDiagram';
+import { SlipringLineDiagram } from './SlipringLineDiagram';
 
 /** Registry keyed by caseStudySchema.diagramId — content tests assert the bijection. */
 export const diagrams = {
@@ -56,6 +58,8 @@ export const diagrams = {
   'compliance-tooling': ComplianceToolingDiagram,
   'release-engineering': ReleaseEngineeringDiagram,
   gadjoy: GadjoyDiagram,
+  'legend-technologies': LegendTechnologiesDiagram,
+  'slipring-line': SlipringLineDiagram,
 } as const satisfies Record<string, ComponentType>;
 
 export type DiagramId = keyof typeof diagrams;

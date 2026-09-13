@@ -6,7 +6,9 @@
 > the owner's dated statements live under `source/`, redacted and test-checked; originals are release
 > assets. Site claims may cite them; claims resting only on an owner statement are marked
 > _self-reported_. **v1.6 also adds motion evidence** (ADR-0014): short, silent simulation clips as a
-> fourth media slot — poster, controls, `preload="none"`, never autoplay, ≤ 2 MiB by test.
+> fourth media slot — poster, controls, `preload="none"`, never autoplay, ≤ 2 MiB by test — and the
+> **era hub page** pattern (ADR-0015): a project page about a way of working rather than a system,
+> whose gallery captions each carry a `Role:` tag from a closed vocabulary.
 >
 > **v1.5 adds the lived-experience layer** (ADR-0011/0012): Turning Points, audience paths, a
 > command palette and a Now section — written before implementation, per §9.
@@ -42,7 +44,7 @@ live civic site. Prefer a smaller verifiable claim to a larger asserted one. Sup
 
 ### In scope (v1.4)
 
-- One responsive landing page with anchor-nav sections, **a project page for every project (27)** at
+- One responsive landing page with anchor-nav sections, **a project page for every project (29)** at
   `/work/<slug>/`, a `/work/` index grouped by org, and a `/recommendations/` page.
 - Content governed by the **two-tier source policy** (below).
 - Downloadable resume PDF.
@@ -258,8 +260,11 @@ status, a date, index linkage, and a superseded record naming an existing replac
 
 ## 11. Project pages
 
-27 static routes `/work/<slug>/` (slug = project id) plus a `/work/` index grouped by org, ordered by
-`CASE_STUDY_START` (most recent first). Structure: intro + metric strip → optional artifact image
+29 static routes `/work/<slug>/` (slug = project id) plus a `/work/` index grouped by org, ordered by
+`CASE_STUDY_START` (most recent first). Two kinds of page share the structure: **system pages**
+(one per distinct system, ADR-0009) and **era hub pages** (ADR-0015 — a way of working; its decisions
+are lifecycle stages with their corroboration named, its gallery is the company's programme portfolio
+with a `Role:` tag on every caption, and it links system pages without restating their metrics). Structure: intro + metric strip → optional artifact image
 (credited) → Problem → Constraints → Decisions & tradeoffs → annotated inline-SVG diagram
 (token-driven, dark-mode automatic, `role="img"` + title/desc; registry keyed by `DIAGRAM_IDS`,
 bijection test-enforced) → Results → optional "From the bench" gallery → optional "In motion" clips
@@ -270,6 +275,9 @@ co-located `opengraph-image.tsx`. Slim `CaseStudyNav` on subpages. E2E is data-d
 collection, so a new project is covered automatically.
 
 ## 12. Future (designed-for, not built)
+
+- An LCA-mockups page split out of the Legend hub gallery, if the owner supplies per-item role lines
+  (ADR-0015 §4).
 
 Custom domain (`CNAME` + `basePath` change); writing/blog; the aerospace-era media pool awaiting
 retrieval (see `MEDIA-TODO.md`).

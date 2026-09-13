@@ -64,6 +64,7 @@ const FEATURED_ORDER = [
   'sanas-consumer-app',
   'playground',
   'gcp-telemetry',
+  'legend-technologies',
   'vssc-tooling',
   'gadjoy',
   'speech-intelligence',
@@ -103,6 +104,9 @@ const CASE_STUDY_START: Record<string, number> = {
   'compliance-tooling': 202106,
   'healthcare-interop': 202202,
   'rail-tooling': 201901,
+  // The Legend hub and the slip-ring line span the tenure; anchored to its start.
+  'legend-technologies': 201301,
+  'slipring-line': 201301,
   // Stop Hunger's launch month is documented on the platform itself; AirCare is
   // anchored to the documented start of the volunteering (Jan 2018).
   'stop-hunger': 202003,

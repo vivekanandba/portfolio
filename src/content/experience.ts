@@ -231,6 +231,46 @@ export const projects: Project[] = [
     domain: 'healthcare-robotics',
   },
   {
+    id: 'legend-technologies',
+    title: 'Legend Technologies — Bid to Handover',
+    org: 'Legend Technologies',
+    summary:
+      'Five years at a medium-scale aerospace tooling house, carrying one-off mechanical products through every gate — bid, design with GD&T, prototype, batch production on the shop floor, process sheets, first-article proving, handover — as an individual contributor and design-team lead at once. The loop the entrepreneurial arc was founded from.',
+    metrics: [
+      { value: 'Bid → handover', label: 'seven stages, one owner' },
+      { value: '2013 – 2018', label: 'Engineer → Lead Project Engineer' },
+    ],
+    tags: ['End-to-end ownership', 'IC + design lead', 'ISRO · HAL · Safran · P&W · BEL'],
+    // RLV-TD in its assembly jig — the standard of the shop. Source: Legend deck v5.5, slide 10.
+    image: 'media/legend-rlv-td-on-jig.jpg',
+    imageAlt:
+      'The RLV-TD winged re-entry vehicle mockup sitting in its cream-painted assembly jig on a green workshop floor',
+    imageCredit:
+      'RLV-TD in its assembly jig for VSSC/ISRO — Role: supported (company programme during my tenure). Photo: Legend Technologies (India) Pvt. Ltd. — capability deck v5.5, slide 10',
+    featured: true,
+    domain: 'aerospace',
+  },
+  {
+    id: 'slipring-line',
+    title: 'Precision Slip Rings — VSSC-Licensed Line',
+    org: 'Legend Technologies',
+    summary:
+      'The design seat of Legend’s slip-ring division: twelve configurations from 6 to 108 channels for ISRO, DRDO labs, BEL and industry, built under a technology transfer from VSSC, held to 5 µm tolerances, with an upgraded beryllium-copper-on-copper architecture in place of the silver-graphite original.',
+    metrics: [
+      { value: '6 → 108 ch', label: 'twelve configurations' },
+      { value: '5 µm', label: 'contact tolerances' },
+    ],
+    tags: ['Slip rings', 'Design seat', 'ISRO licence'],
+    // Exploded 108-channel unit. Source: Legend deck v5.5, slide 54.
+    image: 'media/legend-108ch-slipring-cad.jpg',
+    imageAlt:
+      'Exploded CAD view of a 108-channel stacked slip ring: the long contact stack, brush blocks and end flanges laid out along its axis',
+    imageCredit:
+      '108-channel stacked slip ring for aerospace, exploded. Render: Legend Technologies (India) Pvt. Ltd. — capability deck v5.5, slide 54',
+    featured: false,
+    domain: 'aerospace',
+  },
+  {
     id: 'vssc-tooling',
     title: 'VSSC Launch-Vehicle Tooling',
     org: 'Legend Technologies',
