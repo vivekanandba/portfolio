@@ -26,6 +26,8 @@ import { railTooling } from './rail-tooling';
 import { gadjoy } from './gadjoy';
 import { stopHunger } from './stop-hunger';
 import { airCare } from './aircare';
+import { legendTechnologies } from './legend-technologies';
+import { slipringLine } from './slipring-line';
 
 /** Ordered to mirror the project-card order (featured grid, then More work). */
 export const caseStudies: CaseStudy[] = [
@@ -44,7 +46,9 @@ export const caseStudies: CaseStudy[] = [
   dataView,
   complianceTooling,
   releaseEngineering,
+  legendTechnologies,
   vsscTooling,
+  slipringLine,
   safranA350,
   pwAugmenter,
   bmp2Turret,

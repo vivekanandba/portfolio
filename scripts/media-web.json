@@ -189,6 +189,154 @@
     {
       "from": "source/decks/legend-company-v5.5/media/s21-cfm56-workstation-adapter-cad.png",
       "to": "legend-cfm56-workstation-adapter-cad.jpg"
+    },
+    {
+      "from": "source/decks/legend-company-v5.5/media/s10-rlv-td-on-assembly-jig.png",
+      "to": "legend-rlv-td-on-jig.jpg"
+    },
+    {
+      "from": "source/decks/legend-company-v5.5/media/s10-rlv-td-assembly-jig.jpeg",
+      "to": "legend-rlv-td-assembly-jig.jpg"
+    },
+    {
+      "from": "source/decks/legend-company-v5.5/media/s34-lca-mockup-modification-aero-india-2015.jpeg",
+      "to": "legend-lca-mockup-aero-india-2015.jpg"
+    },
+    {
+      "from": "source/decks/legend-company-v5.5/media/s68-lca-composite-canopy-trolley.jpeg",
+      "to": "legend-lca-composite-canopy-trolley.jpg"
+    },
+    {
+      "from": "source/decks/legend-company-v5.5/media/s08-lch-coupling-jig-cad-2.png",
+      "to": "legend-lch-coupling-jig-cad.jpg"
+    },
+    {
+      "from": "source/decks/legend-company-v5.5/media/s08-lch-coupling-jig.jpeg",
+      "to": "legend-lch-coupling-jig.jpg"
+    },
+    {
+      "from": "source/decks/legend-company-v5.5/media/s13-gslv-mk3-middle-assembly-jig.jpeg",
+      "to": "legend-gslv-mk3-middle-assembly-jig.jpg"
+    },
+    {
+      "from": "source/decks/legend-company-v5.5/media/s66-lca-td1-on-display-pylon.jpeg",
+      "to": "legend-lca-td1-display-pylon.jpg"
+    },
+    {
+      "from": "source/decks/legend-company-v5.5/media/s37-lca-mockup-road-transport.jpeg",
+      "to": "legend-lca-mockup-road-transport.jpg"
+    },
+    {
+      "from": "source/decks/legend-company-v5.5/media/s33-tejas-trainer-mockup-republic-day.jpeg",
+      "to": "legend-tejas-trainer-mockup-republic-day.jpg"
+    },
+    {
+      "from": "source/decks/legend-company-v5.5/media/s23-beml-metro-spot-welding-fixture.jpeg",
+      "to": "legend-beml-metro-spot-welding-fixture.jpg"
+    },
+    {
+      "from": "source/decks/legend-company-v5.5/media/s07-lca-front-fuselage-jig-cad.png",
+      "to": "legend-lca-front-fuselage-jig-cad.jpg"
+    },
+    {
+      "from": "source/decks/legend-company-v5.5/media/s18-lca-centre-fuselage-jig-cad.png",
+      "to": "legend-lca-centre-fuselage-jig-cad.jpg"
+    },
+    {
+      "from": "source/decks/legend-company-v5.5/media/s12-alh-deck-assembly-jig.jpeg",
+      "to": "legend-alh-deck-assembly-jig.jpg"
+    },
+    {
+      "from": "source/decks/legend-company-v5.5/media/s19-jaguar-station-25-assembly-fixture.jpeg",
+      "to": "legend-jaguar-station-25-fixture.jpg"
+    },
+    {
+      "from": "source/decks/legend-company-v5.5/media/s20-boeing-cargo-door-jig-1.jpeg",
+      "to": "legend-boeing-cargo-door-jig.jpg"
+    },
+    {
+      "from": "source/decks/legend-company-v5.5/media/s81-aircraft-hangar.jpeg",
+      "to": "legend-aircraft-hangar.jpg"
+    },
+    {
+      "from": "source/decks/legend-company-v5.5/media/s82-haas-cnc-machining-centre.jpeg",
+      "to": "legend-haas-cnc-machining-centre.jpg"
+    },
+    {
+      "from": "source/decks/legend-company-v5.5/media/s84-clean-room-entrance.jpeg",
+      "to": "legend-clean-room-entrance.jpg"
+    },
+    {
+      "from": "source/decks/legend-company-v5.5/media/s85-inspection-room.jpeg",
+      "to": "legend-inspection-room.jpg"
+    },
+    {
+      "from": "source/decks/legend-company-v5.5/media/s05-legend-office-building.jpeg",
+      "to": "legend-office-building.jpg"
+    },
+    {
+      "from": "source/decks/legend-company-v5.5/media/s54-108ch-aerospace-slipring-cad-exploded.jpeg",
+      "to": "legend-108ch-slipring-cad.jpg"
+    },
+    {
+      "from": "source/decks/legend-company-v5.5/media/s54-109ch-slipring-capsule-photo.png",
+      "to": "legend-109ch-slipring-capsule.jpg"
+    },
+    {
+      "from": "source/decks/legend-company-v5.5/media/s53-57ch-naval-slipring-cad-cutaway.jpg",
+      "to": "legend-57ch-naval-slipring-cad.jpg"
+    },
+    {
+      "from": "source/decks/legend-company-v5.5/media/s53-57ch-naval-slipring-assembly.jpeg",
+      "to": "legend-57ch-naval-slipring-assembly.jpg"
+    },
+    {
+      "from": "source/decks/legend-company-v5.5/media/s55-37ch-pancake-slipring-cad-2.jpeg",
+      "to": "legend-37ch-pancake-slipring-cad.jpg"
+    },
+    {
+      "from": "source/decks/legend-company-v5.5/media/s55-37ch-pancake-slipring-photo.png",
+      "to": "legend-37ch-pancake-slipring.jpg"
+    },
+    {
+      "from": "source/decks/legend-company-v5.5/media/s56-48ch-stacked-slipring-cad-3.jpeg",
+      "to": "legend-48ch-slipring-cad.jpg"
+    },
+    {
+      "from": "source/decks/legend-company-v5.5/media/s52-27ch-stacked-slipring-cad.jpeg",
+      "to": "legend-27ch-slipring-cad.jpg"
+    },
+    {
+      "from": "source/decks/legend-company-v5.5/media/s52-27ch-stacked-slipring-3.jpeg",
+      "to": "legend-27ch-slipring-units.jpg"
+    },
+    {
+      "from": "source/decks/legend-company-v5.5/media/s49-24ch-stacked-slipring-cad-2.jpeg",
+      "to": "legend-24ch-slipring-cad.jpg"
+    },
+    {
+      "from": "source/decks/legend-company-v5.5/media/s46-8ch-stacked-slipring-cad-4.jpeg",
+      "to": "legend-8ch-slipring-cad.jpg"
+    },
+    {
+      "from": "source/decks/legend-company-v5.5/media/s48-6ch-stacked-slipring-cad-3.jpeg",
+      "to": "legend-6ch-slipring-cad.jpg"
+    },
+    {
+      "from": "source/decks/legend-company-v5.5/media/s47-10ch-miniature-slipring-2.jpeg",
+      "to": "legend-10ch-miniature-slipring.jpg"
+    },
+    {
+      "from": "source/decks/legend-company-v5.5/media/s51-6ch-miniature-slipring-photo.jpg",
+      "to": "legend-6ch-miniature-slipring.jpg"
+    },
+    {
+      "from": "source/decks/legend-company-v5.5/media/s57-70ch-slipring-repair-4.jpeg",
+      "to": "legend-70ch-slipring-repair.jpg"
+    },
+    {
+      "from": "source/decks/legend-company-v5.5/media/s59-slipring-division-building.jpeg",
+      "to": "legend-slipring-division-building.jpg"
     }
   ],
   "clips": [
