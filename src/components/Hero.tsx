@@ -30,9 +30,9 @@ const PROOFS: { value: string; label: string; href?: string }[] = [
 const TIMELINE = [
   { org: 'Sanas.ai — zero-to-one AI', year: '2024' },
   { org: 'NovaSignal — FDA-cleared robotics', year: '2020' },
-  { org: 'Tech Mahindra — rolling-stock tooling', year: '2019' },
+  { org: 'Tech Mahindra — rolling-stock tooling', year: '2018' },
   { org: 'Gadjoy — founder · gadget-repair business', year: '2016' },
-  { org: 'Legend — ISRO / Safran / P&W tooling', year: '2013' },
+  { org: 'Legend — aerospace tooling · slip rings · bid to handover', year: '2013' },
   { org: 'Safran — A350 XWB structures', year: '2011' },
 ];
 

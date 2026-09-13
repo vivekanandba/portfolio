@@ -103,7 +103,7 @@ const CASE_STUDY_START: Record<string, number> = {
   'release-engineering': 202211,
   'compliance-tooling': 202106,
   'healthcare-interop': 202202,
-  'rail-tooling': 201901,
+  'rail-tooling': 201801,
   // The Legend hub and the slip-ring line span the tenure; anchored to its start.
   'legend-technologies': 201301,
   'slipring-line': 201301,
