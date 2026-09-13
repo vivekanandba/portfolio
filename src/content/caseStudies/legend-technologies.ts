@@ -26,7 +26,7 @@ export const legendTechnologies: CaseStudy = {
   eyebrow: 'Project · Legend Technologies · ENTI Innovations · 2013–2018',
   title: 'Legend Technologies — owning a mechanical product end to end, bid to handover',
   intro:
-    'Five years at a medium-scale aerospace tooling house in Bangalore, where one engineer could be authorised to carry a one-off product through every gate: bid it, price it, design it with a team, prototype it, stand on the shop floor while it was machined and welded, write the process sheets, prove the first article, hand it over. Individual contributor and design-team lead at the same time. This is the loop the rest of the site was built from — and the reason a repair business got founded from inside it.',
+    'Five years at a medium-scale aerospace tooling house in Bangalore, where one engineer carried a one-off product through every gate: bid it, price it, design it with a team, prototype it, stand on the shop floor while it was machined and welded, write the process sheets, prove the first article, hand it over. Individual contributor and design-team lead at the same time. This is the loop the rest of the site was built from — and the reason a repair business got founded from inside it.',
   metrics: [
     { value: 'Bid → handover', label: 'seven stages, one owner' },
     { value: '2013 – 2018', label: 'Engineer → Lead Project Engineer' },
@@ -48,7 +48,7 @@ export const legendTechnologies: CaseStudy = {
       decision:
         '1 · Bid. Go and bid for the project: pre-sales, price negotiation, the technical bid, the technical discussions that convince the customer — and take the job on.',
       tradeoff:
-        'Estimating a one-off jig you have not yet designed is where the loop is riskiest; it is also what the MD’s recommendation names first — “end-to-end support… from bidding and cost estimation to design, production, and testing” — and what the two capability decks in this repository were for.',
+        'Estimating a one-off jig you have not yet designed is where the loop is riskiest; it is also what the MD’s recommendation names first — “end-to-end support… from bidding and cost estimation to design, production, and testing” — and what the two capability decks in this repository were for. That the bidding authority itself was mine to exercise is self-reported — owner note 2026-09-13.',
     },
     {
       decision:
@@ -86,7 +86,7 @@ export const legendTechnologies: CaseStudy = {
     },
   ],
   results: [
-    { value: '9 projects', label: 'on this site carried through the loop' },
+    { value: '8 pages', label: 'Legend-era projects on this site' },
     { value: 'Nov 2016', label: 'Gadjoy founded from inside it' },
     { value: '2 decks', label: 'authored — now source material here' },
   ],

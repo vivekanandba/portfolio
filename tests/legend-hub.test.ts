@@ -8,7 +8,15 @@ import { caseStudies, projects } from '@/content';
  * vocabulary, and any claim marked self-reported cites the owner note it rests
  * on (ADR-0013). Written before the page existed (SPEC §9.2).
  */
-const STAGES = ['bid', 'design', 'prototype', 'production', 'process', 'first article', 'handover'];
+const STAGES = [
+  /bid/,
+  /design/,
+  /prototype/,
+  /production/,
+  /process/,
+  /first[- ]article/,
+  /handover/,
+];
 const ROLE = /Role: (led|designed|delivered|supported|workplace|company programme)\b/;
 
 describe('the Legend era hub', () => {
@@ -26,7 +34,7 @@ describe('the Legend era hub', () => {
       .join(' ')
       .toLowerCase();
     for (const stage of STAGES) {
-      expect(text, `stage "${stage}" missing from the hub's decisions`).toContain(stage);
+      expect(text, `stage ${stage} missing from the hub's decisions`).toMatch(stage);
     }
   });
 
