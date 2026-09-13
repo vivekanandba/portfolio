@@ -4,6 +4,8 @@ import {
   personJsonLd,
   recommendationsMetadata,
   archiveMetadata,
+  postMetadata,
+  writingIndexMetadata,
   siteMetadata,
   workIndexMetadata,
 } from '@/lib/seo';
@@ -139,6 +141,46 @@ describe('archiveMetadata', () => {
     expect(String(unknown.description)).toMatch(/^0 items from the source decks/);
     expect(unknown.alternates?.canonical).toBe(
       'https://vivekanandba.github.io/portfolio/archive/no-such-era/',
+    );
+  });
+});
+
+describe('writing metadata (ADR-0017)', () => {
+  it('the index canonicalises to /writing/ and advertises the Atom feed', () => {
+    const meta = writingIndexMetadata(3);
+    expect(meta.alternates?.canonical).toBe('https://vivekanandba.github.io/portfolio/writing/');
+    expect(meta.alternates?.types?.['application/atom+xml']).toBe(
+      'https://vivekanandba.github.io/portfolio/feed.xml',
+    );
+    expect(String(meta.description)).toMatch(/^3 posts/);
+    expect(String(writingIndexMetadata(1).description)).toMatch(/^1 post:/);
+  });
+
+  it('a post is an article with an absolute canonical and times, and defers its image to the file convention', () => {
+    const meta = postMetadata({
+      slug: 'x',
+      title: 'T',
+      summary: 'S',
+      date: '2026-09-13',
+      updated: '2026-09-14',
+      tags: ['a'],
+    });
+    expect(meta.alternates?.canonical).toBe('https://vivekanandba.github.io/portfolio/writing/x/');
+    const og = meta.openGraph as {
+      type: string;
+      publishedTime: string;
+      modifiedTime: string;
+      images?: unknown;
+    };
+    expect(og.type).toBe('article');
+    expect(og.publishedTime).toBe('2026-09-13T00:00:00Z');
+    expect(og.modifiedTime).toBe('2026-09-14T00:00:00Z');
+    expect(og.images).toBeUndefined();
+  });
+
+  it('the site advertises the feed', () => {
+    expect(siteMetadata.alternates?.types?.['application/atom+xml']).toBe(
+      'https://vivekanandba.github.io/portfolio/feed.xml',
     );
   });
 });

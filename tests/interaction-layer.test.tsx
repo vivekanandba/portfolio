@@ -35,6 +35,7 @@ const SECTION_IDS = new Set([
   'recommendations',
   'journey',
   'now',
+  'writing',
   'credentials',
   'contact',
 ]);

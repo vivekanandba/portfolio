@@ -11,6 +11,7 @@ import { Skills } from '@/components/Skills';
 import { Recommendations } from '@/components/Recommendations';
 import { Timeline } from '@/components/Timeline';
 import { Now } from '@/components/Now';
+import { Writing } from '@/components/Writing';
 import { Credentials } from '@/components/Credentials';
 import { Contact } from '@/components/Contact';
 import NotFound from '@/app/not-found';
@@ -43,6 +44,7 @@ describe('accessibility', () => {
             <Recommendations />
             <Timeline />
             <Now />
+            <Writing />
             <Credentials />
             <Contact />
           </main>
