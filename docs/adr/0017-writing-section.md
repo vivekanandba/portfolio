@@ -1,7 +1,7 @@
 # ADR-0017 — A Markdown writing section, compiled at build
 
 **Status:** Accepted
-**Date:** 2026-09-13 **Shipped in:** pending
+**Date:** 2026-09-13 **Shipped in:** #50
 **Supersedes:** the SPEC §2 non-goal "Blog/writing engine" (v1.3 – v1.7)
 
 ## Context
