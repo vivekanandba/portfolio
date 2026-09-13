@@ -155,6 +155,22 @@ export const DIAGRAM_IDS = [
   'slipring-line',
 ] as const;
 
+/** One photograph or render in a photo grid (paths under public/). Alt text is mandatory —
+ *  never publish an image here without auditing it for customer PII first. */
+export const galleryItemSchema = z.object({
+  file: z.string().min(1), // "media/gadjoy-workshop.jpg"
+  alt: z.string().min(1),
+  // Landscape items (annotated before/after cards, wide diagrams) span the
+  // grid and are letterboxed instead of cropped, so labels stay readable.
+  wide: z.boolean().optional(),
+  // Portrait items (phone screenshots) get a taller cell and are shown
+  // whole rather than cropped to a horizontal slice.
+  tall: z.boolean().optional(),
+  // Visible credit, required for any image that isn't the author's own.
+  credit: z.string().min(1).optional(),
+});
+export type GalleryItem = z.infer<typeof galleryItemSchema>;
+
 /** Long-form case study for a project, rendered at /work/<slug>/. */
 export const caseStudySchema = z.object({
   slug: z.string().regex(/^[a-z0-9-]+$/), // equals the project id — stable URLs
@@ -196,22 +212,7 @@ export const caseStudySchema = z.object({
     .optional(),
   // Photo grid of real work (paths under public/). Alt text is mandatory —
   // never publish an image here without auditing it for customer PII first.
-  gallery: z
-    .array(
-      z.object({
-        file: z.string().min(1), // "media/gadjoy-workshop.jpg"
-        alt: z.string().min(1),
-        // Landscape items (annotated before/after cards, wide diagrams) span the
-        // grid and are letterboxed instead of cropped, so labels stay readable.
-        wide: z.boolean().optional(),
-        // Portrait items (phone screenshots) get a taller cell and are shown
-        // whole rather than cropped to a horizontal slice.
-        tall: z.boolean().optional(),
-        // Visible credit, required for any image that isn't the author's own.
-        credit: z.string().min(1).optional(),
-      }),
-    )
-    .optional(),
+  gallery: z.array(galleryItemSchema).optional(),
   // Motion evidence (ADR-0014): short, silent simulation clips. MP4 ≤ 2 MiB,
   // ≤ 35 s, ≤ 720p, poster mandatory; rendered with browser controls and
   // preload="none", never autoplaying. Sizes are test-enforced from disk.
@@ -321,3 +322,95 @@ export const recommendationSchema = z.object({
   featured: z.boolean().default(false),
 });
 export type Recommendation = z.infer<typeof recommendationSchema>;
+
+/* ---------------------------------------------------------------------------
+ * Era archive (ADR-0016): every catalogued item from an era's source material,
+ * with a tri-state date, a role tag from a closed vocabulary and its sources.
+ * ------------------------------------------------------------------------- */
+export const ARCHIVE_ERAS = ['legend'] as const;
+export const DECK_IDS = ['legend-company-v5.5', 'enti-corporate-v1.4-taml'] as const;
+export const ARCHIVE_CATEGORIES = [
+  'turnkey-jigs',
+  'assembly-tooling',
+  'machined-components',
+  'composites-mockups',
+  'slip-rings',
+  'design-services',
+  'facilities',
+  'company',
+  'events',
+] as const;
+/** What my part was. `company-*` tags say the item is the company's, not mine. */
+export const ARCHIVE_ROLES = [
+  'led',
+  'designed',
+  'delivered',
+  'supported',
+  'workplace',
+  'company-before',
+  'company-undated',
+  'company-after',
+] as const;
+
+export const archiveEntrySchema = z
+  .object({
+    id: z.string().regex(/^[a-z0-9-]+$/),
+    era: z.enum(ARCHIVE_ERAS),
+    title: z.string().min(1),
+    customer: z.string().min(1).optional(),
+    category: z.enum(ARCHIVE_CATEGORIES),
+    summary: z.string().min(40), // written from the transcript, one paragraph
+    // Tri-state (CON-DATA-002): a known date carries its label; `requested`
+    // means a row in source/records/ asks Vivek for it (recordsId names the row).
+    when: z.object({
+      status: z.enum(['known', 'unknown', 'requested']),
+      label: z.string().min(1).optional(),
+    }),
+    role: z.enum(ARCHIVE_ROLES),
+    sources: z
+      .array(
+        z.object({
+          deck: z.enum(DECK_IDS),
+          slides: z.array(z.number().int().positive()).min(1),
+        }),
+      )
+      .min(1),
+    media: z.array(galleryItemSchema).optional(),
+    project: z.string().min(1).optional(), // FK to projects[].id, test-enforced
+    recordsId: z
+      .string()
+      .regex(/^[a-z0-9-]+$/)
+      .optional(), // my-photos/<id>/ row
+  })
+  .superRefine((e, ctx) => {
+    if (e.when.status === 'known' && !e.when.label)
+      ctx.addIssue({
+        code: 'custom',
+        path: ['when', 'label'],
+        message: 'a known date needs a label',
+      });
+    if (e.when.status === 'requested' && !e.recordsId)
+      ctx.addIssue({
+        code: 'custom',
+        path: ['recordsId'],
+        message: 'a requested date names its records row',
+      });
+  });
+export type ArchiveEntry = z.infer<typeof archiveEntrySchema>;
+
+/** A slide deliberately not catalogued, with the reason — rendered on the page. */
+export const archiveExclusionSchema = z.object({
+  deck: z.enum(DECK_IDS),
+  slide: z.number().int().positive(),
+  reason: z.string().min(8),
+});
+export type ArchiveExclusion = z.infer<typeof archiveExclusionSchema>;
+
+export const archiveEraSchema = z.object({
+  id: z.enum(ARCHIVE_ERAS),
+  title: z.string().min(1), // "The Legend archive"
+  eyebrow: z.string().min(1),
+  intro: z.string().min(40), // first person: the rule and what the reader is looking at
+  decks: z.array(z.enum(DECK_IDS)).min(1),
+});
+export type ArchiveEra = z.infer<typeof archiveEraSchema>;

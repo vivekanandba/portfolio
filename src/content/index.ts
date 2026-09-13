@@ -1,6 +1,9 @@
 import { z } from 'zod';
 import {
   aiPracticeStepSchema,
+  archiveEntrySchema,
+  archiveEraSchema,
+  archiveExclusionSchema,
   caseStudySchema,
   certificationSchema,
   educationSchema,
@@ -27,6 +30,9 @@ import { languages as rawLanguages } from './languages';
 import { turningPoints as rawTurningPoints } from './turningPoints';
 import { tours as rawTours } from './tours';
 import { now as rawNow } from './now';
+import { legendArchive as rawArchive } from './archive/legend';
+import { archiveExclusions as rawArchiveExclusions } from './archive/exclusions';
+import { archiveEras as rawArchiveEras } from './archive/eras';
 
 /**
  * Validate every content source at import time. A malformed data file throws here,
@@ -54,6 +60,15 @@ export const languages = z.array(languageSchema).parse(rawLanguages);
 export const turningPoints = z.array(turningPointSchema).min(4).max(6).parse(rawTurningPoints);
 export const tours = z.array(tourSchema).length(3).parse(rawTours);
 export const now = nowSchema.parse(rawNow);
+
+// Era archive (ADR-0016): validated like everything else; coverage over the
+// deck transcripts is asserted in tests/archive.test.ts.
+export const archiveEntries = z.array(archiveEntrySchema).parse(rawArchive);
+export const archiveExclusions = z.array(archiveExclusionSchema).parse(rawArchiveExclusions);
+export const archiveEras = z.array(archiveEraSchema).min(1).parse(rawArchiveEras);
+/** Archive entries that elaborate a project page (by project id). */
+export const archiveEntriesForProject = (projectId: string) =>
+  archiveEntries.filter((e) => e.project === projectId);
 
 /**
  * Featured cards, ordered to span domains near the top (AI-native, then a

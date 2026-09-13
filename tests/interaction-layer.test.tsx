@@ -160,7 +160,8 @@ describe('command palette — routes outside /work/ (ADR-0016)', () => {
     );
     fireEvent.keyDown(window, { key: 'k', ctrlKey: true });
     fireEvent.change(screen.getByRole('combobox'), { target: { value: 'turning points' } });
-    fireEvent.click(screen.getByRole('option', { name: /turning points/i }));
+    expect(screen.getByRole('option', { name: /turning points/i })).toBeInTheDocument();
+    fireEvent.keyDown(screen.getByRole('combobox'), { key: 'Enter' }); // the first result is the section
     expect(push).not.toHaveBeenCalled();
     expect(window.location.hash).toBe('#turning-points');
   });
@@ -171,7 +172,8 @@ describe('command palette — routes outside /work/ (ADR-0016)', () => {
     render(<CommandPalette />);
     fireEvent.keyDown(window, { key: 'k', ctrlKey: true });
     fireEvent.change(screen.getByRole('combobox'), { target: { value: 'the arc' } });
-    fireEvent.click(screen.getByRole('option', { name: /the arc/i }));
+    expect(screen.getByRole('option', { name: /the arc/i })).toBeInTheDocument();
+    fireEvent.keyDown(screen.getByRole('combobox'), { key: 'Enter' });
     expect(push).toHaveBeenCalledWith('/#about');
   });
 });

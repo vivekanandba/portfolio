@@ -24,7 +24,7 @@ describe('the era archive page (ADR-0016)', () => {
       expect(
         screen.getByRole('heading', {
           level: 3,
-          name: new RegExp(e.title.slice(0, 30).replace(/[.*+?^${}()|[\]\\]/g, '\\$&')),
+          name: new RegExp('^' + e.title.slice(0, 30).replace(/[.*+?^${}()|[\]\\]/g, '\\$&')),
         }),
       ).toBeInTheDocument();
     }

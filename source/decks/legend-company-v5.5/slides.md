@@ -603,11 +603,11 @@ _Body omitted: private company financials (turnover table)._
 
 ## Slide 97 — ISO 9001:2008 QMS CERTIFICATE
 
-- media: media/s97-iso-9001-2015-certificate.png — iso 9001 2015 certificate
+- media withheld (1): image — certificate carries the certifying body's signatory's signature — third-party personal data; the certification facts stay in the transcript
 
 ## Slide 98 — AEROSPACE STANDARD CERTIFICATE – AS 9100D
 
-- media: media/s98-as9100d-certificate.png — as9100d certificate
+- media withheld (1): image — certificate carries the certifying body's signatory's signature — third-party personal data; the certification facts stay in the transcript
 
 ## Slide 99 — Contact us
 

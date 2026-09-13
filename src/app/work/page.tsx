@@ -51,6 +51,16 @@ export default function WorkIndex() {
               software — each told the same way: the problem, the constraints, the decisions and
               their tradeoffs, and what was measured at the end.
             </p>
+            <p
+              style={{ animationDelay: '200ms' }}
+              className="mt-4 max-w-content animate-fade-up text-sm leading-relaxed text-muted"
+            >
+              Everything the two Legend-era capability decks show — dated or not — is catalogued in{' '}
+              <Link href="/archive/legend/" className="text-accent no-underline hover:underline">
+                the Legend archive
+              </Link>
+              .
+            </p>
           </header>
 
           {groups.map((group, gi) => (

@@ -34,11 +34,13 @@ function useNavigate() {
   return useCallback(
     (target: string) => {
       if (target.startsWith('#')) {
-        if (window.location.pathname.includes('/work/')) router.push(`/${target}`);
-        else {
+        // Decide by the document, not the pathname (ADR-0016): scroll if the
+        // section is on this page, otherwise route home with the hash.
+        const el = document.getElementById(target.slice(1));
+        if (el) {
           window.location.hash = target;
-          document.getElementById(target.slice(1))?.scrollIntoView({ behavior: 'smooth' });
-        }
+          el.scrollIntoView?.({ behavior: 'smooth' });
+        } else router.push(`/${target}`);
       } else {
         router.push(`/work/${target}/`);
       }

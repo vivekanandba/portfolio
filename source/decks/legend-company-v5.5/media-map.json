@@ -271,13 +271,13 @@
   },
   "image185.png": {
     "slide": 97,
-    "status": "kept",
-    "name": "media/s97-iso-9001-2015-certificate.png"
+    "status": "excluded",
+    "reason": "certificate carries the certifying body's signatory's signature — third-party personal data; the certification facts stay in the transcript"
   },
   "image186.png": {
     "slide": 98,
-    "status": "kept",
-    "name": "media/s98-as9100d-certificate.png"
+    "status": "excluded",
+    "reason": "certificate carries the certifying body's signatory's signature — third-party personal data; the certification facts stay in the transcript"
   },
   "image20.jpeg": {
     "slide": 12,

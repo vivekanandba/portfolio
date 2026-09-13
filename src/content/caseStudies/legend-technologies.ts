@@ -113,7 +113,7 @@ export const legendTechnologies: CaseStudy = {
     {
       file: 'media/legend-lca-composite-canopy-trolley.jpg',
       alt: 'A red composite canopy trolley with a yellow wheeled base in a workshop bay',
-      credit: `Composite canopy trolley for the LCA — light enough to travel in the aircraft. Role: supported (ENTI design-team case, 2013). ${PHOTO}, slide 68`,
+      credit: `Composite canopy trolley for the LCA — light enough to travel in the aircraft. Role: supported (an ENTI design-team case; the deck does not date it). ${PHOTO}, slide 68`,
     },
     {
       file: 'media/legend-lch-coupling-jig-cad.jpg',

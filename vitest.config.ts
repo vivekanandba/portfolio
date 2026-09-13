@@ -25,10 +25,11 @@ export default defineConfig({
       // components/ could land at 0% without moving it. Hence per-directory
       // floors on the two places real logic lives.
       thresholds: {
-        statements: 93,
-        lines: 93,
+        // measured 2026-09-13 (PR-C): 96.63 / 89.6 / 88.52 / 96.63
+        statements: 95,
+        lines: 95,
         branches: 86,
-        functions: 85,
+        functions: 87,
         // measured: 100 / 83.3 / 100
         'src/lib/**': { statements: 95, lines: 95, branches: 80, functions: 95 },
         // measured: 95.1 / 88.6 / 86.2

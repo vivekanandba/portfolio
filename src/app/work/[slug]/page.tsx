@@ -5,7 +5,7 @@ import { ClipGrid } from '@/components/ClipGrid';
 import { MetricBadge } from '@/components/MetricBadge';
 import { Reveal } from '@/components/Reveal';
 import { diagrams } from '@/components/diagrams';
-import { caseStudies, projects } from '@/content';
+import { archiveEntriesForProject, archiveEras, caseStudies, projects } from '@/content';
 import { asset } from '@/lib/asset';
 import { caseStudyMetadata } from '@/lib/seo';
 
@@ -39,6 +39,10 @@ export default async function CaseStudyPage({ params }: Params) {
 
   const Diagram = diagrams[cs.diagramId];
   const project = projects.find((p) => p.id === cs.projectId);
+  const inArchive = archiveEntriesForProject(cs.projectId);
+  const archiveEra = inArchive.length
+    ? archiveEras.find((e) => e.id === inArchive[0].era)
+    : undefined;
 
   return (
     <>
@@ -254,6 +258,27 @@ export default async function CaseStudyPage({ params }: Params) {
                     );
                   })}
                 </ul>
+              </section>
+            </Reveal>
+          )}
+
+          {archiveEra && (
+            <Reveal className="mt-16">
+              <section aria-label="In the archive">
+                <SectionHeading>In the archive</SectionHeading>
+                <p className="max-w-content leading-relaxed text-muted">
+                  {inArchive.length === 1
+                    ? 'One item from the Legend-era decks references this project'
+                    : `${inArchive.length} items from the Legend-era decks reference this project`}{' '}
+                  — each with its source slide, its date as far as the record goes, and my part in
+                  it.
+                </p>
+                <Link
+                  href={`/archive/${archiveEra.id}/`}
+                  className="mt-4 inline-block text-sm font-medium text-accent no-underline hover:underline"
+                >
+                  Browse {archiveEra.title.replace(/^The /, 'the ')} →
+                </Link>
               </section>
             </Reveal>
           )}

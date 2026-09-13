@@ -219,7 +219,7 @@
       "exclude": "company or customer logo — trademark; the customer list is kept as text"
     },
     "image186.png": {
-      "name": "s98-as9100d-certificate.png"
+      "exclude": "certificate carries the certifying body's signatory's signature — third-party personal data; the certification facts stay in the transcript"
     },
     "image57.jpeg": {
       "name": "s26-nagpur-test-cell-3.jpeg"
@@ -366,7 +366,7 @@
       "exclude": "company or customer logo — trademark; the customer list is kept as text"
     },
     "image185.png": {
-      "name": "s97-iso-9001-2015-certificate.png"
+      "exclude": "certificate carries the certifying body's signatory's signature — third-party personal data; the certification facts stay in the transcript"
     },
     "image168.jpeg": {
       "exclude": "company or customer logo — trademark; the customer list is kept as text"

@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { caseStudies, profile, recommendations } from '@/content';
+import { archiveEntries, archiveEras, caseStudies, profile, recommendations } from '@/content';
 
 const TITLE = `${profile.name} — ${profile.tagline}`;
 const DESCRIPTION = profile.valueProp;
@@ -57,6 +57,22 @@ export function workIndexMetadata(): Metadata {
   const title = `Projects — ${profile.name}`;
   const description = `${caseStudies.length} projects across aerospace, healthcare robotics, and AI-native software — problem, constraints, decisions, and measured results.`;
   const url = `${SITE_URL}/work/`;
+  return {
+    title,
+    description,
+    alternates: { canonical: url },
+    openGraph: { title, description, type: 'website', url, images: [OG_IMAGE] },
+    twitter: { card: 'summary_large_image', title, description, images: [OG_IMAGE.url] },
+  };
+}
+
+/** Metadata for an era archive page (ADR-0016), e.g. /archive/legend/. */
+export function archiveMetadata(era: string): Metadata {
+  const meta = archiveEras.find((e) => e.id === era);
+  const count = archiveEntries.filter((e) => e.era === era).length;
+  const title = `${meta?.title ?? 'Archive'} — ${profile.name}`;
+  const description = `${count} items from the Legend Technologies and ENTI Innovations capability decks — dated or not, each with its source slide and my part in it.`;
+  const url = `${SITE_URL}/archive/${era}/`;
   return {
     title,
     description,
