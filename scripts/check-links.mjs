@@ -31,8 +31,13 @@ function collect() {
         walk(p);
         continue;
       }
-      if (!entry.name.endsWith('.ts')) continue;
-      for (const m of readFileSync(p, 'utf8').matchAll(/'(https:\/\/[^']+)'/g)) {
+      // .ts content files quote URLs in string literals; .md posts (ADR-0017) carry them
+      // bare or in Markdown link targets.
+      const isMd = entry.name.endsWith('.md');
+      if (!entry.name.endsWith('.ts') && !isMd) continue;
+      const pattern = isMd ? /https:\/\/[^\s)\]'"<>]+/g : /'(https:\/\/[^']+)'/g;
+      for (const raw of readFileSync(p, 'utf8').matchAll(pattern)) {
+        const m = isMd ? [raw[0], raw[0].replace(/[.,;:]+$/, '')] : raw;
         if (!found.has(m[1])) found.set(m[1], new Set());
         found.get(m[1]).add(p);
       }

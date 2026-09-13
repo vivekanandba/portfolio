@@ -415,3 +415,23 @@ export const archiveEraSchema = z.object({
   decks: z.array(z.enum(DECK_IDS)).min(1),
 });
 export type ArchiveEra = z.infer<typeof archiveEraSchema>;
+
+/* ---------------------------------------------------------------------------
+ * Writing (ADR-0017): frontmatter of a Markdown post under src/content/writing/.
+ * Strict — an unknown key is a typo, and a typo is a silent content bug.
+ * ------------------------------------------------------------------------- */
+export const POST_KINDS = ['learning', 'finding', 'field-note', 'note'] as const;
+const ISO_DATE = /^\d{4}-\d{2}-\d{2}$/;
+export const postFrontmatterSchema = z
+  .object({
+    title: z.string().min(1).max(120),
+    date: z.string().regex(ISO_DATE, 'date must be YYYY-MM-DD'),
+    updated: z.string().regex(ISO_DATE, 'updated must be YYYY-MM-DD').optional(),
+    summary: z.string().min(1).max(300),
+    kind: z.enum(POST_KINDS),
+    tags: z.array(z.string().regex(/^[a-z0-9-]+$/)).default([]),
+    projects: z.array(z.string().min(1)).default([]), // FK to projects[].id, checked in lib/writing
+    draft: z.boolean().default(false),
+  })
+  .strict();
+export type PostFrontmatter = z.infer<typeof postFrontmatterSchema>;

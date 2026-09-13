@@ -17,9 +17,13 @@ test('the Legend archive renders its guarantee and links into a project page', a
 
 test('the command palette routes home to a section from the archive page', async ({ page }) => {
   await page.goto('archive/legend/');
-  await page.keyboard.press('Control+k');
+  // The ⌘K listener attaches on hydration; a press before that is lost (not a
+  // toggle), so press until the dialog appears rather than once and hope.
+  await expect(async () => {
+    await page.keyboard.press('Control+k');
+    await expect(page.getByRole('combobox')).toBeVisible({ timeout: 500 });
+  }).toPass({ timeout: 15_000 });
   const input = page.getByRole('combobox');
-  await expect(input).toBeVisible();
   await input.fill('turning points');
   await page.keyboard.press('Enter');
   await expect(page).toHaveURL(/\/portfolio\/#turning-points$/);
