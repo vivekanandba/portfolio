@@ -27,6 +27,8 @@ export default async function PostPage({ params }: Params) {
   const post = getPost(slug);
   if (!post) notFound();
   const rendered = renderPost(post);
+  // The contents list is the h2s; gate on those, not on every heading.
+  const sections = rendered.headings.filter((h) => h.depth === 2);
   const related = post.projects
     .map((id) => ({
       project: projects.find((p) => p.id === id),
@@ -71,22 +73,20 @@ export default async function PostPage({ params }: Params) {
             )}
           </header>
 
-          {rendered.headings.length > 2 && (
+          {sections.length > 2 && (
             <nav
               aria-label="In this post"
               className="mt-12 border-l-2 border-hairline pl-4 text-sm"
             >
               <p className="mb-2 font-medium text-ink">In this post</p>
               <ol className="space-y-1 text-muted">
-                {rendered.headings
-                  .filter((h) => h.depth === 2)
-                  .map((h) => (
-                    <li key={h.id}>
-                      <a href={`#${h.id}`} className="no-underline hover:underline">
-                        {h.text}
-                      </a>
-                    </li>
-                  ))}
+                {sections.map((h) => (
+                  <li key={h.id}>
+                    <a href={`#${h.id}`} className="no-underline hover:underline">
+                      {h.text}
+                    </a>
+                  </li>
+                ))}
               </ol>
             </nav>
           )}

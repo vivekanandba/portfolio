@@ -5,11 +5,13 @@ import { PostMeta } from '@/components/PostMeta';
 import { listPosts } from '@/lib/writing';
 import { writingIndexMetadata } from '@/lib/seo';
 
-export const metadata: Metadata = writingIndexMetadata(listPosts({ includeDrafts: false }).length);
+// One list for the count and the page, so the two can never disagree (drafts show outside
+// production, labelled, and are counted when shown).
+const posts = listPosts();
+export const metadata: Metadata = writingIndexMetadata(posts.length);
 
 /** Every post, newest first (ADR-0017). Drafts appear only outside production, labelled. */
 export default function WritingIndex() {
-  const posts = listPosts();
   return (
     <>
       <CaseStudyNav />
