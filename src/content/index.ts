@@ -115,10 +115,12 @@ const CASE_STUDY_START: Record<string, number> = {
   'pw-augmenter': 201606,
   'vssc-tooling': 201601,
   'aero-reverse-engineering': 201506,
-  'igcar-slipring': 201412,
-  'bmp2-turret': 201406,
-  'filament-composites': 201401,
-  'lca-navy': 201301,
+  // Public LinkedIn Projects export (2026-07-23), Legend-era rows — the record
+  // replaces the earlier inferences (source/records/legend-programmes.md, row 22):
+  'igcar-slipring': 201509, // Sep 2015 – Dec 2015
+  'bmp2-turret': 201411, // Nov 2014 – Mar 2015
+  'filament-composites': 201503, // Mar 2015 – Aug 2015
+  'lca-navy': 201601, // Jan 2016 – Jun 2016
   'safran-a350': 201108,
 };
 

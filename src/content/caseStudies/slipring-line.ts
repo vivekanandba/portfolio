@@ -73,6 +73,11 @@ export const slipringLine: CaseStudy = {
   diagramId: 'slipring-line',
   gallery: [
     {
+      file: 'media/legend-igcar-slipring-cad.jpg',
+      alt: 'Exploded CAD view of a high-amperage stacked slip ring: end flange, blue rotor housing, contact stack and red brush block laid out along one axis',
+      credit: `The high-amperage unit for Godrej / IGCAR, exploded — it has its own page, IGCAR Nuclear Slip Ring (/work/igcar-slipring/). ${RENDER}, slide 58`,
+    },
+    {
       file: 'media/legend-108ch-slipring-cad.jpg',
       alt: 'Exploded CAD view of a 108-channel stacked slip ring: the long contact stack, brush blocks and end flanges laid out along its axis',
       wide: true,
