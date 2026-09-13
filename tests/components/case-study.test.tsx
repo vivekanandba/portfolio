@@ -44,12 +44,16 @@ describe('case-study pages', () => {
 
   // Representative axe sample — one per page archetype (full flow, data-heavy,
   // process diagram, compact) to keep runtime sane across all case-study pages.
+  // Explicit budget: a page with seven <video> elements and their tracks takes
+  // axe well past vitest's 5 s default under parallel load, and a timed-out axe
+  // run leaves its global lock set, failing the next axe test too.
   it.each(['playground', 'speech-intelligence', 'vssc-tooling', 'aircare', 'bmp2-turret'])(
     'has no axe violations (%s)',
     async (slug) => {
       const { container } = await renderCaseStudy(slug);
       expect(await axe(container)).toHaveNoViolations();
     },
+    40_000,
   );
 });
 
