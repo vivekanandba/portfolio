@@ -1,6 +1,11 @@
-# SPEC — Vivekanand B Portfolio (v1.5)
+# SPEC — Vivekanand B Portfolio (v1.6)
 
 > Spec-driven contract. Code follows this; if reality diverges, update this file first.
+>
+> **v1.6 adds owner-authored source material** (ADR-0013): the two Legend/ENTI capability decks and
+> the owner's dated statements live under `source/`, redacted and test-checked; originals are release
+> assets. Site claims may cite them; claims resting only on an owner statement are marked
+> _self-reported_.
 >
 > **v1.5 adds the lived-experience layer** (ADR-0011/0012): Turning Points, audience paths, a
 > command palette and a Now section — written before implementation, per §9.
@@ -50,6 +55,9 @@ live civic site. Prefer a smaller verifiable claim to a larger asserted one. Sup
 - **Interaction layer** (ADR-0012): audience-path tours from the hero, a ⌘K command palette over a
   build-time index, and a dated Now section derived from the newest certifications. All progressive
   enhancement — the site remains fully functional without JavaScript.
+- **Source material** (ADR-0013): a `source/` tree holding the redacted transcripts and screened media
+  of the owner's own capability decks, the resume sources, and dated owner statements — the checkable
+  origin of the 2013–2018 claims. Originals are GitHub Release assets, never git objects.
 
 ### Terminology
 
@@ -57,16 +65,21 @@ User-facing copy says **"project"**, never "case study" — the latter reads as 
 engineering audience. Internal identifiers (`caseStudySchema`, `src/content/caseStudies/`,
 `caseStudyStart`, `/work/` routes) keep their names; this is a copy rule, not a refactor.
 
-### Source policy (two-tier)
+### Source policy (three-tier)
 
-The **master resume** (`VIVEKANANDB-RESUME-MASTER-v2.docx`) is the fact source; the **served resume
-v15 PDF is the floor** — no site claim may _contradict_ it, though project pages may carry curated
-master-resume detail v15 omits. Landing cards stay modest: ≤3 metrics, summary-level claims.
-Tracked-changes conflicts resolve toward the v15-consistent value. Any metric absent from v15 ships
-only after explicit owner approval.
+The **master resume** (`source/resume/VIVEKANANDB-RESUME-MASTER-v2.docx`) is the fact source; the
+**served resume v15 PDF is the floor** — no site claim may _contradict_ it, though project pages may
+carry curated master-resume detail v15 omits. Landing cards stay modest: ≤3 metrics, summary-level
+claims. Tracked-changes conflicts resolve toward the v15-consistent value. Any metric absent from v15
+ships only after explicit owner approval — such approvals are recorded in the content-file comment.
 
 **Third-party public sources** (a client's or employer's published site, a regulator's database, an
 app store) may supply facts and media, subject to §7.
+
+**Owner-authored source material** (`source/`, ADR-0013) — the owner's own capability decks, redacted,
+and dated first-person statements — may supply facts and media. A claim drawn from it cites deck + slide
+or the note's date in the content-file comment. A claim resting **only** on an owner statement renders
+with a visible _self-reported_ marker; a claim corroborated by a third-party record carries none.
 
 ### Out of scope (v1.4) — non-goals
 
@@ -148,16 +161,24 @@ Hard-won rules; each exists because something was nearly or actually published i
   presenting them as standing results.
 - **Export-control / NDA caution** on defence, ISRO and nuclear imagery; employer product
   screenshots need sign-off. Outstanding gaps and cautions live in `MEDIA-TODO.md`.
+- **Source material is redacted before it is committed** (ADR-0013). Third-party names are withheld
+  (the company founder, already named on the site, excepted), biographies, portraits, financials and
+  contact details are omitted, images with identifiable people or vehicle plates are excluded, and every
+  exclusion is logged in the deck README. `tests/source.test.ts` fails the build on any phone number or
+  e-mail address under `source/`, any orphaned or missing media file, and any file over 2 MiB.
+- **Prior publication is not consent.** A deck once shown to clients, or a photo once on a company
+  website, does not license republishing the people or the private data in it.
 
 ## 8. Quality gates
 
-| Gate                | Command                 | Enforces                                                                             |
-| ------------------- | ----------------------- | ------------------------------------------------------------------------------------ |
-| Static quality      | `npm run quality:check` | lint + typecheck + prettier                                                          |
-| Unit/component/a11y | `npm run test:coverage` | all tests **and** coverage floors: 93% statements/lines, 86% branches, 85% functions |
-| Static export       | `npm run build`         | every route emits with the correct base path                                         |
-| End-to-end          | `npm run test:e2e`      | desktop + mobile, data-driven over the project collection                            |
-| External links      | `npm run check:links`   | every content URL resolves (advisory — a third-party outage must not block a merge)  |
+| Gate                | Command                 | Enforces                                                                                    |
+| ------------------- | ----------------------- | ------------------------------------------------------------------------------------------- |
+| Static quality      | `npm run quality:check` | lint + typecheck + prettier                                                                 |
+| Unit/component/a11y | `npm run test:coverage` | all tests **and** coverage floors: 93% statements/lines, 86% branches, 85% functions        |
+| Static export       | `npm run build`         | every route emits with the correct base path                                                |
+| End-to-end          | `npm run test:e2e`      | desktop + mobile, data-driven over the project collection                                   |
+| External links      | `npm run check:links`   | every content URL resolves (advisory — a third-party outage must not block a merge)         |
+| Source material     | part of `npm test`      | `source/` tree shape, no PII, media references resolve, sizes ≤ 2 MiB, sha256 lines present |
 
 Coverage floors sit a few points under measured values. **Raise them as coverage improves; never
 lower them to make a build pass.** The link check classifies Cloudflare/LinkedIn bot walls
