@@ -35,6 +35,7 @@ From ADR-0011 onward, records are written **before** implementation (see `SPEC.m
 | [0015](0015-era-hub-page.md)             | An era hub page for the Legend years                                      | Accepted | #45          |
 | [0016](0016-era-archive.md)              | Era archive: every source item surfaces, or its exclusion is written down | Accepted | #49          |
 | [0017](0017-writing-section.md)          | A Markdown writing section, compiled at build                             | Accepted | #50          |
+| [0018](0018-posts-dated-by-the-work.md)  | A post is dated by the work it describes, and says when it was written    | Accepted | pending      |
 
 ## Format
 

@@ -2,6 +2,10 @@
 
 > Spec-driven contract. Code follows this; if reality diverges, update this file first.
 >
+> **v1.9 dates posts by the work** (ADR-0018): a post's `date` is the end of the period it describes,
+> `written` records when it was actually written, and both render together — the section is a career
+> record filled in retrospectively, and says so.
+>
 > **v1.8 adds Writing** (ADR-0017): learnings, findings and field notes as Markdown posts under
 > `src/content/writing/`, compiled at build to sanitised HTML with strict YAML frontmatter; the routes
 > (`/writing/`, `/writing/<slug>/`, an Atom feed, a sitemap) and the landing section follow in the next
@@ -80,7 +84,8 @@ live civic site. Prefer a smaller verifiable claim to a larger asserted one. Sup
   frontmatter (`title`, `date`, `summary`, `kind`, `tags`, `projects`, `draft`), compiled at build to
   sanitised HTML — no raw HTML, images local and captioned, first person and dated by construction —
   listed at `/writing/`, one page per post, an Atom feed, and "Notes from this project" on the project
-  pages a post cites.
+  pages a post cites. **Dated by the work** (ADR-0018): `date` is the month the work concluded and
+  `written` is when the post was written; both are shown, and the index states the convention.
 
 ### Terminology
 
@@ -125,7 +130,7 @@ with a visible _my account only_ marker; a claim corroborated by a third-party r
 | 7   | **Career Timeline**    | Show the journey           | Sanas.ai → NovaSignal → Tech Mahindra → Gadjoy (side venture, `aside`) → Legend → Safran                                                                                                                    |
 | 8   | **Credibility**        | Verifiable credentials     | Granted patent, publications, achievements · education · **34 certifications** (disclosed, each linked) · **6 languages**                                                                                   |
 | 8b  | **Now**                | Current AI/ML pulse        | Dated "exploring now" — newest certifications surfaced automatically + hand-written line                                                                                                                    |
-| 8c  | **Writing**            | Learnings in my own words  | Latest 3 posts — kind · date · title · summary — linking `/writing/` (ADR-0017)                                                                                                                             |
+| 8c  | **Writing**            | Learnings in my own words  | Latest 3 posts — kind · work date · written date · title · summary — linking `/writing/` (ADR-0017, ADR-0018)                                                                                               |
 | 9   | **Contact / Footer**   | Conversion                 | Email, LinkedIn, GitHub, resume · build-time "Last updated"                                                                                                                                                 |
 
 ## 4. Hero story-proofs
@@ -207,17 +212,17 @@ Hard-won rules; each exists because something was nearly or actually published i
 
 ## 8. Quality gates
 
-| Gate                | Command                 | Enforces                                                                                                                                                                                                                           |
-| ------------------- | ----------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Static quality      | `npm run quality:check` | lint + typecheck + prettier                                                                                                                                                                                                        |
-| Unit/component/a11y | `npm run test:coverage` | all tests **and** coverage floors: 93% statements/lines, 86% branches, 85% functions                                                                                                                                               |
-| Static export       | `npm run build`         | every route emits with the correct base path                                                                                                                                                                                       |
-| End-to-end          | `npm run test:e2e`      | desktop + mobile, data-driven over the project collection                                                                                                                                                                          |
-| External links      | `npm run check:links`   | every content URL resolves (advisory — a third-party outage must not block a merge)                                                                                                                                                |
-| Source material     | part of `npm test`      | `source/` tree shape, no PII, media references resolve, sizes ≤ 2 MiB, sha256 lines present                                                                                                                                        |
-| Media budgets       | part of `npm test`      | every clip ≤ 2 MiB and every poster ≤ 300 KB on disk; alt, poster and credit present; every project has a chronological anchor; no `TODO` in content                                                                               |
-| Archive coverage    | part of `npm test`      | every slide of every deck is either an archive entry's source or an exclusion with a reason; `requested` dates map to records rows; media exist and are credited                                                                   |
-| Writing             | part of `npm test`      | every post parses under the strict frontmatter schema and renders under the policy; each malformed fixture fails naming file and field; sanitisation strips scripts, handlers and `javascript:` URLs; the Atom feed is well-formed |
+| Gate                | Command                 | Enforces                                                                                                                                                                                                                                                                                                   |
+| ------------------- | ----------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Static quality      | `npm run quality:check` | lint + typecheck + prettier                                                                                                                                                                                                                                                                                |
+| Unit/component/a11y | `npm run test:coverage` | all tests **and** coverage floors: 93% statements/lines, 86% branches, 85% functions                                                                                                                                                                                                                       |
+| Static export       | `npm run build`         | every route emits with the correct base path                                                                                                                                                                                                                                                               |
+| End-to-end          | `npm run test:e2e`      | desktop + mobile, data-driven over the project collection                                                                                                                                                                                                                                                  |
+| External links      | `npm run check:links`   | every content URL resolves (advisory — a third-party outage must not block a merge)                                                                                                                                                                                                                        |
+| Source material     | part of `npm test`      | `source/` tree shape, no PII, media references resolve, sizes ≤ 2 MiB, sha256 lines present                                                                                                                                                                                                                |
+| Media budgets       | part of `npm test`      | every clip ≤ 2 MiB and every poster ≤ 300 KB on disk; alt, poster and credit present; every project has a chronological anchor; no `TODO` in content                                                                                                                                                       |
+| Archive coverage    | part of `npm test`      | every slide of every deck is either an archive entry's source or an exclusion with a reason; `requested` dates map to records rows; media exist and are credited                                                                                                                                           |
+| Writing             | part of `npm test`      | every post parses under the strict frontmatter schema and renders under the policy; each malformed fixture fails naming file and field; sanitisation strips scripts, handlers and `javascript:` URLs; the Atom feed is well-formed; every post carries `written` and it never precedes the work (ADR-0018) |
 
 Coverage floors sit a few points under measured values. **Raise them as coverage improves; never
 lower them to make a build pass.** The link check classifies Cloudflare/LinkedIn bot walls
@@ -320,6 +325,7 @@ false`, `notFound()` guard, absolute canonical, article OpenGraph with published
 co-located typographic `opengraph-image.tsx`), `/feed.xml` (Atom 1.0, summary-only, `dynamic =
 'force-static'`), `/sitemap.xml` for every route. Slug = filename stem. Drafts render only outside
 production, labelled. Project pages referenced by a post's `projects` show "Notes from this project".
+Posts sort by the work date; the feed and the sitemap take their recency from `written` (ADR-0018).
 
 ## 12. Future (designed-for, not built)
 

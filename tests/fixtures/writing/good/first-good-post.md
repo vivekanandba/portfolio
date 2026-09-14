@@ -2,6 +2,7 @@
 title: 'A good post: colons in titles need quotes'
 date: 2026-09-01
 updated: 2026-09-02
+written: 2026-09-05
 summary: A short summary.
 kind: learning
 tags: [testing, markdown]

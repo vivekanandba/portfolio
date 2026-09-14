@@ -30,6 +30,17 @@ const read = (dir: string, f: string) => readFileSync(join(dir, f), 'utf8');
 describe('the published posts', () => {
   const posts = listPosts({ includeDrafts: true });
 
+  it('every post is dated by the work it describes and says when it was written (ADR-0018)', () => {
+    for (const p of posts) {
+      // Every real post here is retrospective: written from notes long after the work.
+      expect(p.written, `${p.slug} must record when it was written`).toBeTruthy();
+      expect(
+        p.written! >= p.date,
+        `${p.slug}: written ${p.written} precedes the work ${p.date}`,
+      ).toBe(true);
+    }
+  });
+
   it('there is at least one published post — a static export cannot emit a route with no params', () => {
     expect(listPosts({ includeDrafts: false }).length).toBeGreaterThan(0);
   });
@@ -99,6 +110,23 @@ describe('parsePost — malformed posts fail naming the file and the field', () 
     expect(() => renderPost(post)).toThrow(join(BAD, 'body-h1.md'));
   });
 
+  it.each([
+    ['written-before-date.md', /frontmatter\.written/],
+    ['written-in-future.md', /frontmatter\.written/],
+  ])('%s → %s', (file, message) => {
+    expect(() => parsePost(join(BAD, file), read(BAD, file), TODAY)).toThrow(message);
+    expect(() => parsePost(join(BAD, file), read(BAD, file), TODAY)).toThrow(file);
+  });
+
+  it('carries `written` when given, and leaves it undefined when not (ADR-0018)', () => {
+    expect(
+      parsePost(join(GOOD, 'first-good-post.md'), read(GOOD, 'first-good-post.md'), TODAY).written,
+    ).toBe('2026-09-05');
+    expect(
+      parsePost(join(GOOD, 'older-post.md'), read(GOOD, 'older-post.md'), TODAY).written,
+    ).toBeUndefined();
+  });
+
   it('rejects a slug that is reserved or not slug-shaped', () => {
     const src = read(GOOD, 'older-post.md');
     expect(() => parsePost('x/feed.xml.md', src, TODAY)).toThrow(/reserved/);
@@ -127,7 +155,7 @@ describe('parsePost — malformed posts fail naming the file and the field', () 
   });
 });
 
-describe('listPosts — ordering and drafts', () => {
+describe('listPosts — ordering by the work date, and drafts', () => {
   it('sorts newest first, slug ascending on ties, and filters drafts both ways', () => {
     const all = listPosts({ dir: GOOD, includeDrafts: true });
     expect(all.map((p) => p.slug)).toEqual(['first-good-post', 'draft-post', 'older-post']);
@@ -199,7 +227,8 @@ describe('buildFeed — Atom 1.0', () => {
     expect(xml.startsWith('<?xml version="1.0" encoding="utf-8"?>')).toBe(true);
     expect(xml).toContain('<title>T &amp; Co</title>');
     expect((xml.match(/<entry>/g) ?? []).length).toBe(posts.length);
-    expect(xml).toContain('<updated>2026-09-02T00:00:00Z</updated>');
+    // The feed publishes by work date and updates by written date (ADR-0018).
+    expect(xml).toContain('<updated>2026-09-05T00:00:00Z</updated>');
     expect(xml).toContain('<link rel="self" href="https://example.com/portfolio/feed.xml"/>');
     expect(xml).toContain('A good post: colons in titles need quotes');
     expect(xml).not.toContain('<content');

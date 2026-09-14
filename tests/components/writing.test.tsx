@@ -45,6 +45,18 @@ describe('/writing/ index', () => {
     expect(screen.getByRole('link', { name: /atom feed/i })).toHaveAttribute('href', '/feed.xml');
   });
 
+  it('states the dating convention and shows when each post was written (ADR-0018)', () => {
+    render(<WritingIndex />);
+    expect(screen.getByText(/written now, about work done then/i)).toBeInTheDocument();
+    for (const p of posts.filter((p) => p.written)) {
+      expect(
+        screen.getAllByText(
+          new RegExp(`written ${formatDate(p.written!).replace(/^\d+ /, '')}`, 'i'),
+        ).length,
+      ).toBeGreaterThan(0);
+    }
+  });
+
   it('has no axe violations', async () => {
     const { container } = render(<WritingIndex />);
     expect(await axe(container)).toHaveNoViolations();
