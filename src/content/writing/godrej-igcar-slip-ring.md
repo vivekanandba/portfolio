@@ -12,9 +12,9 @@ Godrej & Boyce came to us because we had the technology. Legend held a transfer 
 
 Then they told us the rating: **three hundred amps at five volts DC.**
 
-Everything the transfer had taught us was about the opposite of that. Read the reference on the document itself and it says so — *Technology Transfer Document for Miniature Slip-Ring*. Miniature. Satellite rings, ten channels, currents you could carry in a hair. Now we were being asked for a ring to sit on top of a stirrer in the high-temperature electro-refining of spent nuclear fuel, at a current three orders of magnitude away from what the design rules were written for.
+Everything the transfer had taught us was about the opposite of that. Read the reference on the document itself and it says so — *Technology Transfer Document for Miniature Slip-Ring*. Miniature. Satellite rings, ten channels, signal-level currents. Now we were being asked for a ring to sit on top of a stirrer in the high-temperature electro-refining of spent nuclear fuel, carrying a current the design rules had never been asked to think about.
 
-I bid it, we won it, and it became mine to deliver.
+We bid it, we won it, and delivering it became mine.
 
 ## The deviation was not the current. It was the current at that speed.
 
