@@ -14,7 +14,8 @@ Rules (ADR-0013):
   the page cites that record instead and the marker is dropped.
 - I read a note before it is committed — these files are public.
 
-| Note                                | Subject                                                                                     |
-| ----------------------------------- | ------------------------------------------------------------------------------------------- |
-| `2026-09-13-legend-end-to-end.md`   | Owning a mechanical product from bid to handover at Legend Technologies, 2013–2018.         |
-| `2026-09-14-bmp2-turret-chennai.md` | Bidding the BMP-II turret study, building a team in Chennai, and what the early years cost. |
+| Note                                   | Subject                                                                                                                |
+| -------------------------------------- | ---------------------------------------------------------------------------------------------------------------------- |
+| `2026-09-13-legend-end-to-end.md`      | Owning a mechanical product from bid to handover at Legend Technologies, 2013–2018.                                    |
+| `2026-09-14-bmp2-turret-chennai.md`    | Bidding the BMP-II turret study, building a team in Chennai, and what the early years cost.                            |
+| `2026-09-14-godrej-igcar-slip-ring.md` | The Godrej / IGCAR high-amperage slip ring: winning it, the deviation from the ISRO transfer, production, and Vikroli. |
