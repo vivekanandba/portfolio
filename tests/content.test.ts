@@ -24,7 +24,7 @@ import { recommendations } from '@/content/recommendations';
 import { certifications } from '@/content/certifications';
 import { languages } from '@/content/languages';
 import { diagrams } from '@/components/diagrams';
-import { caseStudyStart } from '@/content';
+import { caseStudyStart, patents } from '@/content';
 
 /** Media owned by a client or former employer, named media/<source>-* by
  *  convention. Anything matching must render a visible credit. */
@@ -288,6 +288,19 @@ describe('case-study invariants', () => {
       const hit = code.match(/.*\bowner\b.*/i);
       expect(hit, `${f} renders "owner": ${hit?.[0]?.trim()}`).toBeNull();
     }
+  });
+
+  it('a credential links either an external href or a local file that exists, never both', () => {
+    for (const p of patents) {
+      expect(p.href && p.file, `${p.title} cannot have both href and file`).toBeFalsy();
+      if (p.file) {
+        expect(existsSync(join('public', p.file)), `${p.title}: ${p.file} missing`).toBe(true);
+      }
+    }
+    // The NAMS paper is the one publication and it must be readable, not just named.
+    const nams = patents.find((p) => /high amperage slip ring/i.test(p.title));
+    expect(nams?.file, 'the NAMS 2015 paper must link its PDF').toBeTruthy();
+    expect(nams?.reference).toMatch(/288/); // the printed pagination
   });
 
   it('external proof links carry a label (and vice versa)', () => {

@@ -33,8 +33,16 @@ const isText = (p: string) => /\.(md|json|txt)$/.test(p);
 const sha256 = (p: string) => createHash('sha256').update(readFileSync(p)).digest('hex');
 
 describe('source/ tree shape', () => {
-  it('has the README and the five sub-trees', () => {
-    for (const p of ['README.md', 'decks', 'resume', 'my-notes', 'records', 'my-photos']) {
+  it('has the README and the six sub-trees', () => {
+    for (const p of [
+      'README.md',
+      'decks',
+      'resume',
+      'my-notes',
+      'records',
+      'my-photos',
+      'papers',
+    ]) {
       expect(existsSync(join(ROOT, p)), `source/${p} missing`).toBe(true);
     }
   });
@@ -276,6 +284,33 @@ describe('source/my-photos — where my own photographs come in (PR-B)', () => {
         if (p === 'manifest.json') continue;
         expect(listed.has(p), `${f.name}/${p} is not in the manifest`).toBe(true);
       }
+    }
+  });
+});
+
+describe('source/papers — my published papers (ADR-0013)', () => {
+  const dir = join(ROOT, 'papers');
+  const papers = () => readdirSync(dir, { withFileTypes: true }).filter((d) => d.isDirectory());
+
+  it('every paper folder has a README that pins the served PDF by sha256, and the PDF matches', () => {
+    expect(papers().length).toBeGreaterThan(0);
+    for (const f of papers()) {
+      const text = readFileSync(join(dir, f.name, 'README.md'), 'utf8');
+      const pdf = text.match(/`(papers\/[a-z0-9-]+\.pdf)`/)?.[1] ?? `papers/${f.name}.pdf`;
+      const served = join('public', pdf);
+      expect(existsSync(served), `${f.name}: ${served} is not served`).toBe(true);
+      expect(text, `${f.name}: README must pin the sha256 of ${pdf}`).toContain(sha256(served));
+      expect(statSync(served).size, `${served} exceeds 2 MiB`).toBeLessThanOrEqual(MAX_BYTES);
+    }
+  });
+
+  it('records the venue, the pagination and the authorship, and transcribes the substance', () => {
+    for (const f of papers()) {
+      const text = readFileSync(join(dir, f.name, 'README.md'), 'utf8');
+      for (const field of ['Title', 'Authors', 'Held', 'Paper', 'PDF sha256']) {
+        expect(text, `${f.name}: README needs a "${field}" row`).toContain(field);
+      }
+      expect(text, `${f.name}: needs a transcript so claims can cite it`).toMatch(/## Transcript/);
     }
   });
 });
