@@ -63,6 +63,6 @@ I am not going to quietly pick the flattering number for either. What I am sure 
 
 I have written elsewhere about [carrying a product from bid to handover](/writing/bid-to-handover/) at Legend, and this is where that habit started — earlier than I had realised until I wrote it down, and rougher.
 
-Everything that came later has this shape. Gadjoy, built on nights and weekends through the years my friends were going out. Products at Sanas that I took from an idea to something enterprises depend on. Every one of them is the same move: say you will do it, then find out what saying that has obliged you to become.
+Everything that came later has this shape. Gadjoy, built on nights and weekends through the years my friends were going out. [Sanas for Sales](/work/sanas-for-sales/), taken from a concept to enterprise general availability. Every one of them is the same move: say you will do it, then find out what saying that has obliged you to become.
 
 Chennai is where I learned that the second half is the job.
