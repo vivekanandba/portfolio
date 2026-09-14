@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { CaseStudyNav } from '@/components/CaseStudyNav';
-import { PostMeta } from '@/components/PostMeta';
+import { PostMeta, formatMonth } from '@/components/PostMeta';
 import { caseStudies, projects } from '@/content';
 import { postMetadata } from '@/lib/seo';
 import { getPost, listPosts, renderPost } from '@/lib/writing';
@@ -97,6 +97,17 @@ export default async function PostPage({ params }: Params) {
             className="post-body mt-12 max-w-content"
             dangerouslySetInnerHTML={{ __html: rendered.html }}
           />
+
+          {/* ADR-0018: the date above is the work; this is the one small note saying when the
+              post was actually written, so a retrospective piece never passes for a contemporaneous
+              one without shouting about it. */}
+          {post.written && (
+            <p className="mt-10 max-w-content text-xs text-muted">
+              Written from my notes in{' '}
+              <time dateTime={post.written}>{formatMonth(post.written)}</time>, about work done at
+              the time this post is dated.
+            </p>
+          )}
 
           {related.length > 0 && (
             <section aria-label="From the work" className="mt-16 border-t border-hairline pt-8">

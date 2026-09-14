@@ -88,3 +88,12 @@ should be able to click and then view this. You can see in the index I had publi
 alongside the kind of projects that engineers from ISRO were publishing. It was a prestigious book or
 publication that I was allowed to publish in when I was very, very young — probably 24, 25 at that
 time. And I even went to Trivandrum, VSSC, to present this as a paper over there also.
+
+## Clarification, later the same day
+
+On reading the post: "Here also it is I did it, not we. I did it through my company itself, but I had
+to do it since it's an MSME company."
+
+[The account above says "we had bid for the project". This is the correction: he bid it personally,
+through the company, because at a medium-scale company there is nobody else to do it. The post says
+so in his words.]

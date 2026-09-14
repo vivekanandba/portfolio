@@ -45,17 +45,15 @@ describe('/writing/ index', () => {
     expect(screen.getByRole('link', { name: /atom feed/i })).toHaveAttribute('href', '/feed.xml');
   });
 
-  it('states the dating convention and shows when each post was written (ADR-0018)', () => {
+  it('states the dating convention once, and does not repeat it on every card (ADR-0018)', () => {
     const { container } = render(<WritingIndex />);
     expect(screen.getByText(/written now, about work done then/i)).toBeInTheDocument();
+    // The written date belongs on the post, quietly — not in the index's headline meta.
     for (const p of posts.filter((p) => p.written)) {
-      // The written date is machine-readable and reads as "written <Month Year>" — the label and
-      // the <time> are separate nodes, so assert the element and its parent's text, not a text node.
-      const el = container.querySelector(`time[datetime="${p.written}"]`);
-      expect(el, `${p.slug}: no <time> for the written date`).not.toBeNull();
-      expect(el!.parentElement!.textContent).toMatch(
-        new RegExp(`written ${formatMonth(p.written!)}`, 'i'),
-      );
+      expect(
+        container.querySelector(`time[datetime="${p.written}"]`),
+        `${p.slug}: the index should not carry the written date`,
+      ).toBeNull();
     }
   });
 
@@ -93,6 +91,22 @@ describe('/writing/[slug]/', () => {
     for (const img of screen.queryAllByRole('img')) expect(img).toHaveAccessibleName();
     expect(await axe(container)).toHaveNoViolations();
   }, 40_000);
+});
+
+describe('the written date is a quiet colophon on the post (ADR-0018)', () => {
+  it('states when the post was written, once, below the article and machine-readable', async () => {
+    const element = await PostPage({ params: Promise.resolve({ slug: first.slug }) });
+    const { container } = render(element);
+    const stamps = container.querySelectorAll(`time[datetime="${first.written}"]`);
+    expect(stamps, 'exactly one written stamp').toHaveLength(1);
+    expect(stamps[0].closest('p')!.textContent).toMatch(
+      new RegExp(`written from my notes in ${formatMonth(first.written!)}`, 'i'),
+    );
+    // It is not part of the loud meta line above the title.
+    const meta = container.querySelector('p.uppercase')!;
+    expect(meta.textContent).not.toMatch(/written/i);
+    expect(meta.textContent).toMatch(/min read/i);
+  });
 });
 
 describe('OpenGraph images', () => {

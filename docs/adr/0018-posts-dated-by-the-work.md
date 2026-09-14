@@ -2,6 +2,10 @@
 
 **Status:** Accepted
 **Date:** 2026-09-14 **Shipped in:** #53
+**Amended:** 2026-09-14 — the written date is stated **once, quietly**, as a small note below the
+article, not in the meta line above the title and not on index cards. Vivek accepted the honesty and
+asked that it not be prominent; the section-level sentence on `/writing/` carries the convention, and
+the per-post colophon carries the fact.
 
 ## Context
 
@@ -28,9 +32,11 @@ to prevent.
    the month the project concluded, on the last day of that month, the day being nominal where only
    the month is known. `/writing/` and the sitemap order by it, so the section reads as a career in
    sequence.
-2. **`written` records when it was actually written**, and is rendered wherever the date is rendered:
-   "Field note · December 2015 · written September 2026". Never one without the other. A post with no
-   `written` field was written when it was dated, which is the ADR-0017 case.
+2. **`written` records when it was actually written**, and is rendered once on the post, quietly:
+   a small line below the article reading "Written from my notes in September 2026, about work done at
+   the time this post is dated." It is not in the meta line above the title and not on index cards —
+   the index states the convention for the whole section instead. A post with no `written` field was
+   written when it was dated, which is the ADR-0017 case.
 3. **`written` must not precede `date`** (you cannot write it up before doing it) and, like `date`,
    must not be in the future. Both are validated, and a violation fails the build naming the field.
 4. **The index says so in its own sentence**, so the convention is visible to a reader who never
