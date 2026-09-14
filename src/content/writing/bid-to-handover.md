@@ -1,6 +1,7 @@
 ---
 title: 'Bid to handover: what owning a mechanical product end to end taught me'
-date: 2026-09-13
+date: 2018-01-31
+written: 2026-09-13
 summary: 'Seven stages I carried at a medium-scale aerospace tooling house — and why standing at the lathe with my own tolerance callout is where my entrepreneurial arc actually began.'
 kind: field-note
 tags: [legend-technologies, mechanical-engineering, gd-and-t, shop-floor, entrepreneurship]

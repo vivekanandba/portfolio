@@ -427,6 +427,9 @@ export const postFrontmatterSchema = z
     title: z.string().min(1).max(120),
     date: z.string().regex(ISO_DATE, 'date must be YYYY-MM-DD'),
     updated: z.string().regex(ISO_DATE, 'updated must be YYYY-MM-DD').optional(),
+    // ADR-0018: `date` is the work; `written` is when the post was actually written, and is
+    // rendered beside the date so a retrospective post never reads as a contemporaneous one.
+    written: z.string().regex(ISO_DATE, 'written must be YYYY-MM-DD').optional(),
     summary: z.string().min(1).max(300),
     kind: z.enum(POST_KINDS),
     tags: z.array(z.string().regex(/^[a-z0-9-]+$/)).default([]),
