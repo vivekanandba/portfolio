@@ -2,6 +2,11 @@
 
 **Status:** Accepted
 **Date:** 2026-09-13 **Shipped in:** #43
+**Amended:** 2026-09-14 — a fourth kind of source: `source/papers/` holds my published papers, each
+with its provenance, a transcript of the substance and the sha256 of the PDF the site serves from
+`public/papers/`. A published, peer-reviewed paper outranks a capability deck for the same fact, so
+where the two disagree the paper wins and the disagreement is written down. Credentials may link a
+local file as well as an external href.
 **Amended:** 2026-09-13 — the marker reads _my account only_ (was _self-reported_), the notes live in
 `source/my-notes/` (was `source/owner-notes/`) headed `Source: my own account, <date>`, and the site
 speaks in the first person: Vivek asked that no "owner" persona appear anywhere; a test enforces it.
@@ -36,8 +41,11 @@ most formative experience of the era because nobody else wrote it down would be 
    redacted `slides.md` transcript, screened images at original resolution under `media/`, clips under
    `clips/`, and a `media-map.json` recording every original file as kept-with-new-name or excluded-
    with-reason), `source/resume/` (the master resume files moved from the repo root and the served
-   v15 PDF's provenance), and `source/my-notes/` (dated statements in Vivek's own words,
-   verbatim with light punctuation, each headed `Source: my own account, <date>`).
+   v15 PDF's provenance), `source/my-notes/` (dated statements in Vivek's own words,
+   verbatim with light punctuation, each headed `Source: my own account, <date>`), and
+   `source/papers/<paper-id>/` (a published paper: venue, pagination and authorship, a transcript of
+   its substance, the contradictions it creates with other sources, and the sha256 of the PDF served
+   from `public/papers/` — assembled deterministically by `scripts/paper-pdf.py`).
 2. **Redaction is mechanical and recorded.** The extractor (`scripts/deck-extract.py`) applies a
    checked-in rules file per deck: names of third parties are withheld (the founder, a public figure
    already named on the site, is the one exception), biographies and portraits are omitted, financials

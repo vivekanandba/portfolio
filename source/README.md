@@ -12,6 +12,7 @@ resolves, every file ≤ 2 MiB, originals pinned to a release by sha256, my note
 | `my-notes/`  | Dated statements in my own words, verbatim with light punctuation — citable, and labelled _my account only_ on the site.                |
 | `records/`   | The intake table for the Legend years: every place the site says "date not recorded", "supported" or infers a month — mine to fill.     |
 | `my-photos/` | My own photographs, one folder per records item, each with a `manifest.json` (file, item, month, caption); screened before publication. |
+| `papers/`    | My published papers: the provenance, a transcript of the substance, and the sha256 of the PDF the site serves.                          |
 
 ## How to cite
 
