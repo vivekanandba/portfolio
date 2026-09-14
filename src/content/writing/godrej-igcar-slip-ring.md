@@ -14,7 +14,9 @@ Then they told us the rating: **three hundred amps at five volts DC.**
 
 Everything the transfer had taught us was about the opposite of that. Read the reference on the document itself and it says so — *Technology Transfer Document for Miniature Slip-Ring*. Miniature. Satellite rings, ten channels, signal-level currents. Now we were being asked for a ring to sit on top of a stirrer in the high-temperature electro-refining of spent nuclear fuel, carrying a current the design rules had never been asked to think about.
 
-We bid it, we won it, and delivering it became mine.
+I bid it, I won it, and delivering it was mine.
+
+Through the company, of course. But at an MSME that is a distinction without much difference: there is no bidding department to hand it to, no programme office to inherit it. There is whoever is willing to go and do it, and then that person owns everything that follows.
 
 ## The deviation was not the current. It was the current at that speed.
 

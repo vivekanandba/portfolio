@@ -29,22 +29,18 @@ export function formatDate(iso: string): string {
   return `${d} ${month} ${y}`;
 }
 
-/** The dated, kind-labelled line above a post title — the same on the index, the post and the landing teaser. */
+/** The dated, kind-labelled line above a post title — the same on the index, the post and the
+ *  landing teaser. The written date is deliberately not here: it belongs on the post itself, once
+ *  and quietly (ADR-0018). */
 export function PostMeta({
   post,
 }: {
-  post: Pick<Post, 'kind' | 'date' | 'written' | 'updated' | 'readingMinutes' | 'draft'>;
+  post: Pick<Post, 'kind' | 'date' | 'updated' | 'readingMinutes' | 'draft'>;
 }) {
   return (
     <p className="tabular flex flex-wrap gap-x-3 gap-y-1 text-xs font-medium uppercase tracking-[0.14em] text-muted">
       <span className="text-accent">{KIND_LABELS[post.kind]}</span>
       <time dateTime={post.date}>{formatDate(post.date)}</time>
-      {/* ADR-0018: the date is the work; this says when it was actually written. */}
-      {post.written && (
-        <span>
-          written <time dateTime={post.written}>{formatMonth(post.written)}</time>
-        </span>
-      )}
       {post.updated && <span>Updated {formatDate(post.updated)}</span>}
       <span>{post.readingMinutes} min read</span>
       {post.draft && <span className="rounded bg-accent-soft px-1.5 text-accent">Draft</span>}
