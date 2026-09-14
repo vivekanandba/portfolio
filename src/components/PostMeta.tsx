@@ -40,7 +40,11 @@ export function PostMeta({
       <span className="text-accent">{KIND_LABELS[post.kind]}</span>
       <time dateTime={post.date}>{formatDate(post.date)}</time>
       {/* ADR-0018: the date is the work; this says when it was actually written. */}
-      {post.written && <span>written {formatMonth(post.written)}</span>}
+      {post.written && (
+        <span>
+          written <time dateTime={post.written}>{formatMonth(post.written)}</time>
+        </span>
+      )}
       {post.updated && <span>Updated {formatDate(post.updated)}</span>}
       <span>{post.readingMinutes} min read</span>
       {post.draft && <span className="rounded bg-accent-soft px-1.5 text-accent">Draft</span>}
