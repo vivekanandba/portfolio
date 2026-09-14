@@ -10,7 +10,7 @@ import { GET as feed } from '@/app/feed.xml/route';
 import sitemap from '@/app/sitemap';
 import { Writing } from '@/components/Writing';
 import { ProjectNotes } from '@/components/ProjectNotes';
-import { formatDate } from '@/components/PostMeta';
+import { formatDate, formatMonth } from '@/components/PostMeta';
 import { caseStudies, projects } from '@/content';
 import { listPosts, renderPost } from '@/lib/writing';
 
@@ -46,14 +46,16 @@ describe('/writing/ index', () => {
   });
 
   it('states the dating convention and shows when each post was written (ADR-0018)', () => {
-    render(<WritingIndex />);
+    const { container } = render(<WritingIndex />);
     expect(screen.getByText(/written now, about work done then/i)).toBeInTheDocument();
     for (const p of posts.filter((p) => p.written)) {
-      expect(
-        screen.getAllByText(
-          new RegExp(`written ${formatDate(p.written!).replace(/^\d+ /, '')}`, 'i'),
-        ).length,
-      ).toBeGreaterThan(0);
+      // The written date is machine-readable and reads as "written <Month Year>" — the label and
+      // the <time> are separate nodes, so assert the element and its parent's text, not a text node.
+      const el = container.querySelector(`time[datetime="${p.written}"]`);
+      expect(el, `${p.slug}: no <time> for the written date`).not.toBeNull();
+      expect(el!.parentElement!.textContent).toMatch(
+        new RegExp(`written ${formatMonth(p.written!)}`, 'i'),
+      );
     }
   });
 
