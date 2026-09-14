@@ -8,7 +8,9 @@ export const dynamic = 'force-static';
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const posts = listPosts({ includeDrafts: false });
-  const newest = posts[0]?.updated ?? posts[0]?.date;
+  // Recency is when a post was written, not the work it describes (ADR-0018).
+  const recency = (p: (typeof posts)[number]) => p.written ?? p.updated ?? p.date;
+  const newest = posts.map(recency).sort().at(-1);
   return [
     { url: `${SITE_URL}/`, changeFrequency: 'monthly', priority: 1 },
     { url: `${SITE_URL}/work/`, changeFrequency: 'monthly', priority: 0.8 },
@@ -31,7 +33,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
     ...posts.map((p) => ({
       url: `${SITE_URL}/writing/${p.slug}/`,
-      lastModified: p.updated ?? p.date,
+      lastModified: recency(p),
       changeFrequency: 'yearly' as const,
       priority: 0.6,
     })),

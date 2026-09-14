@@ -80,6 +80,7 @@ export function parsePost(file: string, source: string, today = new Date()): Pos
   for (const [field, value] of [
     ['date', fm.date],
     ['updated', fm.updated],
+    ['written', fm.written],
   ] as const) {
     if (value && !isRealDate(value))
       throw new PostError(file, `frontmatter.${field}: ${value} is not a real calendar date`);
@@ -91,6 +92,14 @@ export function parsePost(file: string, source: string, today = new Date()): Pos
   if (fm.date > limit) throw new PostError(file, `frontmatter.date: ${fm.date} is in the future`);
   if (fm.updated && fm.updated < fm.date)
     throw new PostError(file, `frontmatter.updated: ${fm.updated} is before date ${fm.date}`);
+  // ADR-0018: the work comes first, and you cannot have written it up in the future.
+  if (fm.written && fm.written < fm.date)
+    throw new PostError(
+      file,
+      `frontmatter.written: ${fm.written} precedes the work it describes (${fm.date})`,
+    );
+  if (fm.written && fm.written > limit)
+    throw new PostError(file, `frontmatter.written: ${fm.written} is in the future`);
   const known = new Set(projects.map((p) => p.id));
   for (const id of fm.projects)
     if (!known.has(id)) throw new PostError(file, `frontmatter.projects: unknown project "${id}"`);
@@ -228,11 +237,11 @@ export function buildFeed(
   posts: Post[],
   site: { url: string; title: string; author: string },
 ): string {
+  // Published by the work date, updated by the written date (ADR-0018) — a newly written post
+  // about old work still reaches a subscriber.
+  const recency = (p: Post) => p.written ?? p.updated ?? p.date;
   const updated = posts.length
-    ? `${posts
-        .map((p) => p.updated ?? p.date)
-        .sort()
-        .at(-1)}T00:00:00Z`
+    ? `${posts.map(recency).sort().at(-1)}T00:00:00Z`
     : '1970-01-01T00:00:00Z';
   const entries = posts
     .map(
@@ -241,7 +250,7 @@ export function buildFeed(
     <link href="${site.url}/writing/${p.slug}/"/>
     <id>${site.url}/writing/${p.slug}/</id>
     <published>${p.date}T00:00:00Z</published>
-    <updated>${p.updated ?? p.date}T00:00:00Z</updated>
+    <updated>${recency(p)}T00:00:00Z</updated>
     <summary>${escapeXml(p.summary)}</summary>${p.tags.map((t) => `\n    <category term="${escapeXml(t)}"/>`).join('')}
   </entry>`,
     )

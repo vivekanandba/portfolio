@@ -1,6 +1,7 @@
 ---
 title: 'Chennai, alone: bidding a turret, then building the team that delivered it'
-date: 2026-09-14
+date: 2015-03-31
+written: 2026-09-14
 summary: 'At twenty-four I bid for a 3,000-sheet turret study, won it, and went alone to a city where I knew nobody. Hiring, workstations, quality and the customer were all mine. It is the project that taught me what owning something actually costs.'
 kind: field-note
 tags: [legend-technologies, bmp2-turret, team-building, project-management, cad]

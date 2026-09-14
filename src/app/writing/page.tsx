@@ -33,8 +33,9 @@ export default function WritingIndex() {
               style={{ animationDelay: '160ms' }}
               className="mt-6 max-w-content animate-fade-up text-lg leading-relaxed text-muted"
             >
-              What I learned doing the work on this site, written down as I go — dated, in my own
-              words, and linked to the projects each note came from.{' '}
+              What I have learned doing this work, written down project by project. Each note is{' '}
+              <strong className="font-medium text-ink">dated to the work it describes</strong> and
+              says when I actually wrote it — they are written now, about work done then.{' '}
               <a href="/feed.xml" className="text-accent no-underline hover:underline">
                 Atom feed
               </a>
