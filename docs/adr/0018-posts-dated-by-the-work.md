@@ -1,7 +1,7 @@
 # ADR-0018 — A post is dated by the work it describes, and says when it was written
 
 **Status:** Accepted
-**Date:** 2026-09-14 **Shipped in:** pending
+**Date:** 2026-09-14 **Shipped in:** #53
 
 ## Context
 
