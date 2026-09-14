@@ -1,6 +1,7 @@
 import { Section } from './Section';
 import { ShowMore } from './ShowMore';
 import { certifications, education, languages, patents } from '@/content';
+import { asset } from '@/lib/asset';
 
 /** Certifications grouped by category, preserving the data's newest-first order. */
 function certificationGroups() {
@@ -23,9 +24,10 @@ export function Credentials() {
             {patents.map((p) => (
               <li key={p.title}>
                 <p className="text-sm font-medium text-ink">
-                  {p.href ? (
+                  {/* Schema allows at most one of href (external) or file (served from /public). */}
+                  {p.href || p.file ? (
                     <a
-                      href={p.href}
+                      href={p.href ?? asset(p.file!)}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="text-accent"

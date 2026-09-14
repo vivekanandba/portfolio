@@ -230,12 +230,19 @@ export const caseStudySchema = z.object({
 });
 export type CaseStudy = z.infer<typeof caseStudySchema>;
 
-export const patentSchema = z.object({
-  kind: z.enum(['patent', 'publication', 'achievement']),
-  title: z.string().min(1),
-  reference: z.string().optional(), // patent number, venue, context
-  href: z.string().url().optional(),
-});
+export const patentSchema = z
+  .object({
+    kind: z.enum(['patent', 'publication', 'achievement']),
+    title: z.string().min(1),
+    reference: z.string().optional(), // patent number, venue, context
+    href: z.string().url().optional(), // external: a patent office, a publisher
+    // Local artefact served from /public — e.g. a published paper scanned to PDF
+    // (ADR-0013). Resolves through asset(), like caseStudy.docs.
+    file: z.string().min(1).optional(),
+  })
+  .refine((p) => !(p.href && p.file), {
+    message: 'a credential links either an external href or a local file, not both',
+  });
 export type Patent = z.infer<typeof patentSchema>;
 
 export const educationSchema = z.object({

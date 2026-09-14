@@ -12,8 +12,13 @@ export const patents: Patent[] = [
   },
   {
     kind: 'publication',
-    title: 'White paper — “Design & Development of a High-Amperage Slip Ring”',
-    reference: 'NAMS 2015 · SAME / ISRO',
+    // Title, authorship and pagination read off my own copy of the printed
+    // proceedings (source/papers/nams-2015-high-amperage-slip-ring/). The site
+    // previously carried a paraphrased title; this is what the paper is called.
+    title: '“A Typical Development of High Amperage Slip Ring” (PDF)',
+    reference:
+      'NAMS 2015 · National Aerospace Manufacturing Seminar, Society of Aerospace Manufacturing Engineers, Thiruvananthapuram, 27–28 Nov 2015 · paper F17, pp. 288–295 · with E. Ranga Reddy · presented by me',
+    file: 'papers/nams-2015-high-amperage-slip-ring.pdf',
   },
   {
     kind: 'achievement',

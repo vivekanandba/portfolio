@@ -2,6 +2,10 @@
 
 > Spec-driven contract. Code follows this; if reality diverges, update this file first.
 >
+> **v1.9 also adds published papers as source material** (ADR-0013, amended): `source/papers/` carries
+> the provenance, transcript and sha256 of each paper, the PDF is served from `public/papers/`, and a
+> published paper outranks a deck for the same fact.
+>
 > **v1.9 dates posts by the work** (ADR-0018): a post's `date` is the end of the period it describes,
 > `written` records when it was actually written, and both render together — the section is a career
 > record filled in retrospectively, and says so.
@@ -105,7 +109,10 @@ ships only after Vivek's explicit approval — such approvals are recorded in th
 app store) may supply facts and media, subject to §7.
 
 **Source material in Vivek's own hand** (`source/`, ADR-0013) — the capability decks Vivek authored, redacted,
-and dated first-person notes — may supply facts and media. A claim drawn from it cites deck + slide
+dated first-person notes, and his published papers (`source/papers/`, transcribed and pinned by sha256,
+the PDF served from `public/papers/`) — may supply facts and media. A **published paper outranks a
+capability deck** for the same fact; where they disagree, the paper is followed and the disagreement is
+recorded in the paper's README. A claim drawn from it cites deck + slide
 or the note's date in the content-file comment. A claim resting **only** on one of those notes renders
 with a visible _my account only_ marker; a claim corroborated by a third-party record carries none.
 
