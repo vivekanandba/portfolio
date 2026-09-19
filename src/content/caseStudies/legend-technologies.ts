@@ -18,7 +18,7 @@ import type { CaseStudy } from '../schema';
 const PHOTO = 'Photo: Legend Technologies (India) Pvt. Ltd. — capability deck v5.5';
 const RENDER = 'Render: Legend Technologies (India) Pvt. Ltd. — capability deck v5.5';
 const BEFORE = 'Role: company programme (before my time — shown as the standard I worked to).';
-const UNDATED = 'Role: company programme (date not recorded).';
+const UNDATED = 'Role: company programme.';
 
 export const legendTechnologies: CaseStudy = {
   slug: 'legend-technologies',

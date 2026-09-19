@@ -255,8 +255,8 @@ describe('source/records — the ISRO launch list for the Legend years', () => {
     'Flight',
     'Date',
     'Payload / why it mattered',
-    'Attended?',
-    'Involved, and how?',
+    'At the launch',
+    'My involvement',
   ];
 
   it('lists every launch of the tenure with columns Vivek can fill', () => {

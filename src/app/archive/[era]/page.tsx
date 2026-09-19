@@ -45,7 +45,7 @@ const ROLE_LABELS: Record<ArchiveEntry['role'], string> = {
   supported: 'Role: supported',
   workplace: 'My workplace',
   'company-before': 'Company programme · before my time',
-  'company-undated': 'Company programme · date not recorded',
+  'company-undated': 'Company programme',
   'company-after': 'Company · after my time',
 };
 
@@ -54,25 +54,16 @@ const DECK_LABELS: Record<ArchiveEntry['sources'][number]['deck'], string> = {
   'enti-corporate-v1.4-taml': 'ENTI deck v1.4',
 };
 
-const RECORDS_URL =
-  'https://github.com/vivekanandba/portfolio/blob/main/source/records/legend-programmes.md';
 const transcriptUrl = (deck: string, slide: number) =>
   `https://github.com/vivekanandba/portfolio/blob/main/source/decks/${deck}/slides.md#slide-${slide}`;
 
 const CONTEXT_ROLES = new Set<ArchiveEntry['role']>(['company-before', 'company-after']);
 
 function DateBadge({ when }: { when: ArchiveEntry['when'] }) {
+  // An archive says "undated" when it does not have the date. It does not ask the reader
+  // questions about its own author; the open ones are tracked in source/records/.
   if (when.status === 'known') return <span className="text-ink">{when.label}</span>;
-  if (when.status === 'requested')
-    return (
-      <span>
-        Records requested —{' '}
-        <a href={RECORDS_URL} className="text-accent no-underline hover:underline">
-          my records table
-        </a>
-      </span>
-    );
-  return <span>{when.label ? `Date not recorded — ${when.label}` : 'Date not recorded'}</span>;
+  return <span>Undated</span>;
 }
 
 function EntryCard({ entry }: { entry: ArchiveEntry }) {
