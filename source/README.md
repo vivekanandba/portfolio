@@ -10,7 +10,7 @@ resolves, every file ≤ 2 MiB, originals pinned to a release by sha256, my note
 | `decks/`     | Redacted transcripts + screened images of the two capability decks I authored at Legend Technologies / ENTI Innovations.                |
 | `resume/`    | The master resume (the fact source) and the served v15 PDF's provenance.                                                                |
 | `my-notes/`  | Dated statements in my own words, verbatim with light punctuation — citable, and labelled _my account only_ on the site.                |
-| `records/`   | The intake table for the Legend years: every place the site says "date not recorded", "supported" or infers a month — mine to fill.     |
+| `records/`   | Intake tables I fill in: every undated item and unstated role from the Legend years, and every ISRO launch of my five years there.      |
 | `my-photos/` | My own photographs, one folder per records item, each with a `manifest.json` (file, item, month, caption); screened before publication. |
 | `papers/`    | My published papers: the provenance, a transcript of the substance, and the sha256 of the PDF the site serves.                          |
 

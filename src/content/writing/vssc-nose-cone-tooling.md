@@ -68,8 +68,10 @@ I was invited to SHAR as a vendor guest, and I stood there and watched a PSLV go
 
 And I would love to end this by telling you that our cones flew to the Moon and to Mars.
 
-They did not, and I should not say they did. Chandrayaan-1 went up on PSLV-XL C11 in **October 2008**, four years before I joined the company. Mangalyaan — the Mars Orbiter Mission — went up on PSLV-XL C25 in **November 2013**, years before the nose-cone tooling I led. Both flew on the vehicle family these cones belong to. Neither could have carried anything my tools made.
+Half of that I have to give up. Chandrayaan-1 went up on PSLV-XL C11 in **October 2008**, four years before I joined the company. Nothing of mine is on it, and nothing of mine could be.
 
-What is true is smaller and still worth something: for a stretch of PSLV flights, strap-on nose cones were being built on tooling I designed, to process sheets I wrote, proved on a bench I stood at. Which of those flights carried them, nobody on my side wrote down.
+Mangalyaan is a different matter. The Mars Orbiter Mission flew on PSLV-XL C25 on **5 November 2013** — ten months after I joined. So I was there for it. What I cannot claim is *these cones*: the nose-cone tooling in this post came years later, and no cone built on it can have flown that mission. Legend supplied ISRO more than nose cones, though, and I remember working on something that went into that campaign. Until I can point at which part, that stays a memory and not a claim on this page.
+
+What is certainly true is smaller and still worth something: for a stretch of PSLV flights, strap-on nose cones were being built on tooling I designed, to process sheets I wrote, proved on a bench I stood at. Which of those flights carried them, nobody on my side wrote down. [Every launch from my five years is listed](https://github.com/vivekanandba/portfolio/blob/main/source/records/isro-launches-2013-2018.md), and I am filling in the two columns that matter as I remember them.
 
 I would rather have the true version. [The project page](/work/vssc-tooling/) has the photographs and what the record supports.
