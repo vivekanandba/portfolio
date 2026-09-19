@@ -248,6 +248,52 @@ describe('source/records — the intake table for the Legend years (PR-B)', () =
   });
 });
 
+describe('source/records — the ISRO launch list for the Legend years', () => {
+  const file = join(ROOT, 'records', 'isro-launches-2013-2018.md');
+  const COLUMNS = [
+    '#',
+    'Flight',
+    'Date',
+    'Payload / why it mattered',
+    'Attended?',
+    'Involved, and how?',
+  ];
+
+  it('lists every launch of the tenure with columns Vivek can fill', () => {
+    expect(existsSync(file), 'the launch list is missing').toBe(true);
+    const lines = readFileSync(file, 'utf8').split('\n');
+    const start = lines.findIndex((l) => /^\|/.test(l));
+    const table: string[] = [];
+    for (const l of lines.slice(start)) {
+      if (!/^\|/.test(l)) break;
+      table.push(l);
+    }
+    const cells = (l: string) =>
+      l
+        .trim()
+        .replace(/^\||\|$/g, '')
+        .split('|')
+        .map((c) => c.trim());
+    expect(cells(table[0])).toEqual(COLUMNS);
+    const rows = table.slice(2).map(cells);
+    // Jan 2013 – Jan 2018 covered 28 launches and major test flights from SHAR.
+    expect(rows.length).toBeGreaterThanOrEqual(28);
+    for (const r of rows) {
+      expect(r, `row "${r[1]}" has ${r.length} cells`).toHaveLength(COLUMNS.length);
+      expect(r[2], `${r[1]} needs a date`).toMatch(/\d{1,2} \w+ 201[3-8]/);
+    }
+  });
+
+  it('every date falls inside the tenure, Jan 2013 to Jan 2018', () => {
+    const years = [...readFileSync(file, 'utf8').matchAll(/\| (\d{1,2} \w+ (201[3-8]))\s+\|/g)].map(
+      (m) => Number(m[2]),
+    );
+    expect(years.length).toBeGreaterThanOrEqual(28);
+    for (const y of years) expect(y).toBeGreaterThanOrEqual(2013);
+    for (const y of years) expect(y).toBeLessThanOrEqual(2018);
+  });
+});
+
 describe('source/my-photos — where my own photographs come in (PR-B)', () => {
   const dir = join(ROOT, 'my-photos');
   const FIELDS = ['file', 'item', 'month', 'caption'] as const;
