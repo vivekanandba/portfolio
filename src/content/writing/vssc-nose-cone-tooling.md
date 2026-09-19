@@ -8,7 +8,9 @@ tags: [legend-technologies, vssc, isro, pslv, tooling, gd-and-t]
 projects: [vssc-tooling]
 ---
 
-A PSLV lifts off with six strap-on motors clustered around its first stage. Each one wears a nose cone. Two of the six also carry SITVC — Secondary Injection Thrust Vector Control, which steers by squirting a strontium perchlorate solution into the nozzle's exhaust through a ring of ports, so the rocket can be pushed sideways without moving anything mechanical.
+A PSLV lifts off with six strap-on motors clustered around its first stage. Each one wears a nose cone. Two of the six also carry SITVC — Secondary Injection Thrust Vector Control, which steers by squirting a strontium perchlorate solution into the nozzle's exhaust through a ring of ports, so the rocket can be pushed sideways without moving anything mechanical. The core stage uses it to steer in pitch and yaw; the pair of strap-ons that carry it are there to augment **roll** control.
+
+I half-remembered this as "roll and pitch" when I first told the story, and checking it turned out to explain the product line I spent a year tooling. Two strap-ons need the system and four do not — so the cones are not one part.
 
 That is the whole reason my job existed in the shape it did. Because only some strap-ons carry the system, there is more than one kind of cone: SITVC cones, non-SITVC cones, and the PSOM cones, each subtly different, each needing its own tooling, none of them allowed to be confusable on a shop floor.
 
