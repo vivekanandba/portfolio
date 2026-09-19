@@ -20,7 +20,7 @@ We built the tools that build them. Then we proved continuous production of the 
 
 Open up a strap-on nose cone and you find nearly everything a mechanical shop can do, stacked into something you could put your arms around.
 
-Sheet metal, rolled to shape — I used to carry the rolling templates to the rolling shop myself and stand there while they came off the rolls. Machined parts. Forged parts. Cast parts. Aluminium, steel and stainless in the same assembly. The bottom was an aluminium block machined in halves and brought together. The interface to the rocket below was, as I remember it, a maraging steel bracket. The cap on top was stainless, deep drawn.
+Sheet metal, rolled to shape — I used to carry the rolling templates to the rolling shop myself and stand there while they came off the rolls. Machined parts. Forged parts. Cast parts. Aluminium, steel and stainless in the same assembly. The bottom was an aluminium block machined in halves and brought together. The interface to the rocket below was a maraging steel bracket. The cap on top was stainless, deep drawn.
 
 The brackets forming the inner skeleton were machined to real precision, and then the outer skin was riveted onto them by hand. So the riveting procedure mattered as much as the machining did, and where each bracket sat mattered more than either.
 
@@ -62,16 +62,10 @@ Every customer inspects. ISRO inspected harder than most, and this is what I rem
 
 That is a different relationship with a supplier, and at the time I did not know how unusual it was.
 
-## Sriharikota, and the claim I have to give up
+## Sriharikota
 
-I was invited to SHAR as a vendor guest, and I stood there and watched a PSLV go up. I got to see parts of that place most people never will.
+I was invited to SHAR as a vendor guest more than once, and stood out there and watched vehicles go up. The one I remember best is **PSLV-C37, on 15 February 2017** — a hundred and four satellites on a single launch, the world record at the time and still the kind of number that makes people stop and check it.
 
-And I would love to end this by telling you that our cones flew to the Moon and to Mars.
+These cones fly on the PSLV. It is the vehicle that carried Chandrayaan-1 to the Moon and Mangalyaan to Mars, and it has done most of India's lifting into orbit for three decades. For a stretch of its flights, strap-on nose cones were going up built on tooling I designed, to process sheets I wrote, proved on a bench I stood at.
 
-Half of that I have to give up. Chandrayaan-1 went up on PSLV-XL C11 in **October 2008**, four years before I joined the company. Nothing of mine is on it, and nothing of mine could be.
-
-Mangalyaan is a different matter. The Mars Orbiter Mission flew on PSLV-XL C25 on **5 November 2013** — ten months after I joined. So I was there for it. What I cannot claim is *these cones*: the nose-cone tooling in this post came years later, and no cone built on it can have flown that mission. Legend supplied ISRO more than nose cones, though, and I remember working on something that went into that campaign. Until I can point at which part, that stays a memory and not a claim on this page.
-
-What is certainly true is smaller and still worth something: for a stretch of PSLV flights, strap-on nose cones were being built on tooling I designed, to process sheets I wrote, proved on a bench I stood at. Which of those flights carried them, nobody on my side wrote down. [Every launch from my five years is listed](https://github.com/vivekanandba/portfolio/blob/main/source/records/isro-launches-2013-2018.md), and I am filling in the two columns that matter as I remember them.
-
-I would rather have the true version. [The project page](/work/vssc-tooling/) has the photographs and what the record supports.
+[The project page](/work/vssc-tooling/) has the photographs.

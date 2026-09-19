@@ -267,6 +267,42 @@ describe('case-study invariants', () => {
     }
   });
 
+  it('site copy never disclaims or narrates what the record does not hold', () => {
+    // Vivek, 2026-09-19: "There is no requirement to call out that I don't know, not able to
+    // recall. You can keep things what is factual, but the other ones you can say, you can't."
+    // Not making an unsupported claim is honesty; announcing the absence of evidence reads as
+    // doubt about him. Open questions live in source/records/, never in the prose.
+    const DISCLAIMERS = [
+      /\bcannot claim\b/i,
+      /\bcan't claim\b/i,
+      /\bshould not say\b/i,
+      /\bhave to give up\b/i,
+      /does not pretend/i,
+      /nobody .{0,20}wrote (it )?down/i,
+      /not written down anywhere/i,
+      /\bstays a memory\b/i,
+      /not able to recall/i,
+    ];
+    const walk = (dir: string): string[] =>
+      readdirSync(dir, { withFileTypes: true }).flatMap((d) =>
+        d.isDirectory() ? walk(join(dir, d.name)) : [join(dir, d.name)],
+      );
+    const stripComments = (src: string) =>
+      src.replace(/\/\*[\s\S]*?\*\//g, '').replace(/(^|[^:])\/\/.*$/gm, '$1');
+    const files = ['src/content', 'src/components', 'src/app']
+      .flatMap(walk)
+      .filter((f) => /\.(ts|tsx|md)$/.test(f));
+    for (const f of files) {
+      const text = /\.(ts|tsx)$/.test(f)
+        ? stripComments(readFileSync(f, 'utf8'))
+        : readFileSync(f, 'utf8');
+      for (const rx of DISCLAIMERS) {
+        const hit = text.match(new RegExp(`.*${rx.source}.*`, 'i'));
+        expect(hit, `${f} disclaims: ${hit?.[0]?.trim().slice(0, 120)}`).toBeNull();
+      }
+    }
+  });
+
   it('site copy is first person — the word "owner" never renders (ownership is fine)', () => {
     // This is Vivek's portfolio in Vivek's voice. "The owner" was engineering
     // shorthand that leaked into captions and markers once; this keeps it out.

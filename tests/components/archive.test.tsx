@@ -29,7 +29,10 @@ describe('the era archive page (ADR-0016)', () => {
       ).toBeInTheDocument();
     }
     // Tri-state dates are visible words, not colours.
-    expect(screen.getAllByText(/Records requested/).length).toBeGreaterThan(0);
+    // Undated items read as an archivist would write them, not as questions about himself.
+    expect(screen.getAllByText(/^Undated$/).length).toBeGreaterThan(0);
+    expect(screen.queryByText(/Records requested/)).toBeNull();
+    expect(screen.queryByText(/my records table/i)).toBeNull();
     expect(screen.getAllByText(/before my time/i).length).toBeGreaterThan(0);
     // The exclusions render with their reasons.
     expect(screen.getByRole('heading', { name: /What was left out/i })).toBeInTheDocument();

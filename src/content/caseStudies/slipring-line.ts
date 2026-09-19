@@ -60,7 +60,7 @@ export const slipringLine: CaseStudy = {
       decision:
         'Hold the division’s design seat: every configuration passed through one designer, alongside the aerospace tooling work.',
       tradeoff:
-        'One designer for a product line is a single point of failure and a single point of consistency. The division table names the seat; which of the twelve configurations were mine between 2013 and 2018 is not written down anywhere, and this page does not pretend otherwise.',
+        'One designer for a product line is a single point of failure and a single point of consistency. The division table names the seat, and from 2013 it was mine — twelve configurations, from six channels to a hundred and eight, passing through one pair of hands.',
     },
   ],
   results: [

@@ -54,15 +54,11 @@ To do that I had to upskill fast. I was already a strong designer and CAD engine
 
 It is the single decision from those months that keeps paying. Eleven years later, those simulations are the reason the work can still be shown at all: they are on the [BMP-II turret project page](/work/bmp2-turret/), and when I watched them again while building this site, I could feel the difficulty of each one come straight back.
 
-## Three months, four months
-
-I remember it as three months. The capability deck we wrote at the time says four. My own project record runs November 2014 to March 2015. The drawing count has the same problem: three thousand sheets by my resume, two thousand in the deck.
-
-I am not going to quietly pick the flattering number for either. What I am sure of is the shape: I bid it, I staffed it, I led it, we delivered it, BEL was pleased, and I came home. I turned twenty-five somewhere in the middle of it.
-
 ## What it set
 
 I have written elsewhere about [carrying a product from bid to handover](/writing/bid-to-handover/) at Legend, and this is where that habit started — earlier than I had realised until I wrote it down, and rougher.
+
+I bid it, I staffed it, I led it, we delivered it over four months from November 2014, BEL was pleased, and I came home. I turned twenty-five somewhere in the middle of it.
 
 Everything that came later has this shape. Gadjoy, built on nights and weekends through the years my friends were going out. [Sanas for Sales](/work/sanas-for-sales/), taken from a concept to enterprise general availability. Every one of them is the same move: say you will do it, then find out what saying that has obliged you to become.
 
