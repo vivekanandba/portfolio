@@ -32,7 +32,7 @@ So we built a tool with stages, and at its centre a tower with an arm: a lower a
 
 This is the thing I learned on that job and have never stopped believing: **a tool has to be truer than the part it makes.** The tolerance on the tool is tighter than the tolerance on the thing it produces, and it has to hold that tighter tolerance not once but across every assembly, every riveting operation, every hard point, for iteration after iteration. Making a good part is hard. Making the thing that makes good parts, over and over, unattended by you, is harder.
 
-## An Excel sheet decided whether we ate
+## An Excel sheet decided whether we won
 
 Before any of it, we had to win the contract, and I was on the price negotiating committee.
 
