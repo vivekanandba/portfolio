@@ -17,10 +17,15 @@
     "test:contract": "vitest run tests/contract",
     "test:a11y": "vitest run tests/a11y",
     "test:security": "node scripts/audit-deps.mjs",
+    "verify:infra": "node scripts/verify-live.mjs",
+    "shots": "node scripts/shots.mjs",
     "test:coverage": "vitest run --coverage && node scripts/coverage-floor.mjs",
     "test:watch": "vitest",
-    "test:e2e": "playwright test",
-    "check:links": "node scripts/check-links.mjs"
+    "test:e2e": "playwright test --project=desktop --project=mobile",
+    "test:visual": "playwright test --project=visual",
+    "test:visual:update": "scripts/visual-baselines.sh",
+    "check:links": "node scripts/check-links.mjs",
+    "check:size": "node scripts/size-budget.mjs"
   },
   "dependencies": {
     "hast-util-to-string": "3.0.1",

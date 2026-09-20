@@ -23,3 +23,4 @@ Every spec carries five sections, checked by `tests/contract/specs.test.ts`:
 | --------------------------------------------- | ----------------------------- |
 | [0001](0001-test-suites-and-quality-gates.md) | Test suites and quality gates |
 | [0002](0002-security-posture.md)              | Security posture              |
+| [0003](0003-delivery-verification.md)         | Delivery verification         |

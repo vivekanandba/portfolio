@@ -230,10 +230,18 @@ suite. The rules live in [`specs/0001`](specs/0001-test-suites-and-quality-gates
 | `a11y`     | Can everyone use it?                              | `npm run test:a11y`     |
 | `e2e`      | Can a person complete the task?                   | `npm run test:e2e`      |
 | `security` | Is anything exploitable, leaked, or unpatched?    | `npm run test:security` |
+| `visual`   | Has anything moved that should not have?          | `npm run test:visual`   |
+| `infra`    | Is the deployed site up, and is it what we built? | `npm run verify:infra`  |
 
 `security` has no directory: its subjects are the dependency graph, the git history and the
 workflow files, so it runs as a script with a `secrets` job in CI. Its rules, and the threat model
 behind them, are in [`specs/0002`](specs/0002-security-posture.md).
+
+`visual` and `infra` check the **built artifact and the deployed site** rather than the source, which
+is the gap CON-COV-001 has described since 2026-08-08 and which nothing filled. `visual` runs inside
+the Playwright container so its committed baselines are compared against the fonts they were made
+with; `infra` runs after each deploy and fails it when the live site is not the commit that was just
+built. Both are specified in [`specs/0003`](specs/0003-delivery-verification.md).
 
 `contract` is the largest here and the one that is not obvious from outside: it asserts facts and
 publication rules rather than behaviour. When it fails the code is usually fine.
@@ -245,6 +253,9 @@ publication rules rather than behaviour. When it fails the code is usually fine.
 | Static export     | `npm run build`         | every route emits with the correct base path                                                                                                                                                                                                                                                                                                                                                   |
 | End-to-end        | `npm run test:e2e`      | desktop + mobile, data-driven over the project collection                                                                                                                                                                                                                                                                                                                                      |
 | Security          | `npm run test:security` | two dependency trees with separate thresholds, checked against `security/audit-allowlist.json`; a recorded exemption that outlives its advisory fails the build. gitleaks scans the **full history** in CI, and `tests/contract/workflows.test.ts` pins every Action to a commit SHA                                                                                                           |
+| Size budgets      | `npm run check:size`    | per-file and total limits on the built output, so an oversized image or bundle cannot ship unnoticed                                                                                                                                                                                                                                                                                           |
+| Pixel baselines   | `npm run test:visual`   | 16 committed region baselines, generated and compared inside the Playwright container                                                                                                                                                                                                                                                                                                          |
+| Deployed site     | `npm run verify:infra`  | run by `deploy.yml` after deploying: the live commit equals the one just built, every route answers, the policy, canonical URLs and feed survive                                                                                                                                                                                                                                               |
 | External links    | `npm run check:links`   | every content URL resolves (advisory — a third-party outage must not block a merge)                                                                                                                                                                                                                                                                                                            |
 | Source material   | part of `npm test`      | `source/` tree shape, no PII, media references resolve, sizes ≤ 2 MiB, sha256 lines present                                                                                                                                                                                                                                                                                                    |
 | Media budgets     | part of `npm test`      | every clip ≤ 2 MiB and every poster ≤ 300 KB on disk; alt, poster and credit present; every project has a chronological anchor; no `TODO` in content                                                                                                                                                                                                                                           |

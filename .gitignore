@@ -45,3 +45,6 @@ __pycache__/
 /*.pptx
 /*.ppt
 /*.key
+
+# Screenshots from `npm run shots` — for looking at, never committed.
+screenshots/

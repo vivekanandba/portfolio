@@ -56,3 +56,20 @@ jobs:
     steps:
       - id: deployment
         uses: actions/deploy-pages@d6db90164ac5ed86f2b6aed7e0febac5b3c0c03e # v4
+
+      # A green deploy says the artifact was published, not that the site works
+      # or that it is even this artifact — an older run can be live and still
+      # read "success" (CON-VER-003). This asserts against the running site and
+      # fails the job, which is what CON-COV-001 has asked for since 2026-08-08
+      # and what no project here had implemented (SPEC-0003).
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5
+
+      - uses: actions/setup-node@a0853c24544627f65ddf259abe73b1d18a591444 # v5
+        with:
+          node-version: 20
+
+      - name: Verify the deployed site is this commit, and works
+        run: |
+          node scripts/verify-live.mjs \
+            --base "${{ steps.deployment.outputs.page_url }}" \
+            --commit "${{ github.sha }}"
