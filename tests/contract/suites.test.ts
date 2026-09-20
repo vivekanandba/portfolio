@@ -26,6 +26,13 @@ const SUITES = {
 /** Not suites: shared setup and the fixtures the writing engine is tested against. */
 const NOT_SUITES = ['setup.ts', 'fixtures'];
 
+/**
+ * Suites with no test directory, because their subjects are not code this repo
+ * wrote: the dependency graph, the git history, the workflow files (SPEC-0002).
+ * They still have to be runnable alone and named in CI.
+ */
+const SCRIPT_SUITES = { security: 'test:security' } as const;
+
 function walk(dir: string): string[] {
   return readdirSync(dir).flatMap((entry) => {
     const full = join(dir, entry);
@@ -46,6 +53,12 @@ describe('the test suites', () => {
     for (const [name, suite] of Object.entries(SUITES)) {
       expect(scripts[suite.script], `npm run ${suite.script}`).toBeTruthy();
       expect(walk(join(TESTS, name)).length, `${name} has tests`).toBeGreaterThan(0);
+    }
+  });
+
+  it('gives the script-only suites a standalone command too', () => {
+    for (const [name, script] of Object.entries(SCRIPT_SUITES)) {
+      expect(scripts[script], `npm run ${script} for the ${name} suite`).toBeTruthy();
     }
   });
 

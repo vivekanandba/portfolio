@@ -14,6 +14,13 @@ file's location _is_ its suite and there is no registry to fall out of date.
 | `contract` | Are the data and the published record still true? | `npm run test:contract` |
 | `a11y`     | Can everyone use it?                              | `npm run test:a11y`     |
 | `e2e`      | Can a person complete the task?                   | `npm run test:e2e`      |
+| `security` | Is anything exploitable, leaked, or unpatched?    | `npm run test:security` |
+
+**`security` is the exception to the directory rule**, deliberately. Its subjects are the dependency
+graph, the git history and the workflow files — none of them code this repo wrote, so none has a
+test file's natural home. It runs as a script, with a `secrets` job in CI for the history scan, and
+what can be asserted from a test file is, in `tests/contract/workflows.test.ts`. Its rules are in
+[SPEC-0002](0002-security-posture.md).
 
 `contract` is the one that would not be obvious from the outside, and on this repo it is the
 largest. Its tests assert facts and publication rules rather than behaviour: that a photograph
@@ -54,7 +61,8 @@ a broken component.
 npm run test:contract        # 225 tests, ~32s
 npm run test:unit            # 233 tests, ~54s
 npm run test:a11y            #  12 tests, ~33s
-npm run test:e2e             # 111 runs, desktop + mobile
+npm run test:e2e             # 125 runs, desktop + mobile
+npm run test:security        # both dependency trees, against the allowlist
 npm run test:coverage        # all vitest suites, then the per-file floor
 ```
 
@@ -79,7 +87,8 @@ threshold silently does nothing.
 
 ## Revisions
 
-| Date       | Change                                                                                                                       | Covered by                      |
-| ---------- | ---------------------------------------------------------------------------------------------------------------------------- | ------------------------------- |
-| 2026-09-20 | Written with R1–R8 when the suites were split out of one lane.                                                               | `tests/contract/suites.test.ts` |
-| 2026-09-20 | R9 added — five of nine axe assertions were in the unit lane, where they were invisible as a number and cost it two minutes. | `tests/contract/suites.test.ts` |
+| Date       | Change                                                                                                                                                                        | Covered by                         |
+| ---------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------- |
+| 2026-09-20 | Written with R1–R8 when the suites were split out of one lane.                                                                                                                | `tests/contract/suites.test.ts`    |
+| 2026-09-20 | `security` added as a script-based suite, with `secrets` as its CI companion. No directory, because its subjects are the dependency graph, the git history and the workflows. | `tests/contract/workflows.test.ts` |
+| 2026-09-20 | R9 added — five of nine axe assertions were in the unit lane, where they were invisible as a number and cost it two minutes.                                                  | `tests/contract/suites.test.ts`    |

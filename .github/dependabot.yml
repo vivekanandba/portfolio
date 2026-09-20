@@ -1,0 +1,29 @@
+# Dependency updates as pull requests, so an advisory becomes a reviewable change
+# rather than a line in a report (proposed fleet-wide in vivekanandba/constitution#5).
+#
+# Grouped deliberately: ungrouped updates produce a PR per package and the noise
+# is how people stop reading them. Majors stay separate because they need
+# thinking about, and this repo pins its Actions to commit SHAs — Dependabot
+# understands that and bumps the SHA while keeping the `# vN` comment.
+version: 2
+updates:
+  - package-ecosystem: npm
+    directory: /
+    schedule:
+      interval: weekly
+      day: monday
+    open-pull-requests-limit: 5
+    groups:
+      minor-and-patch:
+        update-types: [minor, patch]
+    labels: [dependencies]
+
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: weekly
+      day: monday
+    groups:
+      actions:
+        patterns: ['*']
+    labels: [dependencies, ci]

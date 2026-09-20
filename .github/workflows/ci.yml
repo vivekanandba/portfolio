@@ -18,12 +18,12 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5
         with:
           # Full history so the spec-discipline step can diff against the base.
           fetch-depth: 0
 
-      - uses: actions/setup-node@v5
+      - uses: actions/setup-node@a0853c24544627f65ddf259abe73b1d18a591444 # v5
         with:
           node-version: 20
           cache: npm
@@ -75,6 +75,15 @@ jobs:
       - name: Coverage floors (aggregate, per directory, and per file)
         run: npm run test:coverage
 
+      # Two trees, two thresholds. Being in the production dependency tree is
+      # not the same as reaching a browser, and on a static export the gap is
+      # total — but build dependencies execute with real credentials here, which
+      # is the live supply-chain path (proposed fleet-wide in vivekanandba/constitution#5). Advisories that cannot be
+      # patched carry a recorded reason in security/audit-allowlist.json, and
+      # the script fails if one of those outlives the advisory it excuses.
+      - name: Suite — security (dependency advisories, both trees)
+        run: npm run test:security
+
       - name: Build static export
         run: npm run build
         env:
@@ -103,13 +112,39 @@ jobs:
           } >> "$GITHUB_STEP_SUMMARY"
           exit 0
 
+  secrets:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5
+        with:
+          fetch-depth: 0 # full history so gitleaks can scan every commit
+
+      # The hooks scan the working tree; nothing had ever scanned the history.
+      # On 2026-07-23 a personal-data export reached this repo and had to be
+      # purged, which a working-tree check could not have caught (proposed fleet-wide in vivekanandba/constitution#5).
+      # Same job as wealth-weave's, copied rather than reinvented.
+      - name: Install gitleaks
+        env:
+          GITLEAKS_VERSION: '8.21.2'
+        run: |
+          curl -sSfL \
+            "https://github.com/gitleaks/gitleaks/releases/download/v${GITLEAKS_VERSION}/gitleaks_${GITLEAKS_VERSION}_linux_x64.tar.gz" \
+            -o gitleaks.tar.gz
+          tar -xzf gitleaks.tar.gz gitleaks
+          sudo install gitleaks /usr/local/bin/gitleaks
+          gitleaks version
+
+      - name: Suite — secrets (full history)
+        run: gitleaks detect --source . --redact --verbose
+
   e2e:
     runs-on: ubuntu-latest
     timeout-minutes: 20
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5
 
-      - uses: actions/setup-node@v5
+      - uses: actions/setup-node@a0853c24544627f65ddf259abe73b1d18a591444 # v5
         with:
           node-version: 20
           cache: npm
@@ -122,7 +157,7 @@ jobs:
 
       - name: Cache Playwright browsers
         id: pw-cache
-        uses: actions/cache@v4
+        uses: actions/cache@0057852bfaa89a56745cba8c7296529d2fc39830 # v4
         with:
           path: ~/.cache/ms-playwright
           key: playwright-${{ runner.os }}-${{ steps.pw.outputs.version }}

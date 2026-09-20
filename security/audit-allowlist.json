@@ -1,0 +1,54 @@
+{
+  "note": [
+    "Advisories this repo has looked at and accepted, each with the reason it cannot",
+    "reach anyone here. Patch it, or record the exemption and why — proposed fleet-wide in vivekanandba/constitution#5.",
+    "",
+    "scripts/audit-deps.mjs fails if an entry here no longer matches a reported",
+    "advisory, so the list cannot outlive what it excuses. Re-read `reason` when the",
+    "advisory changes — the package name staying the same does not mean the same bug."
+  ],
+  "allowed": [
+    {
+      "advisory": "sharp",
+      "tree": "production",
+      "reason": "libvips CVEs in Next's image optimiser. next.config.ts sets images.unoptimized, so sharp never processes an image in this build, and a static export has no image route at runtime.",
+      "reviewed": "2026-09-20"
+    },
+    {
+      "advisory": "postcss",
+      "tree": "production",
+      "reason": "XSS via an unescaped </style> in CSS stringify output. postcss runs at build time over this repo's own Tailwind sources; it never sees third-party or user input, and it is not in the shipped bundle.",
+      "reviewed": "2026-09-20"
+    },
+    {
+      "advisory": "nanoid",
+      "tree": "production",
+      "reason": "Non-secure generator loops on a negative size. Reached only through postcss at build time. Verified absent from out/: the one `nanoid` string in the client bundle is Zod's .nanoid() validator method, not the package.",
+      "reviewed": "2026-09-20"
+    },
+    {
+      "advisory": "playwright",
+      "tree": "production",
+      "reason": "Browser downloads skip SSL certificate verification. Playwright is a peer dependency of next and is run only by developers and CI, never by a visitor. Nothing it installs reaches the deployed site.",
+      "reviewed": "2026-09-20"
+    },
+    {
+      "advisory": "@playwright/test",
+      "tree": "production",
+      "reason": "Same advisory as playwright, reported once per package. See that entry.",
+      "reviewed": "2026-09-20"
+    },
+    {
+      "advisory": "vitest",
+      "tree": "development",
+      "reason": "Arbitrary file read and execution while the Vitest UI or API server is listening. This repo runs `vitest run` only; there is no --ui flag anywhere, @vitest/ui is not installed, and CI exposes no port. Fixed builds are 5.x, a major bump held for its own change.",
+      "reviewed": "2026-09-20"
+    },
+    {
+      "advisory": "@vitest/coverage-v8",
+      "tree": "development",
+      "reason": "Same advisory as vitest, reported through the coverage package. See that entry.",
+      "reviewed": "2026-09-20"
+    }
+  ]
+}

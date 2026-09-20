@@ -7,6 +7,7 @@ import { CommandPalette } from '@/components/CommandPalette';
 import { archivePaletteEntries } from '@/lib/palette';
 import { postPaletteEntries } from '@/lib/writing';
 import { siteMetadata, personJsonLd } from '@/lib/seo';
+import { contentSecurityPolicy } from '@/lib/csp';
 
 // GoatCounter (privacy-friendly, no cookies). Emitted only when a site code is
 // configured at build time, so dev/test builds stay analytics-free.
@@ -38,6 +39,17 @@ export const viewport: Viewport = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" className={`${inter.variable} ${fraunces.variable}`}>
+      <head>
+        {/* GitHub Pages cannot set response headers, so the policy ships in the
+            document. React 19 hoists these into <head>. What a meta policy
+            cannot do — frame-ancestors, X-Content-Type-Options — is recorded in
+            specs/0002 rather than faked here. */}
+        <meta
+          httpEquiv="Content-Security-Policy"
+          content={contentSecurityPolicy({ goatCounterCode: GOATCOUNTER_CODE })}
+        />
+        <meta name="referrer" content="strict-origin-when-cross-origin" />
+      </head>
       <body>
         <script
           // Before paint: stamp .js (so scroll-reveal styles only apply when JS
