@@ -1,6 +1,7 @@
 import { ImageResponse } from 'next/og';
 import { caseStudies, projects, profile } from '@/content';
 import type { Domain } from '@/content/schema';
+import { sanitizeForCard } from '@/lib/og-text';
 
 // A distinct 1200×630 social card per case study, generated as a static PNG at
 // build time (compatible with output: 'export'). Purely typographic — no
@@ -33,10 +34,9 @@ const HAIRLINE = '#E6E6E0';
 
 const projectById = new Map(projects.map((p) => [p.id, p]));
 
-// next/og's bundled font lacks a few math/typographic glyphs and tries (and
-// fails, offline) to fetch a dynamic font for them. Swap those for ASCII so the
-// generated card is self-contained. The live site keeps the originals.
-const sanitize = (s: string) => s.replace(/≈/g, '~');
+// Shared with the other card route: one substitution table, one test.
+// The live site keeps the original glyphs; only the card is sanitised.
+const sanitize = sanitizeForCard;
 
 export default async function Image({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;

@@ -2,6 +2,7 @@ import { ImageResponse } from 'next/og';
 import { profile } from '@/content';
 import { KIND_LABELS, formatDate } from '@/components/PostMeta';
 import { getPost, listPosts } from '@/lib/writing';
+import { sanitizeForCard } from '@/lib/og-text';
 
 // A typographic 1200×630 card per post, generated statically at build (ADR-0017);
 // no external fonts or assets, so it works offline in CI — mirrors /work/[slug].
@@ -20,7 +21,9 @@ const INK = '#16161A';
 const MUTED = '#5B5B66';
 const ACCENT = '#1D4ED8';
 const HAIRLINE = '#E6E6E0';
-const sanitize = (s: string) => s.replace(/≈/g, '~');
+// Shared with the other card route: one substitution table, one test.
+// The live site keeps the original glyphs; only the card is sanitised.
+const sanitize = sanitizeForCard;
 
 export default async function Image({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;

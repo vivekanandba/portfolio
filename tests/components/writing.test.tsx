@@ -4,15 +4,16 @@ import { axe } from 'jest-axe';
 import WritingIndex from '@/app/writing/page';
 import PostPage, { generateStaticParams } from '@/app/writing/[slug]/page';
 import PostImage, { generateStaticParams as ogParams } from '@/app/writing/[slug]/opengraph-image';
-import WorkImage from '@/app/work/[slug]/opengraph-image';
+import WorkImage, { generateStaticParams as workOgParams } from '@/app/work/[slug]/opengraph-image';
 import CaseStudyPage from '@/app/work/[slug]/page';
 import { GET as feed } from '@/app/feed.xml/route';
 import sitemap from '@/app/sitemap';
 import { Writing } from '@/components/Writing';
 import { ProjectNotes } from '@/components/ProjectNotes';
 import { formatDate, formatMonth } from '@/components/PostMeta';
-import { caseStudies, projects } from '@/content';
+import { caseStudies, profile, projects } from '@/content';
 import { listPosts, renderPost } from '@/lib/writing';
+import { unsafeGlyphs } from '@/lib/og-text';
 
 // next/og renders with Satori and a bundled font; in jsdom we only need to know
 // the element tree is built and the size is declared.
@@ -122,6 +123,92 @@ describe('OpenGraph images', () => {
       params: Promise.resolve({ slug: caseStudies[0].slug }),
     })) as unknown as { options: { width: number; height: number } };
     expect(img.options).toEqual({ width: 1200, height: 630 });
+  });
+
+  /**
+   * Both cards fall back to the profile when the slug is unknown. That path had
+   * no test, so a broken fallback would have shipped a card headed `undefined`
+   * — and an OG card is the one thing a reader sees before they click.
+   */
+  const cardText = (img: unknown) => {
+    const out: string[] = [];
+    const walk = (node: unknown) => {
+      if (node == null || node === false) return;
+      if (typeof node === 'string' || typeof node === 'number') {
+        out.push(String(node));
+        return;
+      }
+      if (Array.isArray(node)) return node.forEach(walk);
+      const children = (node as { props?: { children?: unknown } }).props?.children;
+      if (children !== undefined) walk(children);
+    };
+    walk((img as { element: unknown }).element);
+    return out.join(' ');
+  };
+
+  it('emits one project card per project page, and no more', async () => {
+    // Its own generateStaticParams, not the page's: a mismatch would ship
+    // pages whose og:image 404s.
+    expect(workOgParams()).toEqual(caseStudies.map((cs) => ({ slug: cs.slug })));
+  });
+
+  it('names the project on its card', async () => {
+    const cs = caseStudies[0];
+    const img = await WorkImage({ params: Promise.resolve({ slug: cs.slug }) });
+    const text = cardText(img);
+    expect(text).toContain(cs.title);
+    expect(text).toContain(cs.eyebrow);
+  });
+
+  it('falls back to the profile when a project slug is unknown', async () => {
+    const img = await WorkImage({ params: Promise.resolve({ slug: 'no-such-project' }) });
+    const text = cardText(img);
+    expect(text).toContain(profile.name);
+    expect(text).toContain(profile.tagline);
+  });
+
+  it('names the post, its kind and its date on the writing card', async () => {
+    const img = await PostImage({ params: Promise.resolve({ slug: first.slug }) });
+    const text = cardText(img);
+    expect(text).toContain(first.title);
+    expect(text).toContain(formatDate(first.date));
+  });
+
+  /**
+   * The gate for the defect the coverage work found: AirCare's card led with
+   * the metric `₹7,500`, Satori's bundled font has no `₹`, and the build tried
+   * to download a dynamic font and failed with HTTP 400 — leaving the glyph
+   * missing from a card that is the first thing a reader sees. It only ever
+   * showed up as one warning line in a passing build (CON-PROC-003).
+   */
+  it('renders every project card with glyphs the bundled font actually has', async () => {
+    for (const cs of caseStudies) {
+      const text = cardText(await WorkImage({ params: Promise.resolve({ slug: cs.slug }) }));
+      expect(unsafeGlyphs(text), `${cs.slug} card uses glyphs Satori cannot draw`).toEqual([]);
+    }
+  });
+
+  it('renders every writing card with glyphs the bundled font actually has', async () => {
+    for (const post of posts) {
+      const text = cardText(await PostImage({ params: Promise.resolve({ slug: post.slug }) }));
+      expect(unsafeGlyphs(text), `${post.slug} card uses glyphs Satori cannot draw`).toEqual([]);
+    }
+  });
+
+  it('spells out the rupee amounts the font cannot draw', async () => {
+    const aircare = caseStudies.find((cs) => cs.projectId === 'aircare');
+    expect(aircare, 'the AirCare case study').toBeDefined();
+    const text = cardText(await WorkImage({ params: Promise.resolve({ slug: aircare!.slug }) }));
+    expect(text).toContain('Rs 7,500');
+    expect(text).not.toContain('₹');
+  });
+
+  it('falls back to the profile when a post slug is unknown', async () => {
+    const img = await PostImage({ params: Promise.resolve({ slug: 'no-such-post' }) });
+    const text = cardText(img);
+    expect(text).toContain('Writing');
+    expect(text).toContain(profile.name);
+    expect(text).toContain(profile.tagline);
   });
 });
 
