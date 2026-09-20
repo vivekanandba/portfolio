@@ -123,9 +123,19 @@ describe('Nav scroll spy', () => {
     globalThis.IntersectionObserver = StubObserver as unknown as typeof IntersectionObserver;
   });
 
+  /** Redefining these leaks into every later test in the file if not undone. */
+  const redefined: [object, string][] = [];
+  function redefine(target: object, prop: string, value: number) {
+    redefined.push([target, prop]);
+    Object.defineProperty(target, prop, { configurable: true, value });
+  }
+
   afterEach(() => {
     globalThis.IntersectionObserver = original;
     document.body.innerHTML = '';
+    for (const [target, prop] of redefined.splice(0)) {
+      delete (target as Record<string, unknown>)[prop];
+    }
   });
 
   /** The spy only observes sections that exist, so the page must supply them. */
@@ -162,12 +172,9 @@ describe('Nav scroll spy', () => {
 
   it('highlights Contact at the bottom of the page, which is too short to observe', async () => {
     withSections();
-    Object.defineProperty(document.documentElement, 'scrollHeight', {
-      configurable: true,
-      value: 1000,
-    });
-    Object.defineProperty(window, 'innerHeight', { configurable: true, value: 800 });
-    Object.defineProperty(window, 'scrollY', { configurable: true, value: 200 });
+    redefine(document.documentElement, 'scrollHeight', 1000);
+    redefine(window, 'innerHeight', 800);
+    redefine(window, 'scrollY', 200);
 
     render(<Nav />);
     act(() => {

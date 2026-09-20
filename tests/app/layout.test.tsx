@@ -31,7 +31,11 @@ vi.mock('@/components/CommandPalette', () => ({
   },
 }));
 vi.mock('next/script', () => ({
-  default: (props: Record<string, string>) => <script data-stub="next-script" {...props} />,
+  // `strategy` is Next's own prop, not a DOM attribute — spreading it onto a
+  // <script> makes React warn and models the component wrongly.
+  default: ({ strategy: _strategy, ...rest }: Record<string, string>) => (
+    <script data-stub="next-script" {...rest} />
+  ),
 }));
 
 /**

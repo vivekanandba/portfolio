@@ -48,14 +48,17 @@ describe('Reveal', () => {
 
   it('falls back to visible when IntersectionObserver is unavailable', async () => {
     // Content must never be stranded invisible on a browser without IO.
-    await waitFor(() => {
-      render(
-        <Reveal>
-          <p>no-io content</p>
-        </Reveal>,
-      );
-      expect(screen.getByText('no-io content').parentElement).toHaveClass('is-visible');
-    });
+    // Render once: retrying `render` inside waitFor would mount a second copy
+    // on every attempt and fail with "found multiple elements" instead of the
+    // real reason (CON-VER-005).
+    render(
+      <Reveal>
+        <p>no-io content</p>
+      </Reveal>,
+    );
+    await waitFor(() =>
+      expect(screen.getByText('no-io content').parentElement).toHaveClass('is-visible'),
+    );
   });
 
   it('starts hidden and reveals only once the element intersects', async () => {
