@@ -1,6 +1,8 @@
 # SPEC-0003 — Delivery verification
 
 **Status:** Active **Since:** 2026-09-20 **Shipped in:** #64
+**Covers:** —
+**Routes:** every route, as deployed
 
 ## What
 
