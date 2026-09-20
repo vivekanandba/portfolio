@@ -43,7 +43,15 @@ describe('the workflows', () => {
   const ci = workflows.find(([f]) => f === 'ci.yml')![1];
 
   it('runs each test suite as its own named step, so a red check names the suite', () => {
-    for (const suite of ['contract', 'unit', 'accessibility', 'security', 'secrets', 'e2e']) {
+    for (const suite of [
+      'contract',
+      'unit',
+      'accessibility',
+      'security',
+      'secrets',
+      'visual',
+      'e2e',
+    ]) {
       expect(ci, `no step for the ${suite} suite`).toMatch(new RegExp(`Suite — ${suite}`, 'i'));
     }
   });
@@ -59,5 +67,28 @@ describe('the workflows', () => {
   it('audits dependencies and enforces the coverage floors', () => {
     expect(ci).toContain('npm run test:security');
     expect(ci).toContain('npm run test:coverage');
+    expect(ci).toContain('npm run check:size');
+  });
+
+  it('runs the pixel baselines in the container they were made in', () => {
+    // Text renders differently between machines. Baselines generated in the
+    // Playwright container and compared on a bare runner fail for font reasons
+    // that have nothing to do with the change (SPEC-0003).
+    const visualJob = ci.split('\n  visual:')[1]?.split('\n  e2e:')[0] ?? '';
+    expect(visualJob, 'a visual job').toBeTruthy();
+    expect(visualJob).toContain('mcr.microsoft.com/playwright:');
+    expect(visualJob).toContain('npm run test:visual');
+    // And the diff image is uploaded, because a percentage explains nothing.
+    expect(visualJob).toContain('upload-artifact');
+  });
+
+  const deploy = workflows.find(([f]) => f === 'deploy.yml')![1];
+
+  it('verifies the deployed site is the commit that was just built', () => {
+    // A green deploy means the artifact was published, not that this artifact
+    // is live or that the site works (CON-VER-003, CON-COV-001).
+    expect(deploy).toContain('scripts/verify-live.mjs');
+    expect(deploy).toContain('--commit');
+    expect(deploy).toContain('github.sha');
   });
 });

@@ -90,6 +90,12 @@ jobs:
           NODE_ENV: production
           BASE_PATH: /portfolio
 
+      # Nothing measured what ships. A 3 MB photograph would have deployed
+      # without a word, and the first person to notice would be a reader on a
+      # phone (SPEC-0003).
+      - name: Size budgets for the built output
+        run: npm run check:size
+
       # External links rot off-box, after merge, when someone else's site
       # changes — no other check can catch that. Advisory only: a third party
       # having an outage must not block our merge. But an advisory step that
@@ -137,6 +143,34 @@ jobs:
 
       - name: Suite — secrets (full history)
         run: gitleaks detect --source . --redact --verbose
+
+  # Pixel baselines run inside the Playwright container, not on the runner,
+  # because the committed images were made there and text renders differently
+  # between machines. Its own job so a font difference cannot take the
+  # behavioural e2e suite down with it (SPEC-0003).
+  visual:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    container:
+      image: mcr.microsoft.com/playwright:v1.51.1-noble
+    steps:
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5
+
+      - run: npm ci
+
+      - name: Suite — visual (pixel baselines)
+        run: npm run test:visual
+        env:
+          CI: 'true'
+
+      # The diff image is the only useful thing when this fails; a percentage
+      # tells you nothing about what moved.
+      - if: failure()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: visual-diff
+          path: test-results/
+          retention-days: 7
 
   e2e:
     runs-on: ubuntu-latest

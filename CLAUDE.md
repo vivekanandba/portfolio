@@ -23,6 +23,9 @@ npm run test:contract   # are the data and the published record still true
 npm run test:a11y       # can everyone use it
 npm run test:e2e        # can a person complete the task
 npm run test:security   # is anything exploitable, leaked, or unpatched
+npm run test:visual     # has anything moved that should not have (needs the PW container)
+npm run verify:infra    # is the deployed site up, and is it what we built
+npm run shots           # screenshots to look at; never a gate
 npm run test:coverage   # all vitest suites + aggregate, per-directory and per-file floors
 ```
 
@@ -47,6 +50,9 @@ document and it is not an ADR.
 ## Layout
 
 src/ · out/ · scripts/ · docs/ · specs/ · security/ · tests/{unit,contract,a11y,e2e}
+
+Pixel baselines live in `tests/e2e/visual.spec.ts-snapshots/` and are regenerated only inside
+`mcr.microsoft.com/playwright:v1.51.1-noble` — see [`specs/0003`](specs/0003-delivery-verification.md).
 
 ---
 
