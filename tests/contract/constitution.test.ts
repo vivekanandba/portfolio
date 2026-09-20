@@ -12,7 +12,7 @@ import { join, relative, resolve } from 'node:path';
  * text, and this guards the link: cite an ID that has been retired or mistyped
  * and the build says so, instead of the citation quietly pointing at nothing.
  */
-const ROOT = resolve(__dirname, '..');
+const ROOT = resolve(__dirname, '../..');
 const LIST = 'docs/constitution-ids.txt';
 
 const ID_PATTERN = /\bCON-[A-Z]{3,4}-\d{3}\b/g;

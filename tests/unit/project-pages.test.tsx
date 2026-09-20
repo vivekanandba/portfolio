@@ -1,6 +1,5 @@
 import { describe, it, expect } from 'vitest';
 import { render, screen } from '@testing-library/react';
-import { axe } from 'jest-axe';
 import CaseStudyPage, { generateStaticParams } from '@/app/work/[slug]/page';
 import WorkIndex from '@/app/work/page';
 import { ProjectCard } from '@/components/ProjectCard';
@@ -42,19 +41,8 @@ describe('case-study pages', () => {
     },
   );
 
-  // Representative axe sample — one per page archetype (full flow, data-heavy,
-  // process diagram, compact) to keep runtime sane across all case-study pages.
-  // Explicit budget: a page with seven <video> elements and their tracks takes
-  // axe well past vitest's 5 s default under parallel load, and a timed-out axe
-  // run leaves its global lock set, failing the next axe test too.
-  it.each(['playground', 'speech-intelligence', 'vssc-tooling', 'aircare', 'bmp2-turret'])(
-    'has no axe violations (%s)',
-    async (slug) => {
-      const { container } = await renderCaseStudy(slug);
-      expect(await axe(container)).toHaveNoViolations();
-    },
-    40_000,
-  );
+  // Accessibility for the project template lives in tests/a11y/pages.test.tsx,
+  // with every other page type.
 });
 
 describe('the /work/ index', () => {
@@ -70,11 +58,6 @@ describe('the /work/ index', () => {
     }
     // Chapter groupings surface the org names.
     expect(screen.getAllByRole('heading', { level: 2 }).length).toBeGreaterThanOrEqual(3);
-  });
-
-  it('has no axe violations', async () => {
-    const { container } = render(<WorkIndex />);
-    expect(await axe(container)).toHaveNoViolations();
   });
 });
 
