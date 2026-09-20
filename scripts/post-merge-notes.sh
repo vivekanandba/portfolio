@@ -52,9 +52,13 @@ if printf '%s\n' "$CHANGED" | grep -qE '^\.githooks/|^scripts/(check-|preflight|
   say "the gates changed — re-run scripts/install-hooks.sh"
 fi
 
-if printf '%s\n' "$CHANGED" | grep -qE '^\.specify/memory/constitution\.md$'; then
+# The constitution itself lives outside this repo (see CLAUDE.md); what the
+# repo carries is the list of rule IDs it cites. This watched
+# .specify/memory/constitution.md, a spec-kit path that has never existed
+# here, so it could never fire (CON-VER-005).
+if printf '%s\n' "$CHANGED" | grep -qE '^docs/constitution-ids\.txt$'; then
   header
-  say "the constitution changed — worth reading before your next PR"
+  say "the constitution's rule list changed — skim it before your next PR"
 fi
 
 exit 0

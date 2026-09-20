@@ -222,7 +222,7 @@ Hard-won rules; each exists because something was nearly or actually published i
 | Gate                | Command                 | Enforces                                                                                                                                                                                                                                                                                                   |
 | ------------------- | ----------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Static quality      | `npm run quality:check` | lint + typecheck + prettier                                                                                                                                                                                                                                                                                |
-| Unit/component/a11y | `npm run test:coverage` | all tests **and** coverage floors: 93% statements/lines, 86% branches, 85% functions                                                                                                                                                                                                                       |
+| Unit/component/a11y | `npm run test:coverage` | all tests, **aggregate** floors (98% statements/lines, 94% branches, 97% functions, plus per-directory floors on `src/app`, `src/components`, `src/content`, `src/lib`) **and** a **per-file** floor of 90% statements/lines/functions via `scripts/coverage-floor.mjs`                                    |
 | Static export       | `npm run build`         | every route emits with the correct base path                                                                                                                                                                                                                                                               |
 | End-to-end          | `npm run test:e2e`      | desktop + mobile, data-driven over the project collection                                                                                                                                                                                                                                                  |
 | External links      | `npm run check:links`   | every content URL resolves (advisory — a third-party outage must not block a merge)                                                                                                                                                                                                                        |
@@ -236,12 +236,21 @@ lower them to make a build pass.** The link check classifies Cloudflare/LinkedIn
 (403/429/999) as _unverified_ rather than failed, so it doesn't cry wolf, and ignores URL fragments
 because `fetch` never sends them.
 
-### Known coverage gaps (honest, not aspirational)
+### Why there are two coverage gates
 
-`app/page.tsx` and `app/recommendations/page.tsx` sit at 0% — composition-only, never unit-rendered.
-The a11y suite renders the landing composition, so **it must stay in sync with `app/page.tsx`**
-(a missing section there once went unnoticed). `Nav.tsx` ~78%: IntersectionObserver and theme-toggle
-branches are thinly covered.
+An aggregate hides things. This repo read 97.94% statements while `app/layout.tsx`, `app/page.tsx`
+and `app/recommendations/page.tsx` sat at exactly **0%** — `src/app` had no per-directory floor, and
+the 27 fully-covered content files carried the average. So the floors are now enforced twice: vitest
+checks the aggregate and each directory, and `scripts/coverage-floor.mjs` checks **every file**, so
+no average can paper over a file again.
+
+Branches are held to a lower per-file floor (70%) than statements. A file with four branch points
+scores 75% for one uncovered `?? fallback`, so a high per-file branch floor buys assertions written
+to move a number rather than to catch a defect; the aggregate branch threshold is the real guard.
+
+The a11y suite no longer hand-copies the landing composition — it renders `<Home />`, so there is no
+second list to keep in sync. It had already drifted: `<Contact />` was rendered inside `<main>` while
+the page ships it outside as a `<footer>`.
 
 ## 9. Process — spec at the start, tests at the end
 

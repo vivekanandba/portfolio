@@ -178,3 +178,106 @@ describe('command palette — routes outside /work/ (ADR-0016)', () => {
     expect(push).toHaveBeenCalledWith('/#about');
   });
 });
+
+/**
+ * Keyboard navigation inside the palette — the half of "keyboard-complete" that
+ * had no test. Arrow movement, Enter, the empty state, and the two click
+ * targets (backdrop closes, panel does not) were all uncovered, leaving the
+ * component at 63% functions.
+ */
+describe('command palette — keyboard and pointer navigation', () => {
+  function openPalette() {
+    render(<CommandPalette />);
+    fireEvent.keyDown(window, { key: 'k', ctrlKey: true });
+    return screen.getByRole('combobox');
+  }
+
+  const selected = () =>
+    screen.getAllByRole('option').findIndex((o) => o.getAttribute('aria-selected') === 'true');
+
+  it('opens on ⌘K as well as ctrl-K', () => {
+    render(<CommandPalette />);
+    fireEvent.keyDown(window, { key: 'K', metaKey: true });
+    expect(screen.getByRole('dialog')).toBeInTheDocument();
+  });
+
+  it('moves the selection down and up with the arrow keys', () => {
+    const input = openPalette();
+    expect(selected()).toBe(0);
+
+    fireEvent.keyDown(input, { key: 'ArrowDown' });
+    expect(selected()).toBe(1);
+
+    fireEvent.keyDown(input, { key: 'ArrowDown' });
+    expect(selected()).toBe(2);
+
+    fireEvent.keyDown(input, { key: 'ArrowUp' });
+    expect(selected()).toBe(1);
+  });
+
+  it('stops at the ends rather than wrapping', () => {
+    const input = openPalette();
+    fireEvent.keyDown(input, { key: 'ArrowUp' });
+    expect(selected()).toBe(0);
+
+    const last = screen.getAllByRole('option').length - 1;
+    for (let i = 0; i <= last + 2; i++) fireEvent.keyDown(input, { key: 'ArrowDown' });
+    expect(selected()).toBe(last);
+  });
+
+  it('follows the highlighted result on Enter', () => {
+    const input = openPalette();
+    fireEvent.keyDown(input, { key: 'ArrowDown' });
+    const target = screen.getAllByRole('option')[1].textContent;
+
+    fireEvent.keyDown(input, { key: 'Enter' });
+
+    expect(screen.queryByRole('dialog')).not.toBeInTheDocument();
+    expect(target).toBeTruthy();
+  });
+
+  it('hovering a result moves the selection to it', () => {
+    openPalette();
+    const options = screen.getAllByRole('option');
+    fireEvent.mouseEnter(options[2].querySelector('button')!);
+    expect(selected()).toBe(2);
+  });
+
+  it('resets the selection to the top as the query changes', () => {
+    const input = openPalette();
+    fireEvent.keyDown(input, { key: 'ArrowDown' });
+    expect(selected()).toBe(1);
+
+    fireEvent.change(input, { target: { value: 'a' } });
+    expect(selected()).toBe(0);
+  });
+
+  it('says so when nothing matches, and Enter then does nothing', () => {
+    const input = openPalette();
+    fireEvent.change(input, { target: { value: 'zzzznomatch' } });
+
+    expect(screen.queryAllByRole('option')).toHaveLength(0);
+    expect(screen.getByText(/nothing matches/i)).toBeInTheDocument();
+
+    fireEvent.keyDown(input, { key: 'Enter' });
+    expect(screen.getByRole('dialog')).toBeInTheDocument();
+  });
+
+  it('closes when the backdrop is clicked but not when the panel is', () => {
+    openPalette();
+    const dialog = screen.getByRole('dialog');
+
+    fireEvent.click(dialog.firstElementChild!);
+    expect(screen.getByRole('dialog')).toBeInTheDocument();
+
+    fireEvent.click(dialog);
+    expect(screen.queryByRole('dialog')).not.toBeInTheDocument();
+  });
+
+  it('ignores unrelated keys inside the input', () => {
+    const input = openPalette();
+    fireEvent.keyDown(input, { key: 'a' });
+    expect(screen.getByRole('dialog')).toBeInTheDocument();
+    expect(selected()).toBe(0);
+  });
+});

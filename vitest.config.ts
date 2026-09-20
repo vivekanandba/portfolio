@@ -15,25 +15,33 @@ export default defineConfig({
       provider: 'v8',
       // Measure the app, not the tests or config.
       include: ['src/**'],
-      reporter: ['text-summary', 'text', 'html'],
-      // Floors sit a few points under the measured numbers so ordinary changes
-      // don't trip them, but a real regression does. Raise them when coverage
-      // improves; never lower them to make a build pass.
+      reporter: ['text-summary', 'text', 'html', 'json-summary'],
+      // Floors sit a couple of points under the measured numbers so ordinary
+      // changes don't trip them, but a real regression does. Raise them when
+      // coverage improves; never lower them to make a build pass (CON-COV-002).
       //
-      // The global numbers alone are not enough: 27 fully-covered content data
-      // files dominate the average, so a new untested file in lib/ or
-      // components/ could land at 0% without moving it. Hence per-directory
-      // floors on the two places real logic lives.
+      // These are AGGREGATE floors, and an aggregate hides things: this repo
+      // once read 97.94% statements while three files in src/app were at
+      // exactly 0%, because src/app had no floor of its own. Two changes came
+      // out of that — src/app is now listed like the others, and
+      // `scripts/coverage-floor.mjs` enforces a per-file floor that no average
+      // can paper over. Vitest's own `thresholds.perFile` cannot do both, so
+      // the two checks are deliberately separate. `npm run test:coverage`
+      // runs them in order.
       thresholds: {
-        // measured 2026-09-13 (PR-C): 96.63 / 89.6 / 88.52 / 96.63
-        statements: 95,
-        lines: 95,
-        branches: 86,
-        functions: 87,
-        // measured: 100 / 83.3 / 100
-        'src/lib/**': { statements: 95, lines: 95, branches: 80, functions: 95 },
-        // measured: 95.1 / 88.6 / 86.2
-        'src/components/**': { statements: 90, lines: 90, branches: 84, functions: 80 },
+        // measured 2026-09-20: 99.95 / 96.15 / 99.36 / 99.95
+        statements: 98,
+        lines: 98,
+        branches: 94,
+        functions: 97,
+        // measured: 100 / 98.35 / 100 / 100
+        'src/lib/**': { statements: 98, lines: 98, branches: 95, functions: 98 },
+        // measured: 99.86 / 95.99 / 98.97 / 99.86
+        'src/components/**': { statements: 98, lines: 98, branches: 93, functions: 96 },
+        // measured: 100 / 94.97 / 100 / 100 — the directory that had no floor.
+        'src/app/**': { statements: 98, lines: 98, branches: 92, functions: 98 },
+        // measured: 100 / 95 / 100 / 100
+        'src/content/**': { statements: 98, lines: 98, branches: 92, functions: 98 },
       },
     },
   },

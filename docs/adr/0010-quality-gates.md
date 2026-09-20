@@ -3,6 +3,13 @@
 **Status:** Accepted
 **Date:** 2026-08-05 (backfilled) **Shipped in:** #37
 
+**Amended:** 2026-09-20 — the aggregate floors this ADR set were raised to 98% statements/lines,
+94% branches and 97% functions, `src/app/**` and `src/content/**` gained the per-directory floors
+they never had, and a **per-file** floor (90% statements/lines/functions) was added in
+`scripts/coverage-floor.mjs`. The reasoning below still holds; the incident that prompted the
+amendment is that the aggregate hid three files at exactly 0%, which is the same masking this ADR
+describes for `seo.ts`, one level up.
+
 ## Context
 
 Vivek asked three questions the repository could not answer: where deployment bugs were coming
