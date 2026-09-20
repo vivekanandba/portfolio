@@ -22,6 +22,7 @@ npm run test:unit       # does the code do what it says
 npm run test:contract   # are the data and the published record still true
 npm run test:a11y       # can everyone use it
 npm run test:e2e        # can a person complete the task
+npm run test:security   # is anything exploitable, leaked, or unpatched
 npm run test:coverage   # all vitest suites + aggregate, per-directory and per-file floors
 ```
 
@@ -45,7 +46,7 @@ document and it is not an ADR.
 
 ## Layout
 
-src/ · out/ · scripts/ · docs/ · specs/ · tests/{unit,contract,a11y,e2e}
+src/ · out/ · scripts/ · docs/ · specs/ · security/ · tests/{unit,contract,a11y,e2e}
 
 ---
 
