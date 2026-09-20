@@ -1,5 +1,6 @@
-import { describe, it, expect, beforeEach } from 'vitest';
-import { render, fireEvent, screen, cleanup } from '@testing-library/react';
+import { describe, it, expect } from 'vitest';
+import type { ReactElement } from 'react';
+import { render, fireEvent, screen } from '@testing-library/react';
 import { axe } from 'jest-axe';
 import Home from '@/app/page';
 import NotFound from '@/app/not-found';
@@ -29,13 +30,11 @@ import { listPosts } from '@/lib/writing';
 const AXE_TIMEOUT = 40_000;
 
 /** Async server components: await the element, then render it like any JSX. */
-const renderAsync = async (element: Promise<React.ReactElement>) => render(await element);
+const renderAsync = async (element: Promise<ReactElement>) => render(await element);
 
 async function expectNoViolations(container: HTMLElement) {
   expect(await axe(container)).toHaveNoViolations();
 }
-
-beforeEach(() => cleanup());
 
 describe('accessibility — the landing page', () => {
   it(
