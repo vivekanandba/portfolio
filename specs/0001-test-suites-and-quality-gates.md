@@ -1,6 +1,8 @@
 # SPEC-0001 — Test suites and quality gates
 
 **Status:** Active **Since:** 2026-09-20 **Shipped in:** #62
+**Covers:** —
+**Routes:** — (the gates themselves, not a surface)
 
 ## What
 

@@ -1,6 +1,8 @@
 # SPEC-0002 — Security posture
 
 **Status:** Active **Since:** 2026-09-20 **Shipped in:** #63
+**Covers:** —
+**Routes:** every route, through the document shell
 
 ## What
 

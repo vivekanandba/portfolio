@@ -283,6 +283,17 @@ The a11y suite no longer hand-copies the landing composition — it renders `<Ho
 second list to keep in sync. It had already drifted: `<Contact />` was rendered inside `<main>` while
 the page ships it outside as a `<footer>`.
 
+### Spec coverage
+
+Twelve feature specs in [`specs/`](specs/) cover all twelve sections of section 3 and all thirteen
+routes the app serves. The number is **derived, not counted**:
+`tests/contract/spec-coverage.test.ts` reads this document's section table and walks `src/app`, then
+checks both against what each spec declares it owns. A new section or route with no spec fails the
+build, and two specs claiming the same section fails too.
+
+This gate exists because the answer used to be sixteen of twenty-six, nobody knew that, and the
+missing one was site identity — which is why a missing favicon could never trip anything.
+
 ## 9. Process — spec at the start, tests at the end
 
 Nothing ships without the thinking being written down first. This section is the contract; the

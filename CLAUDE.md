@@ -40,7 +40,9 @@ A suite is a directory under `tests/`, so a test file's location is its suite. S
 
 ## Project notes
 
-`specs/` holds one spec per **feature** — what it does now, edited as it changes. `docs/adr/` holds
+`specs/` holds one spec per **feature** — what it does now, edited as it changes. Each declares
+`**Covers:**` and `**Routes:**`, and `tests/contract/spec-coverage.test.ts` fails the build if a
+section or route has no spec, so coverage is derived rather than counted. `docs/adr/` holds
 **decisions** — why it is like this, frozen, amended only by a dated note. A small UI change adds a
 numbered rule and a dated Revisions row to the relevant feature spec; it never gets its own
 document and it is not an ADR.

@@ -24,3 +24,12 @@ Every spec carries five sections, checked by `tests/contract/specs.test.ts`:
 | [0001](0001-test-suites-and-quality-gates.md) | Test suites and quality gates |
 | [0002](0002-security-posture.md)              | Security posture              |
 | [0003](0003-delivery-verification.md)         | Delivery verification         |
+| [0004](0004-site-identity.md)                 | Site identity                 |
+| [0005](0005-landing-composition.md)           | Landing composition           |
+| [0006](0006-the-story-sections.md)            | The story sections            |
+| [0007](0007-projects.md)                      | Projects                      |
+| [0008](0008-writing.md)                       | Writing                       |
+| [0009](0009-archive.md)                       | The era archive               |
+| [0010](0010-credibility.md)                   | Credibility                   |
+| [0011](0011-interaction-layer.md)             | Interaction layer             |
+| [0012](0012-content-and-media.md)             | Content and media             |
