@@ -1,0 +1,38 @@
+# Constitution rule IDs cited by this repository.
+#
+# IDs and titles ONLY — never the rule text. A project guide cites a rule, it never
+# restates it (copies drift, citations do not). The full text lives at
+# https://github.com/vivekanandba/constitution (private).
+#
+# CI cannot read ~/.claude (CON-VER-004), so this vendored list is what
+# tests/constitution.test.ts checks citations against. Regenerate it when the
+# constitution changes; a citation to a retired ID then fails the build.
+#
+# Source: CONSTITUTION.md at origin/main 2b60d1995dd0, captured 2026-09-20
+
+CON-VER-001 · Gate on exit codes, never on reading output
+CON-VER-002 · Run every suite, especially the slow one
+CON-VER-003 · Verify the outcome, not the command's exit code
+CON-VER-004 · Run a check where it will actually run
+CON-VER-005 · A check that misdiagnoses is worse than no check
+CON-VER-006 · Don't re-derive facts you can execute
+CON-VER-007 · Never claim an unverifiable thing is verified
+CON-COV-001 · Application coverage says nothing about whether software ships
+CON-COV-002 · A coverage floor only ratchets up
+CON-COV-003 · Cover the boundary between components, not just inside them
+CON-DATA-001 · Record observations, never inferences
+CON-DATA-002 · Use tri-state wherever "unknown" differs from "no"
+CON-DATA-003 · Report contradictions; never silently reconcile them
+CON-DATA-004 · Never overwrite a human judgement from a derived signal
+CON-DATA-005 · Prefer `ON DELETE SET NULL` to `CASCADE` when the child records a decision
+CON-PROC-001 · Specify before implementing
+CON-PROC-002 · Keeping a suite green is not keeping it current
+CON-PROC-003 · When a bug escapes, extend the layer that should have caught it
+CON-PROC-004 · Ship through a reviewed change, and review adversarially
+CON-PROC-005 · Write the test first and watch it fail
+CON-PROC-006 · Guard destructive actions by construction, not by convention
+CON-PROC-007 · Automation proposes; humans dispose
+CON-PROC-008 · Never commit directly to a protected branch
+CON-SEC-001 · A credential in a conversation is compromised
+CON-REP-001 · State what was verified and how
+CON-REP-002 · Report the cost of what you didn't do
