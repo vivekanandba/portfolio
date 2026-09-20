@@ -45,10 +45,10 @@ jobs:
           changed=$(git diff --name-only "$base"...HEAD)
           echo "Changed files:"; echo "$changed" | sed 's/^/  /'
           if echo "$changed" | grep -qx 'src/content/schema.ts'; then
-            if echo "$changed" | grep -qE '^(SPEC\.md|docs/adr/)'; then
+            if echo "$changed" | grep -qE '^(SPEC\.md|specs/|docs/adr/)'; then
               echo "Schema change is accompanied by a spec change."
             else
-              echo "::error::src/content/schema.ts changed without SPEC.md or docs/adr/. See SPEC.md §9.1 — a new schema field needs a spec edit and an ADR."
+              echo "::error::src/content/schema.ts changed without SPEC.md, specs/ or docs/adr/. See SPEC.md §9.1 — a new schema field needs a spec edit and an ADR."
               exit 1
             fi
           else
@@ -58,7 +58,21 @@ jobs:
       - name: Quality gate (lint + typecheck + format)
         run: npm run quality:check
 
-      - name: Unit / component / a11y tests (with coverage thresholds)
+      # One named step per suite, so a red check says WHICH KIND of thing broke
+      # before anyone opens the log: the code, the published record, or access.
+      # They run before the coverage pass rather than instead of it — coverage
+      # has to see all three at once or a file covered only by another suite
+      # reads as uncovered (SPEC-0001).
+      - name: Suite — contract (data and the published record)
+        run: npm run test:contract
+
+      - name: Suite — unit (does the code do what it says)
+        run: npm run test:unit
+
+      - name: Suite — accessibility
+        run: npm run test:a11y
+
+      - name: Coverage floors (aggregate, per directory, and per file)
         run: npm run test:coverage
 
       - name: Build static export
@@ -121,5 +135,5 @@ jobs:
         if: steps.pw-cache.outputs.cache-hit == 'true'
         run: npx playwright install-deps chromium
 
-      - name: E2E smoke tests (desktop + mobile)
+      - name: Suite — e2e (can a person complete the task)
         run: npx playwright test

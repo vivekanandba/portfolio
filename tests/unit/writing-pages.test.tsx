@@ -1,6 +1,5 @@
 import { describe, it, expect, vi } from 'vitest';
 import { render, screen, within } from '@testing-library/react';
-import { axe } from 'jest-axe';
 import WritingIndex from '@/app/writing/page';
 import PostPage, { generateStaticParams } from '@/app/writing/[slug]/page';
 import PostImage, { generateStaticParams as ogParams } from '@/app/writing/[slug]/opengraph-image';
@@ -58,10 +57,7 @@ describe('/writing/ index', () => {
     }
   });
 
-  it('has no axe violations', async () => {
-    const { container } = render(<WritingIndex />);
-    expect(await axe(container)).toHaveNoViolations();
-  }, 40_000);
+  // Accessibility lives in tests/a11y/pages.test.tsx, with every other page type.
 });
 
 describe('/writing/[slug]/', () => {
@@ -90,7 +86,6 @@ describe('/writing/[slug]/', () => {
       );
     }
     for (const img of screen.queryAllByRole('img')) expect(img).toHaveAccessibleName();
-    expect(await axe(container)).toHaveNoViolations();
   }, 40_000);
 });
 

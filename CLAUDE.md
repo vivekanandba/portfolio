@@ -16,8 +16,17 @@ Typography-only personal portfolio. Next.js 15 + React 19 + TypeScript (strict) 
 ## Commands
 
 ```sh
-npm test  ·  npm run build
+npm test                # all vitest suites
+npm run build           # static export
+npm run test:unit       # does the code do what it says
+npm run test:contract   # are the data and the published record still true
+npm run test:a11y       # can everyone use it
+npm run test:e2e        # can a person complete the task
+npm run test:coverage   # all vitest suites + aggregate, per-directory and per-file floors
 ```
+
+A suite is a directory under `tests/`, so a test file's location is its suite. See
+[`specs/0001`](specs/0001-test-suites-and-quality-gates.md).
 
 ## Gates
 
@@ -27,11 +36,16 @@ npm test  ·  npm run build
 
 ## Project notes
 
-No specs/ yet. `out/` is build output, never a source.
+`specs/` holds one spec per **feature** — what it does now, edited as it changes. `docs/adr/` holds
+**decisions** — why it is like this, frozen, amended only by a dated note. A small UI change adds a
+numbered rule and a dated Revisions row to the relevant feature spec; it never gets its own
+document and it is not an ADR.
+
+`out/` is build output, never a source.
 
 ## Layout
 
-src/ · out/ · scripts/ · docs/
+src/ · out/ · scripts/ · docs/ · specs/ · tests/{unit,contract,a11y,e2e}
 
 ---
 

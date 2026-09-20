@@ -1,6 +1,5 @@
 import { describe, it, expect } from 'vitest';
 import { render, screen } from '@testing-library/react';
-import { axe } from 'jest-axe';
 import ArchivePage, { generateStaticParams } from '@/app/archive/[era]/page';
 import CaseStudyPage from '@/app/work/[slug]/page';
 import WorkIndex from '@/app/work/page';
@@ -55,10 +54,8 @@ describe('the era archive page (ADR-0016)', () => {
     for (const img of screen.getAllByRole('img')) expect(img).toHaveAccessibleName();
   });
 
-  it('has no axe violations', async () => {
-    const { container } = await renderArchive('legend');
-    expect(await axe(container)).toHaveNoViolations();
-  }, 40_000);
+  // Accessibility for this page lives in tests/a11y/pages.test.tsx, with every
+  // other page type — it was eighty seconds of this file's runtime.
 });
 
 describe('the archive is reachable from the pages it elaborates', () => {

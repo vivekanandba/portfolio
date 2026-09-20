@@ -8,7 +8,7 @@ import { join } from 'node:path';
  * against paper in BOTH color schemes. Locks the hex values against drift.
  */
 
-const css = readFileSync(join(__dirname, '../src/app/globals.css'), 'utf8');
+const css = readFileSync(join(__dirname, '../../src/app/globals.css'), 'utf8');
 
 function parseSchemeVars(block: string): Record<string, [number, number, number]> {
   const vars: Record<string, [number, number, number]> = {};
