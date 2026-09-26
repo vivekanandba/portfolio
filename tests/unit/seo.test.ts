@@ -38,19 +38,25 @@ describe('siteMetadata', () => {
     expect(base.href).not.toContain('/portfolio');
   });
 
-  it('uses absolute, base-path-aware URLs for canonical and og:image', () => {
+  it('uses an absolute, base-path-aware canonical URL', () => {
     expect(siteMetadata.alternates?.canonical).toBe(`${BASE}/`);
-    const og = siteMetadata.openGraph as { url?: string; images?: { url: string }[] };
+    const og = siteMetadata.openGraph as { url?: string };
     expect(og.url).toBe(BASE);
-    expect(og.images?.[0].url).toBe(`${BASE}/og.png`);
     // Never doubled.
-    expect(og.images?.[0].url).not.toContain('/portfolio/portfolio');
+    expect(og.url).not.toContain('/portfolio/portfolio');
   });
 
-  it('declares a large summary card with the same image', () => {
-    const tw = siteMetadata.twitter as { card?: string; images?: string[] };
+  it('names no image, so the generated card is not overridden', () => {
+    // The social card comes from src/app/opengraph-image.tsx, a Next file
+    // convention. Setting `images` here would replace it with whatever was
+    // written by hand — which is exactly what the static og.png was, until it
+    // had drifted out of the site's typography with nothing able to regenerate
+    // it (SPEC-0004 R6).
+    const og = siteMetadata.openGraph as { images?: unknown };
+    const tw = siteMetadata.twitter as { card?: string; images?: unknown };
+    expect(og.images).toBeUndefined();
+    expect(tw.images).toBeUndefined();
     expect(tw.card).toBe('summary_large_image');
-    expect(tw.images?.[0]).toBe(`${BASE}/og.png`);
   });
 });
 

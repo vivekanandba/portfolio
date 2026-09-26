@@ -177,11 +177,69 @@
     @apply border-hairline;
   }
 
+  /* Keyboard focus. Until now the only focus style in the codebase was the skip
+     link, so tabbing through the site relied on whatever ring the browser chose
+     — and the command palette's input actively removed it. :focus-visible means
+     mouse users never see it and keyboard users always do. */
+  :focus-visible {
+    outline: 2px solid rgb(var(--c-accent));
+    outline-offset: 2px;
+    border-radius: 2px;
+  }
+
+  /* Printing. The rule below used to be the whole of it: un-hide scroll-reveal
+     content so pages did not come out blank. That left the sticky nav stamped
+     across the first page, link destinations invisible, and project pages
+     breaking mid-figure. */
   @media print {
     .js .reveal {
       opacity: 1;
       transform: none;
       transition: none;
+    }
+
+    /* Interface, not content: navigation, the tour bar and the palette have no
+       meaning on paper. */
+    header[class*='sticky'],
+    [data-print-hide] {
+      display: none !important;
+    }
+
+    /* Ink and paper, whatever the reader's theme was on screen. */
+    :root,
+    :root[data-theme='dark'] {
+      --c-paper: 255 255 255;
+      --c-ink: 0 0 0;
+      --c-muted: 64 64 64;
+      --c-hairline: 200 200 200;
+      --c-card: 255 255 255;
+      --c-accent: 0 0 0;
+    }
+
+    /* A link the reader cannot click should still say where it went. Skipped
+       for in-page anchors, which would print as noise. */
+    .post-body a[href^='http']::after,
+    main a[href^='http']::after {
+      content: ' (' attr(href) ')';
+      font-size: 0.85em;
+      word-break: break-all;
+    }
+
+    /* Do not split a figure, a metric or a card across a page break. */
+    figure,
+    blockquote,
+    li,
+    .post-body pre {
+      break-inside: avoid;
+    }
+    h1,
+    h2,
+    h3 {
+      break-after: avoid;
+    }
+
+    @page {
+      margin: 18mm 16mm;
     }
   }
 

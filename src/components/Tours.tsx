@@ -128,6 +128,7 @@ export function TourBar() {
     <div
       role="region"
       aria-label="Guided tour"
+      data-print-hide
       className="fixed inset-x-0 bottom-0 z-50 border-t border-hairline bg-paper/95 backdrop-blur"
     >
       <div className="mx-auto flex max-w-shell flex-wrap items-center gap-x-6 gap-y-2 px-6 py-3">
