@@ -28,7 +28,7 @@ const EXPECT_COMMIT = flag('commit');
 
 // Everything after the route loop. Counted here so the summary cannot drift
 // from reality the way a hardcoded `+ 6` did.
-const NAMED_CHECKS = 9;
+const NAMED_CHECKS = 10;
 
 const failures = [];
 const notes = [];
@@ -130,6 +130,26 @@ await check('serves a valid manifest', '/manifest.webmanifest', async (res) => {
     'manifest has no maskable icon',
   );
 });
+
+// 4b. Every icon is fetched at the URL the manifest yields, resolved against
+//     the manifest's own address — the way a browser does it — never at a path
+//     this script assumes. The five icons once resolved to the account root and
+//     404ed while every check above passed (2026-09-26).
+await check(
+  'every manifest icon resolves where the manifest points',
+  '/manifest.webmanifest',
+  async (res) => {
+    const body = await res.json();
+    for (const icon of body.icons) {
+      const url = new URL(icon.src, `${BASE}/manifest.webmanifest`).toString();
+      expect(url.startsWith(`${BASE}/`), `${icon.src} resolves outside the site: ${url}`);
+      const r = await fetch(url);
+      expect(r.status === 200, `${icon.src} → ${url} returned ${r.status}`);
+      const type = r.headers.get('content-type') ?? '';
+      expect(type.startsWith('image/png'), `${url} is ${type}, not image/png`);
+    }
+  },
+);
 
 // 5. The worker on the live site is the one this commit built. A worker left
 //    over from an earlier deploy would keep serving an earlier shell, and no

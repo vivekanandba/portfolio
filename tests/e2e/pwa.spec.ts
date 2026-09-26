@@ -55,7 +55,8 @@ test('the manifest is installable: standalone, with 192 and 512 icons and a mask
   request,
   baseURL,
 }) => {
-  const res = await request.get(new URL('manifest.webmanifest', baseURL).toString());
+  const manifestUrl = new URL('manifest.webmanifest', baseURL).toString();
+  const res = await request.get(manifestUrl);
   expect(res.status()).toBe(200);
   const m = await res.json();
   expect(m.display).toBe('standalone');
@@ -63,7 +64,14 @@ test('the manifest is installable: standalone, with 192 and 512 icons and a mask
   expect(sizes).toEqual(expect.arrayContaining(['192x192', '512x512']));
   expect(m.icons.some((i: { purpose?: string }) => i.purpose === 'maskable')).toBe(true);
   for (const icon of m.icons) {
-    const r = await request.get(new URL(icon.src.replace(/^\//, ''), baseURL).toString());
-    expect(r.status(), `${icon.src} is served`).toBe(200);
+    // Resolved exactly as a browser resolves it: against the manifest's own
+    // URL, with nothing stripped or re-added. An earlier version of this loop
+    // removed the leading slash and resolved against the base URL — which put
+    // the base path back and passed while the live manifest pointed every icon
+    // at the account root (2026-09-26).
+    const url = new URL(icon.src, manifestUrl).toString();
+    const r = await request.get(url);
+    expect(r.status(), `${icon.src} → ${url} is served`).toBe(200);
+    expect(r.headers()['content-type'], `${url} is an image`).toMatch(/^image\/png/);
   }
 });
