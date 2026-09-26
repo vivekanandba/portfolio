@@ -1,0 +1,7 @@
+/* Applied only while a section baseline is captured (tests/e2e/visual.spec.ts).
+   The nav is sticky, so scrolling a section into view lays it across the
+   section's top edge; hiding it here means a nav change fails the nav baseline
+   and nothing else. visibility, not display, so layout does not shift. */
+header.sticky {
+  visibility: hidden;
+}

@@ -1,4 +1,5 @@
 import { test, expect } from '@playwright/test';
+import { profile } from '../../src/content/profile';
 // Relative import on purpose: the collection only pulls type imports, so this
 // stays runtime-dependency-free under Playwright's esbuild loader.
 import { caseStudies } from '../../src/content/caseStudies';
@@ -9,7 +10,7 @@ import { caseStudies } from '../../src/content/caseStudies';
 for (const cs of caseStudies) {
   test(`case study ${cs.slug} renders end-to-end`, async ({ page }) => {
     await page.goto(`work/${cs.slug}/`);
-    await expect(page).toHaveTitle(new RegExp('Vivekanand B'));
+    await expect(page).toHaveTitle(new RegExp(profile.name));
     await expect(page.getByRole('heading', { level: 1 })).toHaveText(cs.title);
     // The annotated systems diagram is present and accessible (some projects
     // also carry a real artifact image, so match the first img role).

@@ -37,7 +37,10 @@ retyped. Work that is not in the repository is work nobody else can do and nobod
 - **R3.** `verify-live.mjs` reports **every** failure, not the first, so one run says everything
   that is wrong.
 - **R4.** Pixel baselines cover **regions, not whole pages**: the nav, the hero, Turning Points, a
-  project header, a post header, the footer, the palette and the 404, in both themes.
+  project header, a post header, the footer, the palette and the 404, in both themes. A region's
+  baseline fails only for changes inside that region: the sticky nav is hidden when any other
+  section is captured, and the palette baseline is of its panel rather than of the translucent
+  backdrop and the page behind it.
 - **R5.** Baselines are generated and compared **inside the Playwright container**, and the visual
   tests are their own Playwright project and their own CI job.
 - **R6.** Every visual and infra check asserts the page is real — a 200 and rendered content —
@@ -73,8 +76,16 @@ chrome and typography, which is where a CSS regression shows and which do not mo
 added.
 
 **Why the container.** Text renders differently between machines. Baselines made here and compared
-on a bare runner would fail for font reasons unrelated to any change. `maxDiffPixelRatio` is 0.01
-rather than zero, because antialiasing differs even within one image version.
+on a bare runner would fail for font reasons unrelated to any change.
+
+**Why an absolute pixel budget, not a ratio.** The tolerance shipped as `maxDiffPixelRatio: 0.01`,
+which sounds strict and is not: one percent of the 1280×65 nav strip is 832 pixels, an entire word.
+Renaming the site owner from "Vivekanand B" to "Vivekanand Balakrishnan" changed the most prominent
+text in the nav and all sixteen baselines passed. A ratio scales tolerance with image size, which is
+backwards — a short, wide strip is exactly where a small absolute change matters most. The budget is
+now `maxDiffPixels: 120`. Baselines are generated and compared inside one container, so genuine
+antialiasing drift is a handful of pixels; on the rebuild that proved this, the six unchanged
+regions differed by zero.
 
 ## Not doing
 
@@ -90,7 +101,8 @@ rather than zero, because antialiasing differs even within one image version.
 
 ## Revisions
 
-| Date       | Change                                                                                                                                                   | Covered by                                                                                   |
-| ---------- | -------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
-| 2026-09-20 | `scripts/visual-baselines.sh` added after the container left root-owned files that broke later local runs.                                               | `tests/contract/workflows.test.ts`                                                           |
-| 2026-09-20 | Written with R1–R8 when the infra suite was added: `version.json`, the post-deploy verifier, 16 pixel baselines, size budgets and the screenshot script. | `tests/contract/workflows.test.ts`, `tests/unit/version.test.ts`, `tests/e2e/visual.spec.ts` |
+| Date       | Change                                                                                                                                                                                                                                                                                                                  | Covered by                                                                                   |
+| ---------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
+| 2026-09-26 | Tolerance changed from a 1% ratio to an absolute 120-pixel budget after the ratio let a rename of the nav's most prominent text pass all sixteen baselines. Section captures now hide the sticky nav and the palette capture is of its panel, so each region fails only for its own changes. All baselines regenerated. | `tests/e2e/visual.spec.ts`, `playwright.config.ts`                                           |
+| 2026-09-20 | `scripts/visual-baselines.sh` added after the container left root-owned files that broke later local runs.                                                                                                                                                                                                              | `tests/contract/workflows.test.ts`                                                           |
+| 2026-09-20 | Written with R1–R8 when the infra suite was added: `version.json`, the post-deploy verifier, 16 pixel baselines, size budgets and the screenshot script.                                                                                                                                                                | `tests/contract/workflows.test.ts`, `tests/unit/version.test.ts`, `tests/e2e/visual.spec.ts` |

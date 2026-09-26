@@ -49,8 +49,14 @@ for (const scheme of ['light', 'dark'] as const) {
         expect(response?.status(), `${surface.path || '/'} should be served`).toBe(200);
         await settle(page);
 
+        // The nav is sticky, so scrolling a section into view lays the nav
+        // across the top of it. Left in, every section baseline fails whenever
+        // the nav changes — renaming the site owner failed turning-points, a
+        // section that does not contain the name. The nav has its own baseline;
+        // the others hide it so they fail only for their own reasons.
         await expect(page.locator(surface.selector).first()).toHaveScreenshot(
           `${surface.name}-${scheme}.png`,
+          surface.name === 'nav' ? {} : { stylePath: 'tests/fixtures/hide-sticky-nav.css' },
         );
       });
     }
@@ -61,7 +67,12 @@ for (const scheme of ['light', 'dark'] as const) {
         await page.keyboard.press('ControlOrMeta+k');
         await expect(page.getByRole('combobox')).toBeVisible({ timeout: 1000 });
       }).toPass();
-      await expect(page.getByRole('dialog')).toHaveScreenshot(`palette-${scheme}.png`);
+      // The dialog is the full-viewport backdrop, and the backdrop is
+      // translucent, so a baseline of it is mostly a baseline of the page
+      // behind it. The panel is the thing this pins.
+      await expect(page.locator('[role="dialog"] > div').first()).toHaveScreenshot(
+        `palette-${scheme}.png`,
+      );
     });
 
     test('404', async ({ page }) => {

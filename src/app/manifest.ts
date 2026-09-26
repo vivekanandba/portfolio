@@ -8,7 +8,7 @@ export const dynamic = 'force-static';
 export default function manifest(): MetadataRoute.Manifest {
   return {
     name: `${profile.name} — ${profile.tagline}`,
-    short_name: profile.name,
+    short_name: profile.shortName,
     description: profile.valueProp,
     start_url: './',
     display: 'browser',

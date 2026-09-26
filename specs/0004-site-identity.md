@@ -50,6 +50,10 @@ delight work amends first.
 - **R15.** Printing produces a document, not a screenshot: no navigation furniture, ink on white
   whatever the screen theme was, external link destinations spelled out, and no figure or heading
   split across a page break.
+- **R16.** The site names its owner from `profile`, never from a literal. A short form is authored
+  alongside the full name for the places that truncate — a home screen shows about twelve characters
+  — because abbreviating someone's name by rule is how it gets abbreviated wrongly. Quotations of
+  source documents are exempt and must keep whatever the document said (ADR-0008).
 
 ## Verification
 
@@ -57,6 +61,7 @@ delight work amends first.
 npx vitest run tests/unit/root-layout.test.tsx tests/unit/seo.test.ts
 npx vitest run tests/unit/manifest.test.ts tests/unit/site-card.test.tsx   # R12, R13
 npx vitest run tests/contract/site-identity.test.ts                       # R9, R10, R11
+npx vitest run tests/contract/naming.test.ts                              # R16
 npx vitest run tests/a11y/pages.test.tsx                                  # R8
 python3 scripts/make-icons.py --verify                                    # R10
 npm run verify:infra    # R2, R3, R7, R9, R12 against the deployed site
@@ -89,4 +94,5 @@ site-level card was missing, which was wrong: a hand-made `public/og.png` existe
 | Date       | Change                                                                                                                                                                                               | Covered by                                                                                             |
 | ---------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------ |
 | 2026-09-20 | Written with R1–R8, cataloguing what exists and naming what is missing — the favicon among it.                                                                                                       | `tests/unit/root-layout.tsx`                                                                           |
+| 2026-09-26 | R16 added — the site is labelled Vivekanand Balakrishnan, with an authored short form for the home screen. The Legend deck quotations keep the name the deck used.                                   | `tests/contract/naming.test.ts`                                                                        |
 | 2026-09-26 | R9–R15 added. The site gets a mark, generated from a vendored Fraunces; a manifest; a generated social card replacing the static `public/og.png`; a visible focus ring; and a real print stylesheet. | `tests/contract/site-identity.test.ts`, `tests/unit/manifest.test.ts`, `tests/unit/site-card.test.tsx` |
