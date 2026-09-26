@@ -1,7 +1,8 @@
 import type { Profile } from './schema';
 
 export const profile: Profile = {
-  name: 'Vivekanand B',
+  name: 'Vivekanand Balakrishnan',
+  shortName: 'Vivekanand B',
   tagline: 'Engineer · Intrapreneur · AI-Native Architect',
   valueProp:
     'Applying the precision of aerospace design to build scalable, privacy-first, enterprise-grade AI products — from concept to GA.',

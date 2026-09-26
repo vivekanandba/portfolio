@@ -1,4 +1,5 @@
 import { test, expect } from '@playwright/test';
+import { profile } from '../../src/content/profile';
 
 const SECTIONS = [
   'turning-points',
@@ -19,7 +20,7 @@ test('landing page renders all sections', async ({ page }) => {
 
   // The H1 is the positioning claim; the name sits in the hero eyebrow.
   await expect(page.getByRole('heading', { level: 1 })).toContainText(/production AI/i);
-  await expect(page.locator('#top').getByText('Vivekanand B')).toBeVisible();
+  await expect(page.locator('#top').getByText(profile.name)).toBeVisible();
 
   for (const id of SECTIONS) {
     await expect(page.locator(`#${id}`)).toBeAttached();

@@ -1,4 +1,4 @@
-# Portfolio — Vivekanand B
+# Portfolio — Vivekanand Balakrishnan
 
 Typography-only personal portfolio. Next.js 15 (App Router) + React 19 + TypeScript (strict) + Tailwind CSS, statically exported (`output: 'export'`) and deployed to GitHub Pages at <https://vivekanandba.github.io/portfolio/>.
 

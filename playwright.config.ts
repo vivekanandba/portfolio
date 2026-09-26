@@ -23,9 +23,21 @@ export default defineConfig({
    */
   expect: {
     toHaveScreenshot: {
-      // Antialiasing differs slightly even within one image version; a hard zero
-      // makes the gate cry wolf, and a gate that cries wolf gets muted.
-      maxDiffPixelRatio: 0.01,
+      /**
+       * An absolute pixel budget, not a ratio.
+       *
+       * This was `maxDiffPixelRatio: 0.01`, which sounds strict and is not: the
+       * nav baseline is 1280x65, so one percent of it is 832 pixels — an entire
+       * word. Renaming the site owner from "Vivekanand B" to "Vivekanand
+       * Balakrishnan" changed the most prominent text in the nav and all
+       * sixteen baselines still passed.
+       *
+       * A ratio scales the tolerance with the image, which is backwards: a
+       * short wide strip is exactly where a small absolute change matters most.
+       * Baselines are generated and compared inside the same container, so
+       * genuine antialiasing drift is a handful of pixels, not hundreds.
+       */
+      maxDiffPixels: 120,
       animations: 'disabled',
       caret: 'hide',
     },

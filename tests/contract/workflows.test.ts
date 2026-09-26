@@ -41,6 +41,10 @@ describe('the workflows', () => {
   );
 
   const ci = workflows.find(([f]) => f === 'ci.yml')![1];
+  const scripts = JSON.parse(readFileSync(join(ROOT, 'package.json'), 'utf8')).scripts as Record<
+    string,
+    string
+  >;
 
   it('runs each test suite as its own named step, so a red check names the suite', () => {
     for (const suite of [
@@ -68,6 +72,21 @@ describe('the workflows', () => {
     expect(ci).toContain('npm run test:security');
     expect(ci).toContain('npm run test:coverage');
     expect(ci).toContain('npm run check:size');
+  });
+
+  it('keeps the pixel baselines out of the bare-runner e2e job', () => {
+    // A bare `playwright test` runs every project, the visual one included, on
+    // ubuntu-latest — whose fonts are not the container's. Those baselines can
+    // only fail there, and for weeks they did not, because a 1% tolerance was
+    // absorbing runner-versus-container drift along with everything else (#74).
+    const e2eJob = ci.split('\n  e2e:')[1] ?? '';
+    expect(e2eJob, 'an e2e job').toBeTruthy();
+    expect(e2eJob).toContain('npm run test:e2e');
+    expect(e2eJob).not.toMatch(/run:\s*npx playwright test\s*$/m);
+    // And the script it calls must actually select the behavioural projects.
+    expect(scripts['test:e2e']).toMatch(/--project=desktop/);
+    expect(scripts['test:e2e']).toMatch(/--project=mobile/);
+    expect(scripts['test:e2e']).not.toMatch(/--project=visual/);
   });
 
   it('runs the pixel baselines in the container they were made in', () => {

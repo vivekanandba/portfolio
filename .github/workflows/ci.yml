@@ -205,4 +205,8 @@ jobs:
         run: npx playwright install-deps chromium
 
       - name: Suite — e2e (can a person complete the task)
-        run: npx playwright test
+        run: npm run test:e2e
+        # `npm run test:e2e`, not a bare `playwright test`: the bare form runs
+        # every project, including the pixel baselines, on this bare runner —
+        # whose fonts differ from the container the baselines were made in. The
+        # 1% tolerance hid that for weeks; the 120px budget exposed it (#74).

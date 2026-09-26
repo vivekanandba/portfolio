@@ -1,4 +1,4 @@
-# SPEC — Vivekanand B Portfolio (v1.6)
+# SPEC — Vivekanand Balakrishnan Portfolio (v1.6)
 
 > Spec-driven contract. Code follows this; if reality diverges, update this file first.
 >
@@ -40,7 +40,7 @@
 ## 1. Purpose & Driving Principle
 
 A single-page personal portfolio landing site that is **convincing and impactful** — the overriding
-principle — plus a project page per body of work. Canonical landing page for Vivekanand B.
+principle — plus a project page per body of work. Canonical landing page for Vivekanand Balakrishnan.
 
 **Primary audiences (priority order):**
 

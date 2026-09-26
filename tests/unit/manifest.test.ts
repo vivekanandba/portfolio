@@ -20,8 +20,15 @@ describe('the web manifest', () => {
 
   it('names the site from content, not from a second copy of the name', () => {
     expect(m.name).toContain(profile.name);
-    expect(m.short_name).toBe(profile.name);
     expect(m.description).toBe(profile.valueProp);
+  });
+
+  it('uses the short form where a home screen would truncate', () => {
+    // An installed icon shows roughly twelve characters. "Vivekanand
+    // Balakrishnan" is cut mid-surname, which reads worse than the short form.
+    expect(m.short_name).toBe(profile.shortName);
+    expect(m.short_name!.length).toBeLessThanOrEqual(14);
+    expect(m.name).not.toBe(m.short_name);
   });
 
   it('agrees with the page about the theme colour', () => {

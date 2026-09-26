@@ -36,6 +36,10 @@ export type Domain = z.infer<typeof domainSchema>;
 
 export const profileSchema = z.object({
   name: z.string().min(1),
+  // A home screen has room for about twelve characters before it truncates, so
+  // the short form is authored rather than derived — a clever abbreviation of
+  // someone's name is the kind of thing that gets it wrong.
+  shortName: z.string().min(1).max(14),
   tagline: z.string().min(1), // "Engineer · Intrapreneur · AI-Native Architect"
   valueProp: z.string().min(1), // one-line hero statement
   email: z.string().email(),
