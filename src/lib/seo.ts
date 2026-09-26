@@ -9,7 +9,12 @@ const DESCRIPTION = profile.valueProp;
 // resolving root-relative paths — so build the full URL explicitly.
 export const SITE_URL =
   process.env.NEXT_PUBLIC_SITE_URL ?? 'https://vivekanandba.github.io/portfolio';
-const OG_IMAGE = { url: `${SITE_URL}/og.png`, width: 1200, height: 630, alt: TITLE };
+// The social card is generated at build by src/app/opengraph-image.tsx — a Next
+// file convention, so every route that does not supply its own inherits it and
+// Next applies the base path itself. Setting `images` here would override that
+// with a hand-made file, which is what this replaced: a static og.png that had
+// drifted out of the site's typography and could not be regenerated from
+// anything (SPEC-0004 R6).
 
 // metadataBase resolves file-convention images (e.g. the per-case-study
 // opengraph-image). Next already prefixes those paths with basePath, so
@@ -32,13 +37,11 @@ export const siteMetadata: Metadata = {
     description: DESCRIPTION,
     type: 'website',
     url: SITE_URL,
-    images: [OG_IMAGE],
   },
   twitter: {
     card: 'summary_large_image',
     title: TITLE,
     description: DESCRIPTION,
-    images: [OG_IMAGE.url],
   },
 };
 
@@ -65,8 +68,8 @@ export function workIndexMetadata(): Metadata {
     title,
     description,
     alternates: { canonical: url },
-    openGraph: { title, description, type: 'website', url, images: [OG_IMAGE] },
-    twitter: { card: 'summary_large_image', title, description, images: [OG_IMAGE.url] },
+    openGraph: { title, description, type: 'website', url },
+    twitter: { card: 'summary_large_image', title, description },
   };
 }
 
@@ -81,8 +84,8 @@ export function archiveMetadata(era: string): Metadata {
     title,
     description,
     alternates: { canonical: url },
-    openGraph: { title, description, type: 'website', url, images: [OG_IMAGE] },
-    twitter: { card: 'summary_large_image', title, description, images: [OG_IMAGE.url] },
+    openGraph: { title, description, type: 'website', url },
+    twitter: { card: 'summary_large_image', title, description },
   };
 }
 
@@ -95,8 +98,8 @@ export function recommendationsMetadata(): Metadata {
     title,
     description,
     alternates: { canonical: url },
-    openGraph: { title, description, type: 'website', url, images: [OG_IMAGE] },
-    twitter: { card: 'summary_large_image', title, description, images: [OG_IMAGE.url] },
+    openGraph: { title, description, type: 'website', url },
+    twitter: { card: 'summary_large_image', title, description },
   };
 }
 
@@ -138,8 +141,8 @@ export function writingIndexMetadata(count: number): Metadata {
     title,
     description,
     alternates: { canonical: url, types: { 'application/atom+xml': `${SITE_URL}/feed.xml` } },
-    openGraph: { title, description, type: 'website', url, images: [OG_IMAGE] },
-    twitter: { card: 'summary_large_image', title, description, images: [OG_IMAGE.url] },
+    openGraph: { title, description, type: 'website', url },
+    twitter: { card: 'summary_large_image', title, description },
   };
 }
 

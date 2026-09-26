@@ -26,6 +26,10 @@ const flag = (name, fallback) => {
 const BASE = (flag('base', 'https://vivekanandba.github.io/portfolio') ?? '').replace(/\/$/, '');
 const EXPECT_COMMIT = flag('commit');
 
+// Everything after the route loop. Counted here so the summary cannot drift
+// from reality the way a hardcoded `+ 6` did.
+const NAMED_CHECKS = 8;
+
 const failures = [];
 const notes = [];
 const fail = (what, detail) => failures.push(`${what}\n      ${detail}`);
@@ -69,6 +73,13 @@ const ROUTES = [
   '/feed.xml',
   '/sitemap.xml',
   '/version.json',
+  // The marks. /favicon.ico especially: browsers request it whether or not the
+  // document links to it, and the site answered 404 to every one of them until
+  // SPEC-0004 R9 (#73).
+  '/favicon.ico',
+  '/icon.png',
+  '/apple-icon.png',
+  '/manifest.webmanifest',
 ];
 for (const route of ROUTES) {
   await check(`GET ${route}`, route, (res) => expect(res.ok, `status ${res.status}`));
@@ -88,7 +99,25 @@ await check('serves the commit that was built', '/version.json', async (res) => 
   );
 });
 
-// 3. The security policy survived the deploy, and still says what it should.
+// 3. The document links its marks, so a browser finds them without guessing.
+await check('links its marks and its manifest', '/', async (res) => {
+  const html = await res.text();
+  for (const rel of ['icon', 'apple-touch-icon', 'manifest']) {
+    const href = new RegExp(`<link rel="${rel}"[^>]*href="([^"]*)"`).exec(html)?.[1];
+    expect(href, `no <link rel="${rel}">`);
+    expect(href.includes('/portfolio/'), `${rel} href drops the base path: ${href}`);
+  }
+});
+
+// 4. The manifest parses and agrees with the page about the theme colour.
+await check('serves a valid manifest', '/manifest.webmanifest', async (res) => {
+  const body = await res.json();
+  expect(body.name, 'manifest has no name');
+  expect(Array.isArray(body.icons) && body.icons.length > 0, 'manifest lists no icons');
+  expect(body.theme_color === '#FAFAF7', `manifest theme_color is ${body.theme_color}`);
+});
+
+// 5. The security policy survived the deploy, and still says what it should.
 await check('carries its security policy', '/', async (res) => {
   const html = await res.text();
   const policy = /<meta http-equiv="Content-Security-Policy" content="([^"]*)"/.exec(html)?.[1];
@@ -100,7 +129,7 @@ await check('carries its security policy', '/', async (res) => {
   expect(html.includes('name="referrer"'), 'no referrer policy');
 });
 
-// 4. Canonical URLs carry the base path. Dropping it is silent and poisons search.
+// 6. Canonical URLs carry the base path. Dropping it is silent and poisons search.
 await check('canonical URLs keep the base path', '/writing/', async (res) => {
   const html = await res.text();
   const canonical = /<link rel="canonical" href="([^"]*)"/.exec(html)?.[1];
@@ -108,7 +137,7 @@ await check('canonical URLs keep the base path', '/writing/', async (res) => {
   expect(canonical.startsWith(BASE), `canonical is ${canonical}`);
 });
 
-// 5. The social card is a real PNG. Extensionless and served as octet-stream by
+// 7. The social card is a real PNG. Extensionless and served as octet-stream by
 //    Pages, so the signature is the only honest check, not the content type.
 await check('the social card is a real image', '/', async (res) => {
   const html = await res.text();
@@ -124,7 +153,7 @@ await check('the social card is a real image', '/', async (res) => {
   expect(head === '89504e47', `og:image is not a PNG (starts ${head})`);
 });
 
-// 6. The feed parses and has one entry per published post.
+// 8. The feed parses and has one entry per published post.
 await check('the feed is well-formed Atom', '/feed.xml', async (res) => {
   const xml = await res.text();
   expect(xml.trimStart().startsWith('<?xml'), 'feed does not start with an XML declaration');
@@ -134,7 +163,7 @@ await check('the feed is well-formed Atom', '/feed.xml', async (res) => {
   notes.push(`feed carries ${entries} entries`);
 });
 
-// 7. The language the site removed must stay removed. This is the one check
+// 9. The language the site removed must stay removed. This is the one check
 //    that guards meaning rather than mechanics: a regression here republishes
 //    hedging that reads as though the author is unsure of their own record.
 await check('no disclaimer language has crept back', '/', async (res) => {
@@ -157,4 +186,4 @@ if (failures.length > 0) {
   process.exit(1);
 }
 
-console.log(`\nAll ${ROUTES.length + 6} checks passed against ${BASE}.`);
+console.log(`\nAll ${ROUTES.length + NAMED_CHECKS} checks passed against ${BASE}.`);

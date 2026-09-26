@@ -43,14 +43,36 @@ test('resume PDF link resolves under the base path', async ({ page, baseURL }) =
   expect(res.headers()['content-type']).toContain('pdf');
 });
 
-test('og:image is absolute and the file is served', async ({ page, baseURL }) => {
+test('og:image is absolute and resolves to a real PNG', async ({ page, baseURL }) => {
   await page.goto('');
   const ogImage = await page.locator('meta[property="og:image"]').first().getAttribute('content');
-  expect(ogImage).toContain('/portfolio/og.png');
+  expect(ogImage).toBeTruthy();
+  expect(ogImage).toContain('/portfolio/');
 
-  const res = await page.request.get(new URL('og.png', baseURL).toString());
+  // The card is generated, so it is served extensionless with a content hash
+  // and Pages returns it as octet-stream. The PNG signature is the only honest
+  // check; the content type is not one.
+  const meta = new URL(ogImage!);
+  const res = await page.request.get(new URL(meta.pathname + meta.search, baseURL).toString());
   expect(res.status()).toBe(200);
-  expect(res.headers()['content-type']).toContain('image/png');
+  expect((await res.body()).subarray(0, 4).toString('hex')).toBe('89504e47');
+});
+
+test('the marks and the manifest are linked and served', async ({ page, baseURL }) => {
+  await page.goto('');
+  for (const [rel, path] of [
+    ['icon', 'icon.png'],
+    ['apple-touch-icon', 'apple-icon.png'],
+    ['manifest', 'manifest.webmanifest'],
+  ] as const) {
+    await expect(page.locator(`link[rel="${rel}"]`)).toHaveAttribute('href', /\/portfolio\//);
+    const res = await page.request.get(new URL(path, baseURL).toString());
+    expect(res.status(), `${path} should be served`).toBe(200);
+  }
+
+  // The legacy request every browser makes without being told to.
+  const ico = await page.request.get(new URL('favicon.ico', baseURL).toString());
+  expect(ico.status()).toBe(200);
 });
 
 test('mobile menu opens and navigates to a section', async ({ page }, testInfo) => {
