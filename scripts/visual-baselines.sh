@@ -31,9 +31,20 @@ mkdir -p ".pw-site${BASE_PATH}"
 cp -r out/. ".pw-site${BASE_PATH}/"
 cp out/404.html .pw-site/404.html
 
-npx serve .pw-site -l "$PORT" --no-clipboard >/dev/null 2>&1 &
+# `setsid` puts the server in its own process group so the trap can kill the
+# group, not just the `npx` wrapper. Killing only $! left the real `serve`
+# child alive on the port three runs in a row; Playwright then reused it
+# (reuseExistingServer off CI) and tested a stale build.
+setsid npx serve .pw-site -l "$PORT" --no-clipboard >/dev/null 2>&1 &
 SERVER=$!
-trap 'kill "$SERVER" 2>/dev/null || true' EXIT
+cleanup() {
+  kill -- "-$SERVER" 2>/dev/null || kill "$SERVER" 2>/dev/null || true
+  # Belt and braces: anything still bound to the port is ours.
+  for pid in $(ss -ltnp 2>/dev/null | grep ":${PORT} " | grep -oE 'pid=[0-9]+' | cut -d= -f2 | sort -u); do
+    kill "$pid" 2>/dev/null || true
+  done
+}
+trap cleanup EXIT
 
 for _ in $(seq 1 30); do
   curl -sf -o /dev/null "http://localhost:${PORT}${BASE_PATH}/" && break

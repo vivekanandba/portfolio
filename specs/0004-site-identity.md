@@ -2,7 +2,7 @@
 
 **Status:** Active **Since:** 2026-09-20 **Shipped in:** #71
 **Covers:** —
-**Routes:** `/404` · `/sitemap.xml` · `/version.json` · `/opengraph-image` · the document shell on every route
+**Routes:** `/404` · `/sitemap.xml` · `/version.json` · `/opengraph-image` · `/sw.js` · `/offline/` · the document shell on every route
 
 ## What
 
@@ -54,6 +54,18 @@ delight work amends first.
   alongside the full name for the places that truncate — a home screen shows about twelve characters
   — because abbreviating someone's name by rule is how it gets abbreviated wrongly. Quotations of
   source documents are exempt and must keep whatever the document said (ADR-0008).
+- **R17.** The site is installable: the manifest declares `display: standalone`, an `id`, a `scope`,
+  and icons at 192 and 512 including a **maskable** 512 whose content sits inside the platform safe
+  zone, so an OS mask cuts paper and never a letter.
+- **R18.** A service worker, generated at build as `/sw.js`, names its cache after the deployed
+  commit and deletes every other cache on activate. Pages are served **network first** — an online
+  visitor always sees the current build and a stale page cannot be preferred — with cache as the
+  fallback; hashed assets and images are cache first; video and anything off-origin are never
+  intercepted.
+- **R19.** A navigation that fails offline lands on `/offline/`, precached at install, rather than on
+  the browser's error page.
+- **R20.** The worker is registered by production builds only. A worker registered against `next dev`
+  would cache development pages and make every reload a mystery.
 
 ## Verification
 
@@ -62,10 +74,17 @@ npx vitest run tests/unit/root-layout.test.tsx tests/unit/seo.test.ts
 npx vitest run tests/unit/manifest.test.ts tests/unit/site-card.test.tsx   # R12, R13
 npx vitest run tests/contract/site-identity.test.ts                       # R9, R10, R11
 npx vitest run tests/contract/naming.test.ts                              # R16
+npx vitest run tests/unit/sw.test.ts                                      # R18, R19 — the worker's logic, run in a sandbox
+npx playwright test tests/e2e/pwa.spec.ts                                 # R17, R18 in a real browser: registration, precache, cache writes
 npx vitest run tests/a11y/pages.test.tsx                                  # R8
 python3 scripts/make-icons.py --verify                                    # R10
 npm run verify:infra    # R2, R3, R7, R9, R12 against the deployed site
 ```
+
+R19 is proven by **running the generated worker** with a rejecting `fetch` rather than in a browser,
+because Playwright's offline emulation cuts the page's network and not the worker's — verified: a
+browser test of "go offline, navigate, see the offline page" returned the real page. A test that
+passes either way is not a test.
 
 `--verify` needs Python and stays a manual gate, like the repo's other generators. What CI checks
 instead is that the committed marks are the right shape and that the licence is beside the font —
@@ -79,10 +98,23 @@ which would ship an unused 350 KB.
 - **A dark-theme variant of the mark.** A favicon is cached by the browser and shown against its own
   chrome, which is not the page's. One fixed, high-contrast rendering beats two that each look wrong
   somewhere.
-- **A maskable icon or an installable app shell.** `display: browser` is honest: this is a website,
-  and a manifest claiming otherwise would put it in a frameless window with no back button.
+- **Vendoring Inter.** ...
+
+# with:
+
 - **Vendoring Inter.** Only the display face is needed to cut a mark. A second 300 KB build input
   that nothing draws with is not worth the tidiness.
+- **Precaching media or video.** The site is 45 MB, most of it photographs and clips, and a visitor
+  who opens one page should not have their phone filled with the other twenty-eight. Pages and
+  images are cached as they are visited; video never is.
+- **An update prompt.** Pages are served network-first, so an online visitor is always on the current
+  build and there is nothing to prompt about. A "new version available" banner would be theatre.
+- **Push notifications, background sync, or anything that needs a server.** There is no server.
+
+_Until 2026-09-26 this section said `display: browser` was the honest choice, because a standalone
+window has no back button. Vivek asked for a PWA, and the concern is met: every page carries the nav
+and the command palette, both of which work inside a standalone window. The reversal is recorded
+here rather than edited away; the earlier reasoning was not wrong, it was outweighed._
 
 _This section previously said the favicon, apple-touch icon, manifest, site card and print
 stylesheet were missing. They are the subject of the 2026-09-26 revision below. It also said the
@@ -91,8 +123,9 @@ site-level card was missing, which was wrong: a hand-made `public/og.png` existe
 
 ## Revisions
 
-| Date       | Change                                                                                                                                                                                               | Covered by                                                                                             |
-| ---------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------ |
-| 2026-09-20 | Written with R1–R8, cataloguing what exists and naming what is missing — the favicon among it.                                                                                                       | `tests/unit/root-layout.tsx`                                                                           |
-| 2026-09-26 | R16 added — the site is labelled Vivekanand Balakrishnan, with an authored short form for the home screen. The Legend deck quotations keep the name the deck used.                                   | `tests/contract/naming.test.ts`                                                                        |
-| 2026-09-26 | R9–R15 added. The site gets a mark, generated from a vendored Fraunces; a manifest; a generated social card replacing the static `public/og.png`; a visible focus ring; and a real print stylesheet. | `tests/contract/site-identity.test.ts`, `tests/unit/manifest.test.ts`, `tests/unit/site-card.test.tsx` |
+| Date       | Change                                                                                                                                                                                                                                                                                                                  | Covered by                                                                                             |
+| ---------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------ |
+| 2026-09-20 | Written with R1–R8, cataloguing what exists and naming what is missing — the favicon among it.                                                                                                                                                                                                                          | `tests/unit/root-layout.tsx`                                                                           |
+| 2026-09-26 | R17–R20 added — the site is installable and works offline: a standalone manifest with 192, 512 and maskable icons, a generated service worker whose cache is named after the build commit, an offline page, registration in production builds only. Reverses the `display: browser` decision, recorded as a correction. | `tests/unit/sw.test.ts`, `tests/e2e/pwa.spec.ts`, `tests/unit/manifest.test.ts`                        |
+| 2026-09-26 | R16 added — the site is labelled Vivekanand Balakrishnan, with an authored short form for the home screen. The Legend deck quotations keep the name the deck used.                                                                                                                                                      | `tests/contract/naming.test.ts`                                                                        |
+| 2026-09-26 | R9–R15 added. The site gets a mark, generated from a vendored Fraunces; a manifest; a generated social card replacing the static `public/og.png`; a visible focus ring; and a real print stylesheet.                                                                                                                    | `tests/contract/site-identity.test.ts`, `tests/unit/manifest.test.ts`, `tests/unit/site-card.test.tsx` |

@@ -28,7 +28,7 @@ const EXPECT_COMMIT = flag('commit');
 
 // Everything after the route loop. Counted here so the summary cannot drift
 // from reality the way a hardcoded `+ 6` did.
-const NAMED_CHECKS = 8;
+const NAMED_CHECKS = 9;
 
 const failures = [];
 const notes = [];
@@ -80,6 +80,13 @@ const ROUTES = [
   '/icon.png',
   '/apple-icon.png',
   '/manifest.webmanifest',
+  // The installable half (SPEC-0004 R17–R19): the worker, its offline
+  // fallback, and the sizes an install prompt requires.
+  '/sw.js',
+  '/offline/',
+  '/icon-192.png',
+  '/icon-512.png',
+  '/icon-512-maskable.png',
 ];
 for (const route of ROUTES) {
   await check(`GET ${route}`, route, (res) => expect(res.ok, `status ${res.status}`));
@@ -115,9 +122,34 @@ await check('serves a valid manifest', '/manifest.webmanifest', async (res) => {
   expect(body.name, 'manifest has no name');
   expect(Array.isArray(body.icons) && body.icons.length > 0, 'manifest lists no icons');
   expect(body.theme_color === '#FAFAF7', `manifest theme_color is ${body.theme_color}`);
+  expect(body.display === 'standalone', `manifest display is ${body.display}, not standalone`);
+  const sizes = body.icons.map((i) => i.sizes);
+  for (const s of ['192x192', '512x512']) expect(sizes.includes(s), `manifest lacks a ${s} icon`);
+  expect(
+    body.icons.some((i) => i.purpose === 'maskable'),
+    'manifest has no maskable icon',
+  );
 });
 
-// 5. The security policy survived the deploy, and still says what it should.
+// 5. The worker on the live site is the one this commit built. A worker left
+//    over from an earlier deploy would keep serving an earlier shell, and no
+//    other check would notice.
+await check('serves the service worker for this build', '/sw.js', async (res) => {
+  const src = await res.text();
+  expect(src.includes("addEventListener('fetch'"), 'sw.js does not look like a service worker');
+  const cache = /const CACHE = 'portfolio-([^']+)'/.exec(src)?.[1];
+  expect(cache, 'sw.js names no cache');
+  if (EXPECT_COMMIT) {
+    expect(
+      cache === EXPECT_COMMIT,
+      `sw.js caches under ${cache}, expected ${EXPECT_COMMIT} — an older worker is live`,
+    );
+  } else {
+    notes.push(`sw.js cache is portfolio-${cache} (no --commit given, so not compared)`);
+  }
+});
+
+// 6. The security policy survived the deploy, and still says what it should.
 await check('carries its security policy', '/', async (res) => {
   const html = await res.text();
   const policy = /<meta http-equiv="Content-Security-Policy" content="([^"]*)"/.exec(html)?.[1];
@@ -129,7 +161,7 @@ await check('carries its security policy', '/', async (res) => {
   expect(html.includes('name="referrer"'), 'no referrer policy');
 });
 
-// 6. Canonical URLs carry the base path. Dropping it is silent and poisons search.
+// 7. Canonical URLs carry the base path. Dropping it is silent and poisons search.
 await check('canonical URLs keep the base path', '/writing/', async (res) => {
   const html = await res.text();
   const canonical = /<link rel="canonical" href="([^"]*)"/.exec(html)?.[1];
@@ -137,7 +169,7 @@ await check('canonical URLs keep the base path', '/writing/', async (res) => {
   expect(canonical.startsWith(BASE), `canonical is ${canonical}`);
 });
 
-// 7. The social card is a real PNG. Extensionless and served as octet-stream by
+// 8. The social card is a real PNG. Extensionless and served as octet-stream by
 //    Pages, so the signature is the only honest check, not the content type.
 await check('the social card is a real image', '/', async (res) => {
   const html = await res.text();
@@ -153,7 +185,7 @@ await check('the social card is a real image', '/', async (res) => {
   expect(head === '89504e47', `og:image is not a PNG (starts ${head})`);
 });
 
-// 8. The feed parses and has one entry per published post.
+// 9. The feed parses and has one entry per published post.
 await check('the feed is well-formed Atom', '/feed.xml', async (res) => {
   const xml = await res.text();
   expect(xml.trimStart().startsWith('<?xml'), 'feed does not start with an XML declaration');
@@ -163,7 +195,7 @@ await check('the feed is well-formed Atom', '/feed.xml', async (res) => {
   notes.push(`feed carries ${entries} entries`);
 });
 
-// 9. The language the site removed must stay removed. This is the one check
+// 10. The language the site removed must stay removed. This is the one check
 //    that guards meaning rather than mechanics: a regression here republishes
 //    hedging that reads as though the author is unsure of their own record.
 await check('no disclaimer language has crept back', '/', async (res) => {

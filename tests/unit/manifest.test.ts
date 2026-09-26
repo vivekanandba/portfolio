@@ -42,9 +42,15 @@ describe('the web manifest', () => {
     expect(m.background_color).toBe(light?.color);
   });
 
-  it('lists both marks with their real sizes', () => {
+  it('lists every mark with its real size, including the two an install prompt needs', () => {
     const icons = m.icons ?? [];
-    expect(icons.map((i) => i.sizes)).toEqual(['32x32', '180x180']);
+    expect(icons.map((i) => i.sizes)).toEqual([
+      '32x32',
+      '180x180',
+      '192x192',
+      '512x512',
+      '512x512',
+    ]);
     for (const icon of icons) {
       expect(icon.type).toBe('image/png');
       // Root-relative: Next applies the base path. A hand-written /portfolio
@@ -52,6 +58,22 @@ describe('the web manifest', () => {
       expect(icon.src.startsWith('/')).toBe(true);
       expect(icon.src).not.toContain('/portfolio');
     }
+  });
+
+  it('offers a maskable icon, so an OS mask cuts paper and not a letter', () => {
+    const maskable = (m.icons ?? []).filter((i) => i.purpose === 'maskable');
+    expect(maskable).toHaveLength(1);
+    expect(maskable[0].sizes).toBe('512x512');
+    expect(maskable[0].src).toContain('maskable');
+  });
+
+  it('installs as an app, with an id and a scope under the base path', () => {
+    // Spec 0004 recorded `browser` as the honest choice a week earlier; the
+    // reversal is dated in its Not-doing section rather than edited away.
+    expect(m.display).toBe('standalone');
+    expect(m.id).toBe('./');
+    expect(m.scope).toBe('./');
+    expect((m.shortcuts ?? []).map((s) => s.url)).toEqual(['./work/', './writing/']);
   });
 
   it('starts relative, so it works under a base path', () => {

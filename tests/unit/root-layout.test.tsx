@@ -133,6 +133,27 @@ describe('the root layout', () => {
   });
 });
 
+describe('the root layout in a production build', () => {
+  it('registers the service worker, at its base-path URL, after load', async () => {
+    // Registration is gated on NODE_ENV so `next dev` never caches development
+    // pages. Vitest runs as 'test', so the branch is dark unless a test flips it.
+    vi.stubEnv('NODE_ENV', 'production');
+    try {
+      const { html } = await renderLayout();
+      expect(html).toContain("'serviceWorker' in navigator");
+      expect(html).toMatch(/serviceWorker\.register\("[^"]*\/sw\.js"\)/);
+      expect(html).toContain("addEventListener('load'");
+    } finally {
+      vi.unstubAllEnvs();
+    }
+  });
+
+  it('does not register one outside production', async () => {
+    const { html } = await renderLayout();
+    expect(html).not.toContain('serviceWorker.register');
+  });
+});
+
 describe('the root layout metadata', () => {
   it('exports site metadata and both theme colours', async () => {
     const { metadata, viewport } = await import('@/app/layout');
