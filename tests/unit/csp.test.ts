@@ -5,7 +5,7 @@ import { contentSecurityPolicy, META_CANNOT_SET } from '@/lib/csp';
  * GitHub Pages cannot set response headers, so the only lever this site has is
  * a <meta http-equiv> policy. Several directives are ignored in meta by spec —
  * frame-ancestors, report-uri, sandbox — and X-Content-Type-Options has no meta
- * form at all. Those are recorded rather than pretended (proposed fleet-wide in vivekanandba/constitution#5), and this
+ * form at all. Those are recorded rather than pretended (CON-SEC-004), and this
  * pins both what the policy says and what it honestly cannot do.
  */
 function directives(policy: string): Record<string, string[]> {

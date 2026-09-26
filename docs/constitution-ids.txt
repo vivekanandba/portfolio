@@ -8,7 +8,7 @@
 # tests/constitution.test.ts checks citations against. Regenerate it when the
 # constitution changes; a citation to a retired ID then fails the build.
 #
-# Source: CONSTITUTION.md at origin/main 2b60d1995dd0, captured 2026-09-20
+# Source: CONSTITUTION.md at origin/main 7b1a6962bbe0, captured 2026-09-26
 
 CON-VER-001 · Gate on exit codes, never on reading output
 CON-VER-002 · Run every suite, especially the slow one
@@ -17,6 +17,7 @@ CON-VER-004 · Run a check where it will actually run
 CON-VER-005 · A check that misdiagnoses is worse than no check
 CON-VER-006 · Don't re-derive facts you can execute
 CON-VER-007 · Never claim an unverifiable thing is verified
+CON-VER-008 · A test that fails only in the full run is a defect in the suite, not noise
 CON-COV-001 · Application coverage says nothing about whether software ships
 CON-COV-002 · A coverage floor only ratchets up
 CON-COV-003 · Cover the boundary between components, not just inside them
@@ -34,5 +35,9 @@ CON-PROC-006 · Guard destructive actions by construction, not by convention
 CON-PROC-007 · Automation proposes; humans dispose
 CON-PROC-008 · Never commit directly to a protected branch
 CON-SEC-001 · A credential in a conversation is compromised
+CON-SEC-002 · Dependency and secret scanning are CI gates, not dashboards
+CON-SEC-003 · Audit the shipped tree and the build tree separately, and trace what actually ships
+CON-SEC-004 · A deployed surface declares its security headers, or records why it cannot
+CON-SEC-005 · A security pass is part of done, not a later project
 CON-REP-001 · State what was verified and how
 CON-REP-002 · Report the cost of what you didn't do
