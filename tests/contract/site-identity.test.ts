@@ -33,6 +33,27 @@ describe('the marks', () => {
     expect(height).toBe(expected);
   });
 
+  it.each([
+    ['public/icon-192.png', 192],
+    ['public/icon-512.png', 512],
+    ['public/icon-512-maskable.png', 512],
+  ])('%s is a square %ipx PNG for the manifest', (rel, expected) => {
+    const { width, height } = pngSize(join(ROOT, rel));
+    expect(width).toBe(expected);
+    expect(height).toBe(expected);
+  });
+
+  it('the maskable icon differs from the plain one, and carries less ink', () => {
+    // Android masks the installed icon into a circle or squircle and crops the
+    // rest, so the maskable variant keeps the mark inside the safe zone. Less
+    // ink near the edges compresses better — a cheap proxy for "the content
+    // shrank" that needs no pixel decoding in a test.
+    const plain = readFileSync(join(ROOT, 'public/icon-512.png'));
+    const maskable = readFileSync(join(ROOT, 'public/icon-512-maskable.png'));
+    expect(maskable.equals(plain)).toBe(false);
+    expect(maskable.byteLength).toBeLessThan(plain.byteLength);
+  });
+
   it('public/favicon.ico carries the three legacy sizes', () => {
     const b = readFileSync(join(ROOT, 'public/favicon.ico'));
     // ICO header: reserved(2) type(2) count(2), then 16 bytes per entry whose

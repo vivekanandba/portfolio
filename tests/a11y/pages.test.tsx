@@ -5,6 +5,7 @@ import { axe } from 'jest-axe';
 import Home from '@/app/page';
 import NotFound from '@/app/not-found';
 import RecommendationsPage from '@/app/recommendations/page';
+import OfflinePage from '@/app/offline/page';
 import WorkIndex from '@/app/work/page';
 import CaseStudyPage from '@/app/work/[slug]/page';
 import WritingIndex from '@/app/writing/page';
@@ -63,6 +64,13 @@ describe('accessibility — the standalone pages', () => {
     'the 404 page',
     async () => {
       await expectNoViolations(render(<NotFound />).container);
+    },
+    AXE_TIMEOUT,
+  );
+  it(
+    'the offline page, which the service worker serves when the network is gone',
+    async () => {
+      await expectNoViolations(render(<OfflinePage />).container);
     },
     AXE_TIMEOUT,
   );

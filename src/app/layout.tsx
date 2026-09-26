@@ -8,6 +8,7 @@ import { archivePaletteEntries } from '@/lib/palette';
 import { postPaletteEntries } from '@/lib/writing';
 import { siteMetadata, personJsonLd } from '@/lib/seo';
 import { contentSecurityPolicy } from '@/lib/csp';
+import { asset } from '@/lib/asset';
 
 // GoatCounter (privacy-friendly, no cookies). Emitted only when a site code is
 // configured at build time, so dev/test builds stay analytics-free.
@@ -60,6 +61,17 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               "(function(){var d=document.documentElement;d.classList.add('js');try{var t=localStorage.getItem('theme');if(t==='dark'||t==='light')d.dataset.theme=t;}catch(e){}})()",
           }}
         />
+        {/* The service worker (SPEC-0004 R18). Production builds only: a worker
+            registered against `next dev` caches development pages and makes
+            every reload a mystery. Registered after load so it never competes
+            with the first paint. */}
+        {process.env.NODE_ENV === 'production' && (
+          <script
+            dangerouslySetInnerHTML={{
+              __html: `if('serviceWorker' in navigator){addEventListener('load',function(){navigator.serviceWorker.register(${JSON.stringify(asset('/sw.js'))}).catch(function(){})})}`,
+            }}
+          />
+        )}
         <a
           href="#top"
           className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-[60] focus:rounded focus:bg-ink focus:px-4 focus:py-2 focus:text-paper"

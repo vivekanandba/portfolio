@@ -70,6 +70,14 @@ RULE_MIN_SIZE = 24
 
 ICO_SIZES = (16, 32, 48)
 
+# Android masks installed icons into a circle, a squircle or a rounded square
+# and crops whatever falls outside. The W3C safe zone is a circle of 80%
+# diameter, and the mark is a rectangle — so it has to shrink until its corners
+# sit inside that circle, not until it looks roughly centred. 0.72 left 741 ink
+# pixels outside the zone and 0.60 left five; 0.58 is where the count is zero,
+# measured, with the paper running edge to edge so any crop cuts background.
+MASKABLE_SCALE = 0.58
+
 
 def load_font(px: int, size: int) -> ImageFont.FreeTypeFont:
     a = axes_for(size)
@@ -78,16 +86,21 @@ def load_font(px: int, size: int) -> ImageFont.FreeTypeFont:
     return font
 
 
-def draw_mark(size: int, glyphs: str) -> Image.Image:
-    """One square mark: glyphs in ink on paper, an accent rule beneath."""
+def draw_mark(size: int, glyphs: str, maskable: bool = False) -> Image.Image:
+    """One square mark: glyphs in ink on paper, an accent rule beneath.
+
+    `maskable` shrinks the content into the safe zone an OS mask leaves alone;
+    the paper still fills the whole square, which is what makes it maskable.
+    """
     s = size * SUPERSAMPLE
     img = Image.new("RGB", (s, s), PAPER)
     d = ImageDraw.Draw(img)
 
     # Size the type by measured cap height rather than nominal point size, so
     # "V" and "VB" come out the same height.
+    shrink = MASKABLE_SCALE if maskable else 1.0
     rule = size >= RULE_MIN_SIZE
-    target = s * CAP_HEIGHT
+    target = s * CAP_HEIGHT * shrink
     px = int(target * 1.4)
     for _ in range(24):
         font = load_font(px, size)
@@ -110,7 +123,7 @@ def draw_mark(size: int, glyphs: str) -> Image.Image:
     d.text((s / 2 - width / 2 - box[0], top - box[1]), glyphs, font=font, fill=INK)
 
     if rule:
-        rule_w = s * RULE_WIDTH
+        rule_w = s * RULE_WIDTH * shrink
         rule_y = top + height + s * RULE_GAP
         d.rectangle(
             [s / 2 - rule_w / 2, rule_y, s / 2 + rule_w / 2, rule_y + s * RULE_THICKNESS],
@@ -120,11 +133,11 @@ def draw_mark(size: int, glyphs: str) -> Image.Image:
     return img.resize((size, size), Image.LANCZOS)
 
 
-def png_bytes(size: int, glyphs: str) -> bytes:
+def png_bytes(size: int, glyphs: str, maskable: bool = False) -> bytes:
     buf = io.BytesIO()
     # optimize=True is deterministic; Pillow writes no timestamp chunk, so the
     # same inputs give the same bytes and --verify means something.
-    draw_mark(size, glyphs).save(buf, format="PNG", optimize=True)
+    draw_mark(size, glyphs, maskable).save(buf, format="PNG", optimize=True)
     return buf.getvalue()
 
 
@@ -149,17 +162,25 @@ def ico_bytes(glyphs: str) -> bytes:
 
 def outputs(glyphs: str) -> Dict[Path, bytes]:
     return {
+        # Next file conventions: linked from <head> with the base path applied.
         ROOT / "src/app/icon.png": png_bytes(32, glyphs),
         ROOT / "src/app/apple-icon.png": png_bytes(180, glyphs),
+        # The legacy request every browser makes without being told to.
         ROOT / "public/favicon.ico": ico_bytes(glyphs),
+        # Referenced from the web manifest only (SPEC-0004). 192 and 512 are the
+        # two sizes an install prompt requires; the maskable one is what Android
+        # actually puts on the home screen.
+        ROOT / "public/icon-192.png": png_bytes(192, glyphs),
+        ROOT / "public/icon-512.png": png_bytes(512, glyphs),
+        ROOT / "public/icon-512-maskable.png": png_bytes(512, glyphs, maskable=True),
     }
 
 
 def contact_sheet(variants: List[str], out: Path) -> None:
     """Every variant at every real size, on one image, for looking at."""
-    sizes = [16, 32, 48, 180]
+    sizes = [16, 32, 48, 180, 192]
     pad, label = 24, 28
-    width = pad + sum(s + pad for s in sizes)
+    width = pad + sum(s + pad for s in sizes) + 192 + pad
     height = pad + len(variants) * (max(sizes) + label + pad)
     sheet = Image.new("RGB", (width, height), (255, 255, 255))
     d = ImageDraw.Draw(sheet)
@@ -170,6 +191,8 @@ def contact_sheet(variants: List[str], out: Path) -> None:
             sheet.paste(draw_mark(s, glyphs), (x, y + max(sizes) - s))
             d.text((x, y + max(sizes) + 6), f"{glyphs} {s}px", fill=(90, 90, 100))
             x += s + pad
+        sheet.paste(draw_mark(192, glyphs, maskable=True), (x, y))
+        d.text((x, y + max(sizes) + 6), f"{glyphs} maskable", fill=(90, 90, 100))
         y += max(sizes) + label + pad
     out.parent.mkdir(parents=True, exist_ok=True)
     sheet.save(out)
