@@ -129,9 +129,21 @@ def png_bytes(size: int, glyphs: str) -> bytes:
 
 
 def ico_bytes(glyphs: str) -> bytes:
+    """Each entry rendered natively, not downsampled from the largest.
+
+    Passing one image and a `sizes` list lets Pillow resize internally, which
+    would hand the 16px entry a shrunken copy of the 48px render — the display
+    grade, hairlines and all, which is the exact thing axes_for() exists to
+    avoid. `append_images` keeps each size the one this script drew for it.
+    """
     buf = io.BytesIO()
-    largest = draw_mark(max(ICO_SIZES), glyphs)
-    largest.save(buf, format="ICO", sizes=[(n, n) for n in ICO_SIZES])
+    marks = [draw_mark(n, glyphs) for n in sorted(ICO_SIZES, reverse=True)]
+    marks[0].save(
+        buf,
+        format="ICO",
+        sizes=[(n, n) for n in sorted(ICO_SIZES, reverse=True)],
+        append_images=marks[1:],
+    )
     return buf.getvalue()
 
 

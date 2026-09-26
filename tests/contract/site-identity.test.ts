@@ -90,4 +90,14 @@ describe('the generator', () => {
     expect(src).toContain('--verify');
     expect(src).toContain('WONK');
   });
+
+  it('renders each .ico entry natively rather than downsampling the largest', () => {
+    // Pillow will happily take one image and a list of sizes, resizing
+    // internally — which hands the 16px entry a shrunken copy of the 48px
+    // render, display-grade hairlines and all. That is precisely what
+    // axes_for() exists to avoid, and it is invisible in the output unless you
+    // go looking, so the guard is on the call rather than the pixels.
+    const src = readFileSync(join(ROOT, 'scripts/make-icons.py'), 'utf8');
+    expect(src).toContain('append_images');
+  });
 });
