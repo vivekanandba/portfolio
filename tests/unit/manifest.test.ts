@@ -1,3 +1,5 @@
+import { existsSync } from 'node:fs';
+import { join } from 'node:path';
 import { describe, it, expect, vi } from 'vitest';
 import manifest from '@/app/manifest';
 import { viewport } from '@/app/layout';
@@ -53,10 +55,32 @@ describe('the web manifest', () => {
     ]);
     for (const icon of icons) {
       expect(icon.type).toBe('image/png');
-      // Root-relative: Next applies the base path. A hand-written /portfolio
-      // prefix here would double it in the export.
-      expect(icon.src.startsWith('/')).toBe(true);
-      expect(icon.src).not.toContain('/portfolio');
+    }
+  });
+
+  it('points every icon at a file that exists under the base path, whatever the base path is', () => {
+    // Next applies the base path to the <link rel="manifest"> and to nothing
+    // inside the manifest. Root-relative icon paths therefore pointed at the
+    // account root on GitHub Pages — five 404s, and an uninstallable site
+    // (2026-09-26). Manifest-relative paths resolve against the manifest's own
+    // URL, like start_url and scope already did, under any base path.
+    const manifestUrl = 'https://example.test/portfolio/manifest.webmanifest';
+    const onDisk: Record<string, string> = {
+      '/portfolio/icon.png': 'src/app/icon.png',
+      '/portfolio/apple-icon.png': 'src/app/apple-icon.png',
+      '/portfolio/icon-192.png': 'public/icon-192.png',
+      '/portfolio/icon-512.png': 'public/icon-512.png',
+      '/portfolio/icon-512-maskable.png': 'public/icon-512-maskable.png',
+    };
+    for (const icon of m.icons ?? []) {
+      expect(icon.src, `${icon.src} is not manifest-relative`).toMatch(/^\.\//);
+      const resolved = new URL(icon.src, manifestUrl).pathname;
+      const file = onDisk[resolved];
+      expect(
+        file,
+        `${icon.src} resolves to ${resolved}, which is not a file this repo ships`,
+      ).toBeTruthy();
+      expect(existsSync(join(process.cwd(), file))).toBe(true);
     }
   });
 

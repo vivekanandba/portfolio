@@ -28,7 +28,7 @@ const EXPECT_COMMIT = flag('commit');
 
 // Everything after the route loop. Counted here so the summary cannot drift
 // from reality the way a hardcoded `+ 6` did.
-const NAMED_CHECKS = 9;
+const NAMED_CHECKS = 10;
 
 const failures = [];
 const notes = [];
@@ -130,6 +130,37 @@ await check('serves a valid manifest', '/manifest.webmanifest', async (res) => {
     'manifest has no maskable icon',
   );
 });
+
+// 4b. Every URL the manifest declares is resolved against the manifest's own
+//     address — the way a browser does it — never at a path this script
+//     assumes, and fetched there. The five icons once resolved to the account
+//     root and 404ed while every check above passed (2026-09-26); start_url and
+//     the shortcuts are resolved the same way and would fail the same way.
+await check(
+  'every URL the manifest declares resolves where the manifest points',
+  '/manifest.webmanifest',
+  async (res) => {
+    const body = await res.json();
+    const manifestUrl = `${BASE}/manifest.webmanifest`;
+    const declared = [
+      ...body.icons.map((i) => ({ what: `icon ${i.src}`, href: i.src, type: /^image\/png/ })),
+      { what: `start_url ${body.start_url}`, href: body.start_url, type: /^text\/html/ },
+      ...(body.shortcuts ?? []).map((s) => ({
+        what: `shortcut ${s.url}`,
+        href: s.url,
+        type: /^text\/html/,
+      })),
+    ];
+    for (const { what, href, type } of declared) {
+      const url = new URL(href, manifestUrl).toString();
+      expect(url.startsWith(`${BASE}/`), `${what} resolves outside the site: ${url}`);
+      const r = await fetch(url);
+      expect(r.status === 200, `${what} → ${url} returned ${r.status}`);
+      const got = r.headers.get('content-type') ?? '';
+      expect(type.test(got), `${what} → ${url} is ${got}`);
+    }
+  },
+);
 
 // 5. The worker on the live site is the one this commit built. A worker left
 //    over from an earlier deploy would keep serving an earlier shell, and no
