@@ -121,10 +121,19 @@ export function Nav() {
         className="mx-auto flex max-w-shell items-center justify-between px-6 py-4"
       >
         <a href="#top" className="text-sm font-semibold tracking-tight text-ink no-underline">
-          {profile.name}
+          {/* Below `sm` the surname wraps onto a second line beside the toggle
+              and the button: the bar fits the full name from about 400px, and
+              many phones are narrower (SPEC-0004 R16). `hidden` is display:none,
+              so assistive tech hears exactly one name. */}
+          <span className="sm:hidden">{profile.shortName}</span>
+          <span className="hidden sm:inline">{profile.name}</span>
         </a>
         <div className="flex items-center gap-4 sm:gap-6">
-          <ul className="hidden items-center gap-6 sm:flex">
+          {/* Eight links, the toggle and the Resume button need about 890px
+              beside the full name, so this row appears only from `lg`; the menu
+              button serves everything narrower. Shown from `sm`, it overflowed
+              the viewport until about 1000px (SPEC-0005 R7). */}
+          <ul className="hidden items-center gap-6 lg:flex">
             {LINKS.map((l) => (
               <li key={l.href}>
                 <a
@@ -151,7 +160,7 @@ export function Nav() {
             aria-expanded={open}
             aria-controls="mobile-menu"
             onClick={() => setOpen((o) => !o)}
-            className="-mr-1 p-1 text-ink sm:hidden"
+            className="-mr-1 p-1 text-ink lg:hidden"
           >
             <span className="sr-only">{open ? 'Close menu' : 'Open menu'}</span>
             <svg
@@ -183,7 +192,7 @@ export function Nav() {
       {open && (
         <ul
           id="mobile-menu"
-          className="space-y-3 border-t border-hairline bg-paper px-6 py-4 sm:hidden"
+          className="space-y-3 border-t border-hairline bg-paper px-6 py-4 lg:hidden"
         >
           {LINKS.map((l) => (
             <li key={l.href}>
