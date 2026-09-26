@@ -27,6 +27,10 @@ Reordering it changes what the page claims, which is why the order is asserted r
   too short to reach the observer band.
 - **R6.** Accessibility is asserted against the real page, by rendering it, never against a copy of
   its composition.
+- **R7.** The link row appears only where it fits. Eight links, the theme toggle and the Resume
+  button need about 890px beside the owner's full name, so the row shows from the large breakpoint
+  and the menu button serves everything narrower. The bar never overflows its viewport and never
+  wraps the name, at any width.
 
 ## Verification
 
@@ -34,6 +38,7 @@ Reordering it changes what the page claims, which is why the order is asserted r
 npx vitest run tests/unit/landing-composition.test.tsx tests/unit/nav.test.tsx
 npx vitest run tests/a11y/pages.test.tsx
 npm run test:visual    # the nav, hero and Turning Points baselines
+npx playwright test tests/e2e/nav.spec.ts --project=desktop   # R7, the bar at eight widths
 ```
 
 R6 is the rule with an incident behind it. The accessibility suite used to hand-copy the section list
@@ -47,6 +52,7 @@ drifted: `Contact` was being tested inside `main` while the page shipped it outs
 
 ## Revisions
 
-| Date       | Change                                                                                                  | Covered by                                |
-| ---------- | ------------------------------------------------------------------------------------------------------- | ----------------------------------------- |
-| 2026-09-20 | Written with R1–R6 after the drift between the page and its accessibility mirror was found and removed. | `tests/unit/landing-composition.test.tsx` |
+| Date       | Change                                                                                                                                                                                                                                                                                                                                                                                                                                                                            | Covered by                                         |
+| ---------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------- |
+| 2026-09-26 | R7 added. Measured while checking where the owner's full name fits: from 640 to about 1000px the link row appeared at the small breakpoint, wrapped the name onto two lines and pushed the Resume button past the edge of the viewport. Nothing measured there — the pixel baseline is 1280 wide and the mobile project is 412. The row now shows from the large breakpoint, and an end-to-end sweep asserts the bar fits at eight widths on the landing page and a project page. | `tests/e2e/nav.spec.ts`, `tests/unit/nav.test.tsx` |
+| 2026-09-20 | Written with R1–R6 after the drift between the page and its accessibility mirror was found and removed.                                                                                                                                                                                                                                                                                                                                                                           | `tests/unit/landing-composition.test.tsx`          |

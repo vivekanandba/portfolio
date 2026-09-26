@@ -1,6 +1,8 @@
 import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
 import { render, screen, fireEvent, act, waitFor } from '@testing-library/react';
 import { Nav } from '@/components/Nav';
+import { CaseStudyNav } from '@/components/CaseStudyNav';
+import { profile } from '@/content';
 
 describe('Nav mobile menu', () => {
   it('toggles the menu and aria-expanded on button click', () => {
@@ -200,5 +202,61 @@ describe('Nav scroll spy', () => {
     globalThis.IntersectionObserver = undefined as unknown as typeof IntersectionObserver;
     expect(() => render(<Nav />)).not.toThrow();
     expect(screen.getAllByRole('link', { name: 'Work' })[0]).not.toHaveAttribute('aria-current');
+  });
+});
+
+/**
+ * The owner's name in the two navigation bars (SPEC-0004 R16). On a phone both
+ * bars wrapped the full name onto two lines — the subpage bar beside a wrapped
+ * "All projects", the landing bar beside its toggle and button. (The name
+ * itself is deliberately not written here: the naming contract forbids the
+ * literal anywhere outside content, comments included, because a comment is
+ * how it ends up pasted into code.) Below the small breakpoint the bars show
+ * the authored short form; from it upward, the full name. `hidden` is
+ * display:none, so only one of the two is ever in the accessibility tree.
+ */
+describe('the owner’s name in the navigation bars', () => {
+  it.each([
+    ['the landing nav', () => <Nav />],
+    ['the subpage nav', () => <CaseStudyNav />],
+  ])('%s shows the short form below sm and the full name from sm up', (_label, make) => {
+    const { container } = render(make());
+    const short = container.querySelector('span.sm\\:hidden');
+    const full = container.querySelector('span.hidden.sm\\:inline');
+    expect(short?.textContent).toBe(profile.shortName);
+    expect(full?.textContent).toBe(profile.name);
+    // Both sit inside the one link home, so the target is the same either way.
+    expect(short?.closest('a')).toBe(full?.closest('a'));
+    expect(short?.closest('a')?.getAttribute('href')).toMatch(/^(\/|#top)$/);
+  });
+});
+
+/**
+ * The landing link row (SPEC-0005 R7). Eight links, the toggle and the Resume
+ * button need about 890px beside the full name; shown from `sm`, the row
+ * overflowed the viewport from 640 to about 1000px and nothing measured there.
+ * The classes are the cheap pin; `tests/e2e/nav.spec.ts` measures the bar.
+ */
+describe('the subpage bar on a phone', () => {
+  it('keeps the way back and the resume, and folds the Writing link away below sm', () => {
+    render(<CaseStudyNav />);
+    const writing = screen.getByRole('link', { name: 'Writing' });
+    expect(writing.className.split(' ')).toEqual(expect.arrayContaining(['hidden', 'sm:inline']));
+    expect(screen.getByRole('link', { name: 'All projects' }).className).not.toMatch(/\bhidden\b/);
+    expect(screen.getByRole('link', { name: 'Resume' }).className).not.toMatch(/\bhidden\b/);
+  });
+});
+
+describe('the landing link row', () => {
+  it('appears only from lg, and the menu button serves every width below it', () => {
+    render(<Nav />);
+    const row = document.querySelector('header nav ul')!;
+    expect(row.className.split(' ')).toEqual(expect.arrayContaining(['hidden', 'lg:flex']));
+    expect(row.className).not.toMatch(/\b(sm|md):flex\b/);
+
+    const button = screen.getByRole('button', { name: /open menu/i });
+    expect(button.className.split(' ')).toContain('lg:hidden');
+    fireEvent.click(button);
+    expect(document.getElementById('mobile-menu')!.className.split(' ')).toContain('lg:hidden');
   });
 });

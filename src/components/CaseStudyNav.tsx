@@ -15,13 +15,25 @@ export function CaseStudyNav() {
         className="mx-auto flex max-w-shell items-center justify-between px-6 py-4"
       >
         <Link href="/" className="text-sm font-semibold tracking-tight text-ink no-underline">
-          {profile.name}
+          {/* On a phone the surname wrapped onto a second line beside a wrapped
+              "All projects", so below `sm` this bar shows the short form
+              (SPEC-0004 R16). `hidden` is display:none, so assistive tech hears
+              exactly one name. */}
+          <span className="sm:hidden">{profile.shortName}</span>
+          <span className="hidden sm:inline">{profile.name}</span>
         </Link>
         <div className="flex items-center gap-4 sm:gap-6">
           <Link href="/work/" className="text-sm text-muted no-underline hover:text-ink">
             All projects
           </Link>
-          <Link href="/writing/" className="text-sm text-muted no-underline hover:text-ink">
+          {/* At 360px the bar holds the short name, the way back and the button
+              with room to spare only without this link; it returns from `sm`.
+              The landing bar folds all of its links away below `lg` for the same
+              reason (SPEC-0005 R7). */}
+          <Link
+            href="/writing/"
+            className="hidden text-sm text-muted no-underline hover:text-ink sm:inline"
+          >
             Writing
           </Link>
           <a
