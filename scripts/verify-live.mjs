@@ -131,22 +131,33 @@ await check('serves a valid manifest', '/manifest.webmanifest', async (res) => {
   );
 });
 
-// 4b. Every icon is fetched at the URL the manifest yields, resolved against
-//     the manifest's own address — the way a browser does it — never at a path
-//     this script assumes. The five icons once resolved to the account root and
-//     404ed while every check above passed (2026-09-26).
+// 4b. Every URL the manifest declares is resolved against the manifest's own
+//     address — the way a browser does it — never at a path this script
+//     assumes, and fetched there. The five icons once resolved to the account
+//     root and 404ed while every check above passed (2026-09-26); start_url and
+//     the shortcuts are resolved the same way and would fail the same way.
 await check(
-  'every manifest icon resolves where the manifest points',
+  'every URL the manifest declares resolves where the manifest points',
   '/manifest.webmanifest',
   async (res) => {
     const body = await res.json();
-    for (const icon of body.icons) {
-      const url = new URL(icon.src, `${BASE}/manifest.webmanifest`).toString();
-      expect(url.startsWith(`${BASE}/`), `${icon.src} resolves outside the site: ${url}`);
+    const manifestUrl = `${BASE}/manifest.webmanifest`;
+    const declared = [
+      ...body.icons.map((i) => ({ what: `icon ${i.src}`, href: i.src, type: /^image\/png/ })),
+      { what: `start_url ${body.start_url}`, href: body.start_url, type: /^text\/html/ },
+      ...(body.shortcuts ?? []).map((s) => ({
+        what: `shortcut ${s.url}`,
+        href: s.url,
+        type: /^text\/html/,
+      })),
+    ];
+    for (const { what, href, type } of declared) {
+      const url = new URL(href, manifestUrl).toString();
+      expect(url.startsWith(`${BASE}/`), `${what} resolves outside the site: ${url}`);
       const r = await fetch(url);
-      expect(r.status === 200, `${icon.src} → ${url} returned ${r.status}`);
-      const type = r.headers.get('content-type') ?? '';
-      expect(type.startsWith('image/png'), `${url} is ${type}, not image/png`);
+      expect(r.status === 200, `${what} → ${url} returned ${r.status}`);
+      const got = r.headers.get('content-type') ?? '';
+      expect(type.test(got), `${what} → ${url} is ${got}`);
     }
   },
 );

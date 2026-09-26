@@ -68,8 +68,8 @@ delight work amends first.
   would cache development pages and make every reload a mystery.
 - **R21.** Every URL the manifest declares resolves under the site's own base path. `start_url`,
   `scope`, the shortcuts and the icons are all manifest-relative, because Next applies the base path
-  to the `<link rel="manifest">` and to nothing inside the file. Each layer fetches the icons at the
-  URL the manifest actually yields — resolved against the manifest's address, as a browser does —
+  to the `<link rel="manifest">` and to nothing inside the file. Each layer fetches the icons, the start URL
+  and the shortcuts at the URL the manifest actually yields — resolved against the manifest's address, as a browser does —
   never at a path the test assumes.
 
 ## Verification
