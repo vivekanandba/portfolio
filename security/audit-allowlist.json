@@ -1,7 +1,7 @@
 {
   "note": [
     "Advisories this repo has looked at and accepted, each with the reason it cannot",
-    "reach anyone here. Patch it, or record the exemption and why — proposed fleet-wide in vivekanandba/constitution#5.",
+    "reach anyone here. Patch it, or record the exemption and why (CON-SEC-003).",
     "",
     "scripts/audit-deps.mjs fails if an entry here no longer matches a reported",
     "advisory, so the list cannot outlive what it excuses. Re-read `reason` when the",

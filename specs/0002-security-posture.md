@@ -34,7 +34,7 @@ not the same as reaching a browser, and on a static export the gap is total.
   high and above, **development** on critical. Each advisory is attributed to exactly one tree.
 - **R2.** An advisory that cannot be patched here is listed in `security/audit-allowlist.json` with
   the reason it cannot reach anyone and the date it was reviewed. Silence is not an exemption
-  (proposed fleet-wide in vivekanandba/constitution#5).
+  (CON-SEC-003).
 - **R3.** An exemption whose advisory no longer appears fails the build. A list of exceptions that
   outlives what it excuses is how exemptions become permanent.
 - **R4.** Secrets are scanned over the **full git history**, not the working tree, because the
@@ -67,7 +67,7 @@ the base path, and passed on a 404 page while asserting nothing.
 - **`frame-ancestors`, `X-Content-Type-Options`, `Strict-Transport-Security` and a report endpoint.**
   GitHub Pages cannot set response headers, and a `<meta>` policy ignores `frame-ancestors`,
   `report-uri` and `sandbox` by specification. Listing them would read as clickjacking protection
-  and provide none, so they are absent and recorded here instead (proposed fleet-wide in vivekanandba/constitution#5). GitHub does send
+  and provide none, so they are absent and recorded here instead (CON-SEC-004). GitHub does send
   its own `Strict-Transport-Security`.
 - **A nonce-based policy.** A `<meta>` policy cannot carry a nonce, and Next inlines both the RSC
   payload and the pre-paint theme script, so `script-src` needs `'unsafe-inline'`. That is the
@@ -83,6 +83,7 @@ the base path, and passed on a 404 page while asserting nothing.
 
 ## Revisions
 
-| Date       | Change                                                                                                                                                             | Covered by                                                                                 |
-| ---------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ |
-| 2026-09-20 | Written with R1–R8 when the security suite was added. Next patched from 15.5.4 to 15.5.25, clearing the RCE in the React flight protocol; vitest patched to 2.1.9. | `tests/contract/workflows.test.ts`, `tests/unit/csp.test.ts`, `tests/e2e/security.spec.ts` |
+| Date       | Change                                                                                                                                                                                                                                                                                           | Covered by                                                                                 |
+| ---------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ |
+| 2026-09-26 | Citations only: the four security rules this suite anticipated were merged into the constitution as CON-SEC-002..005 (vivekanandba/constitution#5, 2026-09-26), so R2 and the headers note now cite CON-SEC-003 and CON-SEC-004 in place of "proposed fleet-wide". No rule or behaviour changed. | `tests/contract/constitution.test.ts`                                                      |
+| 2026-09-20 | Written with R1–R8 when the security suite was added. Next patched from 15.5.4 to 15.5.25, clearing the RCE in the React flight protocol; vitest patched to 2.1.9.                                                                                                                               | `tests/contract/workflows.test.ts`, `tests/unit/csp.test.ts`, `tests/e2e/security.spec.ts` |

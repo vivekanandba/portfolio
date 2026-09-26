@@ -15,7 +15,7 @@
  *                 harmless. Fails on critical, reports the rest.
  *
  * An advisory that cannot be patched here is listed in security/audit-allowlist.json
- * with the reason it cannot reach anyone (proposed fleet-wide in vivekanandba/constitution#5). This fails if such an
+ * with the reason it cannot reach anyone (CON-SEC-003). This fails if such an
  * entry no longer matches a reported advisory, so the list cannot outlive what it
  * excuses.
  *
@@ -90,7 +90,7 @@ for (const tree of TREES) {
     failed = true;
     console.error(
       `\n${tree.name}: ${blocking.length} at or above ${tree.failFrom} with no recorded exemption. ` +
-        `Patch them, or add one to security/audit-allowlist.json with the reason (proposed fleet-wide in vivekanandba/constitution#5).`,
+        `Patch them, or add one to security/audit-allowlist.json with the reason (CON-SEC-003).`,
     );
   }
 }
