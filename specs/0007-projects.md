@@ -32,8 +32,8 @@ migration that touches every content file.
 - **R8.** Each page emits its own OpenGraph card at build (SPEC-0004 R6).
 - **R9.** The page bar fits its row at every width. Below the small breakpoint it holds the owner's
   short form (SPEC-0004 R16), the way back and the resume, and folds the Writing link away — at
-  360px the three did not fit beside even the short form with it; from the small breakpoint the
-  full name and the link return.
+  360px even the short form wrapped beside all three links; from the small breakpoint the full name
+  and the link return.
 
 ## Verification
 

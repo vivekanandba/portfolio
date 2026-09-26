@@ -17,7 +17,10 @@ for (const path of ['', 'work/gadjoy/']) {
   }, testInfo) => {
     test.skip(testInfo.project.name !== 'desktop', 'one viewport sweep is enough');
     await page.goto(path);
-    await page.evaluate(() => document.fonts.ready);
+    await page.evaluate(async () => {
+      await document.fonts.ready;
+      return document.fonts.status;
+    });
 
     for (const width of WIDTHS) {
       await page.setViewportSize({ width, height: 800 });
@@ -27,10 +30,10 @@ for (const path of ['', 'work/gadjoy/']) {
         .evaluate((el) => {
           const spans = Array.from(el.querySelectorAll('nav a span'));
           const shown = spans.find((s) => getComputedStyle(s).display !== 'none')!;
-          const lineHeight = parseFloat(getComputedStyle(shown).lineHeight);
           return {
             overflows: el.scrollWidth > el.clientWidth,
-            nameLines: Math.round(shown.getBoundingClientRect().height / lineHeight),
+            // An inline element has one client rect per line box.
+            nameLines: shown.getClientRects().length,
             name: shown.textContent,
           };
         });
