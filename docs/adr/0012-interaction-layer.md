@@ -2,6 +2,11 @@
 
 **Status:** Accepted
 **Date:** 2026-09-12 **Shipped in:** #42
+**Amended:** 2026-10-02 — the rejection of "scroll-driven animation / heavy motion" below said motion is
+decoration here, not information. That is narrowed to _decorative_ motion. The Arc now draws the fifteen
+years once, left to right, when its section reveals (SPEC-0006 R8–R11): the wipe _is_ the information —
+duration, no gap, the domain switches in order — and it costs no client JavaScript, riding the reveal
+class this site already had. Decorative motion stays out; SPEC §2's non-goal is unchanged.
 
 ## Context
 

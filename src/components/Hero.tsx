@@ -26,15 +26,6 @@ const PROOFS: { value: string; label: string; href?: string }[] = [
   { value: 'US patent', label: 'vascular-flow imaging', href: PATENT_URL },
   { value: '15,000+ repairs', label: '4.7★ · my own business' },
 ];
-// Career timeline, latest on top — includes the founder chapter.
-const TIMELINE = [
-  { org: 'Sanas.ai — zero-to-one AI', year: '2024' },
-  { org: 'NovaSignal — FDA-cleared robotics', year: '2020' },
-  { org: 'Tech Mahindra — rolling-stock tooling', year: '2018' },
-  { org: 'Gadjoy — founder · gadget-repair business', year: '2016' },
-  { org: 'Legend — aerospace tooling · slip rings · bid to handover', year: '2013' },
-  { org: 'Safran — A350 XWB structures', year: '2011' },
-];
 
 /** Above-the-fold identity: name + positioning claim on the left, a dense track-record panel on the right. */
 export function Hero() {
@@ -149,18 +140,6 @@ export function Hero() {
             <div className="mt-4 border-t border-hairline pt-4">
               <p className="text-sm leading-relaxed text-muted">{FIELDS.join(' · ')}</p>
             </div>
-
-            {/* Career timeline — latest on top. */}
-            <ol className="mt-4 border-t border-hairline pt-4">
-              {TIMELINE.map((t) => (
-                <li key={t.year} className="flex items-baseline gap-3 py-1 text-sm">
-                  <span className="tabular w-9 shrink-0 font-medium text-accent">
-                    ’{t.year.slice(2)}
-                  </span>
-                  <span className="text-muted">{t.org}</span>
-                </li>
-              ))}
-            </ol>
           </div>
         </div>
 

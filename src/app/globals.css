@@ -117,6 +117,19 @@
     transform: none;
   }
 
+  /* The arc (SPEC-0006 R10): drawn left to right once its section reveals — a
+     clip wipe over the whole strip, so the bars appear in time order for free.
+     Rides the .is-visible that Reveal stamps: no new JS, and with JS off
+     nothing is clipped. */
+  .js .arc-draw {
+    clip-path: inset(0 100% 0 0);
+    transition: clip-path 1.6s cubic-bezier(0.33, 0, 0.2, 1) 0.2s;
+  }
+  .js .reveal.is-visible .arc-draw {
+    /* -2px on the right: the now cap sits half outside the box (overflow visible). */
+    clip-path: inset(0 -2px 0 0);
+  }
+
   /* Print never scrolls, so reveals would leave sections blank on paper. */
 
   /* Writing (ADR-0017): compiled Markdown. Tokens only — no new --c-* variables. */
@@ -197,6 +210,10 @@
       transform: none;
       transition: none;
     }
+    .js .arc-draw {
+      clip-path: none;
+      transition: none;
+    }
 
     /* Interface, not content: navigation, the tour bar and the palette have no
        meaning on paper. */
@@ -254,6 +271,10 @@
     .js .reveal {
       opacity: 1;
       transform: none;
+      transition: none;
+    }
+    .js .arc-draw {
+      clip-path: none;
       transition: none;
     }
   }

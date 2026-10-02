@@ -28,13 +28,40 @@ disagree with them.
   (ADR-0008: a claim on the site must be checkable against a source).
 - **R6.** Skills show two groups, with the rest behind progressive disclosure (ADR-0004).
 - **R7.** No section states a number, a count or a date that is not derived from `src/content`.
+- **R8.** The Arc section opens with the fifteen years drawn: one strip, the primary roles as abutting
+  segments in the shared domain colours, a thinner lane beneath for a venture run alongside, a label
+  where the domain changes, five-year ticks, the start year at the left edge and "now" at the right.
+  Nothing else goes on it — no project dots, no turning-point markers, no counts. Its job is what the
+  beats cannot state: how long, that it is unbroken, how much of it was aerospace, and that one
+  venture ran the whole way alongside.
+- **R9.** The strip is computed from `roles`, never drawn by hand. `period` keeps the one shape it
+  already has — `Mon YYYY – Mon YYYY` or `Mon YYYY – Present`, with an en dash — enforced by the
+  schema and parsed by `src/lib/arc.ts`; a period that does not parse fails the build, because a
+  silently dropped bar is an invisible lie and a red build is a visible one. Consecutive primary
+  roles may overlap by at most `HANDOVER_TOLERANCE_MONTHS` (three): within it the earlier bar yields
+  to the later one at the later one's start; beyond it the build fails, so a real overlap becomes a
+  decision rather than a drawing. A gap between primary roles is recorded and read out, and "no gap"
+  is said only when the computed list of gaps is empty.
+- **R10.** The strip draws itself once, left to right, when its section reveals — a clip wipe over
+  the whole strip, riding the class `Reveal` already stamps, so the bars appear in time order with no
+  new client JavaScript. With JavaScript off nothing is clipped; under reduced motion and in print
+  the strip is complete and still.
+- **R11.** The strip is read at year resolution. Its right edge is the end of the build year and a
+  role marked Present runs to it, so the picture is stable for a calendar year and its pixel baseline
+  is regenerated each January by decision rather than by drift. The exact months are in the
+  accessible description, computed from the same model, and the era labels are the visible
+  alternative — there is no third enumeration of the roles for screen readers, who already hear them
+  in Turning Points above and the Timeline below.
 
 ## Verification
 
 ```sh
 npx vitest run tests/unit/turning-points.test.tsx tests/unit/sections.test.tsx
 npx vitest run tests/contract/content.test.ts     # R7, the derivation rules
-npm run test:visual                               # the hero and Turning Points baselines
+npx vitest run tests/unit/arc.test.ts tests/contract/arc.test.ts   # R9, the model and today's roles
+npx playwright test tests/e2e/hydration.spec.ts --project=desktop   # R10, the wipe: clipped before, drawn after
+npm run test:visual                               # the hero, Turning Points and arc baselines
+npm run verify:infra                              # R8 on the live site: the strip and its computed description
 ```
 
 ## Not doing
@@ -42,10 +69,21 @@ npm run test:visual                               # the hero and Turning Points 
 - **Animating the arc.** ADR-0012 rejected decorative motion while the site was still earning
   credibility. Plan two revisits it on the grounds that motion which _carries_ information —
   fifteen years and five domain switches — satisfies that test rather than waiving it.
+
+  _Revisited 2026-10-02: the strip in R8 draws itself once, in time order (R10). ADR-0012's test was
+  that motion must be information, not decoration; a wipe that reveals fifteen years left to right
+  is the information. The decision is amended in the ADR, not edited away here._
+
+- **Drawing the projects or the turning points on the strip.** Twenty-nine dots, seven of them in
+  fourteen months, is one dot every five pixels at phone width; and the turning points are directly
+  above. The strip says four things and refuses the rest.
+- **Authored date fields beside `period`.** `start: '2024-11'` next to `period: 'Nov 2024 – Present'`
+  is two copies of one fact with nothing stopping them disagreeing. The period is parsed instead.
 - **A skills proficiency rating.** Self-assessed levels are not checkable, and ADR-0008 applies.
 
 ## Revisions
 
-| Date       | Change                                                                                   | Covered by                     |
-| ---------- | ---------------------------------------------------------------------------------------- | ------------------------------ |
-| 2026-09-20 | Written with R1–R7, cataloguing the derivation rules these five sections already follow. | `tests/unit/sections.test.tsx` |
+| Date       | Change                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        | Covered by                                                                                                         |
+| ---------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------ |
+| 2026-10-02 | R8–R11 added: the fifteen years drawn at the top of The Arc, computed from `roles` by `src/lib/arc.ts`, with a named handover tolerance, a build that fails on an unparseable period or a real overlap, a once-only wipe that rides the existing reveal, and a year-resolution right edge so the new pixel baseline holds for a calendar year. The Hero's hand-written timeline list — six years and six labels in JSX, which R7 forbade from the day it was written — is removed; the arc carries it. Tests were written first and were red. | `tests/unit/arc.test.ts`, `tests/contract/arc.test.ts`, `tests/unit/sections.test.tsx`, `tests/e2e/visual.spec.ts` |
+| 2026-09-20 | Written with R1–R7, cataloguing the derivation rules these five sections already follow.                                                                                                                                                                                                                                                                                                                                                                                                                                                      | `tests/unit/sections.test.tsx`                                                                                     |
