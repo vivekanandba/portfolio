@@ -55,9 +55,17 @@ for (const scheme of ['light', 'dark'] as const) {
         // the nav changes — renaming the site owner failed turning-points, a
         // section that does not contain the name. The nav has its own baseline;
         // the others hide it so they fail only for their own reasons.
+        // "Last updated <month>" is the build date, so the footer baseline expired
+        // on the 1st of every month (September → October broke every PR). Mask it;
+        // the rest of the footer is still compared pixel for pixel.
         await expect(page.locator(surface.selector).first()).toHaveScreenshot(
           `${surface.name}-${scheme}.png`,
-          surface.name === 'nav' ? {} : { stylePath: 'tests/fixtures/hide-sticky-nav.css' },
+          surface.name === 'nav'
+            ? {}
+            : {
+                stylePath: 'tests/fixtures/hide-sticky-nav.css',
+                mask: [page.getByTestId('built')],
+              },
         );
       });
     }

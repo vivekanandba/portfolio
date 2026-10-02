@@ -30,24 +30,24 @@ header() {
   HEADER=1
 }
 
-if printf '%s\n' "$CHANGED" | grep -qE '(^|/)migrations/.*\.sql$'; then
+if grep -qE '(^|/)migrations/.*\.sql$' <<< "$CHANGED"; then
   header
   say "new migrations — apply them before running against your local database:"
   say "    gcloud run jobs execute resumefit-maintenance --args=migrate --region us-central1"
   say "    (or psql -f against your test database)"
 fi
 
-if printf '%s\n' "$CHANGED" | grep -qE '(package-lock\.json|package\.json)$'; then
+if grep -qE '(package-lock\.json|package\.json)$' <<< "$CHANGED"; then
   header
   say "client dependencies changed — npm ci"
 fi
 
-if printf '%s\n' "$CHANGED" | grep -qE '(requirements\.txt|pyproject\.toml|poetry\.lock)$'; then
+if grep -qE '(requirements\.txt|pyproject\.toml|poetry\.lock)$' <<< "$CHANGED"; then
   header
   say "python dependencies changed — pip install -r server/requirements.txt"
 fi
 
-if printf '%s\n' "$CHANGED" | grep -qE '^\.githooks/|^scripts/(check-|preflight|install-hooks)'; then
+if grep -qE '^\.githooks/|^scripts/(check-|preflight|install-hooks)' <<< "$CHANGED"; then
   header
   say "the gates changed — re-run scripts/install-hooks.sh"
 fi
@@ -56,7 +56,7 @@ fi
 # repo carries is the list of rule IDs it cites. This watched
 # .specify/memory/constitution.md, a spec-kit path that has never existed
 # here, so it could never fire (CON-VER-005).
-if printf '%s\n' "$CHANGED" | grep -qE '^docs/constitution-ids\.txt$'; then
+if grep -qE '^docs/constitution-ids\.txt$' <<< "$CHANGED"; then
   header
   say "the constitution's rule list changed — skim it before your next PR"
 fi
