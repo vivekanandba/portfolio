@@ -192,6 +192,33 @@ describe('Nav scroll spy', () => {
     );
   });
 
+  it('clears the Contact mark on leaving the bottom, so scrolling back up never shows it over the hero', async () => {
+    withSections();
+    redefine(document.documentElement, 'scrollHeight', 1000);
+    redefine(window, 'innerHeight', 800);
+    redefine(window, 'scrollY', 200);
+    render(<Nav />);
+    act(() => {
+      window.dispatchEvent(new Event('scroll'));
+    });
+    await waitFor(() =>
+      expect(screen.getAllByRole('link', { name: 'Contact' })[0]).toHaveAttribute(
+        'aria-current',
+        'location',
+      ),
+    );
+    // Back to the top: nothing in the band yet, so nothing is marked.
+    redefine(window, 'scrollY', 0);
+    act(() => {
+      window.dispatchEvent(new Event('scroll'));
+    });
+    await waitFor(() =>
+      expect(screen.getAllByRole('link', { name: 'Contact' })[0]).not.toHaveAttribute(
+        'aria-current',
+      ),
+    );
+  });
+
   it('stops observing when the nav unmounts', () => {
     withSections();
     const { unmount } = render(<Nav />);

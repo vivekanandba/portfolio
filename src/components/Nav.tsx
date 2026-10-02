@@ -111,7 +111,14 @@ export function Nav() {
     // bottom-of-page check owns the Contact highlight.
     const onScroll = () => {
       const doc = document.documentElement;
-      if (window.innerHeight + window.scrollY >= doc.scrollHeight - 4) setActive('#contact');
+      if (window.innerHeight + window.scrollY >= doc.scrollHeight - 4) {
+        setActive('#contact');
+      } else {
+        // Leaving the bottom clears the mark; the section that enters the band
+        // takes over. Without this, Contact stayed highlighted over the hero
+        // after a scroll to the bottom and back (SPEC-0005 R5).
+        setActive((a) => (a === '#contact' ? '' : a));
+      }
     };
     window.addEventListener('scroll', onScroll, { passive: true });
     onScroll();
