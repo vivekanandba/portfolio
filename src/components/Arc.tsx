@@ -127,7 +127,10 @@ export function Arc({ roles = allRoles, now }: ArcProps) {
         ))}
       </svg>
 
-      <div className="tabular mt-1 flex justify-between text-xs text-muted">
+      {/* The axis ends, for sighted readers. The description already gives the
+          exact span and the era list the years, so this is hidden from
+          assistive tech rather than read as two stray fragments. */}
+      <div aria-hidden="true" className="tabular mt-1 flex justify-between text-xs text-muted">
         <span>{yearOf(model.axis.start)}</span>
         <span>now</span>
       </div>

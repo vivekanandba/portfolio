@@ -35,6 +35,18 @@ describe('the arc, drawn from today’s roles', () => {
     expect(model.asides).toHaveLength(1);
   });
 
+  it('starts no venture before the primary lane, so the described duration is the career’s', () => {
+    // arcSentence counts from the axis start, which is the earliest role of any
+    // kind. Today that is a primary role; if a venture ever began first, the
+    // duration would quietly count venture-only months. This makes that day a
+    // decision rather than an accident (CON-DATA-004).
+    for (const a of model.asides) {
+      expect(a.from, `${a.company} begins before the first primary role`).toBeGreaterThanOrEqual(
+        model.primary[0].from,
+      );
+    }
+  });
+
   it('starts where the hero’s breadth line starts counting', () => {
     expect(yearOf(model.axis.start)).toBe(profile.careerStartYear);
   });
