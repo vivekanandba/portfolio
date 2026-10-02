@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { fireEvent, render, screen } from '@testing-library/react';
+import { fireEvent, render, screen, within } from '@testing-library/react';
 import { Hero } from '@/components/Hero';
 import { About } from '@/components/About';
 import { Experience } from '@/components/Experience';
@@ -23,6 +23,8 @@ import {
   skills,
   roles,
 } from '@/content';
+import { arcModel, arcSentence, yearOf } from '@/lib/arc';
+import { domainLabel } from '@/lib/domain';
 
 describe('Hero', () => {
   it('leads with the positioning headline, states the name, and shows the primary CTAs', () => {
@@ -78,9 +80,16 @@ describe('Hero', () => {
     }
   });
 
+  it('no longer carries a hand-written timeline — the arc draws it (SPEC-0006 R7)', () => {
+    const { container } = render(<Hero />);
+    expect(screen.queryByText(/A350 XWB structures/)).toBeNull();
+    expect(screen.queryByText('’11')).toBeNull();
+    expect(container.querySelector('#top ol')).toBeNull();
+  });
+
   it('states the current role and name in the hero eyebrow', () => {
     render(<Hero />);
-    // Scope to the eyebrow line — the org also appears in the marquee and timeline.
+    // Scope to the eyebrow line — the org also appears in the marquee.
     const eyebrow = screen.getByText(profile.name).closest('p');
     expect(eyebrow).toHaveTextContent(profile.currentRole.title);
     expect(eyebrow).toHaveTextContent(profile.currentRole.org);
@@ -93,6 +102,40 @@ describe('About (The Arc)', () => {
     for (const beat of profile.arc) {
       expect(screen.getByText(beat.title)).toBeInTheDocument();
     }
+  });
+
+  it('draws the fifteen years as an image whose description is computed from the roles', () => {
+    render(<About />);
+    const model = arcModel(roles);
+    const strip = screen.getByRole('img', { name: /2011/ });
+    expect(strip).toHaveAccessibleName(expect.stringContaining(arcSentence(model, domainLabel)));
+    // React drops a <title> whose child is more than one node; the name must be one string.
+    expect(strip.querySelector('title')?.textContent).toBe(
+      `The career, ${yearOf(model.axis.start)} to now`,
+    );
+    // One bar per role: the primary lane plus the venture alongside (SPEC-0006 R8).
+    expect(strip.querySelectorAll('[data-arc-role]')).toHaveLength(roles.length);
+    expect(strip.querySelectorAll('[data-arc-lane="aside"]')).toHaveLength(model.asides.length);
+  });
+
+  it('labels each era once, in order, with the year it began — the visible alternative to the image', () => {
+    render(<About />);
+    const model = arcModel(roles);
+    const eras = within(screen.getByRole('list', { name: /eras/i })).getAllByRole('listitem');
+    expect(eras.map((li) => li.textContent?.trim())).toEqual(
+      model.eras.map((e) => `${domainLabel(e.domain)} ${e.startYear}`),
+    );
+    for (const a of model.asides) {
+      // The image's description also says "alongside"; the visible line has the dot.
+      expect(screen.getByText(new RegExp(`${a.company} · alongside`))).toBeInTheDocument();
+    }
+  });
+
+  it('draws nothing but the strip: no project dots, no turning-point markers', () => {
+    render(<About />);
+    const strip = screen.getByRole('img', { name: /2011/ });
+    expect(strip.querySelectorAll('circle')).toHaveLength(0);
+    expect(strip.querySelectorAll('text')).toHaveLength(0);
   });
 });
 

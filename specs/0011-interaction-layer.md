@@ -32,6 +32,12 @@ all.
 - **R7.** Reveal fires once per element and disconnects; where `IntersectionObserver` is missing,
   content shows immediately.
 - **R8.** Every tour stop resolves to a section or project page that exists.
+- **R9.** Hydration succeeds on every route. A mismatch between the server HTML and the client tree
+  makes React discard the document and re-render it, and that strips what the pre-paint script put
+  on `<html>` — the `js` class the reveals hang on and the saved theme — so every section shows at
+  once and a chosen theme is forgotten, silently, on every page view. An end-to-end check loads the
+  landing page, a project page and a post with a saved theme, waits for the first reveal, and asserts
+  that both stamps survive and that React logged no error.
 
 ## Verification
 
@@ -39,6 +45,7 @@ all.
 npx vitest run tests/unit/interaction-layer.test.tsx tests/unit/tours.test.tsx
 npx vitest run tests/unit/reveal.test.tsx tests/unit/nav.test.tsx
 npx playwright test tests/e2e/smoke.spec.ts tests/e2e/archive.spec.ts
+npx playwright test tests/e2e/hydration.spec.ts --project=desktop   # R9, and the arc's wipe (SPEC-0006 R10)
 npm run test:visual    # the palette baseline, both themes
 ```
 
@@ -55,6 +62,7 @@ stub every test takes the fallback and the path that runs in a real browser is n
 
 ## Revisions
 
-| Date       | Change                                                                   | Covered by                              |
-| ---------- | ------------------------------------------------------------------------ | --------------------------------------- |
-| 2026-09-20 | Written with R1–R8 from ADR-0012 and the keyboard coverage added in #61. | `tests/unit/interaction-layer.test.tsx` |
+| Date       | Change                                                                                                                                                                                                                                                                                                                                                                                                                                                               | Covered by                                                         |
+| ---------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------ |
+| 2026-10-02 | R9 added after the arc's SVG `<title>` rendered empty on the server — React drops a title with more than one child — and full on the client. The mismatch made React re-render the document and strip `html.js` and `data-theme` on the local build, which is how it was found; the live site, without the arc, hydrated cleanly. The stamps are now asserted after hydration on three routes, and the title is asserted in server-rendered markup, where it failed. | `tests/e2e/hydration.spec.ts`, `tests/unit/arc-component.test.tsx` |
+| 2026-09-20 | Written with R1–R8 from ADR-0012 and the keyboard coverage added in #61.                                                                                                                                                                                                                                                                                                                                                                                             | `tests/unit/interaction-layer.test.tsx`                            |

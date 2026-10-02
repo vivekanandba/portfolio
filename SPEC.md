@@ -1,6 +1,11 @@
-# SPEC — Vivekanand Balakrishnan Portfolio (v1.6)
+# SPEC — Vivekanand Balakrishnan Portfolio (v1.10)
 
 > Spec-driven contract. Code follows this; if reality diverges, update this file first.
+>
+> **v1.10 draws the arc** (SPEC-0006 R8–R11; ADR-0012 amended): the top of The Arc is the fifteen years as
+> one strip computed from `roles` — primary roles abutting in the domain colours, Gadjoy on a lane beneath,
+> a once-only left-to-right wipe that rides the existing reveal. The Hero's hand-written timeline goes;
+> the arc carries it. ADR-0012's "motion is decoration" is narrowed to decorative motion.
 >
 > **v1.9 also adds published papers as source material** (ADR-0013, amended): `source/papers/` carries
 > the provenance, transcript and sha256 of each paper, the PDF is served from `public/papers/`, and a
@@ -125,20 +130,20 @@ with a visible _my account only_ marker; a claim corroborated by a third-party r
 
 ## 3. Sections (order is the narrative)
 
-| #   | Section                | Goal                       | Key content                                                                                                                                                                                                 |
-| --- | ---------------------- | -------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| 1   | **Hero**               | Instant identity + proof   | Domain-arc badge · name · "Staff Engineer · Internal Technical Co-founder — Sanas.ai" · value prop · CTAs · **story-proof grid** (§4) · computed breadth line · inverted timeline · **brand constellation** |
-| 2   | **Turning Points**     | The intentionality         | 4–6 pivots as decision records (Saw/Bet/Cost/Proved), era-coloured, linking each era's projects                                                                                                             |
-| 2b  | **The Arc** (About)    | The differentiator         | 5 beats: Aerospace·Defence·Rail → Entrepreneurship (Gadjoy) → Electronics → Medical Robotics → AI-Native                                                                                                    |
-| 3   | **Selected Work**      | Prove impact               | 4 flagship cards visible, rest disclosed; earlier work as era chapters behind disclosure; all link to project pages                                                                                         |
-| 4   | **AI-Native Practice** | The differentiating method | "How I direct AI agents" — steps with resume-verbatim proof metrics                                                                                                                                         |
-| 5   | **Skills**             | Show breadth               | 6 groups, first 2 visible, rest disclosed                                                                                                                                                                   |
-| 6   | **Testimonials**       | Third-party credibility    | 4 of 8 curated recommendations visible, rest disclosed, link to all 25                                                                                                                                      |
-| 7   | **Career Timeline**    | Show the journey           | Sanas.ai → NovaSignal → Tech Mahindra → Gadjoy (side venture, `aside`) → Legend → Safran                                                                                                                    |
-| 8   | **Credibility**        | Verifiable credentials     | Granted patent, publications, achievements · education · **34 certifications** (disclosed, each linked) · **6 languages**                                                                                   |
-| 8b  | **Now**                | Current AI/ML pulse        | Dated "exploring now" — newest certifications surfaced automatically + hand-written line                                                                                                                    |
-| 8c  | **Writing**            | Learnings in my own words  | Latest 3 posts — kind · work date · written date · title · summary — linking `/writing/` (ADR-0017, ADR-0018)                                                                                               |
-| 9   | **Contact / Footer**   | Conversion                 | Email, LinkedIn, GitHub, resume · build-time "Last updated"                                                                                                                                                 |
+| #   | Section                | Goal                       | Key content                                                                                                                                                                                       |
+| --- | ---------------------- | -------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 1   | **Hero**               | Instant identity + proof   | Domain-arc badge · name · "Staff Engineer · Internal Technical Co-founder — Sanas.ai" · value prop · CTAs · **story-proof grid** (§4) · computed breadth line · **brand constellation**           |
+| 2   | **Turning Points**     | The intentionality         | 4–6 pivots as decision records (Saw/Bet/Cost/Proved), era-coloured, linking each era's projects                                                                                                   |
+| 2b  | **The Arc** (About)    | The differentiator         | **The fifteen years drawn** — one strip computed from `roles` (SPEC-0006 R8–R11) — above 5 beats: Aerospace·Defence·Rail → Entrepreneurship (Gadjoy) → Electronics → Medical Robotics → AI-Native |
+| 3   | **Selected Work**      | Prove impact               | 4 flagship cards visible, rest disclosed; earlier work as era chapters behind disclosure; all link to project pages                                                                               |
+| 4   | **AI-Native Practice** | The differentiating method | "How I direct AI agents" — steps with resume-verbatim proof metrics                                                                                                                               |
+| 5   | **Skills**             | Show breadth               | 6 groups, first 2 visible, rest disclosed                                                                                                                                                         |
+| 6   | **Testimonials**       | Third-party credibility    | 4 of 8 curated recommendations visible, rest disclosed, link to all 25                                                                                                                            |
+| 7   | **Career Timeline**    | Show the journey           | Sanas.ai → NovaSignal → Tech Mahindra → Gadjoy (side venture, `aside`) → Legend → Safran                                                                                                          |
+| 8   | **Credibility**        | Verifiable credentials     | Granted patent, publications, achievements · education · **34 certifications** (disclosed, each linked) · **6 languages**                                                                         |
+| 8b  | **Now**                | Current AI/ML pulse        | Dated "exploring now" — newest certifications surfaced automatically + hand-written line                                                                                                          |
+| 8c  | **Writing**            | Learnings in my own words  | Latest 3 posts — kind · work date · written date · title · summary — linking `/writing/` (ADR-0017, ADR-0018)                                                                                     |
+| 9   | **Contact / Footer**   | Conversion                 | Email, LinkedIn, GitHub, resume · build-time "Last updated"                                                                                                                                       |
 
 ## 4. Hero story-proofs
 

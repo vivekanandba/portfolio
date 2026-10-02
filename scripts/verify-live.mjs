@@ -28,7 +28,7 @@ const EXPECT_COMMIT = flag('commit');
 
 // Everything after the route loop. Counted here so the summary cannot drift
 // from reality the way a hardcoded `+ 6` did.
-const NAMED_CHECKS = 10;
+const NAMED_CHECKS = 11;
 
 const failures = [];
 const notes = [];
@@ -229,6 +229,23 @@ await check('the feed is well-formed Atom', '/feed.xml', async (res) => {
 // 10. The language the site removed must stay removed. This is the one check
 //    that guards meaning rather than mechanics: a regression here republishes
 //    hedging that reads as though the author is unsure of their own record.
+// 10. The arc is drawn from the roles and describes itself (SPEC-0006 R8–R11).
+//     The description is computed, so its shape is checkable without knowing
+//     the roles; its title once shipped empty (SPEC-0011 R9).
+await check('draws the arc with a computed description', '/', async (res) => {
+  const html = await res.text();
+  const title = /<title id="arc-title">([^<]*)<\/title>/.exec(html)?.[1] ?? '';
+  expect(/^The career, \d{4} to now$/.test(title), `arc title is "${title}"`);
+  const desc = /<desc id="arc-desc">([^<]*)<\/desc>/.exec(html)?.[1] ?? '';
+  expect(
+    /^\d+ years?(?: and \d+ months?)?, [A-Z][a-z]+ \d{4} to [A-Z][a-z]+ \d{4}, in \d+ roles? with (no gap between them|a gap of|gaps of)/.test(
+      desc,
+    ),
+    `arc description is "${desc.slice(0, 80)}"`,
+  );
+  expect(html.includes('class="arc-draw'), 'the strip is not in the page');
+});
+
 await check('no disclaimer language has crept back', '/', async (res) => {
   const patterns = [
     /\bcannot claim\b/i,

@@ -1,4 +1,5 @@
 import { z } from 'zod';
+import { PERIOD_PATTERN } from '@/lib/arc';
 
 /**
  * Content schemas — the single source of truth for the shape of all site data.
@@ -101,7 +102,12 @@ export type Project = z.infer<typeof projectSchema>;
 export const roleSchema = z.object({
   company: z.string().min(1),
   title: z.string().min(1),
-  period: z.string().min(1), // "Nov 2024 – Present"
+  // "Nov 2024 – Present" — the one shape src/lib/arc.ts parses to draw the arc
+  // (SPEC-0006 R9); an en dash, never a hyphen. A period that does not match
+  // fails the build rather than vanishing from the strip.
+  period: z
+    .string()
+    .regex(PERIOD_PATTERN, 'period must read "Mon YYYY – Mon YYYY" or "Mon YYYY – Present"'),
   track: z.enum(['Programming', 'Entrepreneurial', 'Mechanical']),
   location: z.string().optional(),
   highlights: z.array(z.string().min(1)).default([]),

@@ -37,6 +37,7 @@ describe('domain colours', () => {
       text: 'text-muted',
       bg: 'bg-muted',
       border: 'border-muted',
+      fill: 'fill-muted',
     });
   });
 });

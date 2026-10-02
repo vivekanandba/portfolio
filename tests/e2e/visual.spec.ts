@@ -32,6 +32,7 @@ const SURFACES = [
   { name: 'nav', path: '', selector: 'header' },
   { name: 'landing-hero', path: '', selector: '#top' },
   { name: 'turning-points', path: '', selector: '#turning-points' },
+  { name: 'arc', path: '', selector: '#about' },
   { name: 'project-header', path: 'work/aircare/', selector: 'main > * >> nth=0' },
   { name: 'post-header', path: 'writing/bid-to-handover/', selector: 'article' },
   { name: 'footer', path: '', selector: '#contact' },
