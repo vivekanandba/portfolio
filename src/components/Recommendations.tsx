@@ -9,7 +9,10 @@ function QuoteCards({ items }: { items: Recommendation[] }) {
   return (
     <ul className="grid gap-6 sm:grid-cols-2">
       {items.map((r) => (
-        <li key={r.name} className="flex rounded-xl border border-hairline bg-card/60 p-6">
+        <li
+          key={r.name}
+          className="flex rounded-xl border border-hairline bg-card/60 p-6 transition duration-300 hover:border-accent/40 hover:shadow-lift motion-safe:hover:-translate-y-1"
+        >
           <figure className="flex flex-1 flex-col">
             <blockquote className="flex-1 text-base leading-relaxed text-ink">
               “{r.excerpt}”

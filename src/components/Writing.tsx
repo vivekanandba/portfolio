@@ -13,11 +13,15 @@ export function Writing() {
   return (
     <Section id="writing" eyebrow="Writing" title="Learnings, in my own words">
       <ul className="grid gap-x-10 gap-y-8 sm:grid-cols-3">
+        {/* The whole card is the link, as a project card is (SPEC-0011 R11). */}
         {posts.map((p) => (
-          <li key={p.slug}>
+          <li key={p.slug} className="group relative">
             <PostMeta post={p} />
             <h3 className="mt-2 font-display text-lg font-semibold text-ink">
-              <Link href={`/writing/${p.slug}/`} className="text-ink no-underline hover:underline">
+              <Link
+                href={`/writing/${p.slug}/`}
+                className="text-ink no-underline after:absolute after:inset-0 group-hover:underline"
+              >
                 {p.title}
               </Link>
             </h3>

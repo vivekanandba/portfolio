@@ -3,6 +3,7 @@
 import { useEffect, useState } from 'react';
 import { asset } from '@/lib/asset';
 import { profile } from '@/content';
+import { openPalette } from '@/lib/palette';
 
 const LINKS = [
   { href: '#turning-points', label: 'Why' },
@@ -24,6 +25,8 @@ function ThemeToggle() {
   // null until mounted so server and first client render agree (no hydration
   // mismatch); the real value is read from the DOM/OS in the effect below.
   const [theme, setTheme] = useState<Theme | null>(null);
+  // Counts toggles so the icon's entrance plays on a press, never on page load.
+  const [presses, setPresses] = useState(0);
 
   useEffect(() => {
     const chosen = document.documentElement.dataset.theme as Theme | undefined;
@@ -41,6 +44,7 @@ function ThemeToggle() {
       /* private mode / storage disabled — the choice just won't persist */
     }
     setTheme(next);
+    setPresses((n) => n + 1);
   };
 
   // Pre-mount default: assume light, so we show the "switch to dark" (moon) icon.
@@ -52,7 +56,9 @@ function ThemeToggle() {
       aria-label={isDark ? 'Switch to light theme' : 'Switch to dark theme'}
       className="p-1 text-muted transition-colors hover:text-ink"
     >
+      {/* Re-keyed on each press so the new icon enters (SPEC-0011 R11). */}
       <svg
+        key={presses}
         aria-hidden="true"
         width="18"
         height="18"
@@ -62,6 +68,7 @@ function ThemeToggle() {
         strokeWidth="1.5"
         strokeLinecap="round"
         strokeLinejoin="round"
+        className={presses > 0 ? 'icon-in' : undefined}
       >
         {isDark ? (
           // Sun
@@ -148,6 +155,29 @@ export function Nav() {
               </li>
             ))}
           </ul>
+          {/* The palette, findable (SPEC-0011 R10). Hidden below lg: the row has
+              no room, and the menu carries a Search row instead. */}
+          <button
+            type="button"
+            onClick={() => openPalette()}
+            aria-label="Search the site (⌘K or Ctrl K)"
+            className="hidden items-center gap-1.5 rounded-full border border-hairline px-2.5 py-1 text-xs text-muted transition-colors hover:border-accent/40 hover:text-ink lg:inline-flex"
+          >
+            <svg
+              aria-hidden="true"
+              width="14"
+              height="14"
+              viewBox="0 0 20 20"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="1.6"
+              strokeLinecap="round"
+            >
+              <circle cx="8.5" cy="8.5" r="5.5" />
+              <path d="M13 13l4.5 4.5" />
+            </svg>
+            <kbd className="font-sans">⌘K</kbd>
+          </button>
           <ThemeToggle />
           <a
             href={asset(profile.resumeFile)}
@@ -205,6 +235,18 @@ export function Nav() {
               </a>
             </li>
           ))}
+          <li>
+            <button
+              type="button"
+              onClick={() => {
+                setOpen(false);
+                openPalette();
+              }}
+              className="block py-1 text-sm text-muted hover:text-ink"
+            >
+              Search
+            </button>
+          </li>
         </ul>
       )}
     </header>

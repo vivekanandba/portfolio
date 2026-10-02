@@ -1,4 +1,4 @@
-import { describe, it, expect } from 'vitest';
+import { describe, it, expect, vi } from 'vitest';
 import { fireEvent, render, screen, within } from '@testing-library/react';
 import { Hero } from '@/components/Hero';
 import { About } from '@/components/About';
@@ -25,6 +25,8 @@ import {
 } from '@/content';
 import { arcModel, arcSentence, yearOf } from '@/lib/arc';
 import { domainLabel } from '@/lib/domain';
+import { PALETTE_EVENT } from '@/lib/palette';
+import { Writing } from '@/components/Writing';
 
 describe('Hero', () => {
   it('leads with the positioning headline, states the name, and shows the primary CTAs', () => {
@@ -214,9 +216,29 @@ describe('Skills', () => {
       expect(screen.getByText(group.category)).toBeInTheDocument();
     }
   });
+
+  it('makes every pill a button that opens the palette prepared with that skill (SPEC-0011 R13)', () => {
+    const seen = vi.fn();
+    window.addEventListener(PALETTE_EVENT, seen as EventListener, { once: true });
+    render(<Skills />);
+    const first = skills[0].items[0];
+    const pill = screen.getByRole('button', { name: first });
+    fireEvent.click(pill);
+    expect((seen.mock.calls[0][0] as CustomEvent).detail).toEqual({ query: first });
+    // No pill is left as a list item with a hover and nowhere to go.
+    const pills = document.querySelectorAll('#skills li');
+    for (const li of pills) expect(li.querySelector('button')).not.toBeNull();
+  });
 });
 
 describe('Recommendations', () => {
+  it('gives each card the hover the project cards have', () => {
+    render(<Recommendations />);
+    const card = screen.getByText(featuredRecommendations[0].name).closest('li')!;
+    expect(card.className).toContain('hover:border-accent/40');
+    expect(card.className).toContain('motion-safe:hover:-translate-y-1');
+  });
+
   it('shows each curated testimonial with attribution and links to the full page', () => {
     render(<Recommendations />);
     for (const r of featuredRecommendations) {
@@ -283,5 +305,17 @@ describe('Contact', () => {
     render(<Contact />);
     expect(screen.getByText(new RegExp(`© ${new Date().getFullYear()}`))).toBeInTheDocument();
     expect(screen.getByText(/Last updated/)).toBeInTheDocument();
+  });
+});
+
+describe('Writing (landing cards)', () => {
+  it('makes the whole card the link, with the title underlining on hover', () => {
+    render(<Writing />);
+    const link = screen
+      .getAllByRole('link')
+      .find((a) => /\/writing\/[a-z0-9-]+/.test(a.getAttribute('href') ?? ''))!;
+    expect(link.className).toContain('after:absolute');
+    expect(link.closest('li')!.className).toContain('group');
+    expect(link.className).toMatch(/group-hover:underline/);
   });
 });

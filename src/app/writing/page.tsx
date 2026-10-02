@@ -45,12 +45,12 @@ export default function WritingIndex() {
 
           <ul className="mt-14">
             {posts.map((p) => (
-              <li key={p.slug} className="border-t border-hairline py-7">
+              <li key={p.slug} className="group relative border-t border-hairline py-7">
                 <PostMeta post={p} />
                 <h2 className="mt-2 font-display text-xl font-semibold text-ink">
                   <Link
                     href={`/writing/${p.slug}/`}
-                    className="text-ink no-underline hover:underline"
+                    className="text-ink no-underline after:absolute after:inset-0 group-hover:underline"
                   >
                     {p.title}
                   </Link>
