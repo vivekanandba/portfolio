@@ -1,4 +1,5 @@
 import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
+import { profile } from '@/content';
 import { renderToStaticMarkup } from 'react-dom/server';
 
 /**
@@ -94,6 +95,20 @@ describe('the root layout', () => {
     expect(pre!.innerHTML).toContain('try{');
     expect(pre!.innerHTML).toContain('catch(e){}');
     expect(pre!.innerHTML).toContain("localStorage.getItem('theme')");
+  });
+
+  it('greets the developer console once, in my voice, naming the repository (SPEC-0004 R22)', async () => {
+    const { doc } = await renderLayout();
+    const greet = Array.from(doc.querySelectorAll('script')).find((s) =>
+      s.innerHTML.includes('console.log'),
+    );
+    expect(greet, 'greeting script').toBeDefined();
+    expect(greet!.innerHTML).toContain('github.com/vivekanandba/portfolio');
+    expect(greet!.innerHTML).toContain(profile.name);
+    expect(greet!.innerHTML).toMatch(/\bI\b/);
+    // Logs only — never an uncaught error on a page that has nothing else to say to the console.
+    expect(greet!.innerHTML.match(/console\.log/g)?.length).toBeLessThanOrEqual(2);
+    expect(greet!.innerHTML).not.toMatch(/console\.(error|warn)/);
   });
 
   it('emits Person structured data as valid JSON-LD', async () => {

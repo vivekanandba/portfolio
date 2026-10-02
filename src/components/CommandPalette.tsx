@@ -53,6 +53,9 @@ export function buildIndex(extra: Entry[] = []): Entry[] {
 
 const INDEX = buildIndex();
 const MAX_RESULTS = 8;
+// Offered when nothing matches. Each must match something in the index —
+// tests/unit/interaction-layer.test.tsx asserts it (SPEC-0011 R15).
+const SUGGESTIONS = ['DICOM', 'RAG'];
 
 /**
  * ⌘K / ctrl-K palette (ADR-0012). Client-only progressive enhancement: without
@@ -190,8 +193,21 @@ export function CommandPalette({ extra = [] }: { extra?: Entry[] } = {}) {
           className="max-h-80 overflow-y-auto py-2"
         >
           {results.length === 0 && (
-            <li className="px-5 py-3 text-sm text-muted">
-              Nothing matches — try a tag like “DICOM” or “RAG”.
+            <li className="flex flex-wrap items-center gap-2 px-5 py-3 text-sm text-muted">
+              Nothing matches. Try
+              {SUGGESTIONS.map((tag) => (
+                <button
+                  key={tag}
+                  type="button"
+                  onClick={() => {
+                    setQuery(tag);
+                    setCursor(0);
+                  }}
+                  className="rounded-full border border-hairline px-2.5 py-0.5 text-xs font-medium text-ink transition-colors hover:border-accent/40"
+                >
+                  {tag}
+                </button>
+              ))}
             </li>
           )}
           {results.map((r, i) => (

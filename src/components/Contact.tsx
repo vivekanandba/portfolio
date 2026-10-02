@@ -44,7 +44,12 @@ export function Contact() {
           </a>
         </div>
 
-        <p className="mt-16 text-xs text-muted">
+        {/* The page closes with a sentence, not a copyright notice (SPEC-0010 R9). */}
+        <p className="mt-16 max-w-content font-display text-lg leading-relaxed text-ink">
+          {profile.closingLine}
+        </p>
+
+        <p className="mt-6 text-xs text-muted">
           © {year} {profile.name} · {profile.location} · Last updated{' '}
           <span data-testid="built">{built}</span>
         </p>

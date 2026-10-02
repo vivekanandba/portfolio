@@ -4,6 +4,8 @@ export const profile: Profile = {
   name: 'Vivekanand Balakrishnan',
   shortName: 'Vivekanand B',
   tagline: 'Engineer · Intrapreneur · AI-Native Architect',
+  closingLine:
+    'Everything on this site is checkable — the numbers link to their sources and the code is public. If I have got something wrong, tell me.',
   valueProp:
     'Applying the precision of aerospace design to build scalable, privacy-first, enterprise-grade AI products — from concept to GA.',
   email: 'vivekanandb@hotmail.com',

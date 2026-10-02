@@ -1,5 +1,6 @@
 import { describe, it, expect, vi } from 'vitest';
 import { PALETTE_EVENT, openPalette } from '@/lib/palette';
+import { buildIndex } from '@/components/CommandPalette';
 import { act, fireEvent, render, screen } from '@testing-library/react';
 import { nowSchema, tourSchema } from '@/content/schema';
 import { tours } from '@/content/tours';
@@ -315,5 +316,28 @@ describe('command palette — a bare event', () => {
       window.dispatchEvent(new Event(PALETTE_EVENT));
     });
     expect((screen.getByRole('combobox') as HTMLInputElement).value).toBe('');
+  });
+});
+
+describe('command palette — the empty state acts (SPEC-0011 R15)', () => {
+  it('suggests tags as buttons, each of which matches something, and runs the search on click', () => {
+    render(<CommandPalette />);
+    act(() => openPalette('zzzz-nothing-matches'));
+    expect(screen.getByText(/nothing matches/i)).toBeInTheDocument();
+    const suggestions = screen.getAllByRole('button', { name: /^[A-Z]{3,}$/ });
+    expect(suggestions.length).toBeGreaterThanOrEqual(2);
+    const index = buildIndex();
+    for (const b of suggestions) {
+      const tag = b.textContent!.toLowerCase();
+      expect(
+        index.some((e) => e.keywords.includes(tag)),
+        `${tag} matches an entry`,
+      ).toBe(true);
+    }
+    fireEvent.click(suggestions[0]);
+    expect((screen.getByRole('combobox') as HTMLInputElement).value).toBe(
+      suggestions[0].textContent,
+    );
+    expect(screen.getAllByRole('option').length).toBeGreaterThan(0);
   });
 });

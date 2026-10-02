@@ -31,6 +31,8 @@ change to it has to keep.
 - **R7.** "Now" is a **dated** snapshot. It states its month and surfaces the newest certifications
   automatically, so it cannot quietly become stale while looking current.
 - **R8.** The footer carries contact links and a build-time last-updated date.
+- **R9.** The footer ends on a line in my voice, authored in `profile`, after the links and before
+  the colophon — the page closes with a sentence, not a copyright notice.
 
 ## Verification
 
@@ -54,6 +56,7 @@ fix.
 
 ## Revisions
 
-| Date       | Change                                                                                 | Covered by                          |
-| ---------- | -------------------------------------------------------------------------------------- | ----------------------------------- |
-| 2026-09-20 | Written with R1–R8, gathering ADR-0001 and the Legend-era date decision of 2026-09-13. | `tests/contract/legend-era.test.ts` |
+| Date       | Change                                                                                          | Covered by                          |
+| ---------- | ----------------------------------------------------------------------------------------------- | ----------------------------------- |
+| 2026-10-02 | R9 added (plan two, PR-4): the footer closes on a line in my voice, from `profile.closingLine`. | `tests/unit/sections.test.tsx`      |
+| 2026-09-20 | Written with R1–R8, gathering ADR-0001 and the Legend-era date decision of 2026-09-13.          | `tests/contract/legend-era.test.ts` |
