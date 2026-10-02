@@ -25,7 +25,7 @@ export default function NotFound() {
         <p className="mt-4 max-w-content text-lg leading-relaxed text-muted">
           I have moved things more than once while building this site — projects got their own
           pages, the writing got a section — so the link you followed may simply predate the move.
-          Nothing here is lost; it is somewhere below.
+          The places people usually want are below.
         </p>
         <ul className="mt-10 grid gap-4 sm:grid-cols-2">
           {PLACES.map((p) => (
