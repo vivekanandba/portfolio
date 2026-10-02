@@ -1,5 +1,6 @@
 import { describe, it, expect, vi } from 'vitest';
-import { fireEvent, render, screen } from '@testing-library/react';
+import { PALETTE_EVENT, openPalette } from '@/lib/palette';
+import { act, fireEvent, render, screen } from '@testing-library/react';
 import { nowSchema, tourSchema } from '@/content/schema';
 import { tours } from '@/content/tours';
 import { now } from '@/content/now';
@@ -279,5 +280,30 @@ describe('command palette — keyboard and pointer navigation', () => {
     fireEvent.keyDown(input, { key: 'a' });
     expect(screen.getByRole('dialog')).toBeInTheDocument();
     expect(selected()).toBe(0);
+  });
+});
+
+describe('command palette — opened from elsewhere (SPEC-0011 R10)', () => {
+  it('opens on the palette event with the prepared query already filtering', () => {
+    render(<CommandPalette />);
+    act(() => openPalette('DICOM'));
+    const input = screen.getByRole('combobox') as HTMLInputElement;
+    expect(input.value).toBe('DICOM');
+    expect(screen.getAllByRole('option').length).toBeGreaterThan(0);
+  });
+
+  it('has a visible focus ring on the input, an entrance on the panel, and a highlight that eases', () => {
+    render(<CommandPalette />);
+    act(() => window.dispatchEvent(new CustomEvent(PALETTE_EVENT, { detail: { query: '' } })));
+    const input = screen.getByRole('combobox');
+    // The bare utility killed the ring everywhere; only the focus-visible-scoped one may remain.
+    expect(input.className.split(' ')).not.toContain('outline-none');
+    expect(input.className).toMatch(/focus-visible:ring/);
+    const dialog = screen.getByRole('dialog');
+    expect(dialog.className).toContain('palette-backdrop');
+    expect((dialog.firstElementChild as HTMLElement).className).toContain('palette-panel');
+    expect(screen.getAllByRole('option')[0].querySelector('button')!.className).toContain(
+      'transition-colors',
+    );
   });
 });

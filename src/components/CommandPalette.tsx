@@ -3,7 +3,7 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { caseStudies, certifications, projects } from '@/content';
-import type { PaletteEntry as Entry } from '@/lib/palette';
+import { PALETTE_EVENT, type PaletteEntry as Entry } from '@/lib/palette';
 
 /**
  * Build-time index over content (ADR-0012): projects, sections and
@@ -85,8 +85,20 @@ export function CommandPalette({ extra = [] }: { extra?: Entry[] } = {}) {
         setOpen(false);
       }
     };
+    // Anything on the site may open the palette, prepared, through one event
+    // (SPEC-0011 R10): the nav's search button, the menu, the skill pills.
+    const onOpen = (e: Event) => {
+      const detail = (e as CustomEvent<{ query?: string }>).detail;
+      setQuery(detail?.query ?? '');
+      setCursor(0);
+      setOpen(true);
+    };
     window.addEventListener('keydown', onKey);
-    return () => window.removeEventListener('keydown', onKey);
+    window.addEventListener(PALETTE_EVENT, onOpen);
+    return () => {
+      window.removeEventListener('keydown', onKey);
+      window.removeEventListener(PALETTE_EVENT, onOpen);
+    };
   }, []);
 
   useEffect(() => {
@@ -139,11 +151,11 @@ export function CommandPalette({ extra = [] }: { extra?: Entry[] } = {}) {
       role="dialog"
       aria-modal="true"
       aria-label="Search the site"
-      className="fixed inset-0 z-[60] flex items-start justify-center bg-ink/40 px-4 pt-[15vh]"
+      className="palette-backdrop fixed inset-0 z-[60] flex items-start justify-center bg-ink/40 px-4 pt-[15vh]"
       onClick={() => setOpen(false)}
     >
       <div
-        className="w-full max-w-xl overflow-hidden rounded-xl border border-hairline bg-paper shadow-lift"
+        className="palette-panel w-full max-w-xl overflow-hidden rounded-xl border border-hairline bg-paper shadow-lift"
         onClick={(e) => e.stopPropagation()}
       >
         <input
@@ -169,7 +181,7 @@ export function CommandPalette({ extra = [] }: { extra?: Entry[] } = {}) {
             }
           }}
           placeholder="Search projects, sections, credentials…"
-          className="w-full border-b border-hairline bg-transparent px-5 py-4 text-base text-ink outline-none placeholder:text-muted"
+          className="w-full border-b border-hairline bg-transparent px-5 py-4 text-base text-ink placeholder:text-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-accent/40"
         />
         <ul
           id="palette-results"
@@ -188,7 +200,7 @@ export function CommandPalette({ extra = [] }: { extra?: Entry[] } = {}) {
                 type="button"
                 onClick={() => go(r.href)}
                 onMouseEnter={() => setCursor(i)}
-                className={`flex w-full items-baseline justify-between gap-4 px-5 py-2.5 text-left ${
+                className={`flex w-full items-baseline justify-between gap-4 px-5 py-2.5 text-left transition-colors duration-150 ${
                   i === cursor ? 'bg-card' : ''
                 }`}
               >

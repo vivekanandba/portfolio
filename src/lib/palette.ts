@@ -22,3 +22,11 @@ export function archivePaletteEntries(): PaletteEntry[] {
     keywords: `${e.title} ${e.customer ?? ''} ${e.category} ${e.summary}`.toLowerCase(),
   }));
 }
+
+/** The one event that opens the palette from anywhere on the site (SPEC-0011 R10). */
+export const PALETTE_EVENT = 'portfolio:palette';
+
+/** Open the palette, optionally with a query already typed — the skill pills use this. */
+export function openPalette(query = ''): void {
+  window.dispatchEvent(new CustomEvent(PALETTE_EVENT, { detail: { query } }));
+}

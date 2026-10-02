@@ -130,6 +130,51 @@
     clip-path: inset(0 -2px 0 0);
   }
 
+  /* Micro-interactions (SPEC-0011 R11–R12): feedback on an action, under
+     300ms. Movement here is keyframed, so the reduced-motion block below can
+     switch each class off by name. */
+  @keyframes icon-in {
+    from {
+      opacity: 0;
+      transform: rotate(-90deg) scale(0.7);
+    }
+  }
+  .icon-in {
+    animation: icon-in 0.25s ease-out;
+  }
+  @keyframes palette-backdrop {
+    from {
+      opacity: 0;
+    }
+  }
+  @keyframes palette-panel {
+    from {
+      opacity: 0;
+      transform: translateY(8px) scale(0.98);
+    }
+  }
+  .palette-backdrop {
+    animation: palette-backdrop 0.2s ease-out;
+  }
+  .palette-panel {
+    animation: palette-panel 0.22s cubic-bezier(0.2, 0.7, 0.2, 1);
+  }
+  /* Disclosure grows from nothing when `hidden` comes off; @starting-style
+     supplies the "from". Closing is display:none, instant, on purpose. */
+  .disclosure {
+    display: grid;
+    grid-template-rows: 1fr;
+    transition: grid-template-rows 0.3s ease-out;
+  }
+  .disclosure > * {
+    min-height: 0;
+  }
+  @starting-style {
+    .disclosure:not([hidden]) {
+      grid-template-rows: 0fr;
+    }
+  }
+
   /* Print never scrolls, so reveals would leave sections blank on paper. */
 
   /* Writing (ADR-0017): compiled Markdown. Tokens only — no new --c-* variables. */
@@ -275,6 +320,14 @@
     }
     .js .arc-draw {
       clip-path: none;
+      transition: none;
+    }
+    .icon-in,
+    .palette-backdrop,
+    .palette-panel {
+      animation: none;
+    }
+    .disclosure {
       transition: none;
     }
   }

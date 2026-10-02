@@ -3,6 +3,7 @@ import { render, screen, fireEvent, act, waitFor } from '@testing-library/react'
 import { Nav } from '@/components/Nav';
 import { CaseStudyNav } from '@/components/CaseStudyNav';
 import { profile } from '@/content';
+import { PALETTE_EVENT } from '@/lib/palette';
 
 describe('Nav mobile menu', () => {
   it('toggles the menu and aria-expanded on button click', () => {
@@ -258,5 +259,32 @@ describe('the landing link row', () => {
     expect(button.className.split(' ')).toContain('lg:hidden');
     fireEvent.click(button);
     expect(document.getElementById('mobile-menu')!.className.split(' ')).toContain('lg:hidden');
+  });
+});
+
+/** The palette is findable (SPEC-0011 R10): a button in the bar, a row in the menu, one event. */
+describe('the search affordance', () => {
+  it('shows a ⌘K button from lg that opens the palette with an empty query', () => {
+    const seen = vi.fn();
+    window.addEventListener(PALETTE_EVENT, seen as EventListener, { once: true });
+    render(<Nav />);
+    const button = screen.getByRole('button', { name: /search the site/i });
+    expect(button.className.split(' ')).toContain('lg:inline-flex');
+    expect(button.textContent).toContain('⌘K');
+    fireEvent.click(button);
+    expect((seen.mock.calls[0][0] as CustomEvent).detail).toEqual({ query: '' });
+  });
+
+  it('offers Search in the mobile menu, which opens the palette and closes the menu', () => {
+    const seen = vi.fn();
+    window.addEventListener(PALETTE_EVENT, seen as EventListener, { once: true });
+    render(<Nav />);
+    fireEvent.click(screen.getByRole('button', { name: /open menu/i }));
+    const row = document.getElementById('mobile-menu')!;
+    fireEvent.click(
+      Array.from(row.querySelectorAll('button')).find((b) => /search/i.test(b.textContent ?? ''))!,
+    );
+    expect(seen).toHaveBeenCalledTimes(1);
+    expect(document.getElementById('mobile-menu')).not.toBeInTheDocument();
   });
 });

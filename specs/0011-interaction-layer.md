@@ -38,12 +38,34 @@ all.
   once and a chosen theme is forgotten, silently, on every page view. An end-to-end check loads the
   landing page, a project page and a post with a saved theme, waits for the first reveal, and asserts
   that both stamps survive and that React logged no error.
+- **R10.** The palette is findable without guessing: the landing bar carries a search button with
+  the ⌘K hint from the large breakpoint and a Search row in the menu below it; both open the same
+  palette. Anything on the site may open the palette with a prepared query through one window event,
+  so a second entry point never grows a second palette.
+- **R11.** Micro-interactions are quick and respectful. Every entrance, disclosure or hover finishes
+  within 300 milliseconds — the two named exceptions are the scroll reveal (600ms) and the arc's
+  wipe (SPEC-0006 R10) — and anything that moves (translate, rotate, scale, keyframes) runs only
+  under `motion-safe:` or is switched off in the reduced-motion block; colour and opacity may change
+  regardless. A test reads the classes and the stylesheet and fails on an unguarded movement or a
+  slow one.
+- **R12.** Disclosure opens by growing, not jumping: `ShowMore` animates its grid row from nothing
+  to its content height. Closing is instant, because `hidden` is `display: none` and the content
+  must leave the accessibility tree at once.
+- **R13.** A skill pill is a button, and it leads somewhere: it opens the palette prepared with that
+  skill, so the hover it always had is a promise the keyboard can also reach.
+- **R14.** A metric counts up once, when it scrolls into view, and only when it can be read with
+  certainty: one number — optionally led by `<`, `>`, `≈` or `~` and followed by a unit with no
+  digits in it — with the same grouping and decimals as written. Anything else (`1–3% → 100%`,
+  `A350 XWB`, `23/69`, a date range) renders exactly as today. The server-rendered text is always
+  the final value; under reduced motion or without `IntersectionObserver` nothing moves.
 
 ## Verification
 
 ```sh
 npx vitest run tests/unit/interaction-layer.test.tsx tests/unit/tours.test.tsx
 npx vitest run tests/unit/reveal.test.tsx tests/unit/nav.test.tsx
+npx vitest run tests/unit/show-more.test.tsx tests/unit/metric-badge.test.tsx tests/unit/palette-lib.test.ts   # R12–R14
+npx vitest run tests/contract/motion.test.ts     # R11, every movement guarded and quick
 npx playwright test tests/e2e/smoke.spec.ts tests/e2e/archive.spec.ts
 npx playwright test tests/e2e/hydration.spec.ts --project=desktop   # R9, and the arc's wipe (SPEC-0006 R10)
 npm run test:visual    # the palette baseline, both themes
@@ -54,15 +76,18 @@ stub every test takes the fallback and the path that runs in a real browser is n
 
 ## Not doing
 
-- **Making the palette the primary navigation.** It is a shortcut for people who already know it
-  exists. That it is currently invisible to everyone else is a gap plan two closes with a badge.
+- **Making the palette the primary navigation.** It is a shortcut, now a visible one (R10); the
+  anchor links and the index pages remain the way through the site.
 - **Remembering tour progress across visits.** No storage for it and no evident need.
-- **Decorative motion.** ADR-0012's test is whether motion carries information. Plan two argues the
-  arc passes it; nothing else has.
+- **Decorative motion.** ADR-0012's test is whether motion carries information. The arc passes it
+  (SPEC-0006 R10). Everything in R11–R14 is feedback on an action — a press, a hover, a disclosure,
+  a number arriving — under 300ms; none of it is a set-piece. No confetti, cursor trails, parallax,
+  sound or scroll-jacking, ever.
 
 ## Revisions
 
-| Date       | Change                                                                                                                                                                                                                                                                                                                                                                                                                                                               | Covered by                                                         |
-| ---------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------ |
-| 2026-10-02 | R9 added after the arc's SVG `<title>` rendered empty on the server — React drops a title with more than one child — and full on the client. The mismatch made React re-render the document and strip `html.js` and `data-theme` on the local build, which is how it was found; the live site, without the arc, hydrated cleanly. The stamps are now asserted after hydration on three routes, and the title is asserted in server-rendered markup, where it failed. | `tests/e2e/hydration.spec.ts`, `tests/unit/arc-component.test.tsx` |
-| 2026-09-20 | Written with R1–R8 from ADR-0012 and the keyboard coverage added in #61.                                                                                                                                                                                                                                                                                                                                                                                             | `tests/unit/interaction-layer.test.tsx`                            |
+| Date       | Change                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        | Covered by                                                                                                                                                                                                 |
+| ---------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 2026-10-02 | R10–R14 added (plan two, PR-3): the palette gets a visible way in and a prepared-query event; motion rules with a test behind them; `ShowMore` grows open; skill pills become buttons that open the palette; metrics count up when they can be parsed with certainty. Palette input gains a visible focus ring, results a highlight transition, the theme toggle an icon entrance; Writing, Notes and the writing index become whole-card links with the hover the project cards had; Recommendations and archive media get the same hover. Tests first, red. | `tests/contract/motion.test.ts`, `tests/unit/show-more.test.tsx`, `tests/unit/metric-badge.test.tsx`, `tests/unit/palette-lib.test.ts`, `tests/unit/nav.test.tsx`, `tests/unit/interaction-layer.test.tsx` |
+| 2026-10-02 | R9 added after the arc's SVG `<title>` rendered empty on the server — React drops a title with more than one child — and full on the client. The mismatch made React re-render the document and strip `html.js` and `data-theme` on the local build, which is how it was found; the live site, without the arc, hydrated cleanly. The stamps are now asserted after hydration on three routes, and the title is asserted in server-rendered markup, where it failed.                                                                                          | `tests/e2e/hydration.spec.ts`, `tests/unit/arc-component.test.tsx`                                                                                                                                         |
+| 2026-09-20 | Written with R1–R8 from ADR-0012 and the keyboard coverage added in #61.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      | `tests/unit/interaction-layer.test.tsx`                                                                                                                                                                    |

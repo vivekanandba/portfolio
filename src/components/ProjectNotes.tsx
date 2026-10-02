@@ -13,10 +13,13 @@ export function ProjectNotes({ projectId }: { projectId: string }) {
       </h2>
       <ul className="space-y-6">
         {posts.map((p) => (
-          <li key={p.slug} className="max-w-content">
+          <li key={p.slug} className="group relative max-w-content">
             <PostMeta post={p} />
             <h3 className="mt-1 font-medium text-ink">
-              <Link href={`/writing/${p.slug}/`} className="text-ink no-underline hover:underline">
+              <Link
+                href={`/writing/${p.slug}/`}
+                className="text-ink no-underline after:absolute after:inset-0 group-hover:underline"
+              >
                 {p.title} →
               </Link>
             </h3>

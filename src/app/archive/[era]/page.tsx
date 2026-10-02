@@ -87,7 +87,7 @@ function EntryCard({ entry }: { entry: ArchiveEntry }) {
         <ul className="mt-5 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4">
           {entry.media.map((m) => (
             <li key={m.file}>
-              <figure className="overflow-hidden rounded-lg border border-hairline bg-card/60">
+              <figure className="overflow-hidden rounded-lg border border-hairline bg-card/60 transition duration-300 hover:border-accent/40 hover:shadow-lift">
                 <img
                   src={asset(m.file)}
                   alt={m.alt}
