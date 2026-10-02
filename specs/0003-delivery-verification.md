@@ -50,9 +50,12 @@ retyped. Work that is not in the repository is work nobody else can do and nobod
   a gate, and its output is gitignored.
 - **R9.** A baseline is captured in a state the page reaches by construction, never by timing:
   after hydration (Next's route announcer is client-only, so its presence is the signal) and under
-  reduced motion applied explicitly with `page.emulateMedia`, which makes the stylesheet show every
+  reduced motion applied explicitly with `page.emulateMedia` **before navigation** — an effect that
+  reads the preference at mount must see it, or it arms and the baseline records a number
+  mid-count — which makes the stylesheet show every
   reveal, still the arc and skip the count-ups whatever any observer did. Lazy images are still
-  scrolled into loading. The `reducedMotion` option in `test.use` did not reach `matchMedia` in the
+  scrolled into loading — except for the nav, which has none and whose scroll spy would otherwise
+  record whichever observer callback landed last. The `reducedMotion` option in `test.use` did not reach `matchMedia` in the
   container and must not be relied on.
 
 ## Verification
