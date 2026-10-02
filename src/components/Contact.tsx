@@ -45,7 +45,8 @@ export function Contact() {
         </div>
 
         <p className="mt-16 text-xs text-muted">
-          © {year} {profile.name} · {profile.location} · Last updated {built}
+          © {year} {profile.name} · {profile.location} · Last updated{' '}
+          <span data-testid="built">{built}</span>
         </p>
       </div>
     </footer>
