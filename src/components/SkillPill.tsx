@@ -13,7 +13,7 @@ export function SkillPill({ item }: { item: string }) {
     <button
       type="button"
       onClick={() => openPalette(item)}
-      title="Find this in my projects"
+      title="Search the site for this"
       className="rounded-full border border-hairline bg-card/60 px-3 py-1 text-sm text-muted transition-colors hover:border-accent/40 hover:text-ink"
     >
       {item}

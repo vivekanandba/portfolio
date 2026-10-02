@@ -46,8 +46,8 @@ all.
   within 300 milliseconds — the two named exceptions are the scroll reveal (600ms) and the arc's
   wipe (SPEC-0006 R10) — and anything that moves (translate, rotate, scale, keyframes) runs only
   under `motion-safe:` or is switched off in the reduced-motion block; colour and opacity may change
-  regardless. A test reads the classes and the stylesheet and fails on an unguarded movement or a
-  slow one.
+  regardless. Entrances play on open only; nothing animates out, because a close must be instant.
+  A test reads the classes and the stylesheet and fails on an unguarded movement or a slow one.
 - **R12.** Disclosure opens by growing, not jumping: `ShowMore` animates its grid row from nothing
   to its content height. Closing is instant, because `hidden` is `display: none` and the content
   must leave the accessibility tree at once.

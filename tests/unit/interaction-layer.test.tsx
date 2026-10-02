@@ -307,3 +307,13 @@ describe('command palette — opened from elsewhere (SPEC-0011 R10)', () => {
     );
   });
 });
+
+describe('command palette — a bare event', () => {
+  it('opens empty when the event carries no detail at all', () => {
+    render(<CommandPalette />);
+    act(() => {
+      window.dispatchEvent(new Event(PALETTE_EVENT));
+    });
+    expect((screen.getByRole('combobox') as HTMLInputElement).value).toBe('');
+  });
+});
