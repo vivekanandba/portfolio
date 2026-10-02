@@ -2,7 +2,7 @@
 #
 # IDs and titles ONLY — never the rule text. A project guide cites a rule, it never
 # restates it (copies drift, citations do not). The full text lives at
-# https://github.com/vivekanandba/fleet (formerly constitution; private).
+# https://github.com/vivekanandba/fleet (private).
 #
 # CI cannot read ~/.claude (CON-VER-004), so this vendored list is what
 # tests/constitution.test.ts checks citations against. Regenerate it when the
