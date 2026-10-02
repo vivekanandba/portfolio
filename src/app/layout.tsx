@@ -9,6 +9,7 @@ import { postPaletteEntries } from '@/lib/writing';
 import { siteMetadata, personJsonLd } from '@/lib/seo';
 import { contentSecurityPolicy } from '@/lib/csp';
 import { asset } from '@/lib/asset';
+import { consoleGreeting } from '@/lib/greeting';
 
 // GoatCounter (privacy-friendly, no cookies). Emitted only when a site code is
 // configured at build time, so dev/test builds stay analytics-free.
@@ -81,6 +82,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         {children}
         <TourBar />
         <CommandPalette extra={[...archivePaletteEntries(), ...postPaletteEntries()]} />
+        {/* To whoever opens the console (SPEC-0004 R22). Logs, inside a try. */}
+        <script dangerouslySetInnerHTML={{ __html: consoleGreeting() }} />
         <script
           type="application/ld+json"
           // Structured data is static and self-authored — safe to inline.

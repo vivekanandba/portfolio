@@ -48,7 +48,18 @@ for (const scheme of ['light', 'dark'] as const) {
         // A 404 renders too, and would happily produce a stable baseline of
         // nothing. Prove the page is real first.
         expect(response?.status(), `${surface.path || '/'} should be served`).toBe(200);
-        await settle(page);
+        // Deterministic by construction, not by timing (CON-VER-008). The
+        // reveals hold every section at opacity 0 until an observer fires, and
+        // whether it fired before the pixels were read was a race the baselines
+        // won by luck — one extra inline script in the shell lost it, blanking
+        // one section on one page in every run. So: wait for hydration (the
+        // route announcer is client-only), then force reduced motion, under
+        // which the stylesheet shows every reveal, stills the arc and skips the
+        // count-ups regardless of any observer. (`reducedMotion` in `test.use`
+        // did not reach matchMedia here; the explicit call does.)
+        await page.locator('next-route-announcer').waitFor({ state: 'attached' });
+        await page.emulateMedia({ reducedMotion: 'reduce' });
+        await settle(page); // still needed: lazy images load only when scrolled near
 
         // The nav is sticky, so scrolling a section into view lays the nav
         // across the top of it. Left in, every section baseline fails whenever
@@ -72,6 +83,8 @@ for (const scheme of ['light', 'dark'] as const) {
 
     test('command palette', async ({ page }) => {
       await page.goto('', { waitUntil: 'networkidle' });
+      await page.locator('next-route-announcer').waitFor({ state: 'attached' });
+      await page.emulateMedia({ reducedMotion: 'reduce' });
       await expect(async () => {
         await page.keyboard.press('ControlOrMeta+k');
         await expect(page.getByRole('combobox')).toBeVisible({ timeout: 1000 });
@@ -86,6 +99,8 @@ for (const scheme of ['light', 'dark'] as const) {
 
     test('404', async ({ page }) => {
       await page.goto('this-page-does-not-exist/');
+      await page.locator('next-route-announcer').waitFor({ state: 'attached' });
+      await page.emulateMedia({ reducedMotion: 'reduce' });
       await settle(page);
       await expect(page).toHaveScreenshot(`not-found-${scheme}.png`, { fullPage: true });
     });

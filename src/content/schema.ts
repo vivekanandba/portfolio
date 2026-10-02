@@ -42,6 +42,8 @@ export const profileSchema = z.object({
   // someone's name is the kind of thing that gets it wrong.
   shortName: z.string().min(1).max(14),
   tagline: z.string().min(1), // "Engineer · Intrapreneur · AI-Native Architect"
+  // The sentence the footer closes on (SPEC-0010 R9): first person, one line.
+  closingLine: z.string().min(1).max(200),
   valueProp: z.string().min(1), // one-line hero statement
   email: z.string().email(),
   phone: z.string().optional(),

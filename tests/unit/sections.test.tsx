@@ -301,6 +301,12 @@ describe('Contact', () => {
     );
   });
 
+  it('closes on a line in my voice, authored in profile (SPEC-0010 R9)', () => {
+    render(<Contact />);
+    expect(screen.getByText(profile.closingLine)).toBeInTheDocument();
+    expect(profile.closingLine).toMatch(/\b(I|me|my)\b/);
+  });
+
   it('shows the current year and a build-time freshness stamp', () => {
     render(<Contact />);
     expect(screen.getByText(new RegExp(`© ${new Date().getFullYear()}`))).toBeInTheDocument();
