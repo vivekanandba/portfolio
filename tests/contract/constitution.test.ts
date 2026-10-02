@@ -85,7 +85,7 @@ describe('the vendored constitution rule list', () => {
 
   it('names where the real constitution lives, so the pointer is followable', () => {
     const list = readFileSync(join(ROOT, LIST), 'utf8');
-    expect(list).toContain('https://github.com/vivekanandba/constitution');
+    expect(list).toContain('https://github.com/vivekanandba/fleet');
     // The captured source commit is what makes staleness detectable.
     expect(list).toMatch(/origin\/main [0-9a-f]{7,}/);
   });
@@ -108,7 +108,7 @@ describe('every constitution rule this repo cites', () => {
     // CLAUDE.md is the entry point: it must explain the citation convention
     // rather than leaving a bare ID for someone to decode.
     const claude = readFileSync(join(ROOT, 'CLAUDE.md'), 'utf8');
-    expect(claude).toContain('https://github.com/vivekanandba/constitution');
+    expect(claude).toContain('https://github.com/vivekanandba/fleet');
     expect(claude).toContain(LIST);
   });
 });
