@@ -166,6 +166,12 @@
     grid-template-rows: 1fr;
     transition: grid-template-rows 0.3s ease-out;
   }
+  /* Preflight's [hidden] has the same specificity and comes earlier, so without
+     this the grid display won and the "hidden" content showed. The browser
+     suite caught it; jsdom could not. */
+  .disclosure[hidden] {
+    display: none;
+  }
   .disclosure > * {
     min-height: 0;
   }

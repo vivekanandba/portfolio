@@ -39,6 +39,15 @@ describe('movement is guarded', () => {
   });
 });
 
+describe('disclosure stays hidden when hidden', () => {
+  it('overrides its own grid display for the hidden state', () => {
+    // `.disclosure { display: grid }` ties with preflight's `[hidden] { display: none }`
+    // on specificity and comes later, so it won — every disclosed section rendered open
+    // until the browser suite failed (2026-10-02). jsdom cannot see this; the stylesheet can.
+    expect(css).toMatch(/\.disclosure\[hidden\]\s*\{\s*display:\s*none;/);
+  });
+});
+
 describe('quick things stay quick', () => {
   it('no component asks for a duration over 300ms', () => {
     const slow: string[] = [];
