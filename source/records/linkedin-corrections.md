@@ -25,6 +25,14 @@ resume are behind it.
 
 ## Still open
 
+- **Naming the mentor.** The 2026-10-03 account names him and his wife, and says in the same breath
+  "I don't know if he'll be okay with it." Both names are withheld in the note and the post until
+  Vivek asks him. The post describes him only as the account already does elsewhere.
+- **The pivot's chronology.** He said he could not get it exactly right. Record: Tech Mahindra from
+  January 2018; the book and the AlphaGo documentary "close to around 2017"; the mentor "end of 2018,
+  I think"; Stop Hunger March 2020; the NovaSignal call November 2020. The post keeps those and
+  states no month he did not.
+
 - **The 80% operational-efficiency figure** on the project page. The account describes the sheet —
   book, grid, comments, income form, forecast, cost per device — but not what 80% was measured
   against.
@@ -34,8 +42,8 @@ resume are behind it.
 
 ## Stories owed, in his words
 
-- **The AI pivot** — "an important story": AlphaGo's move 37, _Superintelligence_, and the strategy
-  of going to a services company because a direct entry into software was not open. Its own post,
-  the 2020 one; the Gadjoy piece only touches it.
+- ~~**The AI pivot**~~ — told on 2026-10-03 (`source/my-notes/2026-10-03-cad-to-code.md`).
+- **AirCare, Stop Hunger, Tech Mahindra, NovaSignal** — the four branches he named off the pivot,
+  each "its own saga".
 - The Gadjoy series he asked for: the partner, the sheet (with the WealthWeave material), the
   apprentices, the hinges.
