@@ -19,7 +19,8 @@ describe('Strip', () => {
       expect(li.querySelector('a')?.getAttribute('href')).toMatch(
         new RegExp(`^${frames[i].href.replace(/\/$/, '')}/?$`),
       );
-      expect(li.querySelector('img')?.getAttribute('alt')).toBe(frames[i].alt);
+      // The locator, when present, precedes the artefact in the DOM.
+      expect(li.querySelector('img:not([data-locator])')?.getAttribute('alt')).toBe(frames[i].alt);
       expect(li.textContent).toContain(String(frames[i].year));
       expect(li.textContent).toContain(frames[i].caption);
     });
@@ -34,7 +35,7 @@ describe('Strip', () => {
     });
   });
 
-  it('shows the locator inset, with its own alt text and credit, wherever a frame has one', () => {
+  it('shows the locator beside the artefact, with its own alt text and credit, wherever a frame has one', () => {
     render(<Strip />);
     const insets = document.querySelectorAll('img[data-locator]');
     const withLocator = frames.filter((f) => f.locator);
@@ -42,6 +43,7 @@ describe('Strip', () => {
     expect(withLocator.length).toBeGreaterThanOrEqual(4);
     withLocator.forEach((f, i) => {
       expect(insets[i]).toHaveAttribute('alt', f.locator!.alt);
+      expect(insets[i].className).toContain(`object-${f.locator!.focus ?? 'center'}`);
       expect(screen.getByText(`Inset: ${creditSource(f.locator!.credit!)}`)).toBeInTheDocument();
     });
   });
