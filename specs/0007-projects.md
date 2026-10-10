@@ -34,6 +34,9 @@ migration that touches every content file.
   short form (SPEC-0004 R16), the way back and the resume, and folds the Writing link away — at
   360px even the short form wrapped beside all three links; from the small breakpoint the full name
   and the link return.
+- **R10.** The projects index shows each project's image as a thumbnail beside its row where one
+  exists, so the page reads as a body of work rather than a table of contents; rows without one keep
+  the domain dot. Same list, same grouping, same links.
 
 ## Verification
 
@@ -56,5 +59,6 @@ npm run test:visual                               # the project-header baseline
 
 | Date       | Change                                                                                                                                                                                                                                                                                                                       | Covered by                                         |
 | ---------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------- |
+| 2026-10-10 | R10 added (plan three, PR-C): thumbnails on the index for the twelve projects that carry an image.                                                                                                                                                                                                                           | `tests/unit/work-index.test.tsx`                   |
 | 2026-09-26 | R9 added. Measured while checking where the owner's full name fits: on a phone the bar wrapped the surname onto a second line beside a wrapped "All projects", and at 360px even the short form wrapped beside the three links. The bar now shows the short form and folds the Writing link away below the small breakpoint. | `tests/e2e/nav.spec.ts`, `tests/unit/nav.test.tsx` |
 | 2026-09-20 | Written with R1–R8, gathering rules that lived across ADR-0002, -0004, -0006, -0007, -0009 and -0014.                                                                                                                                                                                                                        | `tests/unit/project-pages.test.tsx`                |

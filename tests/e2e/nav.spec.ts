@@ -11,7 +11,7 @@ import { test, expect } from '@playwright/test';
  */
 const WIDTHS = [360, 390, 412, 640, 768, 820, 1024, 1280];
 
-for (const path of ['', 'work/gadjoy/']) {
+for (const path of ['', 'work/gadjoy/', 'work/', 'writing/the-body-the-wiring-the-brain/']) {
   test(`the navigation bar on ${path || 'the landing page'} fits at every width`, async ({
     page,
   }, testInfo) => {
@@ -38,6 +38,16 @@ for (const path of ['', 'work/gadjoy/']) {
           };
         });
       expect(shape.overflows, `${width}px: the bar overflows its viewport`).toBe(false);
+      // The page, not just the bar (SPEC-0004 R24): a document wider than the
+      // viewport is zoomed out to fit on a phone, and every tap lands somewhere else.
+      const page_ = await page.evaluate(() => ({
+        doc: document.documentElement.scrollWidth,
+        view: document.documentElement.clientWidth,
+      }));
+      expect(
+        page_.doc,
+        `${width}px: the page scrolls sideways (${page_.doc} > ${page_.view})`,
+      ).toBe(page_.view);
       expect(
         shape.nameLines,
         `${width}px: "${shape.name}" wraps onto ${shape.nameLines} lines`,

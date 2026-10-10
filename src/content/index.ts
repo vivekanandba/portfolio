@@ -150,3 +150,6 @@ export const caseStudyByProjectId = new Map(caseStudies.map((cs) => [cs.projectI
 
 /** The photo strip after the hero (SPEC-0006 R12). Six to eight frames. */
 export const strip = z.array(stripFrameSchema).min(6).max(8).parse(rawStrip);
+
+/** The one featured recommendation that opens the section large (SPEC-0010 R10). */
+export const pullQuote = featuredRecommendations.find((r) => r.pullQuote);

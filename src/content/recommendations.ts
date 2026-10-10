@@ -75,6 +75,7 @@ export const recommendations: Recommendation[] = [
     excerpt:
       'An amazing software engineer that would be an asset to any team — thorough, creative, with a knack for developing clean, impactful code in a short timespan.',
     featured: true,
+    pullQuote: true,
   },
   {
     name: 'Puneeth Harsha Iyengar',

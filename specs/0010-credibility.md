@@ -33,6 +33,9 @@ change to it has to keep.
 - **R8.** The footer carries contact links and a build-time last-updated date.
 - **R9.** The footer ends on a line in my voice, authored in `profile`, after the links and before
   the colophon — the page closes with a sentence, not a copyright notice.
+- **R10.** Testimonials open with one voice, large: the featured recommendation marked `pullQuote`
+  — exactly one, test-enforced — set in the display face on a full-bleed band above the cards, its
+  excerpt verbatim as R1 requires, attribution beneath. Which voice is content, not component.
 
 ## Verification
 
@@ -56,7 +59,8 @@ fix.
 
 ## Revisions
 
-| Date       | Change                                                                                          | Covered by                          |
-| ---------- | ----------------------------------------------------------------------------------------------- | ----------------------------------- |
-| 2026-10-02 | R9 added (plan two, PR-4): the footer closes on a line in my voice, from `profile.closingLine`. | `tests/unit/sections.test.tsx`      |
-| 2026-09-20 | Written with R1–R8, gathering ADR-0001 and the Legend-era date decision of 2026-09-13.          | `tests/contract/legend-era.test.ts` |
+| Date       | Change                                                                                                                                                                                                                                      | Covered by                                                                                   |
+| ---------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
+| 2026-10-10 | R10 added (plan three, PR-C): one pulled quote on a full-bleed band above the testimonial cards, chosen by a `pullQuote` flag in content. The audit behind plan three: four identical bordered cards and twelve sections from one template. | `tests/unit/sections.test.tsx`, `tests/contract/content.test.ts`, `tests/e2e/visual.spec.ts` |
+| 2026-10-02 | R9 added (plan two, PR-4): the footer closes on a line in my voice, from `profile.closingLine`.                                                                                                                                             | `tests/unit/sections.test.tsx`                                                               |
+| 2026-09-20 | Written with R1–R8, gathering ADR-0001 and the Legend-era date decision of 2026-09-13.                                                                                                                                                      | `tests/contract/legend-era.test.ts`                                                          |
