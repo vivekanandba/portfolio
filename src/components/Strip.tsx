@@ -32,13 +32,27 @@ export function Strip() {
               <Link href={f.href} className="group block no-underline">
                 <figure className="overflow-hidden bg-card">
                   <div aria-hidden="true" className={`h-[3px] ${domainColor(f.domain).bg}`} />
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img
-                    src={asset(f.file)}
-                    alt={f.alt}
-                    loading={i === 0 ? 'eager' : 'lazy'}
-                    className={`aspect-[4/3] w-full object-cover transition duration-300 motion-safe:group-hover:scale-[1.02] ${FOCUS[f.focus ?? 'top']}`}
-                  />
+                  <div className="relative">
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img
+                      src={asset(f.file)}
+                      alt={f.alt}
+                      loading={i === 0 ? 'eager' : 'lazy'}
+                      className={`aspect-[4/3] w-full object-cover transition duration-300 motion-safe:group-hover:scale-[1.02] ${FOCUS[f.focus ?? 'top']}`}
+                    />
+                    {/* Where it sits (SPEC-0006 R12): the vehicle or machine the artefact
+                        serves, as a locator inset — the rocket beside the fixture. */}
+                    {f.locator && (
+                      // eslint-disable-next-line @next/next/no-img-element
+                      <img
+                        src={asset(f.locator.file)}
+                        alt={f.locator.alt}
+                        loading="lazy"
+                        data-locator
+                        className="absolute left-2 top-2 aspect-[4/3] w-[42%] rounded border-2 border-paper bg-paper object-cover shadow-lift"
+                      />
+                    )}
+                  </div>
                   <figcaption className="px-4 py-3">
                     <p className="text-sm text-ink">
                       <span className="tabular font-medium text-muted">{f.year}</span>
@@ -51,6 +65,11 @@ export function Strip() {
                     {f.credit && (
                       <p className="mt-1 text-[11px] leading-snug text-muted">
                         {creditSource(f.credit)}
+                      </p>
+                    )}
+                    {f.locator?.credit && (
+                      <p className="text-[11px] leading-snug text-muted">
+                        Inset: {creditSource(f.locator.credit)}
                       </p>
                     )}
                   </figcaption>

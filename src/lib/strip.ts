@@ -1,11 +1,15 @@
 import type { CaseStudy, Domain, Project, StripFrame } from '@/content/schema';
 
+export type ResolvedMedia = { file: string; alt: string; credit?: string };
+
 export type ResolvedFrame = StripFrame & {
   href: string;
   alt: string;
   credit?: string;
   year: number;
   domain?: Domain;
+  /** The locator inset, resolved the same way as the frame itself. */
+  locator?: ResolvedMedia;
 };
 
 type Lookup = {
@@ -31,20 +35,26 @@ export function resolveStrip(frames: readonly StripFrame[], lookup: Lookup): Res
           `Strip frame ${frame.file}: no case study for project "${frame.projectId}".`,
         );
       }
-      const inGallery = cs.gallery?.find((g) => g.file === frame.file);
-      const asImage = project.image === frame.file;
-      if (!inGallery && !asImage) {
-        throw new Error(
-          `Strip frame ${frame.file} is not in the gallery or project image of /work/${cs.slug}/ — the strip shows only what that page already shows (SPEC-0006 R12).`,
-        );
-      }
-      const alt = inGallery ? inGallery.alt : (project.imageAlt ?? '');
-      const credit = inGallery ? inGallery.credit : project.imageCredit;
+      const resolveFile = (file: string): ResolvedMedia => {
+        const inGallery = cs.gallery?.find((g) => g.file === file);
+        const asImage = project.image === file;
+        if (!inGallery && !asImage) {
+          throw new Error(
+            `Strip frame ${file} is not in the gallery or project image of /work/${cs.slug}/ — the strip shows only what that page already shows (SPEC-0006 R12).`,
+          );
+        }
+        const alt = inGallery ? inGallery.alt : (project.imageAlt ?? '');
+        const credit = inGallery ? inGallery.credit : project.imageCredit;
+        return { file, alt, credit: credit || undefined };
+      };
+      const self = resolveFile(frame.file);
+      const locator = frame.context ? resolveFile(frame.context.file) : undefined;
       return {
         ...frame,
         href: `/work/${cs.slug}/`,
-        alt,
-        credit: credit || undefined,
+        alt: self.alt,
+        credit: self.credit,
+        locator,
         year: Math.floor(lookup.caseStudyStart(frame.projectId) / 100),
         domain: project.domain,
         index,

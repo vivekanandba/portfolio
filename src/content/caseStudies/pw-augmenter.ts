@@ -67,6 +67,12 @@ export const pwAugmenter: CaseStudy = {
   diagramId: 'pw-augmenter',
   gallery: [
     {
+      file: 'media/commons-pw1100g-on-a320neo.jpg',
+      alt: 'A Pratt & Whitney PW1100G engine under the wing of a Lufthansa Airbus A320neo on the ground',
+      credit:
+        'Where it sits: the PW1100G on the aircraft it powers. Photo: Bene Riobó, via Wikimedia Commons, CC BY-SA 4.0.',
+    },
+    {
       file: 'media/legend-pw1100g-test-cell.jpg',
       alt: 'The engine test cell before the engine: the augmenter tube mouth at the far wall, acoustic lining, a staircase and railings in green-lit concrete',
       wide: true,

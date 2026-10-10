@@ -3,6 +3,11 @@
 **Status:** Accepted
 **Date:** 2026-08-05 (backfilled) **Shipped in:** #27, #28, #29, #35
 
+**Amended:** 2026-10-10 — a fifth source: `commons-*` for openly licensed photographs from Wikimedia
+Commons that give context to my own work (the rocket beside the fixture, the tank beside the slip
+ring). The credit names the author and the licence, as CC BY / CC BY-SA / GODL require; provenance,
+licence URLs and hashes live in `source/commons/README.md`.
+
 ## Context
 
 Every image on the site was originally Vivek's own work product — diagrams they drew, charts they
@@ -28,7 +33,7 @@ deliverable — e.g. _"ADE SWIFT centre-wing assembly jig — illustrative of th
 work was built to. Photo: Legend Technologies (India) Pvt. Ltd."_
 
 Third-party files are named by source — `media/<source>-*` — and a content test **fails the build**
-if any file matching `media/(legend|neurasignal|appstore|mapshalli)-*` lacks a credit.
+if any file matching `media/(legend|neurasignal|appstore|mapshalli|commons)-*` lacks a credit.
 
 Base-map and platform attribution is preserved rather than cropped out (the Google "Map data ©2026"
 strip stays in frame).

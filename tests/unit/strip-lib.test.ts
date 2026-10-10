@@ -9,6 +9,11 @@ const lookup = {
       projectId: 'a',
       gallery: [
         { file: 'media/a-1.jpg', alt: 'Alt from the gallery', credit: 'Shot. Photo: A Co' },
+        {
+          file: 'media/commons-a-ctx.jpg',
+          alt: 'Where it sits',
+          credit: 'Photo: Someone, via Wikimedia Commons, CC BY 4.0',
+        },
       ],
     },
     { slug: 'b', projectId: 'b', gallery: [] },
@@ -61,6 +66,43 @@ describe('resolveStrip', () => {
       lookup,
     );
     expect(frames.map((f) => f.caption)).toEqual(['A', 'B']);
+  });
+});
+
+describe('context', () => {
+  it('resolves the locator inset from the same gallery, alt and credit included', () => {
+    const [f] = resolveStrip(
+      [
+        {
+          file: 'media/a-1.jpg',
+          projectId: 'a',
+          caption: 'A',
+          context: { file: 'media/commons-a-ctx.jpg' },
+        },
+      ],
+      lookup,
+    );
+    expect(f.locator).toEqual({
+      file: 'media/commons-a-ctx.jpg',
+      alt: 'Where it sits',
+      credit: 'Photo: Someone, via Wikimedia Commons, CC BY 4.0',
+    });
+  });
+
+  it('refuses a locator the page does not already show', () => {
+    expect(() =>
+      resolveStrip(
+        [
+          {
+            file: 'media/a-1.jpg',
+            projectId: 'a',
+            caption: 'A',
+            context: { file: 'media/commons-nope.jpg' },
+          },
+        ],
+        lookup,
+      ),
+    ).toThrow(/not in the gallery/);
   });
 });
 

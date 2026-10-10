@@ -193,6 +193,10 @@ export const stripFrameSchema = z.object({
   // Where the 4:3 crop sits on a frame that is not 4:3. Default top; a tall
   // marketing screenshot is cropped to its phone, never to a person.
   focus: z.enum(['top', 'center', 'bottom']).optional(),
+  // Where it sits: a second, openly licensed photograph of the vehicle or
+  // machine the artefact serves, shown as a locator inset. Resolved from the
+  // same case study's gallery, so it too carries screened alt text and credit.
+  context: z.object({ file: z.string().regex(/^media\/[a-z0-9-]+\.(jpe?g|png|webp)$/) }).optional(),
 });
 export type StripFrame = z.infer<typeof stripFrameSchema>;
 

@@ -207,7 +207,7 @@ Hard-won rules; each exists because something was nearly or actually published i
 - **Identifiable individuals** in an employer's marketing photo consented to _their_ use, not this
   site's. Prefer frames without people.
 - **Third-party media requires a visible credit**, enforced by test on the
-  `media/(legend|neurasignal|appstore|mapshalli)-*` naming convention. Preserve base-map attribution
+  `media/(legend|neurasignal|appstore|mapshalli|commons)-*` naming convention. Preserve base-map attribution
   rather than cropping it out.
 - **Date any live capture**, and bind time-varying figures to the dated snapshot instead of
   presenting them as standing results.

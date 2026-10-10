@@ -1,0 +1,20 @@
+# Context photographs from Wikimedia Commons
+
+Photographs of the vehicles and machines my own work served — the whole rocket beside the fixture,
+the tank beside the slip ring — so a visitor has the context the artefact alone does not give. None
+is mine; each is openly licensed, and its licence and author are named in the visible credit on
+every page that shows it (ADR-0006). Web copies are made by `scripts/media-web.py` from the
+manifest, as `public/media/commons-*.jpg`; the `commons-` prefix is in the credit regex.
+
+Screened before committing (ADR-0007): no identifiable people, no plates. Frames with crews in the
+hatches or crowds were rejected in favour of these.
+
+Retrieved 2026-10-10 at 1600px from the Commons thumbnail API; the full-resolution originals stay
+on Commons at the page linked.
+
+| File                     | Commons page                                                                                                                                                                                                                                                                                                                                                     | Author                             | Licence                                                                             | Taken      | sha256              |
+| ------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------- | ----------------------------------------------------------------------------------- | ---------- | ------------------- |
+| `lvm3-m4-to-the-pad.jpg` | [LVM3 M4, Chandrayaan-3 - Fully assembled launch vehicle being transported from Second Vehicle Assembly Building (SVAB) to Second Launch Pad (SLP) 05.webp](<https://commons.wikimedia.org/wiki/File:LVM3_M4,_Chandrayaan-3_-_Fully_assembled_launch_vehicle_being_transported_from_Second_Vehicle_Assembly_Building_(SVAB)_to_Second_Launch_Pad_(SLP)_05.webp>) | Indian Space Research Organisation | [GODL-India](https://data.gov.in/sites/default/files/Gazette_Notification_OGDL.pdf) | 2023-07-06 | `bae98554470ea108…` |
+| `bmp-2-on-display.jpg`   | [BMP-2 MD IFV Finnish army 20180604.jpg](https://commons.wikimedia.org/wiki/File:BMP-2_MD_IFV_Finnish_army_20180604.jpg)                                                                                                                                                                                                                                         | Santeri Viinamäki                  | [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0)                      | 2018-06-04 | `7faa4415e7d2c726…` |
+| `arjun-mbt-mark-1a.jpg`  | [Arjun Mark 1 Alpha.jpg](https://commons.wikimedia.org/wiki/File:Arjun_Mark_1_Alpha.jpg)                                                                                                                                                                                                                                                                         | InSameer                           | [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0)                      | 2021-02-15 | `ffdcd744162d8358…` |
+| `pw1100g-on-a320neo.jpg` | [D-AINU A320neo Lufthansa PW1100G SCQ.jpg](https://commons.wikimedia.org/wiki/File:D-AINU_A320neo_Lufthansa_PW1100G_SCQ.jpg)                                                                                                                                                                                                                                     | Bene Riobó                         | [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0)                      | 2019-05-11 | `ada3c13dd1a7a7f8…` |

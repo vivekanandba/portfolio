@@ -25,7 +25,7 @@ import {
  * archive entry or listed as excluded with a reason. Dates stay tri-state and
  * requested dates bind to the records table. Written red first (SPEC §9.2).
  */
-const THIRD_PARTY = /^media\/(legend|enti|neurasignal|appstore|mapshalli)-/;
+const THIRD_PARTY = /^media\/(legend|enti|neurasignal|appstore|mapshalli|commons)-/;
 
 function slideCount(deck: string): number {
   const text = readFileSync(join('source/decks', deck, 'slides.md'), 'utf8');

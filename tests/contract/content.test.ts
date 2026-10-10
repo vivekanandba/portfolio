@@ -28,7 +28,7 @@ import { caseStudyStart, patents, recommendations } from '@/content';
 
 /** Media owned by a client or former employer, named media/<source>-* by
  *  convention. Anything matching must render a visible credit. */
-const THIRD_PARTY = /^media\/(legend|enti|neurasignal|appstore|mapshalli)-/;
+const THIRD_PARTY = /^media\/(legend|enti|neurasignal|appstore|mapshalli|commons)-/;
 
 describe('content conforms to schema', () => {
   it('profile is valid', () => {
