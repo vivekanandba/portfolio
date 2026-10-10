@@ -31,6 +31,7 @@ async function settle(page: import('@playwright/test').Page) {
 const SURFACES = [
   { name: 'nav', path: '', selector: 'header' },
   { name: 'landing-hero', path: '', selector: '#top' },
+  { name: 'strip', path: '', selector: '#strip' },
   { name: 'turning-points', path: '', selector: '#turning-points' },
   { name: 'arc', path: '', selector: '#about' },
   { name: 'project-header', path: 'work/aircare/', selector: 'main > * >> nth=0' },

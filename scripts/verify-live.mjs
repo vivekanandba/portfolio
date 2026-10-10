@@ -28,7 +28,7 @@ const EXPECT_COMMIT = flag('commit');
 
 // Everything after the route loop. Counted here so the summary cannot drift
 // from reality the way a hardcoded `+ 6` did.
-const NAMED_CHECKS = 11;
+const NAMED_CHECKS = 12;
 
 const failures = [];
 const notes = [];
@@ -232,6 +232,20 @@ await check('the feed is well-formed Atom', '/feed.xml', async (res) => {
 // 10. The arc is drawn from the roles and describes itself (SPEC-0006 R8–R11).
 //     The description is computed, so its shape is checkable without knowing
 //     the roles; its title once shipped empty (SPEC-0011 R9).
+// 11. Every photograph in the strip is served as an image (SPEC-0006 R12).
+await check('serves every photograph in the strip', '/', async (res) => {
+  const html = await res.text();
+  const section = /<section id="strip"[\s\S]*?<\/section>/.exec(html)?.[0] ?? '';
+  const srcs = [...section.matchAll(/<img[^>]+src="([^"]+)"/g)].map((m) => m[1]);
+  expect(srcs.length >= 6, `the strip has ${srcs.length} images`);
+  for (const src of srcs) {
+    const url = new URL(src, `${BASE}/`).toString();
+    const r = await fetch(url);
+    expect(r.status === 200, `${src} returned ${r.status}`);
+    expect((r.headers.get('content-type') ?? '').startsWith('image/'), `${src} is not an image`);
+  }
+});
+
 await check('draws the arc with a computed description', '/', async (res) => {
   const html = await res.text();
   const title = /<title id="arc-title">([^<]*)<\/title>/.exec(html)?.[1] ?? '';

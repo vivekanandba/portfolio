@@ -19,6 +19,9 @@ jobs:
     timeout-minutes: 10
     steps:
       - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5
+        with:
+          # Full history so the spec-discipline step can diff against the base.
+          fetch-depth: 0
       # tools/check_specs.py is vendored from the spec-check skill because
       # Actions cannot read ~/.claude/skills. Re-run `--install .` when the
       # skill changes; the copy does not update itself (CON-VER-004).
@@ -26,9 +29,6 @@ jobs:
         # Absolute: a job may set a working-directory, in which case a relative
         # path resolves inside it and the checker is not found.
         run: python3 "$GITHUB_WORKSPACE/tools/check_specs.py" --root "$GITHUB_WORKSPACE"
-        with:
-          # Full history so the spec-discipline step can diff against the base.
-          fetch-depth: 0
 
       - uses: actions/setup-node@a0853c24544627f65ddf259abe73b1d18a591444 # v5
         with:

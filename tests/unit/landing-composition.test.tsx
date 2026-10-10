@@ -16,6 +16,7 @@ import Home from '@/app/page';
  *  layout's skip link targets it. Contact is a <footer>, not a <section>. */
 const SECTION_ORDER = [
   'top',
+  'strip',
   'turning-points',
   'about',
   'work',
