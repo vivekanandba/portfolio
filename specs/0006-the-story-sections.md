@@ -1,7 +1,7 @@
 # SPEC-0006 — The story sections
 
 **Status:** Active **Since:** 2026-09-20 **Shipped in:** #71
-**Covers:** Hero · Turning Points · The Arc · AI-Native Practice · Skills
+**Covers:** Hero · Fifteen years in pictures · Turning Points · The Arc · AI-Native Practice · Skills
 **Routes:** `/`
 
 ## What
@@ -52,6 +52,13 @@ disagree with them.
   accessible description, computed from the same model, and the era labels are the visible
   alternative — there is no third enumeration of the roles for screen readers, who already hear them
   in Turning Points above and the Timeline below.
+- **R12.** The first thing after the hero is pictures: a full-bleed band of six to eight photographs
+  across the arc, in the order the work began, each a link to its project page with a year, a short
+  caption and — for anything not mine — its visible credit. Every frame must already appear, with
+  its alt text and credit, in the gallery or project image of the case study it links to: the strip
+  shows only what has been screened and credited once already (ADR-0007), and a frame that cannot
+  be found there fails the build. Nothing on it moves except the hover the project cards have; on a
+  phone it scrolls sideways under the thumb with native snapping and no JavaScript.
 
 ## Verification
 
@@ -59,6 +66,7 @@ disagree with them.
 npx vitest run tests/unit/turning-points.test.tsx tests/unit/sections.test.tsx
 npx vitest run tests/contract/content.test.ts     # R7, the derivation rules
 npx vitest run tests/unit/arc.test.ts tests/contract/arc.test.ts   # R9, the model and today's roles
+npx vitest run tests/unit/strip.test.tsx tests/unit/strip-lib.test.ts tests/contract/strip.test.ts   # R12
 npx playwright test tests/e2e/hydration.spec.ts --project=desktop   # R10, the wipe: clipped before, drawn after
 npm run test:visual                               # the hero, Turning Points and arc baselines
 npm run verify:infra                              # R8 on the live site: the strip and its computed description
@@ -83,7 +91,8 @@ npm run verify:infra                              # R8 on the live site: the str
 
 ## Revisions
 
-| Date       | Change                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        | Covered by                                                                                                         |
-| ---------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------ |
-| 2026-10-02 | R8–R11 added: the fifteen years drawn at the top of The Arc, computed from `roles` by `src/lib/arc.ts`, with a named handover tolerance, a build that fails on an unparseable period or a real overlap, a once-only wipe that rides the existing reveal, and a year-resolution right edge so the new pixel baseline holds for a calendar year. The Hero's hand-written timeline list — six years and six labels in JSX, which R7 forbade from the day it was written — is removed; the arc carries it. Tests were written first and were red. | `tests/unit/arc.test.ts`, `tests/contract/arc.test.ts`, `tests/unit/sections.test.tsx`, `tests/e2e/visual.spec.ts` |
-| 2026-09-20 | Written with R1–R7, cataloguing the derivation rules these five sections already follow.                                                                                                                                                                                                                                                                                                                                                                                                                                                      | `tests/unit/sections.test.tsx`                                                                                     |
+| Date       | Change                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           | Covered by                                                                                                         |
+| ---------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------ |
+| 2026-10-10 | R12 added (plan three, PR-B): the photo strip between the hero and Turning Points. Vivek's review of plan two: "still the delight is very, very constrained… bland"; the audit found six pieces of media on the whole landing page, none above the fold, while the repo holds 108 screened images. Frames resolve their alt and credit from the case study they link to, so the strip can show nothing unscreened. The resolver's refusal of an unscreened file is pinned on invented content; the component tests were written with the component, not before it (CON-PROC-005, stated rather than back-dated). | `tests/contract/strip.test.ts`, `tests/unit/strip.test.tsx`, `tests/e2e/visual.spec.ts`                            |
+| 2026-10-02 | R8–R11 added: the fifteen years drawn at the top of The Arc, computed from `roles` by `src/lib/arc.ts`, with a named handover tolerance, a build that fails on an unparseable period or a real overlap, a once-only wipe that rides the existing reveal, and a year-resolution right edge so the new pixel baseline holds for a calendar year. The Hero's hand-written timeline list — six years and six labels in JSX, which R7 forbade from the day it was written — is removed; the arc carries it. Tests were written first and were red.                                                                    | `tests/unit/arc.test.ts`, `tests/contract/arc.test.ts`, `tests/unit/sections.test.tsx`, `tests/e2e/visual.spec.ts` |
+| 2026-09-20 | Written with R1–R7, cataloguing the derivation rules these five sections already follow.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         | `tests/unit/sections.test.tsx`                                                                                     |

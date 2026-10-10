@@ -1,5 +1,6 @@
 import { Nav } from '@/components/Nav';
 import { Hero } from '@/components/Hero';
+import { Strip } from '@/components/Strip';
 import { About } from '@/components/About';
 import { TurningPoints } from '@/components/TurningPoints';
 import { Experience } from '@/components/Experience';
@@ -18,6 +19,7 @@ export default function Home() {
       <Nav />
       <main>
         <Hero />
+        <Strip />
         <TurningPoints />
         <About />
         <Experience />

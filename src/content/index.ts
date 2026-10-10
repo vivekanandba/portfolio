@@ -1,4 +1,6 @@
 import { z } from 'zod';
+import { strip as rawStrip } from './strip';
+import { stripFrameSchema } from './schema';
 import {
   aiPracticeStepSchema,
   archiveEntrySchema,
@@ -145,3 +147,6 @@ export const caseStudyStart = (id: string): number => CASE_STUDY_START[id] ?? 0;
 
 /** Card → case-study link derivation; internal URLs never live in project.href. */
 export const caseStudyByProjectId = new Map(caseStudies.map((cs) => [cs.projectId, cs]));
+
+/** The photo strip after the hero (SPEC-0006 R12). Six to eight frames. */
+export const strip = z.array(stripFrameSchema).min(6).max(8).parse(rawStrip);

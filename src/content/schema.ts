@@ -183,6 +183,16 @@ export const galleryItemSchema = z.object({
 });
 export type GalleryItem = z.infer<typeof galleryItemSchema>;
 
+/** One frame of the photo strip after the hero (SPEC-0006 R12). Alt text and
+ *  credit are not authored here: they are resolved from the case study the
+ *  frame links to, so the strip can only show what that page already shows. */
+export const stripFrameSchema = z.object({
+  file: z.string().regex(/^media\/[a-z0-9-]+\.(jpe?g|png|webp)$/),
+  projectId: z.string().min(1), // FK to projects[].id / caseStudies[].projectId
+  caption: z.string().min(3).max(60), // "The slip-ring test rig"
+});
+export type StripFrame = z.infer<typeof stripFrameSchema>;
+
 /** Long-form case study for a project, rendered at /work/<slug>/. */
 export const caseStudySchema = z.object({
   slug: z.string().regex(/^[a-z0-9-]+$/), // equals the project id — stable URLs
