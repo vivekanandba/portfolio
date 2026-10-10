@@ -51,9 +51,10 @@ describe('the photo strip', () => {
     }
   });
 
-  it('runs in the order the work began, across at least four domains', () => {
-    const years = frames.map((f) => f.year);
-    expect([...years].sort((a, b) => a - b)).toEqual(years);
+  it('opens with aerospace — every aerospace frame before any other — across at least four domains', () => {
+    const firstOther = frames.findIndex((f) => f.domain !== 'aerospace');
+    expect(firstOther).toBeGreaterThanOrEqual(2);
+    expect(frames.slice(firstOther).some((f) => f.domain === 'aerospace')).toBe(false);
     expect(new Set(frames.map((f) => f.domain)).size).toBeGreaterThanOrEqual(4);
   });
 });

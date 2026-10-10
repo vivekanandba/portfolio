@@ -57,7 +57,7 @@ describe('resolveStrip', () => {
     ).toThrow(/no case study/);
   });
 
-  it('sorts by when the work began, keeping listed order within a year', () => {
+  it('keeps the listed order — aerospace first is a decision, not a date', () => {
     const frames = resolveStrip(
       [
         { file: 'media/b-1.jpg', projectId: 'b', caption: 'B' },
@@ -65,7 +65,7 @@ describe('resolveStrip', () => {
       ],
       lookup,
     );
-    expect(frames.map((f) => f.caption)).toEqual(['A', 'B']);
+    expect(frames.map((f) => f.caption)).toEqual(['B', 'A']);
   });
 });
 
@@ -77,7 +77,7 @@ describe('context', () => {
           file: 'media/a-1.jpg',
           projectId: 'a',
           caption: 'A',
-          context: { file: 'media/commons-a-ctx.jpg' },
+          context: { file: 'media/commons-a-ctx.jpg', focus: 'right' },
         },
       ],
       lookup,
@@ -86,6 +86,7 @@ describe('context', () => {
       file: 'media/commons-a-ctx.jpg',
       alt: 'Where it sits',
       credit: 'Photo: Someone, via Wikimedia Commons, CC BY 4.0',
+      focus: 'right',
     });
   });
 

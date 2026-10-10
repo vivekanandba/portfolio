@@ -196,7 +196,13 @@ export const stripFrameSchema = z.object({
   // Where it sits: a second, openly licensed photograph of the vehicle or
   // machine the artefact serves, shown as a locator inset. Resolved from the
   // same case study's gallery, so it too carries screened alt text and credit.
-  context: z.object({ file: z.string().regex(/^media\/[a-z0-9-]+\.(jpe?g|png|webp)$/) }).optional(),
+  context: z
+    .object({
+      file: z.string().regex(/^media\/[a-z0-9-]+\.(jpe?g|png|webp)$/),
+      // A landscape photograph in a tall panel: which side the subject is on.
+      focus: z.enum(['left', 'center', 'right']).optional(),
+    })
+    .optional(),
 });
 export type StripFrame = z.infer<typeof stripFrameSchema>;
 

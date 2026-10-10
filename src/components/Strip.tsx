@@ -13,6 +13,7 @@ import { creditSource, resolveStrip } from '@/lib/strip';
  */
 // Complete literals: Tailwind's scanner cannot see a constructed class name.
 const FOCUS = { top: 'object-top', center: 'object-center', bottom: 'object-bottom' } as const;
+const FOCUS_X = { left: 'object-left', center: 'object-center', right: 'object-right' } as const;
 
 export function Strip() {
   const frames = resolveStrip(strip, { caseStudies, projects, caseStudyStart });
@@ -32,16 +33,10 @@ export function Strip() {
               <Link href={f.href} className="group block no-underline">
                 <figure className="overflow-hidden bg-card">
                   <div aria-hidden="true" className={`h-[3px] ${domainColor(f.domain).bg}`} />
-                  <div className="relative">
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img
-                      src={asset(f.file)}
-                      alt={f.alt}
-                      loading={i === 0 ? 'eager' : 'lazy'}
-                      className={`aspect-[4/3] w-full object-cover transition duration-300 motion-safe:group-hover:scale-[1.02] ${FOCUS[f.focus ?? 'top']}`}
-                    />
-                    {/* Where it sits (SPEC-0006 R12): the vehicle or machine the artefact
-                        serves, as a locator inset — the rocket beside the fixture. */}
+                  {/* Where it sits (SPEC-0006 R12): a collage — the machine the artefact
+                      serves on the left, the artefact on the right, no overlap. A frame
+                      without a locator fills the tile. */}
+                  <div className="flex aspect-[4/3] w-full">
                     {f.locator && (
                       // eslint-disable-next-line @next/next/no-img-element
                       <img
@@ -49,9 +44,16 @@ export function Strip() {
                         alt={f.locator.alt}
                         loading="lazy"
                         data-locator
-                        className="absolute left-2 top-2 aspect-[4/3] w-[42%] rounded border-2 border-paper bg-paper object-cover shadow-lift"
+                        className={`h-full w-1/2 shrink-0 border-r border-paper object-cover ${FOCUS_X[f.locator.focus ?? 'center']}`}
                       />
                     )}
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img
+                      src={asset(f.file)}
+                      alt={f.alt}
+                      loading={i === 0 ? 'eager' : 'lazy'}
+                      className={`h-full min-w-0 flex-1 object-cover transition duration-300 motion-safe:group-hover:scale-[1.02] ${FOCUS[f.focus ?? 'top']}`}
+                    />
                   </div>
                   <figcaption className="px-4 py-3">
                     <p className="text-sm text-ink">
