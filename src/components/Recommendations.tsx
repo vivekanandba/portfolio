@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import { Section } from './Section';
 import { ShowMore } from './ShowMore';
-import { featuredRecommendations, recommendations } from '@/content';
+import { featuredRecommendations, pullQuote, recommendations } from '@/content';
 import { attribution } from '@/lib/recommendation';
 import type { Recommendation } from '@/content/schema';
 
@@ -35,8 +35,23 @@ function QuoteCards({ items }: { items: Recommendation[] }) {
  * excerpt, the /recommendations page shows each in full.
  */
 export function Recommendations() {
+  // One voice, large (SPEC-0010 R10): the featured entry marked pullQuote, on
+  // a full-bleed band above the cards. Verbatim excerpt, as every card is.
+  const lead = pullQuote && (
+    <div id="pull-quote" className="border-y border-hairline bg-card">
+      <figure className="mx-auto w-full max-w-shell px-6 py-16 sm:py-20">
+        <blockquote className="max-w-4xl font-display text-2xl font-semibold leading-snug tracking-tight text-ink sm:text-3xl lg:text-4xl">
+          “{pullQuote.excerpt}”
+        </blockquote>
+        <figcaption className="mt-6 text-sm text-muted">
+          <span className="font-semibold text-ink">{pullQuote.name}</span> ·{' '}
+          {attribution(pullQuote)}
+        </figcaption>
+      </figure>
+    </div>
+  );
   return (
-    <Section id="recommendations" eyebrow="Testimonials" title="What colleagues say">
+    <Section id="recommendations" eyebrow="Testimonials" title="What colleagues say" lead={lead}>
       <QuoteCards items={featuredRecommendations.slice(0, 4)} />
       {featuredRecommendations.length > 4 && (
         <ShowMore label={`Show ${featuredRecommendations.length - 4} more testimonials`}>

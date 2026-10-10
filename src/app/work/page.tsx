@@ -2,6 +2,7 @@ import Link from 'next/link';
 import type { Metadata } from 'next';
 import { CaseStudyNav } from '@/components/CaseStudyNav';
 import { caseStudies, caseStudyStart, projects } from '@/content';
+import { asset } from '@/lib/asset';
 import { domainColor } from '@/lib/domain';
 import { workIndexMetadata } from '@/lib/seo';
 
@@ -78,13 +79,26 @@ export default function WorkIndex() {
                   const cs = bySlug.get(slug)!;
                   const project = projectById.get(cs.projectId)!;
                   return (
-                    <li key={slug} className="border-t border-hairline py-5">
-                      <div className="flex flex-wrap items-baseline justify-between gap-x-6 gap-y-2">
-                        <h3 className="flex items-baseline gap-2.5 text-base font-semibold">
-                          <span
-                            aria-hidden="true"
-                            className={`inline-block h-1.5 w-1.5 shrink-0 self-center rounded-full ${domainColor(project.domain).bg}`}
-                          />
+                    <li key={slug} className="flex gap-5 border-t border-hairline py-5">
+                      {/* The project's image as a thumbnail where one exists (SPEC-0007 R10);
+                          decorative here — the row's title is the name. */}
+                      {project.image && (
+                        // eslint-disable-next-line @next/next/no-img-element
+                        <img
+                          src={asset(project.image)}
+                          alt=""
+                          loading="lazy"
+                          className="h-[72px] w-24 shrink-0 rounded-md border border-hairline object-cover object-top"
+                        />
+                      )}
+                      <div className="flex min-w-0 flex-1 flex-wrap items-baseline justify-between gap-x-6 gap-y-2">
+                        <h3 className="flex min-w-0 items-baseline gap-2.5 text-base font-semibold">
+                          {!project.image && (
+                            <span
+                              aria-hidden="true"
+                              className={`inline-block h-1.5 w-1.5 shrink-0 self-center rounded-full ${domainColor(project.domain).bg}`}
+                            />
+                          )}
                           <Link
                             href={`/work/${cs.slug}/`}
                             className="text-ink no-underline hover:underline"
@@ -92,7 +106,9 @@ export default function WorkIndex() {
                             {cs.title}
                           </Link>
                         </h3>
-                        <p className="tabular shrink-0 text-sm text-muted">
+                        {/* Allowed to shrink and wrap: as shrink-0 this line pushed the page
+                            past a phone's width and Chrome zoomed the index out (SPEC-0004 R24). */}
+                        <p className="tabular min-w-0 text-sm text-muted">
                           {cs.metrics
                             .slice(0, 2)
                             .map((m) => `${m.value} ${m.label}`)

@@ -36,6 +36,7 @@ const SURFACES = [
   { name: 'arc', path: '', selector: '#about' },
   { name: 'project-header', path: 'work/aircare/', selector: 'main > * >> nth=0' },
   { name: 'post-header', path: 'writing/bid-to-handover/', selector: 'article' },
+  { name: 'quote', path: '', selector: '#pull-quote' },
   { name: 'footer', path: '', selector: '#contact' },
 ] as const;
 

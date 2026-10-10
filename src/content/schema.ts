@@ -349,6 +349,8 @@ export const recommendationSchema = z.object({
   text: z.string().min(1), // full recommendation, verbatim
   excerpt: z.string().optional(), // short pulled quote for the landing section
   featured: z.boolean().default(false),
+  // Exactly one featured entry opens the section large (SPEC-0010 R10).
+  pullQuote: z.boolean().optional(),
 });
 export type Recommendation = z.infer<typeof recommendationSchema>;
 

@@ -19,6 +19,7 @@ import {
   featuredRecommendations,
   languages,
   recommendations,
+  pullQuote,
   secondaryProjects,
   skills,
   roles,
@@ -232,6 +233,18 @@ describe('Skills', () => {
 });
 
 describe('Recommendations', () => {
+  it('opens with one voice, large, on a band above the cards (SPEC-0010 R10)', () => {
+    render(<Recommendations />);
+    const band = document.getElementById('pull-quote')!;
+    expect(band).not.toBeNull();
+    expect(band.querySelector('blockquote')!.className).toContain('font-display');
+    expect(band.textContent).toContain(pullQuote!.excerpt);
+    expect(band.textContent).toContain(pullQuote!.name);
+    // The band precedes the section's shell, not sits inside the card grid.
+    expect(band.closest('section')!.id).toBe('recommendations');
+    expect(band.nextElementSibling!.querySelector('h2')).not.toBeNull();
+  });
+
   it('gives each card the hover the project cards have', () => {
     render(<Recommendations />);
     const card = screen.getByText(featuredRecommendations[0].name).closest('li')!;
@@ -242,7 +255,8 @@ describe('Recommendations', () => {
   it('shows each curated testimonial with attribution and links to the full page', () => {
     render(<Recommendations />);
     for (const r of featuredRecommendations) {
-      expect(screen.getByText(r.name)).toBeInTheDocument();
+      // The pulled voice appears twice: on the band and on its card.
+      expect(screen.getAllByText(r.name).length).toBeGreaterThanOrEqual(1);
     }
     // next/link normalizes the trailing slash away outside the real build
     // (trailingSlash lives in next.config); e2e asserts the slashed URL.

@@ -24,7 +24,7 @@ import { recommendations } from '@/content/recommendations';
 import { certifications } from '@/content/certifications';
 import { languages } from '@/content/languages';
 import { diagrams } from '@/components/diagrams';
-import { caseStudyStart, patents } from '@/content';
+import { caseStudyStart, patents, recommendations } from '@/content';
 
 /** Media owned by a client or former employer, named media/<source>-* by
  *  convention. Anything matching must render a visible credit. */
@@ -359,5 +359,14 @@ describe('recommendation invariants', () => {
     expect(featured.length).toBeGreaterThanOrEqual(6);
     // Every featured card renders a pulled quote.
     for (const r of featured) expect(r.excerpt, `featured ${r.name} needs an excerpt`).toBeTruthy();
+  });
+});
+
+describe('the pulled quote (SPEC-0010 R10)', () => {
+  it('is exactly one featured recommendation, with an excerpt to pull', () => {
+    const marked = recommendations.filter((r) => r.pullQuote);
+    expect(marked).toHaveLength(1);
+    expect(marked[0].featured).toBe(true);
+    expect(marked[0].excerpt).toBeTruthy();
   });
 });

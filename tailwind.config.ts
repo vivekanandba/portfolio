@@ -35,6 +35,8 @@ const config: Config = {
         // Serif display wants looser tracking than the old sans values.
         display: ['clamp(2.75rem, 6vw, 5rem)', { lineHeight: '1.05', letterSpacing: '-0.015em' }],
         h2: ['clamp(1.5rem, 3vw, 2.25rem)', { lineHeight: '1.15', letterSpacing: '-0.01em' }],
+        // One step up for landing-section headings at lg (SPEC-0004 R23).
+        'h2-lg': ['3rem', { lineHeight: '1.08', letterSpacing: '-0.015em' }],
       },
       maxWidth: {
         content: '72ch',
