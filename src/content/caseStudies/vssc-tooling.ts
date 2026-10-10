@@ -120,6 +120,12 @@ export const vsscTooling: CaseStudy = {
       credit: `S200 solid-booster integration fixture for SHAR, ISRO — CAD; ~4 m tall, delivered on a 1+ month schedule. ${RENDER}, slide 24`,
     },
     {
+      file: 'media/commons-lvm3-m4-to-the-pad.jpg',
+      alt: 'LVM3 M4 with Chandrayaan-3 being moved to the pad; the two S200 solid boosters flank the core stage.',
+      credit:
+        'Where it sits: the S200 boosters either side of LVM3’s core. Photo: Indian Space Research Organisation, via Wikimedia Commons, GODL-India.',
+    },
+    {
       file: 'media/legend-s200-integration-fixture.jpg',
       alt: 'The S200 integration fixture as built — a large blue two-tier rotating platform with access stairs and railings, in a workshop bay',
       credit: `S200 integration fixture, as built. ${PHOTO}, slide 24`,

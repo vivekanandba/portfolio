@@ -5,7 +5,7 @@ import { caseStudies, caseStudyStart, projects, strip } from '@/content';
 import { resolveStrip } from '@/lib/strip';
 
 /** Media owned by a client or former employer, named media/<source>-* by convention. */
-const THIRD_PARTY = /^media\/(legend|enti|neurasignal|appstore|mapshalli)-/;
+const THIRD_PARTY = /^media\/(legend|enti|neurasignal|appstore|mapshalli|commons)-/;
 
 /**
  * The strip on today's content (SPEC-0006 R12): every frame exists on disk,
@@ -32,6 +32,17 @@ describe('the photo strip', () => {
   it('shows my own work, never a programme the company merely supported', () => {
     for (const f of frames)
       expect(f.credit ?? '', f.file).not.toMatch(/Role: (supported|company|workplace)/);
+  });
+
+  it('names author and licence on every locator inset — none of them is mine', () => {
+    for (const f of frames) {
+      if (!f.locator) continue;
+      expect(f.locator.file).toMatch(/^media\/commons-/);
+      expect(f.locator.credit ?? '').toMatch(
+        /via Wikimedia Commons, (CC BY(-SA)? [0-9.]+|GODL-India)\./,
+      );
+      expect(existsSync(join('public', f.locator.file)), f.locator.file).toBe(true);
+    }
   });
 
   it('carries a visible credit for every third-party frame', () => {

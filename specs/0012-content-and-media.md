@@ -24,6 +24,8 @@ else's information, is a harm to a person who never agreed to be on this site.
 - **R2.** A claim on the site is checkable against a source (ADR-0008). Claims are supported and
   cited, refuted and closed, or open and labelled — never implied.
 - **R3.** Third-party media carries a visible credit (ADR-0006), test-enforced by filename prefix.
+  Openly licensed photographs (`commons-*`) name their author and licence in that credit, and their
+  provenance — page, licence URL, hash — is recorded in `source/commons/README.md`.
 - **R4.** Every image is opened and inspected before publication for other people's information:
   names, serials, plates, faces, signatures (ADR-0007). **Prior publication is not consent.**
 - **R5.** Third-party names stay withheld unless consent is recorded.
@@ -58,6 +60,7 @@ human looked. The looking is a step in the process, and the record of it is the 
 
 ## Revisions
 
-| Date       | Change                                                                                                           | Covered by                       |
-| ---------- | ---------------------------------------------------------------------------------------------------------------- | -------------------------------- |
-| 2026-09-20 | Written with R1–R10, gathering ADR-0006, -0007, -0008 and -0013 with the disclaimer-language guard added in #60. | `tests/contract/content.test.ts` |
+| Date       | Change                                                                                                                                       | Covered by                                                       |
+| ---------- | -------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------- |
+| 2026-10-10 | R3 extended: a `commons-` prefix for openly licensed context photographs, credit naming author and licence, provenance in `source/commons/`. | `tests/contract/content.test.ts`, `tests/contract/strip.test.ts` |
+| 2026-09-20 | Written with R1–R10, gathering ADR-0006, -0007, -0008 and -0013 with the disclaimer-language guard added in #60.                             | `tests/contract/content.test.ts`                                 |

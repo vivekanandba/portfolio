@@ -108,6 +108,15 @@ export const bmp2Turret: CaseStudy = {
       credit: CREDIT,
     },
   ],
+  // Context, not my work: the vehicle the turret sits on (ADR-0006 amended 2026-10-10).
+  gallery: [
+    {
+      file: 'media/commons-bmp-2-on-display.jpg',
+      alt: 'A BMP-2 infantry combat vehicle on static display, its turret and 30 mm gun on top',
+      credit:
+        'Where it sits: a BMP-2, the vehicle the turret study was for. Photo: Santeri Viinamäki, via Wikimedia Commons, CC BY-SA 4.0.',
+    },
+  ],
   seoDescription:
     'Project: 3D modelling and kinematic simulation of the BMP-II turret for Bharat Electronics’ FICV space studies — an eight-engineer team reconstructing 3,000 legacy drawings in four months, with the simulation clips.',
 };

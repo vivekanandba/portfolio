@@ -28,14 +28,27 @@ describe('Strip', () => {
   it('crops each frame where its focus says, top by default', () => {
     render(<Strip />);
     const imgs = screen.getAllByRole('img');
+    const mains = imgs.filter((img) => !img.hasAttribute('data-locator'));
     frames.forEach((f, i) => {
-      expect(imgs[i].className).toContain(`object-${f.focus ?? 'top'}`);
+      expect(mains[i].className).toContain(`object-${f.focus ?? 'top'}`);
+    });
+  });
+
+  it('shows the locator inset, with its own alt text and credit, wherever a frame has one', () => {
+    render(<Strip />);
+    const insets = document.querySelectorAll('img[data-locator]');
+    const withLocator = frames.filter((f) => f.locator);
+    expect(insets).toHaveLength(withLocator.length);
+    expect(withLocator.length).toBeGreaterThanOrEqual(4);
+    withLocator.forEach((f, i) => {
+      expect(insets[i]).toHaveAttribute('alt', f.locator!.alt);
+      expect(screen.getByText(`Inset: ${creditSource(f.locator!.credit!)}`)).toBeInTheDocument();
     });
   });
 
   it('loads the first image eagerly and the rest lazily', () => {
     render(<Strip />);
-    const imgs = screen.getAllByRole('img');
+    const imgs = screen.getAllByRole('img').filter((img) => !img.hasAttribute('data-locator'));
     expect(imgs[0]).toHaveAttribute('loading', 'eager');
     for (const img of imgs.slice(1)) expect(img).toHaveAttribute('loading', 'lazy');
   });

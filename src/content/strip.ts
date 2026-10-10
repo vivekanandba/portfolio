@@ -16,22 +16,26 @@ export const strip: StripFrame[] = [
   {
     file: 'media/legend-37ch-pancake-slipring.jpg',
     projectId: 'slipring-line',
-    caption: 'A 37-channel pancake slip ring for a tank turret',
+    caption: 'A 37-channel pancake slip ring, for a tank turret',
+    context: { file: 'media/commons-arjun-mbt-mark-1a.jpg' },
   },
   {
     file: 'media/enti-bmp2-turret-overview.jpg',
     projectId: 'bmp2-turret',
     caption: 'The BMP-II turret, 3,000 sheets modelled',
+    context: { file: 'media/commons-bmp-2-on-display.jpg' },
   },
   {
     file: 'media/legend-s200-integration-fixture.jpg',
     projectId: 'vssc-tooling',
-    caption: 'The S200 booster integration fixture for ISRO',
+    caption: 'The S200 booster integration fixture, for LVM3',
+    context: { file: 'media/commons-lvm3-m4-to-the-pad.jpg' },
   },
   {
     file: 'media/legend-pw1100g-test-cell.jpg',
     projectId: 'pw-augmenter',
-    caption: 'A live engine test cell, my augmenter in place',
+    caption: 'A live PW1100G test cell, my augmenter in place',
+    context: { file: 'media/commons-pw1100g-on-a320neo.jpg' },
   },
   {
     file: 'media/gadjoy-tablet-before-after.jpg',

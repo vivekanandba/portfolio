@@ -389,6 +389,22 @@
     {
       "from": "source/decks/enti-corporate-v1.4-taml/media/s29-composite-canopy-trolleys.png",
       "to": "enti-composite-canopy-trolleys.jpg"
+    },
+    {
+      "from": "source/commons/lvm3-m4-to-the-pad.jpg",
+      "to": "commons-lvm3-m4-to-the-pad.jpg"
+    },
+    {
+      "from": "source/commons/bmp-2-on-display.jpg",
+      "to": "commons-bmp-2-on-display.jpg"
+    },
+    {
+      "from": "source/commons/arjun-mbt-mark-1a.jpg",
+      "to": "commons-arjun-mbt-mark-1a.jpg"
+    },
+    {
+      "from": "source/commons/pw1100g-on-a320neo.jpg",
+      "to": "commons-pw1100g-on-a320neo.jpg"
     }
   ],
   "clips": [

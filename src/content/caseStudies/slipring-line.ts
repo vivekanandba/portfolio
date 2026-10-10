@@ -106,6 +106,12 @@ export const slipringLine: CaseStudy = {
       credit: `37-channel pancake slip ring for battle-tank turrets (CVRDE) — CAD. ${RENDER}, slide 55`,
     },
     {
+      file: 'media/commons-arjun-mbt-mark-1a.jpg',
+      alt: 'An Arjun Mark 1A main battle tank in the field, its turret traversed to the left',
+      credit:
+        'Where it sits: a turret that must rotate without a cable twisting — the pancake slip ring’s job. Photo: InSameer, via Wikimedia Commons, CC BY-SA 4.0.',
+    },
+    {
       file: 'media/legend-37ch-pancake-slipring.jpg',
       alt: 'The 37-channel pancake slip ring as built: a black disc ringed with red connector caps on green cloth',
       credit: `37-channel pancake slip ring, as built. ${PHOTO}, slide 55`,
