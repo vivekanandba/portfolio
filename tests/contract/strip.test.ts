@@ -29,6 +29,11 @@ describe('the photo strip', () => {
     }
   });
 
+  it('shows my own work, never a programme the company merely supported', () => {
+    for (const f of frames)
+      expect(f.credit ?? '', f.file).not.toMatch(/Role: (supported|company|workplace)/);
+  });
+
   it('carries a visible credit for every third-party frame', () => {
     for (const f of frames) {
       if (THIRD_PARTY.test(f.file)) expect(f.credit, `${f.file} credit`).toBeTruthy();

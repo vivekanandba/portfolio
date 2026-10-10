@@ -11,6 +11,9 @@ import { creditSource, resolveStrip } from '@/lib/strip';
  * below it, with no JavaScript. Every frame links its project page and shows
  * the credit that page shows. Server component.
  */
+// Complete literals: Tailwind's scanner cannot see a constructed class name.
+const FOCUS = { top: 'object-top', center: 'object-center', bottom: 'object-bottom' } as const;
+
 export function Strip() {
   const frames = resolveStrip(strip, { caseStudies, projects, caseStudyStart });
   return (
@@ -34,7 +37,7 @@ export function Strip() {
                     src={asset(f.file)}
                     alt={f.alt}
                     loading={i === 0 ? 'eager' : 'lazy'}
-                    className="aspect-[4/3] w-full object-cover object-top transition duration-300 motion-safe:group-hover:scale-[1.02]"
+                    className={`aspect-[4/3] w-full object-cover transition duration-300 motion-safe:group-hover:scale-[1.02] ${FOCUS[f.focus ?? 'top']}`}
                   />
                   <figcaption className="px-4 py-3">
                     <p className="text-sm text-ink">
