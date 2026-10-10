@@ -64,6 +64,16 @@ describe('resolveStrip', () => {
   });
 });
 
+describe('focus', () => {
+  it('passes a frame’s focus through untouched', () => {
+    const [f] = resolveStrip(
+      [{ file: 'media/a-1.jpg', projectId: 'a', caption: 'A', focus: 'center' }],
+      lookup,
+    );
+    expect(f.focus).toBe('center');
+  });
+});
+
 describe('creditSource', () => {
   it('keeps the source line of a long credit, and a short credit whole', () => {
     expect(creditSource('The hangar. Role: workplace. Photo: Legend Technologies, slide 81')).toBe(

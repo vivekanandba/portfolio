@@ -7,12 +7,16 @@ import type { StripFrame } from './schema';
  * study it links to. A file that is not in that case study's gallery or its
  * project image fails the build: the strip shows only what has been screened
  * and credited once already (ADR-0007).
+ *
+ * Every frame is my own work — not a programme the company supported during
+ * my tenure — and shows the artefact, not the room it was made in (second
+ * pass, 2026-10-10: the hangar, the test rig and the bench came out).
  */
 export const strip: StripFrame[] = [
   {
-    file: 'media/legend-aircraft-hangar.jpg',
-    projectId: 'legend-technologies',
-    caption: 'The hangar floor at Legend',
+    file: 'media/legend-37ch-pancake-slipring.jpg',
+    projectId: 'slipring-line',
+    caption: 'A 37-channel pancake slip ring for a tank turret',
   },
   {
     file: 'media/enti-bmp2-turret-overview.jpg',
@@ -20,29 +24,36 @@ export const strip: StripFrame[] = [
     caption: 'The BMP-II turret, 3,000 sheets modelled',
   },
   {
-    file: 'media/legend-slipring-rotational-test-rig.jpg',
-    projectId: 'igcar-slipring',
-    caption: 'The slip-ring test rig',
+    file: 'media/legend-s200-integration-fixture.jpg',
+    projectId: 'vssc-tooling',
+    caption: 'The S200 booster integration fixture for ISRO',
   },
   {
-    file: 'media/legend-sitvc-nose-cone-and-aft-shroud.jpg',
-    projectId: 'vssc-tooling',
-    caption: 'A PSLV strap-on nose cone and its shroud',
+    file: 'media/legend-pw1100g-test-cell.jpg',
+    projectId: 'pw-augmenter',
+    caption: 'A live engine test cell, my augmenter in place',
   },
-  { file: 'media/gadjoy-workshop.jpg', projectId: 'gadjoy', caption: 'The Gadjoy bench' },
+  {
+    file: 'media/gadjoy-tablet-before-after.jpg',
+    projectId: 'gadjoy',
+    caption: 'A tablet received dead, returned working',
+    focus: 'center',
+  },
   {
     file: 'media/mapshalli-aircare-live-map.jpg',
     projectId: 'aircare',
     caption: 'AirCare’s public map, live',
   },
   {
-    file: 'media/neurasignal-ng2-headset.jpg',
+    file: 'media/neurasignal-ng2-system.jpg',
     projectId: 'gcp-telemetry',
-    caption: 'The NovaGuide probe headset',
+    caption: 'The NovaGuide robotic system',
+    focus: 'center',
   },
   {
     file: 'media/appstore-sanas-live-conversation.jpg',
     projectId: 'sanas-consumer-app',
     caption: 'Sanas Translate, mid-conversation',
+    focus: 'center',
   },
 ];

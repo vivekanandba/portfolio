@@ -190,6 +190,9 @@ export const stripFrameSchema = z.object({
   file: z.string().regex(/^media\/[a-z0-9-]+\.(jpe?g|png|webp)$/),
   projectId: z.string().min(1), // FK to projects[].id / caseStudies[].projectId
   caption: z.string().min(3).max(60), // "The slip-ring test rig"
+  // Where the 4:3 crop sits on a frame that is not 4:3. Default top; a tall
+  // marketing screenshot is cropped to its phone, never to a person.
+  focus: z.enum(['top', 'center', 'bottom']).optional(),
 });
 export type StripFrame = z.infer<typeof stripFrameSchema>;
 

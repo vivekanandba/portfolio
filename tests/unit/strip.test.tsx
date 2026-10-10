@@ -25,6 +25,14 @@ describe('Strip', () => {
     });
   });
 
+  it('crops each frame where its focus says, top by default', () => {
+    render(<Strip />);
+    const imgs = screen.getAllByRole('img');
+    frames.forEach((f, i) => {
+      expect(imgs[i].className).toContain(`object-${f.focus ?? 'top'}`);
+    });
+  });
+
   it('loads the first image eagerly and the rest lazily', () => {
     render(<Strip />);
     const imgs = screen.getAllByRole('img');
