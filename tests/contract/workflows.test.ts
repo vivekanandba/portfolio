@@ -1,6 +1,7 @@
 import { describe, it, expect } from 'vitest';
 import { readFileSync, readdirSync } from 'node:fs';
 import { join, resolve } from 'node:path';
+import { load } from 'js-yaml';
 
 /**
  * The delivery path is code too, and none of it is covered by the application
@@ -109,5 +110,54 @@ describe('the workflows', () => {
     expect(deploy).toContain('scripts/verify-live.mjs');
     expect(deploy).toContain('--commit');
     expect(deploy).toContain('github.sha');
+  });
+});
+
+/**
+ * Structure, not just text (SPEC-0003 R10). A workflow that is valid YAML can
+ * still be one Actions refuses to start: #87 inserted a `run:` step between
+ * `actions/checkout` and that step's own `with:` block, so `with:` hung off a
+ * run step and every run for a week ended with no jobs and "log not found" —
+ * on main, on every branch, on dependabot's. Nothing here parsed the files.
+ */
+type Step = { uses?: string; run?: string; with?: Record<string, unknown>; name?: string };
+type Workflow = { jobs: Record<string, { steps?: Step[] }> };
+
+describe('the workflows are ones Actions will start', () => {
+  const parsed = workflows.map(([name, text]) => [name, load(text) as Workflow] as const);
+
+  it.each(parsed.map(([name]) => name))('%s: every step is exactly one of uses or run', (name) => {
+    const wf = parsed.find(([n]) => n === name)![1];
+    for (const [job, def] of Object.entries(wf.jobs)) {
+      for (const [i, step] of (def.steps ?? []).entries()) {
+        const kinds = ['uses', 'run'].filter((k) => k in step);
+        expect(
+          kinds,
+          `${name} › ${job} › step ${i + 1} (${step.name ?? step.uses ?? 'run'})`,
+        ).toHaveLength(1);
+      }
+    }
+  });
+
+  it.each(parsed.map(([name]) => name))('%s: a with block belongs to a uses step', (name) => {
+    const wf = parsed.find(([n]) => n === name)![1];
+    for (const [job, def] of Object.entries(wf.jobs)) {
+      for (const [i, step] of (def.steps ?? []).entries()) {
+        if ('with' in step) {
+          expect(
+            step.uses,
+            `${name} › ${job} › step ${i + 1} has with: but no uses:`,
+          ).toBeDefined();
+        }
+      }
+    }
+  });
+
+  it('the checks job checks out full history, so the spec-discipline diff has a base', () => {
+    const ci = parsed.find(([n]) => n === 'ci.yml')![1];
+    const checkout = (ci.jobs.checks.steps ?? []).find((s) =>
+      s.uses?.startsWith('actions/checkout@'),
+    );
+    expect(checkout?.with?.['fetch-depth']).toBe(0);
   });
 });
