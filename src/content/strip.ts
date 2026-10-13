@@ -12,6 +12,13 @@ import type { StripFrame } from './schema';
  */
 export const strip: StripFrame[] = [
   {
+    file: 'media/legend-sitvc-cones-and-shrouds.jpg',
+    projectId: 'vssc-tooling',
+    caption: 'PSLV strap-on nose cones, a production batch',
+    focus: 'center',
+    context: { file: 'media/commons-pslv-c44-on-the-pad.jpg', focus: 'center' },
+  },
+  {
     file: 'media/legend-s200-integration-fixture.jpg',
     projectId: 'vssc-tooling',
     caption: 'The S200 booster integration fixture, for LVM3',

@@ -27,7 +27,7 @@ export function Strip() {
         Fifteen years in pictures
       </h2>
       <Reveal>
-        <ol className="flex snap-x snap-mandatory gap-px overflow-x-auto overscroll-x-contain lg:grid lg:grid-cols-4 lg:overflow-visible">
+        <ol className="flex snap-x snap-mandatory gap-px overflow-x-auto overscroll-x-contain lg:grid lg:grid-cols-3 lg:overflow-visible">
           {frames.map((f, i) => (
             <li key={f.file} className="w-[78vw] shrink-0 snap-start sm:w-[46vw] lg:w-auto">
               <Link href={f.href} className="group block no-underline">

@@ -44,7 +44,10 @@ describe('Strip', () => {
     withLocator.forEach((f, i) => {
       expect(insets[i]).toHaveAttribute('alt', f.locator!.alt);
       expect(insets[i].className).toContain(`object-${f.locator!.focus ?? 'center'}`);
-      expect(screen.getByText(`Inset: ${creditSource(f.locator!.credit!)}`)).toBeInTheDocument();
+      // Two ISRO insets share a credit line, so count rather than find.
+      expect(
+        screen.getAllByText(`Inset: ${creditSource(f.locator!.credit!)}`).length,
+      ).toBeGreaterThanOrEqual(1);
     });
   });
 
