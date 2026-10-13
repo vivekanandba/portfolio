@@ -71,6 +71,12 @@ export const vsscTooling: CaseStudy = {
   diagramId: 'vssc-tooling',
   gallery: [
     {
+      file: 'media/commons-pslv-c44-on-the-pad.jpg',
+      alt: 'A PSLV on the First Launch Pad at Sriharikota at night, its six strap-on boosters and their nose cones around the core stage',
+      credit:
+        'Where it sits: the strap-on nose cones ring the base of a PSLV. Photo: Indian Space Research Organisation, via Wikimedia Commons, GODL-India.',
+    },
+    {
       file: 'media/legend-sitvc-cones-and-shrouds.jpg',
       alt: 'A row of finished PSLV strap-on nose cones and cylindrical aft shrouds on a workshop floor, bare riveted aluminium',
       wide: true,

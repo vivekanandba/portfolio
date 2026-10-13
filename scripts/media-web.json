@@ -405,6 +405,10 @@
     {
       "from": "source/commons/pw1100g-on-a320neo.jpg",
       "to": "commons-pw1100g-on-a320neo.jpg"
+    },
+    {
+      "from": "source/commons/pslv-c44-on-the-pad.jpg",
+      "to": "commons-pslv-c44-on-the-pad.jpg"
     }
   ],
   "clips": [
