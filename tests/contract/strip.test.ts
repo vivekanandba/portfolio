@@ -15,9 +15,9 @@ const THIRD_PARTY = /^media\/(legend|enti|neurasignal|appstore|mapshalli|commons
 describe('the photo strip', () => {
   const frames = resolveStrip(strip, { caseStudies, projects, caseStudyStart });
 
-  it('has six to nine frames, each a file that exists', () => {
+  it('has six to twelve frames, each a file that exists', () => {
     expect(strip.length).toBeGreaterThanOrEqual(6);
-    expect(strip.length).toBeLessThanOrEqual(9);
+    expect(strip.length).toBeLessThanOrEqual(12);
     for (const f of strip) expect(existsSync(join('public', f.file)), f.file).toBe(true);
   });
 

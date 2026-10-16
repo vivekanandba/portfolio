@@ -67,6 +67,12 @@ export const aeroReverseEngineering: CaseStudy = {
   diagramId: 'aero-reverse-engineering',
   gallery: [
     {
+      file: 'media/commons-cfm56-under-a320-wing.jpg',
+      alt: 'A CFM56 engine under the wing of an Airbus A320, seen from a cabin window',
+      credit:
+        'Where it sits: the CFM56 on the aircraft it powers — the engine the workstation adapter holds for maintenance. Photo: Olivier Cleynen, via Wikimedia Commons, CC BY 4.0.',
+    },
+    {
       file: 'media/legend-cfm56-workstation-adapter.jpg',
       alt: 'A CFM56 engine held in the grey steel workstation adapter, its fan case open, in a maintenance hangar',
       wide: true,

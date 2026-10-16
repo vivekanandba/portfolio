@@ -70,6 +70,12 @@ export const lcaNavy: CaseStudy = {
   diagramId: 'lca-navy',
   gallery: [
     {
+      file: 'media/commons-tejas-np1-ski-jump.jpg',
+      alt: 'A naval Tejas prototype leaving the ski-jump ramp of the Shore Based Test Facility at Goa, wheels just off the deck',
+      credit:
+        'Where it sits: the LCA-Navy, the aircraft the position and wander lights were designed for. Photo: Indian Navy, via Wikimedia Commons, GODL-India.',
+    },
+    {
       file: 'media/enti-position-light-exploded-1.jpg',
       alt: 'Exploded CAD view of the position light: lens cap, faceted housing, base plate and fasteners laid out along the assembly axis',
       credit: `Position light, exploded. ${RENDER}, slide 36`,

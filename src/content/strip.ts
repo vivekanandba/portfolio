@@ -31,6 +31,20 @@ export const strip: StripFrame[] = [
     context: { file: 'media/commons-pw1100g-on-a320neo.jpg', focus: 'center' },
   },
   {
+    file: 'media/enti-position-light-cad.jpg',
+    projectId: 'lca-navy',
+    caption: 'A position light for the LCA-Navy, from a blank sheet',
+    focus: 'center',
+    context: { file: 'media/commons-tejas-np1-ski-jump.jpg', focus: 'center' },
+  },
+  {
+    file: 'media/legend-cfm56-workstation-adapter.jpg',
+    projectId: 'aero-reverse-engineering',
+    caption: 'A CFM56 in my maintenance adapter, Air India MRO',
+    focus: 'center',
+    context: { file: 'media/commons-cfm56-under-a320-wing.jpg', focus: 'center' },
+  },
+  {
     file: 'media/legend-37ch-pancake-slipring.jpg',
     projectId: 'slipring-line',
     caption: 'A 37-channel pancake slip ring, for a tank turret',
@@ -47,6 +61,12 @@ export const strip: StripFrame[] = [
     file: 'media/mapshalli-aircare-live-map.jpg',
     projectId: 'aircare',
     caption: 'AirCare’s public map, live',
+  },
+  {
+    file: 'media/mapshalli-stophunger-coverage.png',
+    projectId: 'stop-hunger',
+    caption: 'Stop Hunger, reporting its own gaps',
+    focus: 'center',
   },
   {
     file: 'media/neurasignal-ng2-system.jpg',

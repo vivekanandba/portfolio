@@ -409,6 +409,18 @@
     {
       "from": "source/commons/pslv-c44-on-the-pad.jpg",
       "to": "commons-pslv-c44-on-the-pad.jpg"
+    },
+    {
+      "from": "source/commons/tejas-np1-ski-jump.jpg",
+      "to": "commons-tejas-np1-ski-jump.jpg"
+    },
+    {
+      "from": "source/commons/cfm56-under-a320-wing.jpg",
+      "to": "commons-cfm56-under-a320-wing.jpg"
+    },
+    {
+      "from": "source/commons/wag-12b-with-freight.jpg",
+      "to": "commons-wag-12b-with-freight.jpg"
     }
   ],
   "clips": [

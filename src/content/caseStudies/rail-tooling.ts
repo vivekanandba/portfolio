@@ -43,6 +43,15 @@ export const railTooling: CaseStudy = {
   resultsNote:
     'The bridge chapter — the same manufacturing-engineering rigor as the aerospace tooling, now on rail, spanning the transition years into software.',
   diagramId: 'rail-tooling',
+  // Context, not my work: the machine the artefact sits in (ADR-0006 amended 2026-10-10).
+  gallery: [
+    {
+      file: 'media/commons-wag-12b-with-freight.jpg',
+      alt: 'A blue WAG-12B electric locomotive of Indian Railways at a station platform with a freight train behind it',
+      credit:
+        'Where it sits: an Alstom-built WAG-12B electric locomotive of Indian Railways — rolling stock of the kind the installation tooling served. Photo: Adityamadhav83, via Wikimedia Commons, CC BY 4.0.',
+    },
+  ],
   seoDescription:
     'Project: rolling-stock manufacturing tooling for Alstom programs at Tech Mahindra — bogie, gangway, and HVAC installation fixtures for the Perth METRONET C-Series, Mumbai Metro Line 3, Singapore Metro, and E-Loco.',
 };
