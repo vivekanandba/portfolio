@@ -76,16 +76,19 @@ for (const scheme of ['light', 'dark'] as const) {
         // section that does not contain the name. The nav has its own baseline;
         // the others hide it so they fail only for their own reasons.
         // "Last updated <month>" is the build date, so the footer baseline expired
-        // on the 1st of every month (September → October broke every PR). Mask it;
-        // the rest of the footer is still compared pixel for pixel.
+        // on the 1st of every month (September → October broke every PR). A mask
+        // was not enough: it follows the span's width, and November is 14px wider
+        // than October, so the baseline expired again. Pin the text instead — a
+        // state reached by construction (R9) — and compare the whole footer.
+        const built = page.getByTestId('built');
+        if ((await built.count()) > 0) {
+          await built.evaluate((el) => {
+            el.textContent = 'January 2000';
+          });
+        }
         await expect(page.locator(surface.selector).first()).toHaveScreenshot(
           `${surface.name}-${scheme}.png`,
-          surface.name === 'nav'
-            ? {}
-            : {
-                stylePath: 'tests/fixtures/hide-sticky-nav.css',
-                mask: [page.getByTestId('built')],
-              },
+          surface.name === 'nav' ? {} : { stylePath: 'tests/fixtures/hide-sticky-nav.css' },
         );
       });
     }
