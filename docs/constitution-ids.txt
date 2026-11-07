@@ -8,7 +8,7 @@
 # tests/constitution.test.ts checks citations against. Regenerate it when the
 # constitution changes; a citation to a retired ID then fails the build.
 #
-# Source: CONSTITUTION.md at origin/main 7b1a6962bbe0, captured 2026-09-26
+# Source: CONSTITUTION.md at origin/main df884fd19fe9, captured 2026-11-07
 
 CON-VER-001 · Gate on exit codes, never on reading output
 CON-VER-002 · Run every suite, especially the slow one
@@ -34,6 +34,10 @@ CON-PROC-005 · Write the test first and watch it fail
 CON-PROC-006 · Guard destructive actions by construction, not by convention
 CON-PROC-007 · Automation proposes; humans dispose
 CON-PROC-008 · Never commit directly to a protected branch
+CON-PROC-009 · A review loop ends on a clean round, not on a green suite
+CON-PROC-011 · A rule with no enforcing mechanism is a wish
+CON-PROC-012 · Partial is not done
+CON-PROC-013 · A learning in one project is promoted to the fleet
 CON-SEC-001 · A credential in a conversation is compromised
 CON-SEC-002 · Dependency and secret scanning are CI gates, not dashboards
 CON-SEC-003 · Audit the shipped tree and the build tree separately, and trace what actually ships

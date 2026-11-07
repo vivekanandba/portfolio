@@ -7,5 +7,7 @@
   "_note_protected_branches": "ON. Three commits landed directly on main on 2026-08-08, including the gates themselves — the exact failure this prevents.",
   "determinism": true,
   "migrations": false,
-  "artifacts": false
+  "artifacts": false,
+  "workflows": true,
+  "_note_workflows": "ON since 2026-11-07. The gate existed in the vendored 1.6.0 copy but this file predated the switch, so it never ran; two faults it refuses had reached main (SPEC-0003 R11)."
 }

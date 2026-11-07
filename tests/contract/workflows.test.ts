@@ -121,7 +121,12 @@ describe('the workflows', () => {
  * on main, on every branch, on dependabot's. Nothing here parsed the files.
  */
 type Step = { uses?: string; run?: string; with?: Record<string, unknown>; name?: string };
-type Workflow = { jobs: Record<string, { steps?: Step[] }> };
+type Job = {
+  steps?: Step[];
+  'timeout-minutes'?: number;
+  container?: string | { image?: string; options?: string };
+};
+type Workflow = { jobs: Record<string, Job> };
 
 describe('the workflows are ones Actions will start', () => {
   const parsed = workflows.map(([name, text]) => [name, load(text) as Workflow] as const);
@@ -150,6 +155,29 @@ describe('the workflows are ones Actions will start', () => {
           ).toBeDefined();
         }
       }
+    }
+  });
+
+  it.each(parsed.map(([name]) => name))('%s: every job declares timeout-minutes', (name) => {
+    // A hung job runs until the platform kills it at six hours; the fleet's
+    // September 2026 bill was 2,197 of 2,000 free minutes (SPEC-0003 R11).
+    const wf = parsed.find(([n]) => n === name)![1];
+    for (const [job, def] of Object.entries(wf.jobs)) {
+      expect(def['timeout-minutes'], `${name} › ${job} has no timeout-minutes`).toBeTypeOf(
+        'number',
+      );
+    }
+  });
+
+  it.each(parsed.map(([name]) => name))('%s: a container job runs as the host user', (name) => {
+    // A root container left root-owned files on the self-hosted runner that
+    // broke every later job on it (fleet, 2026-09-26). house-gates refuses a
+    // container without --user; this is the same check where CI can see it.
+    const wf = parsed.find(([n]) => n === name)![1];
+    for (const [job, def] of Object.entries(wf.jobs)) {
+      if (def.container === undefined) continue;
+      const options = typeof def.container === 'string' ? '' : (def.container.options ?? '');
+      expect(options, `${name} › ${job} container has no --user`).toMatch(/--user\s+1001:1001/);
     }
   });
 
