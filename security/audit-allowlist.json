@@ -55,6 +55,12 @@
       "tree": "development",
       "reason": "GHSA-5gmw-xhrv-c9v3 / GHSA-85c8-ppgw-ccpr: prototype-pollution gadgets in tinypool's worker and run() options, reachable only by code that passes attacker-controlled options to the pool. tinypool 1.1.1 is a transitive dev dependency of vitest 2.1.9; the only caller is vitest itself with options from vitest.config.ts, which this repo authors. Nothing of it reaches the built site. The fix is tinypool 2.1.2, which arrives only with vitest 5 (a major); that upgrade is owed and tracked, and this exemption is to be re-read when it lands or when the advisory changes.",
       "reviewed": "2026-10-10"
+    },
+    {
+      "advisory": "zod",
+      "tree": "production",
+      "reason": "GHSA-mrhx-c7xc-m3w5: memory exhaustion while validating oversized constrained collections, fixed only in zod 4.6.6+. Every .parse() here runs over this repo's own typed content literals in src/content/*.ts; nothing attacker-controlled is ever validated — a static export takes no input. zod does ship in one client chunk (the content index), so the exemption is not 'not shipped' but 'never reached with foreign data' (CON-SEC-003). The move to zod 4 is owed (dependabot #67) and this entry is deleted when it lands.",
+      "reviewed": "2026-11-07"
     }
   ]
 }
