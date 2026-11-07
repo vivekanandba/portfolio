@@ -2,6 +2,7 @@
 title: 'The body, the wiring, the brain'
 date: 2020-11-30
 written: 2026-10-03
+updated: 2026-11-07
 summary: 'I grew up on the first computer in the neighbourhood and still ended up a mechanical engineer. A book, a Go move, two years of tutorial hell, a services job taken as a side door, and a mentor who gave me half an hour a month — this is how I got from CAD to code, and why it took until I was thirty.'
 kind: field-note
 tags: [career, cad-to-code, machine-learning, mapshalli, tech-mahindra, mentorship, learning]
@@ -32,7 +33,7 @@ In January 2018 I had joined Tech Mahindra — [as a tooling engineer for rollin
 
 ## Half an hour a month
 
-Late in 2018, a customer's father-in-law came in for a tempered glass. We fitted glass as properly as it could be done, and he sent his daughter, a doctor, who came to the store for months and asked about the projects I was always talking about. I had no idea who her husband was. Eventually she said I had to meet someone who could really help me, and he walked in with two wires to solder.
+In 2018, a customer's father-in-law came in for a tempered glass. We fitted glass as properly as it could be done, and he sent his daughter, a doctor, who came to the store for months and asked about the projects I was always talking about. I had no idea who her husband was. Eventually she said I had to meet someone who could really help me, and he walked in with two wires to solder.
 
 The wires were for [AirCare](/work/aircare/). He had run divisions of a chip company in India; he was retired, and building air-quality sensors for the neighbourhood. I made him an offer: I will help you with the hardware, will you teach me software? He gave me half an hour a month. I went to his house, sat beside him, and he poured concepts into that half hour until most of it went over my head. He handed me the AirCare codebase and said, see what you can work on. It was a small codebase. It was insurmountable. For six months I went to him, looked at the code, tried something, got stuck, retreated into another tutorial, and came back the next month with my head down. He kept the half hour open. Looking back, it was perseverance he was accommodating, nothing more — I had not yet done anything good.
 
