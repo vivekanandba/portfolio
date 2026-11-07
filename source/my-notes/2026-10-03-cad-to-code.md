@@ -89,7 +89,7 @@ they could give me a small chance on any project they were doing.
 
 ## The mentor
 
-Then, end of 2018, I think, I met my mentor. [Named in the account; withheld here until he is asked.]
+Then, end of 2018, I think, I met my mentor. [Corrected 2026-11-07: he first said "I think I met him in 2017 only", then found the book his mentor inscribed on 23 September 2018, "a few months" after they met — so 2018, earlier than the end of the year. See the note of 7 November 2026, "mentor-inscription".] [Named in the account; withheld here until he is asked.]
 He used to head divisions of a chip company in India. [Named too; the Gadjoy note and post already
 describe him, on Vivek's decision, as a former head of Intel who was a customer.] How I met him is
 itself an interesting story. His father-in-law used to come for tempered glass. We used to put
