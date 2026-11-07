@@ -3,11 +3,12 @@
   "message": true,
   "max_bytes": 2097152,
   "protected_branches": ["main"],
-  "_note_max_bytes": "2 MB. public/ carries the served resume and project artifact decks (SPEC §11, ADR-0005); the largest today is 0.9 MB. A 512 KB limit would have blocked work this repo does routinely.",
-  "_note_protected_branches": "ON. Three commits landed directly on main on 2026-08-08, including the gates themselves — the exact failure this prevents.",
+  "_note_max_bytes": "2 MB. public/ carries the served resume and project artifact decks (SPEC \u00a711, ADR-0005); the largest today is 0.9 MB. A 512 KB limit would have blocked work this repo does routinely.",
+  "_note_protected_branches": "ON. Three commits landed directly on main on 2026-08-08, including the gates themselves \u2014 the exact failure this prevents.",
   "determinism": true,
   "migrations": false,
   "artifacts": false,
   "workflows": true,
-  "_note_workflows": "ON since 2026-11-07. The gate existed in the vendored 1.6.0 copy but this file predated the switch, so it never ran; two faults it refuses had reached main (SPEC-0003 R11)."
+  "_note_workflows": "ON since 2026-11-07. The gate existed in the vendored 1.6.0 copy but this file predated the switch, so it never ran; two faults it refuses had reached main (SPEC-0003 R11).",
+  "private": false
 }
