@@ -185,38 +185,20 @@ jobs:
   e2e:
     runs-on: ubuntu-latest
     timeout-minutes: 20
+    # The same pinned container as `visual`, not a bare runner: ubuntu-latest
+    # became Ubuntu 26.04 on 2026-11-07 and Playwright 1.51.1 could not install
+    # Chromium there (SPEC-0003 R12). The image ships node and the browsers, so
+    # there is nothing to set up, cache or install.
+    container:
+      image: mcr.microsoft.com/playwright:v1.51.1-noble
+      options: --user 1001:1001
     steps:
       - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5
 
-      - uses: actions/setup-node@a0853c24544627f65ddf259abe73b1d18a591444 # v5
-        with:
-          node-version: 20
-          cache: npm
-
       - run: npm ci
-
-      - name: Resolve Playwright version
-        id: pw
-        run: echo "version=$(node -p "require('@playwright/test/package.json').version")" >> "$GITHUB_OUTPUT"
-
-      - name: Cache Playwright browsers
-        id: pw-cache
-        uses: actions/cache@0057852bfaa89a56745cba8c7296529d2fc39830 # v4
-        with:
-          path: ~/.cache/ms-playwright
-          key: playwright-${{ runner.os }}-${{ steps.pw.outputs.version }}
-
-      - name: Install Playwright browser
-        if: steps.pw-cache.outputs.cache-hit != 'true'
-        run: npx playwright install --with-deps chromium
-
-      - name: Install Playwright system deps (cache hit)
-        if: steps.pw-cache.outputs.cache-hit == 'true'
-        run: npx playwright install-deps chromium
 
       - name: Suite — e2e (can a person complete the task)
         run: npm run test:e2e
         # `npm run test:e2e`, not a bare `playwright test`: the bare form runs
-        # every project, including the pixel baselines, on this bare runner —
-        # whose fonts differ from the container the baselines were made in. The
-        # 1% tolerance hid that for weeks; the 120px budget exposed it (#74).
+        # every project, including the pixel baselines, which belong to the
+        # visual job and once failed here for font reasons on a bare runner (#74).

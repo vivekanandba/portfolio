@@ -181,6 +181,26 @@ describe('the workflows are ones Actions will start', () => {
     }
   });
 
+  it('runs every browser job in the Playwright container pinned to the lockfile version', () => {
+    // ubuntu-latest moved to Ubuntu 26.04 on 2026-11-07 and Playwright 1.51.1
+    // cannot install Chromium there; the pinned container is immune to the
+    // runner image moving under it (SPEC-0003 R12). The tag must be the
+    // lockfile's version, not package.json's range: ^1.54 resolved to 1.62 and
+    // 1.61 in two fleet repos (CON-COV-003, both sides of the boundary).
+    const lock = JSON.parse(readFileSync(join(ROOT, 'package-lock.json'), 'utf8')) as {
+      packages: Record<string, { version: string }>;
+    };
+    const version = lock.packages['node_modules/@playwright/test'].version;
+    const ci = parsed.find(([n]) => n === 'ci.yml')![1];
+    for (const job of ['visual', 'e2e']) {
+      const container = ci.jobs[job]?.container;
+      const image = typeof container === 'string' ? container : container?.image;
+      expect(image, `ci.yml › ${job} must run in the Playwright container`).toBe(
+        `mcr.microsoft.com/playwright:v${version}-noble`,
+      );
+    }
+  });
+
   it('the checks job checks out full history, so the spec-discipline diff has a base', () => {
     const ci = parsed.find(([n]) => n === 'ci.yml')![1];
     const checkout = (ci.jobs.checks.steps ?? []).find((s) =>
