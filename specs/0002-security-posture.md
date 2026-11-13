@@ -46,6 +46,7 @@ not the same as reaching a browser, and on a static export the gap is total.
 - **R7.** The policy is verified in a real browser against the built output, on every page type,
   asserting a 200 and a rendered heading first — because a 404 has no violations either.
 - **R8.** Dependency updates arrive as grouped pull requests, weekly.
+- **R9.** Every external link field in the content schema accepts `http:` and `https:` only. `javascript:`, `data:`, `vbscript:` and `file:` all parse as URLs and would render as a live link.
 
 ## Verification
 
@@ -54,6 +55,7 @@ npm run test:security                          # R1, R2, R3
 npx vitest run tests/contract/workflows.test.ts # R4, R5
 npx vitest run tests/unit/csp.test.ts           # R6
 npx playwright test tests/e2e/security.spec.ts  # R6, R7
+npx vitest run tests/unit/external-urls.test.ts # R9
 ```
 
 R4 and R5 are asserted against the workflow files themselves, since the delivery path is code that
@@ -85,6 +87,7 @@ the base path, and passed on a 404 page while asserting nothing.
 
 | Date       | Change                                                                                                                                                                                                                                                                                                                                                                                                                                                          | Covered by                                                                                 |
 | ---------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------ |
+| 2026-11-13 | R9 added with the zod 4 migration (supersedes dependabot #67). An adversarial probe of the URL validator found that `z.string().url()` accepted `javascript:alert(1)` under zod 3 and zod 4 alike, on all five link fields. They now use `z.url({ protocol: /^https?$/ })`, and the new test was red on all three schemas before the change. The zod exemption is deleted because 4.6.7 clears the advisory.                                                    | `tests/unit/external-urls.test.ts`                                                         |
 | 2026-11-13 | Minor and patch sweep: React 19.3.1, postcss 8.5.32, serve 14.2.8, autoprefixer, testing-library, eslint-config-next 15.5.29, plus `npm audit fix` for the transitive tree. The `sharp` and `nanoid` exemptions are deleted because the advisories they excused are gone. `postcss` stays exempt: Next bundles its own 8.4.31, and the reason still holds. Playwright is pinned exactly at 1.51.1 so that its upgrade lands with its own baselines.             | `scripts/audit-deps.mjs`, `security/audit-allowlist.json`                                  |
 | 2026-11-07 | Security suite red on `main` with two unexempted production-tree advisories that arrived after #94. `next` patched 15.5.25 → 15.5.29 (cache poisoning of SSG/ISR pages, SVG RCE in the image optimiser, Server Actions DoS — none reachable in a static export, but a patch was available so it is taken, not excused). `zod` exempted with its reason: every parse is of this repo's own content literals; the zod 4 migration is owed through dependabot #67. | `scripts/audit-deps.mjs`, `security/audit-allowlist.json`                                  |
 | 2026-11-07 | `docs/constitution-ids.txt` refreshed from fleet `main` at df884fd19fe9: CON-PROC-009, 011, 012 and 013 join the list, so the repo may cite them. No rule or behaviour changed.                                                                                                                                                                                                                                                                                 | `tests/contract/constitution.test.ts`                                                      |
