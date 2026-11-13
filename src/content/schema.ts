@@ -8,9 +8,13 @@ import { PERIOD_PATTERN } from '@/lib/arc';
  * tests then guarantee every data file conforms.
  */
 
+/** An external link: http(s) only. `javascript:` and `data:` parse as URLs, and
+ *  both render as a live <a href> (SPEC-0002 R9). */
+const httpUrl = () => z.url({ protocol: /^https?$/ });
+
 export const linkSchema = z.object({
   label: z.string().min(1),
-  href: z.string().url(),
+  href: httpUrl(),
 });
 export type Link = z.infer<typeof linkSchema>;
 
@@ -96,7 +100,7 @@ export const projectSchema = z.object({
   imageCredit: z.string().min(1).optional(),
   // External public artifact only (App Store, product page, patent). Absolute
   // URLs enforced — internal case-study links derive from caseStudies instead.
-  href: z.string().url().optional(),
+  href: httpUrl().optional(),
   linkLabel: z.string().min(1).optional(), // "App Store" — text for the href link
 });
 export type Project = z.infer<typeof projectSchema>;
@@ -236,7 +240,7 @@ export const caseStudySchema = z.object({
         .object({
           label: z.string().min(1), // "Telemetry white paper (PDF)"
           file: z.string().min(1).optional(), // local: "docs/gcp-telemetry-whitepaper.pdf"
-          href: z.string().url().optional(), // external: a registry entry, spec, or filing
+          href: httpUrl().optional(), // external: a registry entry, spec, or filing
         })
         // Exactly one source — a local file resolves through asset(), an href
         // is used verbatim, and having neither would render a dead link.
@@ -270,7 +274,7 @@ export const patentSchema = z
     kind: z.enum(['patent', 'publication', 'achievement']),
     title: z.string().min(1),
     reference: z.string().optional(), // patent number, venue, context
-    href: z.string().url().optional(), // external: a patent office, a publisher
+    href: httpUrl().optional(), // external: a patent office, a publisher
     // Local artefact served from /public — e.g. a published paper scanned to PDF
     // (ADR-0013). Resolves through asset(), like caseStudy.docs.
     file: z.string().min(1).optional(),
@@ -340,7 +344,7 @@ export const certificationSchema = z.object({
   name: z.string().min(1),
   authority: z.string().min(1), // "DeepLearning.AI"
   date: z.string().min(1), // "Jun 2024" — display string, newest-first ordering is data order
-  url: z.string().url(), // every cert must verify — the chip renders as a link
+  url: httpUrl(), // every cert must verify — the chip renders as a link
   category: z.string().min(1), // grouping key, e.g. "AI Agents & LLM Engineering"
 });
 export type Certification = z.infer<typeof certificationSchema>;
