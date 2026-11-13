@@ -9,21 +9,9 @@
   ],
   "allowed": [
     {
-      "advisory": "sharp",
-      "tree": "production",
-      "reason": "libvips CVEs in Next's image optimiser. next.config.ts sets images.unoptimized, so sharp never processes an image in this build, and a static export has no image route at runtime.",
-      "reviewed": "2026-09-20"
-    },
-    {
       "advisory": "postcss",
       "tree": "production",
       "reason": "XSS via an unescaped </style> in CSS stringify output. postcss runs at build time over this repo's own Tailwind sources; it never sees third-party or user input, and it is not in the shipped bundle.",
-      "reviewed": "2026-09-20"
-    },
-    {
-      "advisory": "nanoid",
-      "tree": "production",
-      "reason": "Non-secure generator loops on a negative size. Reached only through postcss at build time. Verified absent from out/: the one `nanoid` string in the client bundle is Zod's .nanoid() validator method, not the package.",
       "reviewed": "2026-09-20"
     },
     {
