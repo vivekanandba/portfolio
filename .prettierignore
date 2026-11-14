@@ -12,3 +12,6 @@ source/decks/*/slides.md
 source/decks/*/media-map.json
 tests/fixtures/writing/
 src/content/writing/
+# Generated in another repo (resumefit publish-resume.py) and committed here by its PR;
+# formatting it here failed resume PR #34 for three months (SPEC-0012 R11).
+resume/master.md

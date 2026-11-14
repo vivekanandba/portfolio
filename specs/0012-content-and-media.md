@@ -38,12 +38,14 @@ else's information, is a harm to a person who never agreed to be on this site.
   record. Hedging that reads as though the author doubts his own history is not honesty; it is
   noise, and it is guarded against by pattern.
 - **R10.** Contradictions between sources are recorded, not silently reconciled.
+- **R11.** A file another repository generates into this one, such as `resume/master.md` from resumefit's publisher, is not reformatted here. It is Prettier-ignored like the PDF and DOCX beside it, so the producer's output and this repo's formatter cannot disagree.
 
 ## Verification
 
 ```sh
 npx vitest run tests/contract/content.test.ts tests/contract/source.test.ts
 npx vitest run tests/contract/legend-hub.test.ts
+npx vitest run tests/contract/generated-files.test.ts  # R11
 npm run verify:infra    # R9, against the deployed site
 ```
 
@@ -60,7 +62,8 @@ human looked. The looking is a step in the process, and the record of it is the 
 
 ## Revisions
 
-| Date       | Change                                                                                                                                       | Covered by                                                       |
-| ---------- | -------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------- |
-| 2026-10-10 | R3 extended: a `commons-` prefix for openly licensed context photographs, credit naming author and licence, provenance in `source/commons/`. | `tests/contract/content.test.ts`, `tests/contract/strip.test.ts` |
-| 2026-09-20 | Written with R1–R10, gathering ADR-0006, -0007, -0008 and -0013 with the disclaimer-language guard added in #60.                             | `tests/contract/content.test.ts`                                 |
+| Date       | Change                                                                                                                                                                                                                                                                     | Covered by                                                       |
+| ---------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------- |
+| 2026-11-14 | R11 added. Resume PR #34 (v15.0.2, opened 2026-08-04 by resumefit's publisher) failed this repo's quality gate on `resume/master.md` until it was closed. The generated Markdown is now Prettier-ignored, and the test asks Prettier itself. It was red before the change. | `tests/contract/generated-files.test.ts`                         |
+| 2026-10-10 | R3 extended: a `commons-` prefix for openly licensed context photographs, credit naming author and licence, provenance in `source/commons/`.                                                                                                                               | `tests/contract/content.test.ts`, `tests/contract/strip.test.ts` |
+| 2026-09-20 | Written with R1–R10, gathering ADR-0006, -0007, -0008 and -0013 with the disclaimer-language guard added in #60.                                                                                                                                                           | `tests/contract/content.test.ts`                                 |
