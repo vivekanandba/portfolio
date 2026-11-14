@@ -89,15 +89,13 @@
   /* Hero atmosphere: a soft accent glow + a hairline grid that fades out.
      Pure decoration — sits behind the content and inherits the palette. */
   .hero-atmosphere {
-    background: radial-gradient(
-        40rem 24rem at 85% -10%,
-        rgb(var(--c-accent) / 0.1),
-        transparent 70%
-      ),
+    background:
+      radial-gradient(40rem 24rem at 85% -10%, rgb(var(--c-accent) / 0.1), transparent 70%),
       radial-gradient(28rem 20rem at 10% 110%, rgb(var(--c-accent) / 0.06), transparent 70%);
   }
   .hero-grid {
-    background-image: linear-gradient(rgb(var(--c-hairline) / 0.6) 1px, transparent 1px),
+    background-image:
+      linear-gradient(rgb(var(--c-hairline) / 0.6) 1px, transparent 1px),
       linear-gradient(90deg, rgb(var(--c-hairline) / 0.6) 1px, transparent 1px);
     background-size: 3rem 3rem;
     mask-image: radial-gradient(32rem 22rem at 75% 0%, black 30%, transparent 75%);

@@ -30,14 +30,27 @@ const TREES = [
   { name: 'development', failFrom: 'critical' },
 ];
 
-/** npm audit exits non-zero whenever it finds anything, so its status is not the signal. */
+/** npm audit exits non-zero whenever it finds anything, so its status is not the signal.
+ *  What is: a real answer carries `metadata.vulnerabilities`. When the registry fails,
+ *  npm prints an error object instead, which once read as "0 advisories" (SPEC-0002 R10).
+ *  "Could not audit" exits 2, distinct from a finding (CON-VER-005, CON-VER-009). */
 function audit(args) {
+  let report;
   try {
-    return JSON.parse(execFileSync('npm', ['audit', '--json', ...args], { encoding: 'utf8' }));
+    report = JSON.parse(execFileSync('npm', ['audit', '--json', ...args], { encoding: 'utf8' }));
   } catch (error) {
-    if (error.stdout) return JSON.parse(error.stdout);
-    throw error;
+    if (!error.stdout) throw error;
+    report = JSON.parse(error.stdout);
   }
+  if (!report?.metadata?.vulnerabilities) {
+    const why = report?.error?.summary ?? report?.message ?? 'no metadata in the response';
+    console.error(
+      `audit-deps: could not audit (npm audit ${args.join(' ') || '(all)'}): ${why}. ` +
+        'This is the registry, not the dependencies — re-run once it answers (CON-VER-012).',
+    );
+    process.exit(2);
+  }
+  return report;
 }
 
 const allowlist = JSON.parse(readFileSync('security/audit-allowlist.json', 'utf8')).allowed;
