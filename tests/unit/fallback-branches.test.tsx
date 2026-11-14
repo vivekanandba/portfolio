@@ -161,6 +161,55 @@ describe('the sitemap on a site with no posts yet', () => {
   });
 });
 
+describe('the sitemap dates each post by when it was written', () => {
+  // ADR-0018: written, else updated, else the work date. vitest 5 counts each
+  // arm of that chain as a branch, and the live posts all carry `written`.
+  it('falls back from written to updated to the work date', async () => {
+    vi.resetModules();
+    vi.doMock('@/lib/writing', () => ({
+      listPosts: () => [
+        { slug: 'a', date: '2019-01-01', written: '2026-10-03' },
+        { slug: 'b', date: '2018-01-01', updated: '2025-05-05' },
+        { slug: 'c', date: '2017-01-01' },
+      ],
+    }));
+    const { default: sitemap } = await import('@/app/sitemap');
+    const lastMod = (slug: string) =>
+      sitemap().find((e) => e.url.endsWith(`/writing/${slug}/`))!.lastModified;
+
+    expect(lastMod('a')).toBe('2026-10-03');
+    expect(lastMod('b')).toBe('2025-05-05');
+    expect(lastMod('c')).toBe('2017-01-01');
+    expect(sitemap().find((e) => e.url.endsWith('/writing/'))!.lastModified).toBe('2026-10-03');
+
+    vi.doUnmock('@/lib/writing');
+    vi.resetModules();
+  });
+});
+
+describe('Turning Points with data it does not expect', () => {
+  it('spells a count it has no word for as a number, and skips a project id that does not exist', async () => {
+    vi.resetModules();
+    const actual = await vi.importActual<typeof import('@/content')>('@/content');
+    const base = actual.turningPoints[0];
+    const nine = Array.from({ length: 9 }, (_, i) => ({
+      ...base,
+      year: base.year + i,
+      title: `Pivot ${i}`,
+      projects: i === 0 ? ['no-such-project', base.projects[0]] : base.projects,
+    }));
+    vi.doMock('@/content', () => ({ ...actual, turningPoints: nine }));
+    const { TurningPoints } = await import('@/components/TurningPoints');
+    const { container } = render(<TurningPoints />);
+
+    expect(container.textContent).toMatch(/9 decisions explain everything/);
+    expect(container.querySelector('a[href*="no-such-project"]')).toBeNull();
+
+    vi.doUnmock('@/content');
+    vi.resetModules();
+  });
+});
+
 describe('ClipGrid captions and credits', () => {
   const clip = {
     file: 'media/demo.mp4',
