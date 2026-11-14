@@ -8,7 +8,7 @@
 # tests/constitution.test.ts checks citations against. Regenerate it when the
 # constitution changes; a citation to a retired ID then fails the build.
 #
-# Source: CONSTITUTION.md at origin/main df884fd19fe9, captured 2026-11-07
+# Source: CONSTITUTION.md at origin/main 44b5d08f24e4, captured 2026-11-14
 
 CON-VER-001 · Gate on exit codes, never on reading output
 CON-VER-002 · Run every suite, especially the slow one
@@ -18,14 +18,24 @@ CON-VER-005 · A check that misdiagnoses is worse than no check
 CON-VER-006 · Don't re-derive facts you can execute
 CON-VER-007 · Never claim an unverifiable thing is verified
 CON-VER-008 · A test that fails only in the full run is a defect in the suite, not noise
+CON-VER-009 · "Answered, with nothing" is a third outcome, not a kind of absence
+CON-VER-010 · Pin the floor your CI hands the script: the interpreter and the image
+CON-VER-011 · A cached or vendored copy of shared tooling says what it is and how old it is
+CON-VER-012 · An infrastructure limit is not a signal about the software
+CON-VER-013 · A conformance tool passing is not the property you need
+CON-VER-014 · A pipeline that ends in `grep -q` under `pipefail` is a race, not a test
+CON-VER-015 · A pixel baseline captures a state the page reaches by construction, never by timing
 CON-COV-001 · Application coverage says nothing about whether software ships
 CON-COV-002 · A coverage floor only ratchets up
 CON-COV-003 · Cover the boundary between components, not just inside them
+CON-COV-004 · A vendored artifact is exempted from the host's style gates by whatever installs it
+CON-COV-005 · When two code paths build the same artifact, test the one that ships
 CON-DATA-001 · Record observations, never inferences
 CON-DATA-002 · Use tri-state wherever "unknown" differs from "no"
 CON-DATA-003 · Report contradictions; never silently reconcile them
 CON-DATA-004 · Never overwrite a human judgement from a derived signal
 CON-DATA-005 · Prefer `ON DELETE SET NULL` to `CASCADE` when the child records a decision
+CON-DATA-006 · Never fabricate domain content
 CON-PROC-001 · Specify before implementing
 CON-PROC-002 · Keeping a suite green is not keeping it current
 CON-PROC-003 · When a bug escapes, extend the layer that should have caught it
@@ -35,13 +45,25 @@ CON-PROC-006 · Guard destructive actions by construction, not by convention
 CON-PROC-007 · Automation proposes; humans dispose
 CON-PROC-008 · Never commit directly to a protected branch
 CON-PROC-009 · A review loop ends on a clean round, not on a green suite
+CON-PROC-010 · History is additive; archive by reference
 CON-PROC-011 · A rule with no enforcing mechanism is a wish
 CON-PROC-012 · Partial is not done
 CON-PROC-013 · A learning in one project is promoted to the fleet
+CON-PROC-014 · A gate that cannot run is not a gate
+CON-PROC-015 · Verify from the commit, and commit before testing a destructive path
+CON-PROC-016 · A test that runs from a git hook runs in git's environment
+CON-PROC-017 · A pipeline is a budgeted resource
+CON-PROC-018 · An in-place edit reads to a variable, then writes — and verifies
+CON-PROC-019 · A write path without a repair path is an unfinished feature
+CON-PROC-020 · A guarantee the registry cannot express is a guarantee nobody writes down
 CON-SEC-001 · A credential in a conversation is compromised
 CON-SEC-002 · Dependency and secret scanning are CI gates, not dashboards
 CON-SEC-003 · Audit the shipped tree and the build tree separately, and trace what actually ships
 CON-SEC-004 · A deployed surface declares its security headers, or records why it cannot
 CON-SEC-005 · A security pass is part of done, not a later project
+CON-OBS-001 · Every public surface has an external probe, and a human is told when it fails
+CON-OBS-002 · A scheduled job proves it ran; silence is a failure, not a success
+CON-OBS-003 · An alert path is verified by firing it once, and the delivery is recorded
+CON-OBS-004 · Logs carry a severity, or errors are invisible
 CON-REP-001 · State what was verified and how
 CON-REP-002 · Report the cost of what you didn't do
