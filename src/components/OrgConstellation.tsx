@@ -38,8 +38,8 @@ const TIER_CLASSES: Record<Org['tier'], string> = {
 
 export function OrgConstellation() {
   return (
-    <div className="border-t border-hairline pt-8">
-      <p className="text-center text-xs font-semibold uppercase tracking-[0.18em] text-muted">
+    <div className="border-hairline border-t pt-8">
+      <p className="text-muted text-center text-xs font-semibold tracking-[0.18em] uppercase">
         Built for · shipped at
       </p>
       <ul className="mx-auto mt-5 flex max-w-4xl flex-wrap items-baseline justify-center gap-x-7 gap-y-3">

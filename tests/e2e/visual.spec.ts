@@ -18,6 +18,9 @@ import { test, expect } from '@playwright/test';
 /** Reveal holds sections at opacity 0 until the observer fires. */
 async function settle(page: import('@playwright/test').Page) {
   await page.evaluate(async () => {
+    // Web fonts change line boxes and so the page's height; a shot taken before
+    // they load caught the 404 at bare viewport height (SPEC-0003 R9).
+    await document.fonts.ready;
     const step = Math.round(window.innerHeight * 0.7);
     for (let y = 0; y < document.body.scrollHeight; y += step) {
       window.scrollTo(0, y);
@@ -111,7 +114,7 @@ for (const scheme of ['light', 'dark'] as const) {
 
     test('404', async ({ page }) => {
       await page.emulateMedia({ reducedMotion: 'reduce' });
-      await page.goto('this-page-does-not-exist/');
+      await page.goto('this-page-does-not-exist/', { waitUntil: 'networkidle' });
       await page.locator('next-route-announcer').waitFor({ state: 'attached' });
       await settle(page);
       await expect(page).toHaveScreenshot(`not-found-${scheme}.png`, { fullPage: true });

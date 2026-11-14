@@ -54,7 +54,7 @@ function ThemeToggle() {
       type="button"
       onClick={toggle}
       aria-label={isDark ? 'Switch to light theme' : 'Switch to dark theme'}
-      className="p-1 text-muted transition-colors hover:text-ink"
+      className="text-muted hover:text-ink p-1 transition-colors"
     >
       {/* Re-keyed on each press so the new icon enters (SPEC-0011 R11). */}
       <svg
@@ -129,12 +129,12 @@ export function Nav() {
     };
   }, []);
   return (
-    <header className="sticky top-0 z-50 border-b border-hairline bg-paper/80 backdrop-blur">
+    <header className="border-hairline bg-paper/80 sticky top-0 z-50 border-b backdrop-blur-sm">
       <nav
         aria-label="Primary"
-        className="mx-auto flex max-w-shell items-center justify-between px-6 py-4"
+        className="max-w-shell mx-auto flex items-center justify-between px-6 py-4"
       >
-        <a href="#top" className="text-sm font-semibold tracking-tight text-ink no-underline">
+        <a href="#top" className="text-ink text-sm font-semibold tracking-tight no-underline">
           {/* Below `sm` the surname wraps onto a second line beside the toggle
               and the button: the bar fits the full name from about 400px, and
               many phones are narrower (SPEC-0004 R16). `hidden` is display:none,
@@ -154,7 +154,7 @@ export function Nav() {
                   href={l.href}
                   aria-current={active === l.href ? 'location' : undefined}
                   className={`text-sm no-underline transition-colors ${
-                    active === l.href ? 'font-medium text-accent' : 'text-muted hover:text-ink'
+                    active === l.href ? 'text-accent font-medium' : 'text-muted hover:text-ink'
                   }`}
                 >
                   {l.label}
@@ -168,7 +168,7 @@ export function Nav() {
             type="button"
             onClick={() => openPalette()}
             aria-label="Search the site (⌘K or Ctrl K)"
-            className="hidden items-center gap-1.5 rounded-full border border-hairline px-2.5 py-1 text-xs text-muted transition-colors hover:border-accent/40 hover:text-ink lg:inline-flex"
+            className="border-hairline text-muted hover:border-accent/40 hover:text-ink hidden items-center gap-1.5 rounded-full border px-2.5 py-1 text-xs transition-colors lg:inline-flex"
           >
             <svg
               aria-hidden="true"
@@ -188,7 +188,7 @@ export function Nav() {
           <ThemeToggle />
           <a
             href={asset(profile.resumeFile)}
-            className="rounded-full bg-ink px-4 py-1.5 text-sm font-medium text-paper no-underline transition-opacity hover:opacity-90"
+            className="bg-ink text-paper rounded-full px-4 py-1.5 text-sm font-medium no-underline transition-opacity hover:opacity-90"
           >
             Resume
           </a>
@@ -197,7 +197,7 @@ export function Nav() {
             aria-expanded={open}
             aria-controls="mobile-menu"
             onClick={() => setOpen((o) => !o)}
-            className="-mr-1 p-1 text-ink lg:hidden"
+            className="text-ink -mr-1 p-1 lg:hidden"
           >
             <span className="sr-only">{open ? 'Close menu' : 'Open menu'}</span>
             <svg
@@ -229,14 +229,14 @@ export function Nav() {
       {open && (
         <ul
           id="mobile-menu"
-          className="space-y-3 border-t border-hairline bg-paper px-6 py-4 lg:hidden"
+          className="border-hairline bg-paper space-y-3 border-t px-6 py-4 lg:hidden"
         >
           {LINKS.map((l) => (
             <li key={l.href}>
               <a
                 href={l.href}
                 onClick={() => setOpen(false)}
-                className="block py-1 text-sm text-muted no-underline hover:text-ink"
+                className="text-muted hover:text-ink block py-1 text-sm no-underline"
               >
                 {l.label}
               </a>
@@ -249,7 +249,7 @@ export function Nav() {
                 setOpen(false);
                 openPalette();
               }}
-              className="block py-1 text-sm text-muted hover:text-ink"
+              className="text-muted hover:text-ink block py-1 text-sm"
             >
               Search
             </button>

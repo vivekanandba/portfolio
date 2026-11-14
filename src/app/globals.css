@@ -1,6 +1,24 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import 'tailwindcss';
+
+@config '../../tailwind.config.ts';
+
+/*
+  The default border color has changed to `currentcolor` in Tailwind CSS v4,
+  so we've added these compatibility styles to make sure everything still
+  looks the same as it did with Tailwind CSS v3.
+
+  If we ever want to remove these styles, we need to add an explicit border
+  color utility to any element that depends on these defaults.
+*/
+@layer base {
+  *,
+  ::after,
+  ::before,
+  ::backdrop,
+  ::file-selector-button {
+    border-color: var(--color-gray-200, currentcolor);
+  }
+}
 
 @layer base {
   /* Palette as space-separated RGB channels — required for Tailwind's
@@ -183,26 +201,26 @@
 
   /* Writing (ADR-0017): compiled Markdown. Tokens only — no new --c-* variables. */
   .post-body {
-    @apply text-base leading-relaxed text-ink;
+    @apply text-ink text-base leading-relaxed;
   }
   .post-body > * + * {
     @apply mt-5;
   }
   .post-body h2 {
-    @apply mt-12 font-display text-2xl font-semibold text-ink;
+    @apply font-display text-ink mt-12 text-2xl font-semibold;
   }
   .post-body h3 {
-    @apply mt-8 font-display text-xl font-semibold text-ink;
+    @apply font-display text-ink mt-8 text-xl font-semibold;
   }
   .post-body p,
   .post-body li {
     @apply text-muted;
   }
   .post-body strong {
-    @apply font-semibold text-ink;
+    @apply text-ink font-semibold;
   }
   .post-body a {
-    @apply text-accent underline decoration-accent/40 underline-offset-4 hover:decoration-accent;
+    @apply text-accent decoration-accent/40 hover:decoration-accent underline underline-offset-4;
   }
   .post-body ul {
     @apply list-disc pl-6;
@@ -214,13 +232,13 @@
     @apply mt-2;
   }
   .post-body blockquote {
-    @apply border-l-2 border-accent/60 pl-4 italic text-muted;
+    @apply border-accent/60 text-muted border-l-2 pl-4 italic;
   }
   .post-body pre {
-    @apply overflow-x-auto rounded-lg border border-hairline bg-card/60 p-4 text-sm;
+    @apply border-hairline bg-card/60 overflow-x-auto rounded-lg border p-4 text-sm;
   }
   .post-body code {
-    @apply rounded bg-card px-1 py-0.5 text-[0.9em] text-ink;
+    @apply bg-card text-ink rounded-sm px-1 py-0.5 text-[0.9em];
   }
   .post-body pre code {
     @apply bg-transparent p-0;
@@ -230,10 +248,10 @@
   }
   .post-body th,
   .post-body td {
-    @apply border-b border-hairline px-3 py-2 align-top;
+    @apply border-hairline border-b px-3 py-2 align-top;
   }
   .post-body img {
-    @apply rounded-lg border border-hairline;
+    @apply border-hairline rounded-lg border;
   }
   .post-body hr {
     @apply border-hairline;

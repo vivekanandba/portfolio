@@ -13,8 +13,8 @@ const COUNT_WORDS = ['Zero', 'One', 'Two', 'Three', 'Four', 'Five', 'Six', 'Seve
 function Field({ label, children }: { label: string; children: string }) {
   return (
     <div className="grid grid-cols-[4.5rem_1fr] gap-3">
-      <dt className="text-xs font-semibold uppercase tracking-[0.14em] text-muted">{label}</dt>
-      <dd className="text-sm leading-relaxed text-muted">{children}</dd>
+      <dt className="text-muted text-xs font-semibold tracking-[0.14em] uppercase">{label}</dt>
+      <dd className="text-muted text-sm leading-relaxed">{children}</dd>
     </div>
   );
 }
@@ -31,24 +31,24 @@ export function TurningPoints() {
       id="turning-points"
       eyebrow="The Why"
       title="Turning points"
-      className="border-t border-hairline"
+      className="border-hairline border-t"
     >
-      <p className="-mt-4 mb-12 max-w-content text-lg leading-relaxed text-muted">
+      <p className="max-w-content text-muted -mt-4 mb-12 text-lg leading-relaxed">
         {COUNT_WORDS[turningPoints.length] ?? turningPoints.length} decisions explain everything on
         this site. Each one is written the way engineers record decisions — what I saw, what I bet,
         what it cost, and what it proved.
       </p>
-      <ol className="relative space-y-12 border-l border-hairline pl-8">
+      <ol className="border-hairline relative space-y-12 border-l pl-8">
         {turningPoints.map((tp) => (
           <li key={`${tp.year}-${tp.title}`} className="relative">
             {/* Node marker on the journey line, in the era's colour. */}
             <span
               aria-hidden="true"
-              className={`absolute -left-[2.4rem] top-1.5 h-3 w-3 rounded-full ring-4 ring-paper ${domainColor(tp.domain).bg}`}
+              className={`ring-paper absolute top-1.5 left-[-2.4rem] h-3 w-3 rounded-full ring-4 ${domainColor(tp.domain).bg}`}
             />
-            <p className="tabular text-sm font-medium text-accent">{tp.year}</p>
-            <h3 className="mt-1 font-display text-xl font-semibold text-ink">{tp.title}</h3>
-            <dl className="mt-4 max-w-content space-y-2.5">
+            <p className="tabular text-accent text-sm font-medium">{tp.year}</p>
+            <h3 className="font-display text-ink mt-1 text-xl font-semibold">{tp.title}</h3>
+            <dl className="max-w-content mt-4 space-y-2.5">
               <Field label="Saw">{tp.saw}</Field>
               <Field label="Bet">{tp.bet}</Field>
               <Field label="Cost">{tp.cost}</Field>
@@ -62,7 +62,7 @@ export function TurningPoints() {
                   <Link
                     key={id}
                     href={`/work/${id}/`}
-                    className="text-sm font-medium text-accent no-underline hover:underline"
+                    className="text-accent text-sm font-medium no-underline hover:underline"
                   >
                     {project.title}
                     <span aria-hidden="true"> →</span>

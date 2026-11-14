@@ -17,22 +17,22 @@ export function Writing() {
         {posts.map((p) => (
           <li key={p.slug} className="group relative">
             <PostMeta post={p} />
-            <h3 className="mt-2 font-display text-lg font-semibold text-ink">
+            <h3 className="font-display text-ink mt-2 text-lg font-semibold">
               <Link
                 href={`/writing/${p.slug}/`}
-                className="text-ink no-underline after:absolute after:inset-0 group-hover:underline"
+                className="text-ink no-underline group-hover:underline after:absolute after:inset-0"
               >
                 {p.title}
               </Link>
             </h3>
-            <p className="mt-2 text-sm leading-relaxed text-muted">{p.summary}</p>
+            <p className="text-muted mt-2 text-sm leading-relaxed">{p.summary}</p>
           </li>
         ))}
       </ul>
       <p className="mt-10">
         <Link
           href="/writing/"
-          className="text-sm font-medium text-accent no-underline hover:underline"
+          className="text-accent text-sm font-medium no-underline hover:underline"
         >
           All writing →
         </Link>

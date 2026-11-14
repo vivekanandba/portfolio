@@ -34,13 +34,13 @@ export function Arc({ roles = allRoles, now }: ArcProps) {
           lg the same items wrap into a legend. */}
       <ol
         aria-label="Eras"
-        className="mb-2 flex flex-wrap gap-x-5 gap-y-1 text-xs font-medium uppercase tracking-[0.14em] text-muted lg:flex-nowrap lg:gap-0"
+        className="text-muted mb-2 flex flex-wrap gap-x-5 gap-y-1 text-xs font-medium tracking-[0.14em] uppercase lg:flex-nowrap lg:gap-0"
       >
         {model.eras.map((era) => (
           <li
             key={`${era.domain}-${era.startYear}`}
             style={{ '--w': pct(era.w) } as CSSProperties}
-            className="flex items-center gap-2 whitespace-nowrap lg:min-w-0 lg:shrink-0 lg:grow-0 lg:basis-[var(--w)]"
+            className="flex items-center gap-2 whitespace-nowrap lg:min-w-0 lg:shrink-0 lg:grow-0 lg:basis-(--w)"
           >
             <span
               aria-hidden="true"
@@ -130,7 +130,7 @@ export function Arc({ roles = allRoles, now }: ArcProps) {
       {/* The axis ends, for sighted readers. The description already gives the
           exact span and the era list the years, so this is hidden from
           assistive tech rather than read as two stray fragments. */}
-      <div aria-hidden="true" className="tabular mt-1 flex justify-between text-xs text-muted">
+      <div aria-hidden="true" className="tabular text-muted mt-1 flex justify-between text-xs">
         <span>{yearOf(model.axis.start)}</span>
         <span>now</span>
       </div>
@@ -138,7 +138,7 @@ export function Arc({ roles = allRoles, now }: ArcProps) {
         <p
           key={a.company}
           style={{ '--x': pct(a.x) } as CSSProperties}
-          className="mt-1 text-xs text-muted lg:ml-[var(--x)]"
+          className="text-muted mt-1 text-xs lg:ml-(--x)"
         >
           {a.company} · alongside{' '}
           {a.present

@@ -92,10 +92,10 @@ export function MetricBadge({ value, label }: MetricBadgeProps) {
 
   return (
     <div className="flex flex-col">
-      <span ref={ref} className="tabular font-display text-2xl font-semibold text-accent">
+      <span ref={ref} className="tabular font-display text-accent text-2xl font-semibold">
         {shown}
       </span>
-      <span className="text-sm text-muted">{label}</span>
+      <span className="text-muted text-sm">{label}</span>
     </div>
   );
 }

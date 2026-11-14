@@ -46,7 +46,7 @@ export function ShowMore({
         aria-expanded={open}
         aria-controls={id}
         onClick={toggle}
-        className="mt-6 rounded-full border border-hairline bg-card/60 px-5 py-2 text-sm font-medium text-muted transition-colors hover:border-accent/40 hover:text-ink"
+        className="border-hairline bg-card/60 text-muted hover:border-accent/40 hover:text-ink mt-6 rounded-full border px-5 py-2 text-sm font-medium transition-colors"
       >
         {open ? hideLabel : label}
         <span aria-hidden="true">{open ? ' ▴' : ' ▾'}</span>

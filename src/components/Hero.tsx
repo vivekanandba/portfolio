@@ -36,18 +36,18 @@ export function Hero() {
       <div aria-hidden="true" className="hero-atmosphere absolute inset-0" />
       <div aria-hidden="true" className="hero-grid absolute inset-0" />
 
-      <div className="relative mx-auto grid w-full max-w-shell gap-x-12 gap-y-10 px-6 pb-20 pt-20 sm:pt-28 lg:grid-cols-[1.35fr_1fr] lg:items-center">
+      <div className="max-w-shell relative mx-auto grid w-full gap-x-12 gap-y-10 px-6 pt-20 pb-20 sm:pt-28 lg:grid-cols-[1.35fr_1fr] lg:items-center">
         {/* Left — identity + positioning */}
         <div>
-          <p className="mb-6 inline-flex animate-fade-up items-center gap-2 rounded-full border border-hairline bg-card/60 px-4 py-1.5 text-xs font-medium text-muted">
-            <span aria-hidden="true" className="inline-flex h-2 w-2 rounded-full bg-accent" />
+          <p className="animate-fade-up border-hairline bg-card/60 text-muted mb-6 inline-flex items-center gap-2 rounded-full border px-4 py-1.5 text-xs font-medium">
+            <span aria-hidden="true" className="bg-accent inline-flex h-2 w-2 rounded-full" />
             {/* Arrow glyphs are visual-only; screen readers get the comma-separated list. */}
             <span aria-hidden="true">{profile.heroDomains.join(' → ')}</span>
             <span className="sr-only">{profile.heroDomains.join(', ')}</span>
           </p>
 
-          <p style={{ animationDelay: '80ms' }} className="mb-5 animate-fade-up text-sm text-muted">
-            <span className="mb-1 block font-display text-2xl font-semibold tracking-tight text-ink sm:text-3xl">
+          <p style={{ animationDelay: '80ms' }} className="animate-fade-up text-muted mb-5 text-sm">
+            <span className="font-display text-ink mb-1 block text-2xl font-semibold tracking-tight sm:text-3xl">
               {profile.name}
             </span>
             {profile.currentRole.title} — {profile.currentRole.org}
@@ -56,31 +56,31 @@ export function Hero() {
           <h1
             id="hero-heading"
             style={{ animationDelay: '140ms' }}
-            className="animate-fade-up font-display text-display font-semibold text-ink"
+            className="animate-fade-up font-display text-display text-ink font-semibold"
           >
             Aerospace-grade precision, applied to production AI.
           </h1>
 
           <p
             style={{ animationDelay: '200ms' }}
-            className="mt-6 max-w-content animate-fade-up text-lg leading-relaxed text-muted"
+            className="max-w-content animate-fade-up text-muted mt-6 text-lg leading-relaxed"
           >
             {profile.valueProp}
           </p>
 
           <div
             style={{ animationDelay: '280ms' }}
-            className="mt-8 flex animate-fade-up flex-wrap items-center gap-4"
+            className="animate-fade-up mt-8 flex flex-wrap items-center gap-4"
           >
             <a
               href="#work"
-              className="rounded-full bg-accent px-6 py-3 text-sm font-medium text-accent-contrast no-underline transition-opacity hover:opacity-90"
+              className="bg-accent text-accent-contrast rounded-full px-6 py-3 text-sm font-medium no-underline transition-opacity hover:opacity-90"
             >
               View Work
             </a>
             <a
               href={asset(profile.resumeFile)}
-              className="rounded-full border border-ink px-6 py-3 text-sm font-medium text-ink no-underline transition-colors hover:bg-ink hover:text-paper"
+              className="border-ink text-ink hover:bg-ink hover:text-paper rounded-full border px-6 py-3 text-sm font-medium no-underline transition-colors"
             >
               Download Resume
             </a>
@@ -90,7 +90,7 @@ export function Hero() {
                 href={link.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-sm font-medium text-muted no-underline hover:text-ink"
+                className="text-muted hover:text-ink text-sm font-medium no-underline"
               >
                 {link.label} ↗
               </a>
@@ -104,10 +104,10 @@ export function Hero() {
             without leaving the token system (p-px wrapper = 1px "border"). */}
         <div
           style={{ animationDelay: '360ms' }}
-          className="animate-fade-up rounded-2xl bg-gradient-to-br from-accent/50 via-hairline to-transparent p-px"
+          className="animate-fade-up from-accent/50 via-hairline rounded-2xl bg-linear-to-br to-transparent p-px"
         >
-          <div className="rounded-2xl bg-card p-6">
-            <p className="text-xs font-semibold uppercase tracking-[0.16em] text-muted">
+          <div className="bg-card rounded-2xl p-6">
+            <p className="text-muted text-xs font-semibold tracking-[0.16em] uppercase">
               Track record
             </p>
 
@@ -131,14 +131,14 @@ export function Hero() {
             </div>
 
             {/* Computed breadth summary. */}
-            <p className="tabular mt-6 border-t border-hairline pt-4 text-sm font-medium text-ink">
+            <p className="tabular border-hairline text-ink mt-6 border-t pt-4 text-sm font-medium">
               {years}+ yrs <span className="text-muted/80">·</span> 5 fields{' '}
               <span className="text-muted/80">·</span> {caseStudies.length} projects
             </p>
 
             {/* 5 fields — enumerated so the count is self-evident. */}
-            <div className="mt-4 border-t border-hairline pt-4">
-              <p className="text-sm leading-relaxed text-muted">{FIELDS.join(' · ')}</p>
+            <div className="border-hairline mt-4 border-t pt-4">
+              <p className="text-muted text-sm leading-relaxed">{FIELDS.join(' · ')}</p>
             </div>
           </div>
         </div>
@@ -156,13 +156,13 @@ function Proof({ value, label, link }: { value: string; label: string; link?: bo
   return (
     <div>
       <span
-        className={`block font-display text-xl font-semibold leading-tight text-ink sm:text-2xl ${
+        className={`font-display text-ink block text-xl leading-tight font-semibold sm:text-2xl sm:leading-8 ${
           link ? 'group-hover:text-accent' : ''
         }`}
       >
         {value}
       </span>
-      <span className={`text-sm text-muted ${link ? 'group-hover:text-ink' : ''}`}>
+      <span className={`text-muted text-sm ${link ? 'group-hover:text-ink' : ''}`}>
         {label}
         {link && <span aria-hidden="true"> ↗</span>}
       </span>

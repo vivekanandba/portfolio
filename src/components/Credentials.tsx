@@ -17,13 +17,13 @@ export function Credentials() {
     <Section id="credentials" eyebrow="Credibility" title="Patents, certifications & education">
       <div className="grid gap-x-10 gap-y-10 sm:grid-cols-2">
         <div>
-          <h3 className="mb-4 text-sm font-semibold text-ink">
+          <h3 className="text-ink mb-4 text-sm font-semibold">
             Patents, Publications & Achievements
           </h3>
           <ul className="space-y-4">
             {patents.map((p) => (
               <li key={p.title}>
-                <p className="text-sm font-medium text-ink">
+                <p className="text-ink text-sm font-medium">
                   {/* Schema allows at most one of href (external) or file (served from /public). */}
                   {p.href || p.file ? (
                     <a
@@ -38,27 +38,27 @@ export function Credentials() {
                     p.title
                   )}
                 </p>
-                {p.reference && <p className="tabular text-xs text-muted">{p.reference}</p>}
+                {p.reference && <p className="tabular text-muted text-xs">{p.reference}</p>}
               </li>
             ))}
           </ul>
         </div>
 
         <div>
-          <h3 className="mb-4 text-sm font-semibold text-ink">Education & Learning</h3>
+          <h3 className="text-ink mb-4 text-sm font-semibold">Education & Learning</h3>
           <ul className="space-y-4">
             {education.map((e) => (
               <li key={e.credential}>
-                <p className="text-sm font-medium text-ink">{e.credential}</p>
-                <p className="text-sm text-muted">{e.institution}</p>
-                {e.detail && <p className="text-xs text-muted">{e.detail}</p>}
+                <p className="text-ink text-sm font-medium">{e.credential}</p>
+                <p className="text-muted text-sm">{e.institution}</p>
+                {e.detail && <p className="text-muted text-xs">{e.detail}</p>}
               </li>
             ))}
           </ul>
         </div>
 
         <div className="sm:col-span-2">
-          <h3 className="mb-4 text-sm font-semibold text-ink">
+          <h3 className="text-ink mb-4 text-sm font-semibold">
             Certifications ({certifications.length})
           </h3>
           <ShowMore
@@ -68,7 +68,7 @@ export function Credentials() {
             <dl className="space-y-6">
               {certificationGroups().map(([category, certs]) => (
                 <div key={category}>
-                  <dt className="mb-2 text-xs font-medium uppercase tracking-[0.14em] text-muted">
+                  <dt className="text-muted mb-2 text-xs font-medium tracking-[0.14em] uppercase">
                     {category} · {certs.length}
                   </dt>
                   <dd>
@@ -81,7 +81,7 @@ export function Credentials() {
                             rel="noopener noreferrer"
                             title={`${c.authority} · ${c.date}`}
                             aria-label={`${c.name} — ${c.authority}, ${c.date}`}
-                            className="inline-block rounded-full border border-hairline bg-card/60 px-3 py-1 text-sm text-muted no-underline transition-colors hover:border-accent/40 hover:text-ink"
+                            className="border-hairline bg-card/60 text-muted hover:border-accent/40 hover:text-ink inline-block rounded-full border px-3 py-1 text-sm no-underline transition-colors"
                           >
                             {c.name}
                           </a>
@@ -96,11 +96,11 @@ export function Credentials() {
         </div>
 
         <div className="sm:col-span-2">
-          <h3 className="mb-4 text-sm font-semibold text-ink">Languages</h3>
+          <h3 className="text-ink mb-4 text-sm font-semibold">Languages</h3>
           <ul className="flex flex-wrap gap-x-6 gap-y-2">
             {languages.map((l) => (
               <li key={l.name} className="text-sm">
-                <span className="font-medium text-ink">{l.name}</span>{' '}
+                <span className="text-ink font-medium">{l.name}</span>{' '}
                 <span className="text-muted">· {l.proficiency}</span>
               </li>
             ))}

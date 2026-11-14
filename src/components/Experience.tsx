@@ -70,7 +70,7 @@ export function Experience() {
 
       {secondaryProjects.length > 0 && (
         <div className="mt-16">
-          <h3 className="text-sm font-medium uppercase tracking-[0.18em] text-muted">
+          <h3 className="text-muted text-sm font-medium tracking-[0.18em] uppercase">
             More across the arc
           </h3>
           <ShowMore
@@ -80,7 +80,7 @@ export function Experience() {
             {CHAPTERS.map(({ domain, items }) => (
               <section key={domain} className="mt-8" aria-label={DOMAIN_LABELS[domain]}>
                 <h4
-                  className={`text-xs font-semibold uppercase tracking-[0.14em] ${domainColor(domain).text}`}
+                  className={`text-xs font-semibold tracking-[0.14em] uppercase ${domainColor(domain).text}`}
                 >
                   {DOMAIN_LABELS[domain]}
                 </h4>
@@ -88,9 +88,9 @@ export function Experience() {
                   {items.map((project) => {
                     const caseStudy = caseStudyByProjectId.get(project.id);
                     return (
-                      <li key={project.id} className="border-t border-hairline py-4">
+                      <li key={project.id} className="border-hairline border-t py-4">
                         <div className="flex items-baseline justify-between gap-3">
-                          <h5 className="flex items-baseline gap-2 text-sm font-semibold text-ink">
+                          <h5 className="text-ink flex items-baseline gap-2 text-sm font-semibold">
                             <span
                               aria-hidden="true"
                               className={`inline-block h-1.5 w-1.5 shrink-0 self-center rounded-full ${domainColor(project.domain).bg}`}
@@ -106,13 +106,13 @@ export function Experience() {
                               project.title
                             )}
                           </h5>
-                          <span className="shrink-0 text-xs font-medium uppercase tracking-wide text-muted">
+                          <span className="text-muted shrink-0 text-xs font-medium tracking-wide uppercase">
                             {project.org}
                           </span>
                         </div>
-                        <p className="mt-1 text-sm leading-relaxed text-muted">{project.summary}</p>
+                        <p className="text-muted mt-1 text-sm leading-relaxed">{project.summary}</p>
                         {project.metrics.length > 0 && (
-                          <p className="tabular mt-2 text-xs font-medium text-ink">
+                          <p className="tabular text-ink mt-2 text-xs font-medium">
                             {project.metrics
                               .slice(0, 2)
                               .map((m) => `${m.value} ${m.label}`)
@@ -121,14 +121,14 @@ export function Experience() {
                         )}
                         <div className="mt-2 flex flex-wrap items-center gap-x-4 gap-y-1">
                           {project.tags.length > 0 && (
-                            <p className="text-xs text-muted">{project.tags.join(' · ')}</p>
+                            <p className="text-muted text-xs">{project.tags.join(' · ')}</p>
                           )}
                           {project.href && project.linkLabel && (
                             <a
                               href={project.href}
                               target="_blank"
                               rel="noopener noreferrer"
-                              className="text-xs font-medium text-muted no-underline hover:text-ink"
+                              className="text-muted hover:text-ink text-xs font-medium no-underline"
                             >
                               {project.linkLabel} ↗
                             </a>
@@ -144,7 +144,7 @@ export function Experience() {
           <p className="mt-10">
             <Link
               href="/work/"
-              className="text-sm font-medium text-accent no-underline hover:underline"
+              className="text-accent text-sm font-medium no-underline hover:underline"
             >
               All projects →
             </Link>

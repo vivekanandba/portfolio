@@ -11,26 +11,26 @@ export function Now() {
   const newest = certifications.slice(0, 3);
   return (
     <Section id="now" eyebrow="Current pulse" title="Now">
-      <p className="tabular -mt-4 mb-8 text-sm font-medium text-muted">Snapshot: {now.month}</p>
+      <p className="tabular text-muted -mt-4 mb-8 text-sm font-medium">Snapshot: {now.month}</p>
       <div className="grid gap-x-10 gap-y-8 sm:grid-cols-2">
         <div>
-          <h3 className="mb-3 text-sm font-semibold text-ink">Exploring</h3>
+          <h3 className="text-ink mb-3 text-sm font-semibold">Exploring</h3>
           <ul className="space-y-2">
             {now.exploring.map((item) => (
-              <li key={item} className="flex gap-3 text-sm leading-relaxed text-muted">
+              <li key={item} className="text-muted flex gap-3 text-sm leading-relaxed">
                 <span
                   aria-hidden="true"
-                  className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-accent"
+                  className="bg-accent mt-2 h-1.5 w-1.5 shrink-0 rounded-full"
                 />
                 {item}
               </li>
             ))}
           </ul>
-          <h3 className="mb-2 mt-6 text-sm font-semibold text-ink">Building</h3>
-          <p className="max-w-content text-sm leading-relaxed text-muted">{now.building}</p>
+          <h3 className="text-ink mt-6 mb-2 text-sm font-semibold">Building</h3>
+          <p className="max-w-content text-muted text-sm leading-relaxed">{now.building}</p>
         </div>
         <div>
-          <h3 className="mb-3 text-sm font-semibold text-ink">Most recent certifications</h3>
+          <h3 className="text-ink mb-3 text-sm font-semibold">Most recent certifications</h3>
           <ul className="space-y-3">
             {newest.map((c) => (
               <li key={`${c.name}-${c.date}`}>
@@ -38,12 +38,12 @@ export function Now() {
                   href={c.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-sm font-medium text-accent no-underline hover:underline"
+                  className="text-accent text-sm font-medium no-underline hover:underline"
                 >
                   {c.name}
                   <span aria-hidden="true"> ↗</span>
                 </a>
-                <p className="text-xs text-muted">
+                <p className="text-muted text-xs">
                   {c.authority} · {c.date}
                 </p>
               </li>

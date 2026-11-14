@@ -45,6 +45,7 @@
   },
   "devDependencies": {
     "@playwright/test": "1.65.0",
+    "@tailwindcss/postcss": "4.3.5",
     "@testing-library/jest-dom": "6.6.3",
     "@testing-library/react": "16.3.3",
     "@types/hast": "3.0.5",
@@ -54,7 +55,6 @@
     "@types/react-dom": "19.3.0",
     "@vitejs/plugin-react": "6.3.0",
     "@vitest/coverage-v8": "5.1.0",
-    "autoprefixer": "10.6.2",
     "eslint": "9.18.0",
     "eslint-config-next": "15.5.29",
     "jest-axe": "11.0.0",
@@ -63,7 +63,7 @@
     "prettier": "3.9.10",
     "prettier-plugin-tailwindcss": "0.8.1",
     "serve": "14.2.8",
-    "tailwindcss": "3.4.17",
+    "tailwindcss": "4.3.5",
     "typescript": "6.0.3",
     "vite": "8.3.8",
     "vitest": "5.1.0"

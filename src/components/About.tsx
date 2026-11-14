@@ -7,7 +7,7 @@ import { domainColor } from '@/lib/domain';
 export function About() {
   return (
     <Section id="about" eyebrow="The Arc" title="From aerospace precision to AI-native products">
-      <p className="mb-10 max-w-content text-lg leading-relaxed text-muted">
+      <p className="max-w-content text-muted mb-10 text-lg leading-relaxed">
         A rare full-stack-of-disciplines throughline — aerospace precision, hands-on electronics and
         entrepreneurship, FDA-cleared medical robotics, and now zero-to-one AI as an internal
         technical co-founder — each chapter compounding into how the next was built.
@@ -21,12 +21,12 @@ export function About() {
               <span className={`tabular text-sm font-semibold ${domainColor(beat.domain).text}`}>
                 {String(i + 1).padStart(2, '0')}
               </span>
-              <span className="text-xs font-medium uppercase tracking-[0.18em] text-muted">
+              <span className="text-muted text-xs font-medium tracking-[0.18em] uppercase">
                 {beat.phase}
               </span>
             </div>
-            <h3 className="mb-2 text-lg font-semibold text-ink">{beat.title}</h3>
-            <p className="text-sm leading-relaxed text-muted">{beat.body}</p>
+            <h3 className="text-ink mb-2 text-lg font-semibold">{beat.title}</h3>
+            <p className="text-muted text-sm leading-relaxed">{beat.body}</p>
           </li>
         ))}
       </ol>

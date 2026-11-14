@@ -21,7 +21,7 @@ export function Strip() {
     <section
       id="strip"
       aria-labelledby="strip-title"
-      className="border-y border-hairline bg-card/40"
+      className="border-hairline bg-card/40 border-y"
     >
       <h2 id="strip-title" className="sr-only">
         Fifteen years in pictures
@@ -31,12 +31,12 @@ export function Strip() {
           {frames.map((f, i) => (
             <li key={f.file} className="w-[78vw] shrink-0 snap-start sm:w-[46vw] lg:w-auto">
               <Link href={f.href} className="group block no-underline">
-                <figure className="overflow-hidden bg-card">
+                <figure className="bg-card overflow-hidden">
                   <div aria-hidden="true" className={`h-[3px] ${domainColor(f.domain).bg}`} />
                   {/* Where it sits (SPEC-0006 R12): a collage — the machine the artefact
                       serves on the left, the artefact on the right, no overlap. A frame
                       without a locator fills the tile. */}
-                  <div className="flex aspect-[4/3] w-full">
+                  <div className="flex aspect-4/3 w-full">
                     {f.locator && (
                       // eslint-disable-next-line @next/next/no-img-element
                       <img
@@ -44,7 +44,7 @@ export function Strip() {
                         alt={f.locator.alt}
                         loading="lazy"
                         data-locator
-                        className={`h-full w-1/2 shrink-0 border-r border-paper object-cover ${FOCUS_X[f.locator.focus ?? 'center']}`}
+                        className={`border-paper h-full w-1/2 shrink-0 border-r object-cover ${FOCUS_X[f.locator.focus ?? 'center']}`}
                       />
                     )}
                     {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -56,8 +56,8 @@ export function Strip() {
                     />
                   </div>
                   <figcaption className="px-4 py-3">
-                    <p className="text-sm text-ink">
-                      <span className="tabular font-medium text-muted">{f.year}</span>
+                    <p className="text-ink text-sm">
+                      <span className="tabular text-muted font-medium">{f.year}</span>
                       <span aria-hidden="true" className="text-muted">
                         {' '}
                         ·{' '}
@@ -65,12 +65,12 @@ export function Strip() {
                       <span className="group-hover:underline">{f.caption}</span>
                     </p>
                     {f.credit && (
-                      <p className="mt-1 text-[11px] leading-snug text-muted">
+                      <p className="text-muted mt-1 text-[11px] leading-snug">
                         {creditSource(f.credit)}
                       </p>
                     )}
                     {f.locator?.credit && (
-                      <p className="text-[11px] leading-snug text-muted">
+                      <p className="text-muted text-[11px] leading-snug">
                         Inset: {creditSource(f.locator.credit)}
                       </p>
                     )}

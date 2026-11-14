@@ -17,24 +17,24 @@ export default function WritingIndex() {
       <CaseStudyNav />
       {/* id="top": the layout's skip link targets #top on every page. */}
       <main id="top">
-        <div className="mx-auto w-full max-w-shell px-6 pb-24">
+        <div className="max-w-shell mx-auto w-full px-6 pb-24">
           <header className="pt-16 sm:pt-20">
-            <p className="mb-4 flex animate-fade-up items-center gap-3 text-sm font-medium uppercase tracking-[0.18em] text-accent">
-              <span aria-hidden="true" className="h-px w-8 bg-accent/60" />
+            <p className="animate-fade-up text-accent mb-4 flex items-center gap-3 text-sm font-medium tracking-[0.18em] uppercase">
+              <span aria-hidden="true" className="bg-accent/60 h-px w-8" />
               Writing
             </p>
             <h1
               style={{ animationDelay: '80ms' }}
-              className="animate-fade-up font-display text-display font-semibold text-ink"
+              className="animate-fade-up font-display text-display text-ink font-semibold"
             >
               Learnings, findings, field notes
             </h1>
             <p
               style={{ animationDelay: '160ms' }}
-              className="mt-6 max-w-content animate-fade-up text-lg leading-relaxed text-muted"
+              className="max-w-content animate-fade-up text-muted mt-6 text-lg leading-relaxed"
             >
               What I have learned doing this work, written down project by project. Each note is{' '}
-              <strong className="font-medium text-ink">dated to the work it describes</strong> and
+              <strong className="text-ink font-medium">dated to the work it describes</strong> and
               says when I actually wrote it — they are written now, about work done then.{' '}
               <a href="/feed.xml" className="text-accent no-underline hover:underline">
                 Atom feed
@@ -45,25 +45,25 @@ export default function WritingIndex() {
 
           <ul className="mt-14">
             {posts.map((p) => (
-              <li key={p.slug} className="group relative border-t border-hairline py-7">
+              <li key={p.slug} className="group border-hairline relative border-t py-7">
                 <PostMeta post={p} />
-                <h2 className="mt-2 font-display text-xl font-semibold text-ink">
+                <h2 className="font-display text-ink mt-2 text-xl font-semibold">
                   <Link
                     href={`/writing/${p.slug}/`}
-                    className="text-ink no-underline after:absolute after:inset-0 group-hover:underline"
+                    className="text-ink no-underline group-hover:underline after:absolute after:inset-0"
                   >
                     {p.title}
                   </Link>
                 </h2>
-                <p className="mt-2 max-w-content leading-relaxed text-muted">{p.summary}</p>
+                <p className="max-w-content text-muted mt-2 leading-relaxed">{p.summary}</p>
               </li>
             ))}
           </ul>
 
-          <div className="mt-20 border-t border-hairline pt-8">
+          <div className="border-hairline mt-20 border-t pt-8">
             <Link
               href="/#writing"
-              className="text-sm font-medium text-accent no-underline hover:underline"
+              className="text-accent text-sm font-medium no-underline hover:underline"
             >
               ← Back to the portfolio
             </Link>

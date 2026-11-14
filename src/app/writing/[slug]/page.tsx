@@ -41,20 +41,20 @@ export default async function PostPage({ params }: Params) {
       <CaseStudyNav />
       {/* id="top": the layout's skip link targets #top on every page. */}
       <main id="top">
-        <article className="mx-auto w-full max-w-shell px-6 pb-24">
+        <article className="max-w-shell mx-auto w-full px-6 pb-24">
           <header className="pt-16 sm:pt-20">
             <div className="animate-fade-up">
               <PostMeta post={post} />
             </div>
             <h1
               style={{ animationDelay: '80ms' }}
-              className="mt-4 max-w-4xl animate-fade-up font-display text-h2 font-semibold text-ink sm:text-display"
+              className="animate-fade-up font-display text-h2 text-ink sm:text-display mt-4 max-w-4xl font-semibold"
             >
               {post.title}
             </h1>
             <p
               style={{ animationDelay: '160ms' }}
-              className="mt-6 max-w-content animate-fade-up text-lg leading-relaxed text-muted"
+              className="max-w-content animate-fade-up text-muted mt-6 text-lg leading-relaxed"
             >
               {post.summary}
             </p>
@@ -62,10 +62,10 @@ export default async function PostPage({ params }: Params) {
               <ul
                 aria-label="Tags"
                 style={{ animationDelay: '240ms' }}
-                className="mt-6 flex animate-fade-up flex-wrap gap-2 text-xs text-muted"
+                className="animate-fade-up text-muted mt-6 flex flex-wrap gap-2 text-xs"
               >
                 {post.tags.map((t) => (
-                  <li key={t} className="rounded-full border border-hairline px-3 py-1">
+                  <li key={t} className="border-hairline rounded-full border px-3 py-1">
                     {t}
                   </li>
                 ))}
@@ -76,10 +76,10 @@ export default async function PostPage({ params }: Params) {
           {sections.length > 2 && (
             <nav
               aria-label="In this post"
-              className="mt-12 border-l-2 border-hairline pl-4 text-sm"
+              className="border-hairline mt-12 border-l-2 pl-4 text-sm"
             >
-              <p className="mb-2 font-medium text-ink">In this post</p>
-              <ol className="space-y-1 text-muted">
+              <p className="text-ink mb-2 font-medium">In this post</p>
+              <ol className="text-muted space-y-1">
                 {sections.map((h) => (
                   <li key={h.id}>
                     <a href={`#${h.id}`} className="no-underline hover:underline">
@@ -94,7 +94,7 @@ export default async function PostPage({ params }: Params) {
           {/* Sanitised at build (ADR-0017): raw HTML was dropped by remark-rehype and the
               tree passed rehype-sanitize before stringify. */}
           <div
-            className="post-body mt-12 max-w-content"
+            className="post-body max-w-content mt-12"
             dangerouslySetInnerHTML={{ __html: rendered.html }}
           />
 
@@ -102,7 +102,7 @@ export default async function PostPage({ params }: Params) {
               post was actually written, so a retrospective piece never passes for a contemporaneous
               one without shouting about it. */}
           {post.written && (
-            <p className="mt-10 max-w-content text-xs text-muted">
+            <p className="max-w-content text-muted mt-10 text-xs">
               Written from my notes in{' '}
               <time dateTime={post.written}>{formatMonth(post.written)}</time>, about work done at
               the time this post is dated.
@@ -110,8 +110,8 @@ export default async function PostPage({ params }: Params) {
           )}
 
           {related.length > 0 && (
-            <section aria-label="From the work" className="mt-16 border-t border-hairline pt-8">
-              <h2 className="text-sm font-medium uppercase tracking-[0.18em] text-muted">
+            <section aria-label="From the work" className="border-hairline mt-16 border-t pt-8">
+              <h2 className="text-muted text-sm font-medium tracking-[0.18em] uppercase">
                 From the work
               </h2>
               <ul className="mt-4 space-y-2">
@@ -119,27 +119,27 @@ export default async function PostPage({ params }: Params) {
                   <li key={cs!.slug}>
                     <Link
                       href={`/work/${cs!.slug}/`}
-                      className="font-medium text-ink no-underline hover:underline"
+                      className="text-ink font-medium no-underline hover:underline"
                     >
                       {project!.title} →
                     </Link>
-                    <span className="text-sm text-muted"> · {project!.org}</span>
+                    <span className="text-muted text-sm"> · {project!.org}</span>
                   </li>
                 ))}
               </ul>
             </section>
           )}
 
-          <div className="mt-20 flex flex-wrap gap-x-8 gap-y-2 border-t border-hairline pt-8">
+          <div className="border-hairline mt-20 flex flex-wrap gap-x-8 gap-y-2 border-t pt-8">
             <Link
               href="/writing/"
-              className="text-sm font-medium text-accent no-underline hover:underline"
+              className="text-accent text-sm font-medium no-underline hover:underline"
             >
               ← All writing
             </Link>
             <Link
               href="/#writing"
-              className="text-sm font-medium text-accent no-underline hover:underline"
+              className="text-accent text-sm font-medium no-underline hover:underline"
             >
               ← Back to the portfolio
             </Link>

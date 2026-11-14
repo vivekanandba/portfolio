@@ -11,15 +11,15 @@ function QuoteCards({ items }: { items: Recommendation[] }) {
       {items.map((r) => (
         <li
           key={r.name}
-          className="flex rounded-xl border border-hairline bg-card/60 p-6 transition duration-300 hover:border-accent/40 hover:shadow-lift motion-safe:hover:-translate-y-1"
+          className="border-hairline bg-card/60 hover:border-accent/40 hover:shadow-lift flex rounded-xl border p-6 transition duration-300 motion-safe:hover:-translate-y-1"
         >
           <figure className="flex flex-1 flex-col">
-            <blockquote className="flex-1 text-base leading-relaxed text-ink">
+            <blockquote className="text-ink flex-1 text-base leading-relaxed">
               “{r.excerpt}”
             </blockquote>
-            <figcaption className="mt-5 border-t border-hairline pt-4">
-              <span className="block text-sm font-semibold text-ink">{r.name}</span>
-              <span className="block text-sm text-muted">{attribution(r)}</span>
+            <figcaption className="border-hairline mt-5 border-t pt-4">
+              <span className="text-ink block text-sm font-semibold">{r.name}</span>
+              <span className="text-muted block text-sm">{attribution(r)}</span>
             </figcaption>
           </figure>
         </li>
@@ -38,13 +38,13 @@ export function Recommendations() {
   // One voice, large (SPEC-0010 R10): the featured entry marked pullQuote, on
   // a full-bleed band above the cards. Verbatim excerpt, as every card is.
   const lead = pullQuote && (
-    <div id="pull-quote" className="border-y border-hairline bg-card">
-      <figure className="mx-auto w-full max-w-shell px-6 py-16 sm:py-20">
-        <blockquote className="max-w-4xl font-display text-2xl font-semibold leading-snug tracking-tight text-ink sm:text-3xl lg:text-4xl">
+    <div id="pull-quote" className="border-hairline bg-card border-y">
+      <figure className="max-w-shell mx-auto w-full px-6 py-16 sm:py-20">
+        <blockquote className="font-display text-ink max-w-4xl text-2xl leading-snug font-semibold tracking-tight sm:text-3xl sm:leading-9 lg:text-4xl lg:leading-10">
           “{pullQuote.excerpt}”
         </blockquote>
-        <figcaption className="mt-6 text-sm text-muted">
-          <span className="font-semibold text-ink">{pullQuote.name}</span> ·{' '}
+        <figcaption className="text-muted mt-6 text-sm">
+          <span className="text-ink font-semibold">{pullQuote.name}</span> ·{' '}
           {attribution(pullQuote)}
         </figcaption>
       </figure>
@@ -63,7 +63,7 @@ export function Recommendations() {
       <div className="mt-10">
         <Link
           href="/recommendations/"
-          className="text-sm font-medium text-accent no-underline hover:underline"
+          className="text-accent text-sm font-medium no-underline hover:underline"
         >
           Read all {recommendations.length} recommendations →
         </Link>

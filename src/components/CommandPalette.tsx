@@ -154,11 +154,11 @@ export function CommandPalette({ extra = [] }: { extra?: Entry[] } = {}) {
       role="dialog"
       aria-modal="true"
       aria-label="Search the site"
-      className="palette-backdrop fixed inset-0 z-[60] flex items-start justify-center bg-ink/40 px-4 pt-[15vh]"
+      className="palette-backdrop bg-ink/40 fixed inset-0 z-60 flex items-start justify-center px-4 pt-[15vh]"
       onClick={() => setOpen(false)}
     >
       <div
-        className="palette-panel w-full max-w-xl overflow-hidden rounded-xl border border-hairline bg-paper shadow-lift"
+        className="palette-panel border-hairline bg-paper shadow-lift w-full max-w-xl overflow-hidden rounded-xl border"
         onClick={(e) => e.stopPropagation()}
       >
         <input
@@ -184,7 +184,7 @@ export function CommandPalette({ extra = [] }: { extra?: Entry[] } = {}) {
             }
           }}
           placeholder="Search projects, sections, credentials…"
-          className="w-full border-b border-hairline bg-transparent px-5 py-4 text-base text-ink placeholder:text-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-accent/40"
+          className="border-hairline text-ink placeholder:text-muted focus-visible:ring-accent/40 w-full border-b bg-transparent px-5 py-4 text-base focus-visible:ring-2 focus-visible:outline-hidden focus-visible:ring-inset"
         />
         <ul
           id="palette-results"
@@ -193,7 +193,7 @@ export function CommandPalette({ extra = [] }: { extra?: Entry[] } = {}) {
           className="max-h-80 overflow-y-auto py-2"
         >
           {results.length === 0 && (
-            <li className="flex flex-wrap items-center gap-2 px-5 py-3 text-sm text-muted">
+            <li className="text-muted flex flex-wrap items-center gap-2 px-5 py-3 text-sm">
               Nothing matches. Try
               {SUGGESTIONS.map((tag) => (
                 <button
@@ -203,7 +203,7 @@ export function CommandPalette({ extra = [] }: { extra?: Entry[] } = {}) {
                     setQuery(tag);
                     setCursor(0);
                   }}
-                  className="rounded-full border border-hairline px-2.5 py-0.5 text-xs font-medium text-ink transition-colors hover:border-accent/40"
+                  className="border-hairline text-ink hover:border-accent/40 rounded-full border px-2.5 py-0.5 text-xs font-medium transition-colors"
                 >
                   {tag}
                 </button>
@@ -220,13 +220,13 @@ export function CommandPalette({ extra = [] }: { extra?: Entry[] } = {}) {
                   i === cursor ? 'bg-card' : ''
                 }`}
               >
-                <span className="text-sm font-medium text-ink">{r.label}</span>
-                <span className="shrink-0 text-xs text-muted">{r.detail}</span>
+                <span className="text-ink text-sm font-medium">{r.label}</span>
+                <span className="text-muted shrink-0 text-xs">{r.detail}</span>
               </button>
             </li>
           ))}
         </ul>
-        <p className="border-t border-hairline px-5 py-2 text-[11px] text-muted">
+        <p className="border-hairline text-muted border-t px-5 py-2 text-[11px]">
           ↑↓ navigate · enter go · esc close
         </p>
       </div>

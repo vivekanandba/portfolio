@@ -8,7 +8,7 @@ function SkillGroups({ groups }: { groups: typeof skills }) {
     <dl className="grid gap-x-10 gap-y-8 sm:grid-cols-2">
       {groups.map((group) => (
         <div key={group.category}>
-          <dt className="mb-3 text-sm font-semibold text-ink">{group.category}</dt>
+          <dt className="text-ink mb-3 text-sm font-semibold">{group.category}</dt>
           <dd>
             <ul className="flex flex-wrap gap-2">
               {group.items.map((item) => (

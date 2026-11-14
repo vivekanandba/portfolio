@@ -27,7 +27,7 @@ export async function generateMetadata({ params }: Params) {
 
 function SectionHeading({ children }: { children: string }) {
   return (
-    <h2 className="mb-6 flex items-center gap-3 font-display text-h2 font-semibold text-ink">
+    <h2 className="font-display text-h2 text-ink mb-6 flex items-center gap-3 font-semibold">
       {children}
     </h2>
   );
@@ -50,27 +50,27 @@ export default async function CaseStudyPage({ params }: Params) {
       <CaseStudyNav />
       {/* id="top": the layout's skip link targets #top on every page. */}
       <main id="top">
-        <article className="mx-auto w-full max-w-shell px-6 pb-24">
+        <article className="max-w-shell mx-auto w-full px-6 pb-24">
           <header className="pt-16 sm:pt-20">
-            <p className="mb-4 flex animate-fade-up items-center gap-3 text-sm font-medium uppercase tracking-[0.18em] text-accent">
-              <span aria-hidden="true" className="h-px w-8 bg-accent/60" />
+            <p className="animate-fade-up text-accent mb-4 flex items-center gap-3 text-sm font-medium tracking-[0.18em] uppercase">
+              <span aria-hidden="true" className="bg-accent/60 h-px w-8" />
               {cs.eyebrow}
             </p>
             <h1
               style={{ animationDelay: '80ms' }}
-              className="max-w-4xl animate-fade-up font-display text-h2 font-semibold text-ink sm:text-display"
+              className="animate-fade-up font-display text-h2 text-ink sm:text-display max-w-4xl font-semibold"
             >
               {cs.title}
             </h1>
             <p
               style={{ animationDelay: '160ms' }}
-              className="mt-6 max-w-content animate-fade-up text-lg leading-relaxed text-muted"
+              className="max-w-content animate-fade-up text-muted mt-6 text-lg leading-relaxed"
             >
               {cs.intro}
             </p>
             <div
               style={{ animationDelay: '240ms' }}
-              className="mt-10 flex animate-fade-up flex-wrap gap-x-12 gap-y-6 border-t border-hairline pt-8"
+              className="animate-fade-up border-hairline mt-10 flex flex-wrap gap-x-12 gap-y-6 border-t pt-8"
             >
               {cs.metrics.map((m) => (
                 <MetricBadge key={m.label} value={m.value} label={m.label} />
@@ -81,7 +81,7 @@ export default async function CaseStudyPage({ params }: Params) {
           {/* Real artifact image (architecture diagram, chart) when the project has one. */}
           {project?.image && (
             <Reveal className="mt-14">
-              <figure className="overflow-hidden rounded-xl border border-hairline bg-card/60">
+              <figure className="border-hairline bg-card/60 overflow-hidden rounded-xl border">
                 <img
                   src={asset(project.image)}
                   alt={project.imageAlt ?? `${cs.title} — project artifact`}
@@ -89,7 +89,7 @@ export default async function CaseStudyPage({ params }: Params) {
                   className="w-full"
                 />
                 {project.imageCredit && (
-                  <figcaption className="border-t border-hairline px-5 py-3 text-xs text-muted">
+                  <figcaption className="border-hairline text-muted border-t px-5 py-3 text-xs">
                     {project.imageCredit}
                   </figcaption>
                 )}
@@ -102,7 +102,7 @@ export default async function CaseStudyPage({ params }: Params) {
               <SectionHeading>The problem</SectionHeading>
               <div className="max-w-content space-y-4">
                 {cs.problem.map((p) => (
-                  <p key={p} className="leading-relaxed text-muted">
+                  <p key={p} className="text-muted leading-relaxed">
                     {p}
                   </p>
                 ))}
@@ -115,10 +115,10 @@ export default async function CaseStudyPage({ params }: Params) {
               <SectionHeading>Constraints</SectionHeading>
               <ul className="max-w-content space-y-3">
                 {cs.constraints.map((c) => (
-                  <li key={c} className="flex gap-3 leading-relaxed text-muted">
+                  <li key={c} className="text-muted flex gap-3 leading-relaxed">
                     <span
                       aria-hidden="true"
-                      className="mt-2.5 h-1.5 w-1.5 shrink-0 rounded-full bg-accent"
+                      className="bg-accent mt-2.5 h-1.5 w-1.5 shrink-0 rounded-full"
                     />
                     {c}
                   </li>
@@ -133,8 +133,8 @@ export default async function CaseStudyPage({ params }: Params) {
               <dl className="space-y-8">
                 {cs.decisions.map((d) => (
                   <div key={d.decision} className="max-w-content">
-                    <dt className="font-medium text-ink">{d.decision}</dt>
-                    <dd className="mt-2 border-l-2 border-hairline pl-4 text-sm leading-relaxed text-muted">
+                    <dt className="text-ink font-medium">{d.decision}</dt>
+                    <dd className="border-hairline text-muted mt-2 border-l-2 pl-4 text-sm leading-relaxed">
                       {d.tradeoff}
                     </dd>
                   </div>
@@ -159,7 +159,7 @@ export default async function CaseStudyPage({ params }: Params) {
                 ))}
               </div>
               {cs.resultsNote && (
-                <p className="mt-6 max-w-content leading-relaxed text-muted">{cs.resultsNote}</p>
+                <p className="max-w-content text-muted mt-6 leading-relaxed">{cs.resultsNote}</p>
               )}
             </section>
           </Reveal>
@@ -172,7 +172,7 @@ export default async function CaseStudyPage({ params }: Params) {
                   {cs.gallery.map((g) => (
                     <li
                       key={g.file}
-                      className={`overflow-hidden rounded-lg border border-hairline bg-card/60 ${
+                      className={`border-hairline bg-card/60 overflow-hidden rounded-lg border ${
                         g.wide ? 'col-span-2 sm:col-span-3 lg:col-span-4' : ''
                       }`}
                     >
@@ -205,13 +205,13 @@ export default async function CaseStudyPage({ params }: Params) {
                           />
                           <span className="sr-only">— open full size</span>
                         </a>
-                        <figcaption className="border-t border-hairline px-3 py-2 text-[11px] leading-snug text-muted">
+                        <figcaption className="border-hairline text-muted border-t px-3 py-2 text-[11px] leading-snug">
                           {g.credit ? `${g.credit} ` : ''}
                           <a
                             href={asset(g.file)}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="whitespace-nowrap text-accent no-underline hover:underline"
+                            className="text-accent whitespace-nowrap no-underline hover:underline"
                           >
                             View full size<span aria-hidden="true"> ↗</span>
                           </a>
@@ -228,7 +228,7 @@ export default async function CaseStudyPage({ params }: Params) {
             <Reveal className="mt-16">
               <section aria-label="In motion">
                 <SectionHeading>In motion</SectionHeading>
-                <p className="mb-6 max-w-content text-sm leading-relaxed text-muted">
+                <p className="max-w-content text-muted mb-6 text-sm leading-relaxed">
                   Short, silent simulation clips. Nothing downloads or plays until you press play.
                 </p>
                 <ClipGrid clips={cs.clips} />
@@ -250,7 +250,7 @@ export default async function CaseStudyPage({ params }: Params) {
                           href={url}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="text-sm font-medium text-accent no-underline hover:underline"
+                          className="text-accent text-sm font-medium no-underline hover:underline"
                         >
                           {d.label}
                           <span aria-hidden="true"> ↗</span>
@@ -271,7 +271,7 @@ export default async function CaseStudyPage({ params }: Params) {
             <Reveal className="mt-16">
               <section aria-label="In the archive">
                 <SectionHeading>In the archive</SectionHeading>
-                <p className="max-w-content leading-relaxed text-muted">
+                <p className="max-w-content text-muted leading-relaxed">
                   {inArchive.length === 1
                     ? 'One item from the Legend-era decks references this project'
                     : `${inArchive.length} items from the Legend-era decks reference this project`}{' '}
@@ -280,7 +280,7 @@ export default async function CaseStudyPage({ params }: Params) {
                 </p>
                 <Link
                   href={`/archive/${archiveEra.id}/`}
-                  className="mt-4 inline-block text-sm font-medium text-accent no-underline hover:underline"
+                  className="text-accent mt-4 inline-block text-sm font-medium no-underline hover:underline"
                 >
                   Browse {archiveEra.title.replace(/^The /, 'the ')} →
                 </Link>
@@ -288,10 +288,10 @@ export default async function CaseStudyPage({ params }: Params) {
             </Reveal>
           )}
 
-          <div className="mt-20 border-t border-hairline pt-8">
+          <div className="border-hairline mt-20 border-t pt-8">
             <Link
               href="/#work"
-              className="text-sm font-medium text-accent no-underline hover:underline"
+              className="text-accent text-sm font-medium no-underline hover:underline"
             >
               ← Back to all work
             </Link>
