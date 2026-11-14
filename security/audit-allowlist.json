@@ -13,18 +13,6 @@
       "tree": "production",
       "reason": "XSS via an unescaped </style> in CSS stringify output. postcss runs at build time over this repo's own Tailwind sources; it never sees third-party or user input, and it is not in the shipped bundle.",
       "reviewed": "2026-09-20"
-    },
-    {
-      "advisory": "playwright",
-      "tree": "production",
-      "reason": "Browser downloads skip SSL certificate verification. Playwright is a peer dependency of next and is run only by developers and CI, never by a visitor. Nothing it installs reaches the deployed site.",
-      "reviewed": "2026-09-20"
-    },
-    {
-      "advisory": "@playwright/test",
-      "tree": "production",
-      "reason": "Same advisory as playwright, reported once per package. See that entry.",
-      "reviewed": "2026-09-20"
     }
   ]
 }
