@@ -54,7 +54,7 @@ document and it is not an ADR.
 src/ · out/ · scripts/ · docs/ · specs/ · security/ · tests/{unit,contract,a11y,e2e}
 
 Pixel baselines live in `tests/e2e/visual.spec.ts-snapshots/` and are regenerated only inside
-`mcr.microsoft.com/playwright:v1.51.1-noble` — see [`specs/0003`](specs/0003-delivery-verification.md).
+`mcr.microsoft.com/playwright:v1.65.0-noble` — see [`specs/0003`](specs/0003-delivery-verification.md).
 
 ---
 

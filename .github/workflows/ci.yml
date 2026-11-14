@@ -159,7 +159,7 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 15
     container:
-      image: mcr.microsoft.com/playwright:v1.51.1-noble
+      image: mcr.microsoft.com/playwright:v1.65.0-noble
       # The runner's own user: a root container leaves root-owned files behind
       # that break every later job on the machine (fleet, 2026-09-26; SPEC-0003 R11).
       options: --user 1001:1001
@@ -190,7 +190,7 @@ jobs:
     # Chromium there (SPEC-0003 R12). The image ships node and the browsers, so
     # there is nothing to set up, cache or install.
     container:
-      image: mcr.microsoft.com/playwright:v1.51.1-noble
+      image: mcr.microsoft.com/playwright:v1.65.0-noble
       options: --user 1001:1001
     steps:
       - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5
