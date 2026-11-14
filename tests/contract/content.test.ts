@@ -24,7 +24,7 @@ import { recommendations } from '@/content/recommendations';
 import { certifications } from '@/content/certifications';
 import { languages } from '@/content/languages';
 import { diagrams } from '@/components/diagrams';
-import { caseStudyStart, patents, recommendations } from '@/content';
+import { caseStudyStart } from '@/content';
 
 /** Media owned by a client or former employer, named media/<source>-* by
  *  convention. Anything matching must render a visible credit. */

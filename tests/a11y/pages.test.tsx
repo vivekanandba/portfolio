@@ -1,7 +1,7 @@
 import { describe, it, expect } from 'vitest';
 import type { ReactElement } from 'react';
 import { render, fireEvent, screen } from '@testing-library/react';
-import { axe } from 'jest-axe';
+import { expectNoViolations } from '../fixtures/axe';
 import Home from '@/app/page';
 import NotFound from '@/app/not-found';
 import RecommendationsPage from '@/app/recommendations/page';
@@ -25,17 +25,13 @@ import { listPosts } from '@/lib/writing';
  *
  * Axe over a whole page takes seconds and grows with the content, so each gets a
  * generous explicit timeout rather than vitest's 5s default, which flaked under
- * parallel load. A timed-out axe run also leaves its global lock set and fails
- * the next one, so the budget is deliberate rather than optimistic.
+ * parallel load. A timed-out run used to fail every later test with "Axe is
+ * already running"; runs are now queued (tests/fixtures/axe.ts, SPEC-0001 R10).
  */
 const AXE_TIMEOUT = 40_000;
 
 /** Async server components: await the element, then render it like any JSX. */
 const renderAsync = async (element: Promise<ReactElement>) => render(await element);
-
-async function expectNoViolations(container: HTMLElement) {
-  expect(await axe(container)).toHaveNoViolations();
-}
 
 describe('accessibility — the landing page', () => {
   it(

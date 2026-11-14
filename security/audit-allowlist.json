@@ -25,24 +25,6 @@
       "tree": "production",
       "reason": "Same advisory as playwright, reported once per package. See that entry.",
       "reviewed": "2026-09-20"
-    },
-    {
-      "advisory": "vitest",
-      "tree": "development",
-      "reason": "Arbitrary file read and execution while the Vitest UI or API server is listening. This repo runs `vitest run` only; there is no --ui flag anywhere, @vitest/ui is not installed, and CI exposes no port. Fixed builds are 5.x, a major bump held for its own change.",
-      "reviewed": "2026-09-20"
-    },
-    {
-      "advisory": "@vitest/coverage-v8",
-      "tree": "development",
-      "reason": "Same advisory as vitest, reported through the coverage package. See that entry.",
-      "reviewed": "2026-09-20"
-    },
-    {
-      "advisory": "tinypool",
-      "tree": "development",
-      "reason": "GHSA-5gmw-xhrv-c9v3 / GHSA-85c8-ppgw-ccpr: prototype-pollution gadgets in tinypool's worker and run() options, reachable only by code that passes attacker-controlled options to the pool. tinypool 1.1.1 is a transitive dev dependency of vitest 2.1.9; the only caller is vitest itself with options from vitest.config.ts, which this repo authors. Nothing of it reaches the built site. The fix is tinypool 2.1.2, which arrives only with vitest 5 (a major); that upgrade is owed and tracked, and this exemption is to be re-read when it lands or when the advisory changes.",
-      "reviewed": "2026-10-10"
     }
   ]
 }
