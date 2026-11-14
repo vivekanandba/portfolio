@@ -32,73 +32,71 @@ export default async function Image({ params }: { params: Promise<{ slug: string
   const title = sanitize(post?.title ?? profile.name);
   const summary = sanitize(post?.summary ?? profile.tagline);
   return new ImageResponse(
-    (
-      <div
-        style={{
-          height: '100%',
-          width: '100%',
-          display: 'flex',
-          flexDirection: 'column',
-          justifyContent: 'space-between',
-          background: PAPER,
-          padding: '72px 80px',
-          borderLeft: `16px solid ${ACCENT}`,
-        }}
-      >
-        <div style={{ display: 'flex', flexDirection: 'column' }}>
-          <div
-            style={{
-              fontSize: 26,
-              letterSpacing: 4,
-              textTransform: 'uppercase',
-              color: ACCENT,
-              fontWeight: 600,
-            }}
-          >
-            {eyebrow}
-          </div>
-          <div
-            style={{
-              display: 'flex',
-              fontSize: 60,
-              lineHeight: 1.1,
-              color: INK,
-              fontWeight: 700,
-              marginTop: 28,
-              maxWidth: 980,
-            }}
-          >
-            {title}
-          </div>
-          <div
-            style={{
-              display: 'flex',
-              fontSize: 28,
-              lineHeight: 1.35,
-              color: MUTED,
-              marginTop: 24,
-              maxWidth: 980,
-            }}
-          >
-            {summary}
-          </div>
+    <div
+      style={{
+        height: '100%',
+        width: '100%',
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'space-between',
+        background: PAPER,
+        padding: '72px 80px',
+        borderLeft: `16px solid ${ACCENT}`,
+      }}
+    >
+      <div style={{ display: 'flex', flexDirection: 'column' }}>
+        <div
+          style={{
+            fontSize: 26,
+            letterSpacing: 4,
+            textTransform: 'uppercase',
+            color: ACCENT,
+            fontWeight: 600,
+          }}
+        >
+          {eyebrow}
         </div>
         <div
           style={{
             display: 'flex',
-            justifyContent: 'space-between',
-            alignItems: 'center',
-            borderTop: `2px solid ${HAIRLINE}`,
-            paddingTop: 28,
-            fontSize: 26,
-            color: MUTED,
+            fontSize: 60,
+            lineHeight: 1.1,
+            color: INK,
+            fontWeight: 700,
+            marginTop: 28,
+            maxWidth: 980,
           }}
         >
-          <span style={{ color: INK, fontWeight: 600 }}>{sanitize(profile.name)}</span>
-          <span>Writing</span>
+          {title}
+        </div>
+        <div
+          style={{
+            display: 'flex',
+            fontSize: 28,
+            lineHeight: 1.35,
+            color: MUTED,
+            marginTop: 24,
+            maxWidth: 980,
+          }}
+        >
+          {summary}
         </div>
       </div>
-    ),
+      <div
+        style={{
+          display: 'flex',
+          justifyContent: 'space-between',
+          alignItems: 'center',
+          borderTop: `2px solid ${HAIRLINE}`,
+          paddingTop: 28,
+          fontSize: 26,
+          color: MUTED,
+        }}
+      >
+        <span style={{ color: INK, fontWeight: 600 }}>{sanitize(profile.name)}</span>
+        <span>Writing</span>
+      </div>
+    </div>,
     size,
   );
 }

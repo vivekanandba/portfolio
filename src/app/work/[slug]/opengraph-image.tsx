@@ -51,73 +51,71 @@ export default async function Image({ params }: { params: Promise<{ slug: string
   }));
 
   return new ImageResponse(
-    (
-      <div
-        style={{
-          height: '100%',
-          width: '100%',
-          display: 'flex',
-          flexDirection: 'column',
-          justifyContent: 'space-between',
-          background: PAPER,
-          padding: '72px 80px',
-          borderLeft: `16px solid ${accent}`,
-        }}
-      >
-        <div style={{ display: 'flex', flexDirection: 'column' }}>
-          <div
-            style={{
-              fontSize: 26,
-              letterSpacing: 4,
-              textTransform: 'uppercase',
-              color: accent,
-              fontWeight: 600,
-            }}
-          >
-            {eyebrow}
-          </div>
-          <div
-            style={{
-              display: 'flex',
-              fontSize: 68,
-              lineHeight: 1.1,
-              color: INK,
-              fontWeight: 700,
-              marginTop: 28,
-              maxWidth: 960,
-            }}
-          >
-            {title}
-          </div>
+    <div
+      style={{
+        height: '100%',
+        width: '100%',
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'space-between',
+        background: PAPER,
+        padding: '72px 80px',
+        borderLeft: `16px solid ${accent}`,
+      }}
+    >
+      <div style={{ display: 'flex', flexDirection: 'column' }}>
+        <div
+          style={{
+            fontSize: 26,
+            letterSpacing: 4,
+            textTransform: 'uppercase',
+            color: accent,
+            fontWeight: 600,
+          }}
+        >
+          {eyebrow}
         </div>
-
-        {metrics.length > 0 && (
-          <div style={{ display: 'flex', gap: 56 }}>
-            {metrics.map((m) => (
-              <div key={m.label} style={{ display: 'flex', flexDirection: 'column' }}>
-                <div style={{ fontSize: 40, color: INK, fontWeight: 700 }}>{m.value}</div>
-                <div style={{ fontSize: 22, color: MUTED, marginTop: 4 }}>{m.label}</div>
-              </div>
-            ))}
-          </div>
-        )}
-
         <div
           style={{
             display: 'flex',
-            justifyContent: 'space-between',
-            alignItems: 'center',
-            borderTop: `2px solid ${HAIRLINE}`,
-            paddingTop: 28,
-            fontSize: 26,
-            color: MUTED,
+            fontSize: 68,
+            lineHeight: 1.1,
+            color: INK,
+            fontWeight: 700,
+            marginTop: 28,
+            maxWidth: 960,
           }}
         >
-          <span style={{ color: INK, fontWeight: 600 }}>{sanitize(profile.name)}</span>
-          <span>{sanitize(profile.tagline)}</span>
+          {title}
         </div>
       </div>
-    ),
+
+      {metrics.length > 0 && (
+        <div style={{ display: 'flex', gap: 56 }}>
+          {metrics.map((m) => (
+            <div key={m.label} style={{ display: 'flex', flexDirection: 'column' }}>
+              <div style={{ fontSize: 40, color: INK, fontWeight: 700 }}>{m.value}</div>
+              <div style={{ fontSize: 22, color: MUTED, marginTop: 4 }}>{m.label}</div>
+            </div>
+          ))}
+        </div>
+      )}
+
+      <div
+        style={{
+          display: 'flex',
+          justifyContent: 'space-between',
+          alignItems: 'center',
+          borderTop: `2px solid ${HAIRLINE}`,
+          paddingTop: 28,
+          fontSize: 26,
+          color: MUTED,
+        }}
+      >
+        <span style={{ color: INK, fontWeight: 600 }}>{sanitize(profile.name)}</span>
+        <span>{sanitize(profile.tagline)}</span>
+      </div>
+    </div>,
     size,
   );
 }

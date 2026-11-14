@@ -47,8 +47,8 @@ made the time.
 ## The book and move 37
 
 When I read the book _Superintelligence_, and when I saw the documentary on AlphaGo and saw move 37 —
-close to around 2017 — is when I realised I needed to make a serious effort. [*Superintelligence*,
-Nick Bostrom, 2014; *AlphaGo*, the documentary, 2017.] I realised that a lot of the work I was doing
+close to around 2017 — is when I realised I needed to make a serious effort. [_Superintelligence_,
+Nick Bostrom, 2014; _AlphaGo_, the documentary, 2017.] I realised that a lot of the work I was doing
 as a design engineer could be automated. The 2D-to-3D conversion, the designs I was doing — it could
 all be parameterised, it could be automated. That was the vision I started to have back then.
 
