@@ -63,7 +63,7 @@ export function TourButtons() {
   };
   return (
     <div className="mt-6 flex flex-wrap items-center gap-x-3 gap-y-2">
-      <span className="text-xs font-medium uppercase tracking-[0.14em] text-muted">
+      <span className="text-muted text-xs font-medium tracking-[0.14em] uppercase">
         Guided paths
       </span>
       {tours.map((t) => (
@@ -71,7 +71,7 @@ export function TourButtons() {
           key={t.id}
           type="button"
           onClick={() => start(t.id)}
-          className="rounded-full border border-hairline bg-card/60 px-4 py-1.5 text-sm font-medium text-muted transition-colors hover:border-accent/40 hover:text-ink"
+          className="border-hairline bg-card/60 text-muted hover:border-accent/40 hover:text-ink rounded-full border px-4 py-1.5 text-sm font-medium transition-colors"
         >
           {t.label}
         </button>
@@ -129,13 +129,13 @@ export function TourBar() {
       role="region"
       aria-label="Guided tour"
       data-print-hide
-      className="fixed inset-x-0 bottom-0 z-50 border-t border-hairline bg-paper/95 backdrop-blur"
+      className="border-hairline bg-paper/95 fixed inset-x-0 bottom-0 z-50 border-t backdrop-blur-sm"
     >
-      <div className="mx-auto flex max-w-shell flex-wrap items-center gap-x-6 gap-y-2 px-6 py-3">
+      <div className="max-w-shell mx-auto flex flex-wrap items-center gap-x-6 gap-y-2 px-6 py-3">
         {/* aria-live: the bar appears/changes without focus moving to it, so
             announce each stop politely for screen-reader users. */}
-        <p aria-live="polite" className="min-w-0 flex-1 text-sm text-muted">
-          <span className="font-semibold text-ink">{tour.label}</span>
+        <p aria-live="polite" className="text-muted min-w-0 flex-1 text-sm">
+          <span className="text-ink font-semibold">{tour.label}</span>
           {stopLabel && <span className="text-ink"> · {stopLabel}</span>} — {stop.note}
         </p>
         <div className="flex items-center gap-1.5" aria-hidden="true">
@@ -151,7 +151,7 @@ export function TourBar() {
             type="button"
             onClick={() => goTo(state.step - 1)}
             disabled={state.step === 0}
-            className="rounded-full border border-hairline px-3 py-1 text-sm text-muted transition-colors hover:text-ink disabled:opacity-40"
+            className="border-hairline text-muted hover:text-ink rounded-full border px-3 py-1 text-sm transition-colors disabled:opacity-40"
           >
             ← Prev
           </button>
@@ -159,7 +159,7 @@ export function TourBar() {
             <button
               type="button"
               onClick={() => goTo(state.step + 1)}
-              className="rounded-full bg-accent px-4 py-1 text-sm font-medium text-accent-contrast transition-opacity hover:opacity-90"
+              className="bg-accent text-accent-contrast rounded-full px-4 py-1 text-sm font-medium transition-opacity hover:opacity-90"
             >
               Next →
             </button>
@@ -167,7 +167,7 @@ export function TourBar() {
             <button
               type="button"
               onClick={() => writeState(null)}
-              className="rounded-full bg-accent px-4 py-1 text-sm font-medium text-accent-contrast transition-opacity hover:opacity-90"
+              className="bg-accent text-accent-contrast rounded-full px-4 py-1 text-sm font-medium transition-opacity hover:opacity-90"
             >
               Done
             </button>
@@ -176,7 +176,7 @@ export function TourBar() {
             type="button"
             onClick={() => writeState(null)}
             aria-label="Exit the tour"
-            className="rounded-full border border-hairline px-3 py-1 text-sm text-muted transition-colors hover:text-ink"
+            className="border-hairline text-muted hover:text-ink rounded-full border px-3 py-1 text-sm transition-colors"
           >
             ✕
           </button>

@@ -32,21 +32,21 @@ export default function WorkIndex() {
       <CaseStudyNav />
       {/* id="top": the layout's skip link targets #top on every page. */}
       <main id="top">
-        <div className="mx-auto w-full max-w-shell px-6 pb-24">
+        <div className="max-w-shell mx-auto w-full px-6 pb-24">
           <header className="pt-16 sm:pt-20">
-            <p className="mb-4 flex animate-fade-up items-center gap-3 text-sm font-medium uppercase tracking-[0.18em] text-accent">
-              <span aria-hidden="true" className="h-px w-8 bg-accent/60" />
+            <p className="animate-fade-up text-accent mb-4 flex items-center gap-3 text-sm font-medium tracking-[0.18em] uppercase">
+              <span aria-hidden="true" className="bg-accent/60 h-px w-8" />
               Selected Work
             </p>
             <h1
               style={{ animationDelay: '80ms' }}
-              className="animate-fade-up font-display text-display font-semibold text-ink"
+              className="animate-fade-up font-display text-display text-ink font-semibold"
             >
               Projects
             </h1>
             <p
               style={{ animationDelay: '160ms' }}
-              className="mt-6 max-w-content animate-fade-up text-lg leading-relaxed text-muted"
+              className="max-w-content animate-fade-up text-muted mt-6 text-lg leading-relaxed"
             >
               {caseStudies.length} projects across aerospace, healthcare robotics, and AI-native
               software — each told the same way: the problem, the constraints, the decisions and
@@ -54,7 +54,7 @@ export default function WorkIndex() {
             </p>
             <p
               style={{ animationDelay: '200ms' }}
-              className="mt-4 max-w-content animate-fade-up text-sm leading-relaxed text-muted"
+              className="max-w-content animate-fade-up text-muted mt-4 text-sm leading-relaxed"
             >
               Everything the two Legend-era capability decks show — dated or not — is catalogued in{' '}
               <Link href="/archive/legend/" className="text-accent no-underline hover:underline">
@@ -69,9 +69,9 @@ export default function WorkIndex() {
               key={group.org}
               aria-label={group.org}
               style={{ animationDelay: `${240 + gi * 80}ms` }}
-              className="mt-16 animate-fade-up"
+              className="animate-fade-up mt-16"
             >
-              <h2 className="text-sm font-medium uppercase tracking-[0.18em] text-muted">
+              <h2 className="text-muted text-sm font-medium tracking-[0.18em] uppercase">
                 {group.org}
               </h2>
               <ul className="mt-4">
@@ -79,7 +79,7 @@ export default function WorkIndex() {
                   const cs = bySlug.get(slug)!;
                   const project = projectById.get(cs.projectId)!;
                   return (
-                    <li key={slug} className="flex gap-5 border-t border-hairline py-5">
+                    <li key={slug} className="border-hairline flex gap-5 border-t py-5">
                       {/* The project's image as a thumbnail where one exists (SPEC-0007 R10);
                           decorative here — the row's title is the name. */}
                       {project.image && (
@@ -88,7 +88,7 @@ export default function WorkIndex() {
                           src={asset(project.image)}
                           alt=""
                           loading="lazy"
-                          className="h-[72px] w-24 shrink-0 rounded-md border border-hairline object-cover object-top"
+                          className="border-hairline h-[72px] w-24 shrink-0 rounded-md border object-cover object-top"
                         />
                       )}
                       <div className="flex min-w-0 flex-1 flex-wrap items-baseline justify-between gap-x-6 gap-y-2">
@@ -108,7 +108,7 @@ export default function WorkIndex() {
                         </h3>
                         {/* Allowed to shrink and wrap: as shrink-0 this line pushed the page
                             past a phone's width and Chrome zoomed the index out (SPEC-0004 R24). */}
-                        <p className="tabular min-w-0 text-sm text-muted">
+                        <p className="tabular text-muted min-w-0 text-sm">
                           {cs.metrics
                             .slice(0, 2)
                             .map((m) => `${m.value} ${m.label}`)
@@ -122,10 +122,10 @@ export default function WorkIndex() {
             </section>
           ))}
 
-          <div className="mt-20 border-t border-hairline pt-8">
+          <div className="border-hairline mt-20 border-t pt-8">
             <Link
               href="/#work"
-              className="text-sm font-medium text-accent no-underline hover:underline"
+              className="text-accent text-sm font-medium no-underline hover:underline"
             >
               ← Back to the portfolio
             </Link>

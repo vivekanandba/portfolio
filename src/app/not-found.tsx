@@ -17,12 +17,12 @@ export default function NotFound() {
   return (
     <>
       <CaseStudyNav />
-      <main className="mx-auto w-full max-w-shell px-6 py-20 sm:py-28">
-        <p className="text-sm font-medium uppercase tracking-[0.18em] text-accent">404</p>
-        <h1 className="mt-2 font-display text-h2 font-semibold text-ink">
+      <main className="max-w-shell mx-auto w-full px-6 py-20 sm:py-28">
+        <p className="text-accent text-sm font-medium tracking-[0.18em] uppercase">404</p>
+        <h1 className="font-display text-h2 text-ink mt-2 font-semibold">
           This page doesn’t exist.
         </h1>
-        <p className="mt-4 max-w-content text-lg leading-relaxed text-muted">
+        <p className="max-w-content text-muted mt-4 text-lg leading-relaxed">
           I have moved things more than once while building this site — projects got their own
           pages, the writing got a section — so the link you followed may simply predate the move.
           The places people usually want are below.
@@ -31,34 +31,34 @@ export default function NotFound() {
           {PLACES.map((p) => (
             <li
               key={p.href}
-              className="group relative rounded-xl border border-hairline bg-card/60 p-5 transition duration-300 hover:border-accent/40 hover:shadow-lift motion-safe:hover:-translate-y-1"
+              className="group border-hairline bg-card/60 hover:border-accent/40 hover:shadow-lift relative rounded-xl border p-5 transition duration-300 motion-safe:hover:-translate-y-1"
             >
               <Link
                 href={p.href}
-                className="font-medium text-ink no-underline after:absolute after:inset-0 group-hover:underline"
+                className="text-ink font-medium no-underline group-hover:underline after:absolute after:inset-0"
               >
                 {p.label} →
               </Link>
-              <p className="mt-1 text-sm text-muted">{p.note}</p>
+              <p className="text-muted mt-1 text-sm">{p.note}</p>
             </li>
           ))}
         </ul>
         <div className="mt-10 flex flex-wrap items-center gap-4">
           <Link
             href="/"
-            className="rounded-full bg-ink px-6 py-3 text-sm font-medium text-paper no-underline transition-opacity hover:opacity-90"
+            className="bg-ink text-paper rounded-full px-6 py-3 text-sm font-medium no-underline transition-opacity hover:opacity-90"
           >
             Back to the portfolio
           </Link>
           <a
             href={asset(profile.resumeFile)}
-            className="text-sm font-medium text-muted no-underline hover:text-ink"
+            className="text-muted hover:text-ink text-sm font-medium no-underline"
           >
             Resume (PDF) ↗
           </a>
-          <OpenPaletteButton className="inline-flex items-center gap-2 text-sm font-medium text-muted hover:text-ink">
+          <OpenPaletteButton className="text-muted hover:text-ink inline-flex items-center gap-2 text-sm font-medium">
             Or search the site{' '}
-            <kbd className="rounded border border-hairline px-1.5 py-0.5 text-xs">⌘K</kbd>
+            <kbd className="border-hairline rounded-sm border px-1.5 py-0.5 text-xs">⌘K</kbd>
           </OpenPaletteButton>
         </div>
       </main>

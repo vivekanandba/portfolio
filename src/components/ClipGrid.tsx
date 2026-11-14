@@ -24,7 +24,7 @@ export function ClipGrid({ clips }: { clips: Clip[] }) {
   return (
     <ul className="grid gap-4 sm:grid-cols-2">
       {clips.map((c) => (
-        <li key={c.file} className="overflow-hidden rounded-lg border border-hairline bg-card/60">
+        <li key={c.file} className="border-hairline bg-card/60 overflow-hidden rounded-lg border">
           <figure>
             {/* bg-black is deliberate: letterboxing around portrait simulations
                 reads as a video frame, not as a themed surface. */}
@@ -40,13 +40,13 @@ export function ClipGrid({ clips }: { clips: Clip[] }) {
             >
               <track kind="captions" srcLang="en" label="English" src={captionsTrack(c.alt)} />
             </video>
-            <figcaption className="border-t border-hairline px-3 py-2 text-[11px] leading-snug text-muted">
+            <figcaption className="border-hairline text-muted border-t px-3 py-2 text-[11px] leading-snug">
               {c.caption && <span className="text-ink">{c.caption} </span>}
               {c.credit ? `${c.credit} ` : ''}
               <a
                 href={asset(c.file)}
                 download
-                className="whitespace-nowrap text-accent no-underline hover:underline"
+                className="text-accent whitespace-nowrap no-underline hover:underline"
               >
                 Download clip<span aria-hidden="true"> ↗</span>
               </a>

@@ -15,17 +15,17 @@ export default function OfflinePage() {
   return (
     <>
       <CaseStudyNav />
-      <main id="top" className="mx-auto w-full max-w-content px-6 py-24">
-        <p className="text-sm font-medium uppercase tracking-[0.18em] text-accent">Offline</p>
-        <h1 className="mt-2 font-display text-h2 font-semibold text-ink">
+      <main id="top" className="max-w-content mx-auto w-full px-6 py-24">
+        <p className="text-accent text-sm font-medium tracking-[0.18em] uppercase">Offline</p>
+        <h1 className="font-display text-h2 text-ink mt-2 font-semibold">
           You’re offline, and this page wasn’t saved.
         </h1>
-        <p className="mt-4 max-w-content leading-relaxed text-muted">
+        <p className="max-w-content text-muted mt-4 leading-relaxed">
           Pages you’ve already opened here are kept on your device and will still load. Everything
           else needs a connection. Nothing is lost — try again when you’re back online.
         </p>
-        <p className="mt-8 text-sm text-muted">
-          <a href="./" className="text-accent underline decoration-accent/40 underline-offset-4">
+        <p className="text-muted mt-8 text-sm">
+          <a href="./" className="text-accent decoration-accent/40 underline underline-offset-4">
             Try the front page
           </a>
         </p>

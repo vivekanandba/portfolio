@@ -116,7 +116,7 @@ export function DiagramShell({
   children: ReactNode;
 }) {
   return (
-    <div className="overflow-x-auto rounded-2xl border border-hairline bg-card/40 p-4">
+    <div className="border-hairline bg-card/40 overflow-x-auto rounded-2xl border p-4">
       <svg
         role="img"
         aria-labelledby={`${id}-title ${id}-desc`}

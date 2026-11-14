@@ -14,7 +14,7 @@ export function SkillPill({ item }: { item: string }) {
       type="button"
       onClick={() => openPalette(item)}
       title="Search the site for this"
-      className="rounded-full border border-hairline bg-card/60 px-3 py-1 text-sm text-muted transition-colors hover:border-accent/40 hover:text-ink"
+      className="border-hairline bg-card/60 text-muted hover:border-accent/40 hover:text-ink rounded-full border px-3 py-1 text-sm transition-colors"
     >
       {item}
     </button>

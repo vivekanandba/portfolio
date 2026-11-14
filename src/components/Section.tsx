@@ -17,20 +17,20 @@ export function Section({ id, eyebrow, title, children, className, lead }: Secti
   return (
     <section id={id} aria-labelledby={labelId} className="w-full">
       {lead}
-      <div className={`mx-auto w-full max-w-shell px-6 py-20 sm:py-24 ${className ?? ''}`}>
+      <div className={`max-w-shell mx-auto w-full px-6 py-20 sm:py-24 ${className ?? ''}`}>
         {(eyebrow || title) && (
           <Reveal>
             <header className="mb-10">
               {eyebrow && (
-                <p className="mb-2 flex items-center gap-3 text-sm font-medium uppercase tracking-[0.18em] text-accent">
-                  <span aria-hidden="true" className="h-px w-8 bg-accent/60" />
+                <p className="text-accent mb-2 flex items-center gap-3 text-sm font-medium tracking-[0.18em] uppercase">
+                  <span aria-hidden="true" className="bg-accent/60 h-px w-8" />
                   {eyebrow}
                 </p>
               )}
               {title && (
                 <h2
                   id={labelId}
-                  className="font-display text-h2 font-semibold text-ink lg:text-h2-lg"
+                  className="font-display text-h2 text-ink lg:text-h2-lg font-semibold"
                 >
                   {title}
                 </h2>

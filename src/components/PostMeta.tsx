@@ -38,12 +38,12 @@ export function PostMeta({
   post: Pick<Post, 'kind' | 'date' | 'updated' | 'readingMinutes' | 'draft'>;
 }) {
   return (
-    <p className="tabular flex flex-wrap gap-x-3 gap-y-1 text-xs font-medium uppercase tracking-[0.14em] text-muted">
+    <p className="tabular text-muted flex flex-wrap gap-x-3 gap-y-1 text-xs font-medium tracking-[0.14em] uppercase">
       <span className="text-accent">{KIND_LABELS[post.kind]}</span>
       <time dateTime={post.date}>{formatDate(post.date)}</time>
       {post.updated && <span>Updated {formatDate(post.updated)}</span>}
       <span>{post.readingMinutes} min read</span>
-      {post.draft && <span className="rounded bg-accent-soft px-1.5 text-accent">Draft</span>}
+      {post.draft && <span className="bg-accent-soft text-accent rounded-sm px-1.5">Draft</span>}
     </p>
   );
 }
