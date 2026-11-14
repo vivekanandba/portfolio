@@ -301,7 +301,7 @@ describe('case-study invariants', () => {
         expect(hit, `${f} disclaims: ${hit?.[0]?.trim().slice(0, 120)}`).toBeNull();
       }
     }
-  });
+  }, 30_000); // a full-text scan of every page and post: inside 5 s on CI, 7–9 s on a loaded VM (CON-VER-008)
 
   it('site copy is first person — the word "owner" never renders (ownership is fine)', () => {
     // This is Vivek's portfolio in Vivek's voice. "The owner" was engineering
