@@ -8,6 +8,10 @@ export default defineConfig({
     environment: 'jsdom',
     globals: true,
     setupFiles: ['./tests/setup.ts'],
+    // A hang detector, not a speed check (SPEC-0001 R11). The whole-content tests
+    // (archive, every post, the copy scan) grow with the site; on a VM shared with
+    // sibling CI the 5 s default failed them one at a time while CI passed them.
+    testTimeout: 30_000,
     // Vitest owns unit/component/a11y tests; Playwright owns e2e.
     include: ['tests/**/*.test.{ts,tsx}'],
     exclude: ['tests/e2e/**', 'node_modules', 'out', '.next'],
