@@ -56,6 +56,10 @@ a broken component.
 - **R9.** Every axe assertion lives in `a11y`, not scattered through the page tests. Accessibility
   is a credibility surface here, so it gets a number of its own — and axe was the slowest thing in
   the unit lane by a wide margin, at eighty seconds for the archive page alone.
+- **R10.** axe runs are queued through `tests/fixtures/axe.ts`, so a run that outlives a timed-out test
+  delays the next one instead of failing it. axe-core allows one run per process, and an
+  overrun used to fail every later test in the file with "Axe is already running": one slow page
+  under load produced twelve failures, eleven of them misleading.
 
 ## Verification
 
@@ -89,8 +93,9 @@ threshold silently does nothing.
 
 ## Revisions
 
-| Date       | Change                                                                                                                                                                        | Covered by                         |
-| ---------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------- |
-| 2026-09-20 | Written with R1–R8 when the suites were split out of one lane.                                                                                                                | `tests/contract/suites.test.ts`    |
-| 2026-09-20 | `security` added as a script-based suite, with `secrets` as its CI companion. No directory, because its subjects are the dependency graph, the git history and the workflows. | `tests/contract/workflows.test.ts` |
-| 2026-09-20 | R9 added — five of nine axe assertions were in the unit lane, where they were invisible as a number and cost it two minutes.                                                  | `tests/contract/suites.test.ts`    |
+| Date       | Change                                                                                                                                                                                                                                                                                                                                                                             | Covered by                         |
+| ---------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------- |
+| 2026-11-14 | R10 added with the vitest 5 upgrade. Under sibling-CI load (about 35 on four vCPUs), one landing-page axe run took 107 s, hit its 40 s timeout, and failed the next eleven tests. The queue's test failed against an unqueued helper first. The first version of the queue also failed it, because it assigned the pending run after an await, and that is how the race was found. | `tests/a11y/axe-lock.test.tsx`     |
+| 2026-09-20 | Written with R1–R8 when the suites were split out of one lane.                                                                                                                                                                                                                                                                                                                     | `tests/contract/suites.test.ts`    |
+| 2026-09-20 | `security` added as a script-based suite, with `secrets` as its CI companion. No directory, because its subjects are the dependency graph, the git history and the workflows.                                                                                                                                                                                                      | `tests/contract/workflows.test.ts` |
+| 2026-09-20 | R9 added — five of nine axe assertions were in the unit lane, where they were invisible as a number and cost it two minutes.                                                                                                                                                                                                                                                       | `tests/contract/suites.test.ts`    |

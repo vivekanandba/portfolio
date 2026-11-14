@@ -14,7 +14,9 @@ export default defineConfig({
     coverage: {
       provider: 'v8',
       // Measure the app, not the tests or config.
-      include: ['src/**'],
+      // Source files only: vitest 5 also tries to instrument the Markdown and
+      // CSS under src/, and fails to parse them.
+      include: ['src/**/*.{ts,tsx}'],
       reporter: ['text-summary', 'text', 'html', 'json-summary'],
       // Floors sit a couple of points under the measured numbers so ordinary
       // changes don't trip them, but a real regression does. Raise them when

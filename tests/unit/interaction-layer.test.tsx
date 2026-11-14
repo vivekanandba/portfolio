@@ -1,6 +1,5 @@
 import { describe, it, expect, vi } from 'vitest';
 import { PALETTE_EVENT, openPalette } from '@/lib/palette';
-import { buildIndex } from '@/components/CommandPalette';
 import { act, fireEvent, render, screen } from '@testing-library/react';
 import { nowSchema, tourSchema } from '@/content/schema';
 import { tours } from '@/content/tours';
