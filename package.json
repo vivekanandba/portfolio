@@ -60,7 +60,7 @@
     "jest-axe": "11.0.0",
     "jsdom": "25.0.1",
     "postcss": "8.5.32",
-    "prettier": "3.9.10",
+    "prettier": "3.10.1",
     "prettier-plugin-tailwindcss": "0.8.1",
     "serve": "14.2.8",
     "tailwindcss": "4.3.5",
