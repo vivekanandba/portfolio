@@ -55,7 +55,7 @@
     "@types/react-dom": "19.3.0",
     "@vitejs/plugin-react": "6.3.0",
     "@vitest/coverage-v8": "5.1.0",
-    "eslint": "9.18.0",
+    "eslint": "10.14.0",
     "eslint-config-next": "15.5.29",
     "jest-axe": "11.0.0",
     "jsdom": "25.0.1",
