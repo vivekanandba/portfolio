@@ -244,12 +244,47 @@ describe('<FoldAll /> (SPEC-0011 R16)', () => {
     expect(folds().map((d) => d.open)).toEqual([false, false, false]);
   });
 
+  it('leaves every record closed when the link names the section itself', () => {
+    // The navigation bar links to the section. A section contains itself, so
+    // "the target is inside my section" is true of it — and every record
+    // opened on the most common way into the section.
+    window.location.hash = '#records';
+    render(<Fixture />);
+    expect(folds().map((d) => d.open)).toEqual([false, false, false]);
+    act(() => {
+      window.location.hash = '';
+      window.location.hash = '#records';
+      window.dispatchEvent(new Event('hashchange'));
+    });
+    expect(folds().map((d) => d.open)).toEqual([false, false, false]);
+  });
+
   it('opens everything before the page is printed', () => {
     render(<Fixture />);
     act(() => {
       window.dispatchEvent(new Event('beforeprint'));
     });
     expect(folds().map((d) => d.open)).toEqual([true, true, true]);
+  });
+
+  it('puts the page back as the reader had it once printing is over', () => {
+    render(<Fixture />);
+    const [, b] = folds();
+    toggled(b, true);
+    act(() => {
+      window.dispatchEvent(new Event('beforeprint'));
+    });
+    expect(folds().map((d) => d.open)).toEqual([true, true, true]);
+    act(() => {
+      window.dispatchEvent(new Event('afterprint'));
+    });
+    // The one they opened stays open; the two the print opened close again.
+    expect(folds().map((d) => d.open)).toEqual([false, true, false]);
+    // A second `afterprint` with no print before it closes nothing.
+    act(() => {
+      window.dispatchEvent(new Event('afterprint'));
+    });
+    expect(folds().map((d) => d.open)).toEqual([false, true, false]);
   });
 
   it('does nothing, and does not throw, when its section is not on the page', () => {

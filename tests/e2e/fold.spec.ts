@@ -123,6 +123,25 @@ test.describe('a link to a record', () => {
     expect(headingTop).toBeGreaterThanOrEqual(headerBottom);
   });
 
+  test('to the section itself opens nothing: the bar’s own link keeps it folded', async ({
+    page,
+  }) => {
+    await page.emulateMedia({ reducedMotion: 'reduce' });
+    for (const { id, records } of SECTIONS) {
+      await page.goto(`#${id}`);
+      await hydrated(page);
+      expect(await openStates(page, id), `arriving at #${id}`).toEqual(Array(records).fill(false));
+    }
+    // And from the page, the way the navigation bar does it.
+    await page.goto('');
+    await hydrated(page);
+    await page.evaluate(() => {
+      window.location.hash = '#journey';
+    });
+    await expect(page.locator('#journey')).toBeInViewport();
+    expect(await openStates(page, 'journey')).toEqual(Array(6).fill(false));
+  });
+
   test('opens a second record when the hash changes on the page', async ({ page }) => {
     await page.goto('');
     await hydrated(page);

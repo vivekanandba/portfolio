@@ -68,8 +68,10 @@ all.
   screen reader's heading list still finds it. Opening and closing are instant and nothing moves.
   A section's "Open all" control needs JavaScript and is not displayed without it; it reads "Close
   all" exactly when every record in the section is open, whichever way they came to be. Following a
-  link to a record's id opens that record. Printing opens every record: by a stylesheet rule where
-  the browser can style the folded content, and by a `beforeprint` handler where it runs.
+  link to a record's id opens that record; a link to the section itself — the navigation bar's —
+  opens nothing. Printing opens every record: by a stylesheet rule where the browser can style the
+  folded content, and by a `beforeprint` handler where it runs, which closes again after printing
+  whatever it opened.
 
 ## Verification
 

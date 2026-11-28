@@ -10,7 +10,8 @@ const foldsIn = (root: HTMLElement | null) =>
  * on their own without JavaScript; this is the convenience on top, so it is
  * marked `data-needs-js` and the stylesheet withholds it until the pre-paint
  * script has run. It also does the two things a native `<details>` cannot do
- * for itself: open the record a link points at, and open everything for print.
+ * for itself: open the record a link points at, and open everything for print
+ * (and close it again after).
  */
 export function FoldAll({ within, className }: { within: string; className?: string }) {
   const [allOpen, setAllOpen] = useState(false);
@@ -30,25 +31,36 @@ export function FoldAll({ within, className }: { within: string; className?: str
     const openTarget = () => {
       const id = window.location.hash.slice(1);
       const target = id ? document.getElementById(id) : null;
-      if (!target || !root.contains(target)) return;
+      // A record inside the section, never the section: a node contains
+      // itself, and the navigation bar's own link would open every record.
+      if (!target || target === root || !root.contains(target)) return;
       foldsIn(target).forEach((d) => (d.open = true));
       sync();
     };
-    const openAll = () => {
-      foldsIn(root).forEach((d) => (d.open = true));
-      sync();
+    // Print opens what is closed and remembers it, so the page comes back as
+    // the reader had it; the label follows through `toggle`.
+    let openedForPrint: HTMLDetailsElement[] = [];
+    const openForPrint = () => {
+      openedForPrint = foldsIn(root).filter((d) => !d.open);
+      openedForPrint.forEach((d) => (d.open = true));
+    };
+    const closeAfterPrint = () => {
+      openedForPrint.forEach((d) => (d.open = false));
+      openedForPrint = [];
     };
 
     // `toggle` does not bubble, so it is caught on the way down.
     root.addEventListener('toggle', sync, true);
     window.addEventListener('hashchange', openTarget);
-    window.addEventListener('beforeprint', openAll);
+    window.addEventListener('beforeprint', openForPrint);
+    window.addEventListener('afterprint', closeAfterPrint);
     openTarget();
     sync();
     return () => {
       root.removeEventListener('toggle', sync, true);
       window.removeEventListener('hashchange', openTarget);
-      window.removeEventListener('beforeprint', openAll);
+      window.removeEventListener('beforeprint', openForPrint);
+      window.removeEventListener('afterprint', closeAfterPrint);
     };
   }, [within]);
 
