@@ -2,6 +2,10 @@
 
 **Status:** Accepted
 **Date:** 2026-08-05 (backfilled) **Shipped in:** #25
+**Amended:** 2026-11-28 — a second disclosure mechanism exists beside `ShowMore`. A _record_ — a turning
+point, a role — folds with a native `<details>` (SPEC-0011 R16), because a record must open without
+JavaScript and `hidden` cannot. The decision below is unchanged where it applies, and its principle
+holds for both: disclosed content stays in the served HTML and is never conditionally rendered.
 
 ## Context
 

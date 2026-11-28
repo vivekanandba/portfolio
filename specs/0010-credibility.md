@@ -36,12 +36,19 @@ change to it has to keep.
 - **R10.** Testimonials open with one voice, large: the featured recommendation marked `pullQuote`
   — exactly one, test-enforced — set in the display face on a full-bleed band above the cards, its
   excerpt verbatim as R1 requires, attribution beneath. Which voice is content, not component.
+- **R11.** The Career Timeline is read summary first. Each role's title, company, period and track
+  are always on the page; its highlights fold behind one disclosure per role (SPEC-0011 R16),
+  closed when the page loads, with one control that opens or closes all of them. The highlights are
+  the same words in the served HTML. Folded, the section is held to a height budget on a phone by an
+  end-to-end test.
 
 ## Verification
 
 ```sh
 npx vitest run tests/unit/recommendations-page.test.tsx tests/unit/interaction-layer.test.tsx
 npx vitest run tests/contract/legend-era.test.ts       # R4, R5
+npx vitest run tests/unit/fold.test.tsx                # R11
+npx playwright test tests/e2e/fold.spec.ts             # R11 in a browser
 npx vitest run tests/contract/content.test.ts          # R1, R2, R6
 npm run test:visual                                    # the footer baseline
 ```
@@ -61,6 +68,7 @@ fix.
 
 | Date       | Change                                                                                                                                                                                                                                      | Covered by                                                                                   |
 | ---------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
+| 2026-11-28 | R11 added (plan four, move 1): the Career Timeline folds its highlights, the same way and in the same change as Turning Points (SPEC-0006 R13). It was 2,276px on a 412px phone on 2026-11-27. Vivek agreed to the fold on 2026-11-28.      | `tests/unit/fold.test.tsx`, `tests/e2e/fold.spec.ts`                                         |
 | 2026-10-10 | R10 added (plan three, PR-C): one pulled quote on a full-bleed band above the testimonial cards, chosen by a `pullQuote` flag in content. The audit behind plan three: four identical bordered cards and twelve sections from one template. | `tests/unit/sections.test.tsx`, `tests/contract/content.test.ts`, `tests/e2e/visual.spec.ts` |
 | 2026-10-02 | R9 added (plan two, PR-4): the footer closes on a line in my voice, from `profile.closingLine`.                                                                                                                                             | `tests/unit/sections.test.tsx`                                                               |
 | 2026-09-20 | Written with R1–R8, gathering ADR-0001 and the Legend-era date decision of 2026-09-13.                                                                                                                                                      | `tests/contract/legend-era.test.ts`                                                          |

@@ -2,6 +2,13 @@
 
 **Status:** Accepted
 **Date:** 2026-09-12 **Shipped in:** #41
+**Amended:** 2026-11-28 — Consequences below says the section "earns above-the-fold placement and is
+not disclosed away". The placement stands; the second half is narrowed. Measured on the live site on
+2026-11-27, the six records were 4,171px on a 412px phone, a fifth of the page. On 2026-10-10 Vivek
+decided the section stays as it is; on 2026-11-28, shown a folded mock-up, he agreed it may fold. Each
+record now leads with what it **proved** — its year, title, proved line and project links are always on
+the page — and Saw, Bet and Cost open on a tap (SPEC-0006 R13). No record and no field is removed, the
+words are unchanged, and the cost is still one tap from the claim it qualifies.
 
 ## Context
 

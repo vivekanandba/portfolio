@@ -146,6 +146,18 @@
     clip-path: inset(0 -2px 0 0);
   }
 
+  /* Folded records (SPEC-0011 R16). The control is a pill, so the browser's
+     own disclosure triangle goes; WebKit draws it as a pseudo-element that
+     `list-style` does not reach. */
+  details.fold > summary::-webkit-details-marker {
+    display: none;
+  }
+  /* "Open all" is a script's convenience. Until the pre-paint script has run
+     there is nothing behind it, so it is not offered. */
+  html:not(.js) [data-needs-js] {
+    display: none;
+  }
+
   /* Micro-interactions (SPEC-0011 R11–R12): feedback on an action, under
      300ms. Movement here is keyframed, so the reduced-motion block below can
      switch each class off by name. */
@@ -285,8 +297,17 @@
     /* Interface, not content: navigation, the tour bar and the palette have no
        meaning on paper. */
     header[class*='sticky'],
-    [data-print-hide] {
+    [data-print-hide],
+    details.fold > summary {
       display: none !important;
+    }
+
+    /* Paper cannot be tapped, so every folded record prints open (SPEC-0011
+       R16). `beforeprint` opens them where a script runs; this is the same
+       promise where none does. */
+    details.fold::details-content {
+      content-visibility: visible;
+      display: block;
     }
 
     /* Ink and paper, whatever the reader's theme was on screen. */
