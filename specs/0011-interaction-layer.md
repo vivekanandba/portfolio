@@ -18,7 +18,8 @@ all.
 ## Rules
 
 - **R1.** Without JavaScript, every piece of content is in the DOM and visible. Reveal hides nothing
-  that JavaScript is not running to show.
+  that JavaScript is not running to show. A record folded by R16 is the one thing closed without
+  JavaScript, and it is a native control: it opens on a tap with no script at all.
 - **R2.** The palette opens on ⌘K or ctrl-K, filters as you type, moves with the arrow keys without
   wrapping, follows on Enter, and closes on Escape or a backdrop click.
 - **R3.** The palette traps focus while open and returns it on close, because `aria-modal` is a
@@ -61,6 +62,14 @@ all.
 - **R15.** The palette's empty state acts instead of advising: the tags it suggests are buttons that
   run the search, and each is asserted to match something in the index, so the suggestion can never
   rot into a dead end.
+- **R16.** A record folds with a native `<details>`, never a scripted one, so the control works
+  before hydration and without JavaScript. The summary is a labelled control at least 44 pixels
+  tall whose accessible name carries the record's own title; the heading stays outside it, where a
+  screen reader's heading list still finds it. Opening and closing are instant and nothing moves.
+  A section's "Open all" control needs JavaScript and is not displayed without it; it reads "Close
+  all" exactly when every record in the section is open, whichever way they came to be. Following a
+  link to a record's id opens that record. Printing opens every record: by a stylesheet rule where
+  the browser can style the folded content, and by a `beforeprint` handler where it runs.
 
 ## Verification
 
@@ -69,6 +78,8 @@ npx vitest run tests/unit/interaction-layer.test.tsx tests/unit/tours.test.tsx
 npx vitest run tests/unit/reveal.test.tsx tests/unit/nav.test.tsx
 npx vitest run tests/unit/show-more.test.tsx tests/unit/metric-badge.test.tsx tests/unit/palette-lib.test.ts   # R12–R14
 npx vitest run tests/contract/motion.test.ts     # R11, every movement guarded and quick
+npx vitest run tests/unit/fold.test.tsx          # R16, the fold and its open-all control
+npx playwright test tests/e2e/fold.spec.ts        # R16 in a browser: no JavaScript, a link to a record, print
 npx playwright test tests/e2e/smoke.spec.ts tests/e2e/archive.spec.ts
 npx playwright test tests/e2e/hydration.spec.ts --project=desktop   # R9, and the arc's wipe (SPEC-0006 R10)
 npm run test:visual    # the palette baseline, both themes
@@ -91,6 +102,7 @@ stub every test takes the fallback and the path that runs in a real browser is n
 
 | Date       | Change                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        | Covered by                                                                                                                                                                                                 |
 | ---------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 2026-11-28 | R16 added and R1 qualified (plan four, move 1): records fold with native `<details>`. `ShowMore` (R12, ADR-0004) hides with `hidden` and needs JavaScript to open, which is right for "the rest of a list" and wrong for a record a reader came to read; a native control opens with no script, and in-page search opens it in browsers that support that. ADR-0004 carries a dated note that a second mechanism exists.                                                                                                                                      | `tests/unit/fold.test.tsx`, `tests/e2e/fold.spec.ts`                                                                                                                                                       |
 | 2026-10-02 | R15 added (plan two, PR-4): the palette's two suggested tags are buttons that search, each test-asserted to match.                                                                                                                                                                                                                                                                                                                                                                                                                                            | `tests/unit/interaction-layer.test.tsx`                                                                                                                                                                    |
 | 2026-10-02 | R10–R14 added (plan two, PR-3): the palette gets a visible way in and a prepared-query event; motion rules with a test behind them; `ShowMore` grows open; skill pills become buttons that open the palette; metrics count up when they can be parsed with certainty. Palette input gains a visible focus ring, results a highlight transition, the theme toggle an icon entrance; Writing, Notes and the writing index become whole-card links with the hover the project cards had; Recommendations and archive media get the same hover. Tests first, red. | `tests/contract/motion.test.ts`, `tests/unit/show-more.test.tsx`, `tests/unit/metric-badge.test.tsx`, `tests/unit/palette-lib.test.ts`, `tests/unit/nav.test.tsx`, `tests/unit/interaction-layer.test.tsx` |
 | 2026-10-02 | R9 added after the arc's SVG `<title>` rendered empty on the server — React drops a title with more than one child — and full on the client. The mismatch made React re-render the document and strip `html.js` and `data-theme` on the local build, which is how it was found; the live site, without the arc, hydrated cleanly. The stamps are now asserted after hydration on three routes, and the title is asserted in server-rendered markup, where it failed.                                                                                          | `tests/e2e/hydration.spec.ts`, `tests/unit/arc-component.test.tsx`                                                                                                                                         |

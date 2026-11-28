@@ -1,3 +1,5 @@
+import { Fold } from './Fold';
+import { FoldAll } from './FoldAll';
 import { Section } from './Section';
 import { roles } from '@/content';
 import { domainColor } from '@/lib/domain';
@@ -5,6 +7,7 @@ import { domainColor } from '@/lib/domain';
 export function Timeline() {
   return (
     <Section id="journey" eyebrow="Career" title="The journey">
+      <FoldAll within="journey" className="-mt-2 mb-8" />
       <ol className="border-hairline relative border-l">
         {roles.map((role, i) => {
           const domain = domainColor(role.domain);
@@ -42,14 +45,18 @@ export function Timeline() {
                   ? role.aside
                   : `${role.track}${role.location ? ` · ${role.location}` : ''}`}
               </p>
+              {/* Who, where and when stay; what was done there opens on a tap
+                  (SPEC-0010 R11). */}
               {role.highlights.length > 0 && (
-                <ul className="mt-2 space-y-1">
-                  {role.highlights.map((h) => (
-                    <li key={h} className="text-muted text-sm leading-relaxed">
-                      {h}
-                    </li>
-                  ))}
-                </ul>
+                <Fold label="Highlights" name={role.company}>
+                  <ul className="space-y-1">
+                    {role.highlights.map((h) => (
+                      <li key={h} className="text-muted text-sm leading-relaxed">
+                        {h}
+                      </li>
+                    ))}
+                  </ul>
+                </Fold>
               )}
             </li>
           );

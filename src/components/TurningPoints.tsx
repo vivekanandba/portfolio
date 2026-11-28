@@ -1,4 +1,6 @@
 import Link from 'next/link';
+import { Fold } from './Fold';
+import { FoldAll } from './FoldAll';
 import { Section } from './Section';
 import { projects, turningPoints } from '@/content';
 import { domainColor } from '@/lib/domain';
@@ -24,6 +26,10 @@ function Field({ label, children }: { label: string; children: string }) {
  * vertical journey — Saw / Bet / Cost / Proved — in its era's domain colour,
  * anchored to that era's projects so every "proved" claim is one click from
  * its evidence.
+ *
+ * Read summary first (SPEC-0006 R13): what a decision proved leads, and what I
+ * saw, bet and paid for it opens on a tap. The cost is folded, never dropped —
+ * it is still the next thing a reader reaches from the claim.
  */
 export function TurningPoints() {
   return (
@@ -38,9 +44,12 @@ export function TurningPoints() {
         this site. Each one is written the way engineers record decisions — what I saw, what I bet,
         what it cost, and what it proved.
       </p>
+      <FoldAll within="turning-points" className="-mt-6 mb-8" />
       <ol className="border-hairline relative space-y-12 border-l pl-8">
         {turningPoints.map((tp) => (
-          <li key={`${tp.year}-${tp.title}`} className="relative">
+          // The id is what a link opens (R13); the page's scroll padding keeps it
+          // clear of the sticky bar.
+          <li key={`${tp.year}-${tp.title}`} id={`tp-${tp.year}`} className="relative">
             {/* Node marker on the journey line, in the era's colour. */}
             <span
               aria-hidden="true"
@@ -48,12 +57,16 @@ export function TurningPoints() {
             />
             <p className="tabular text-accent text-sm font-medium">{tp.year}</p>
             <h3 className="font-display text-ink mt-1 text-xl font-semibold">{tp.title}</h3>
-            <dl className="max-w-content mt-4 space-y-2.5">
-              <Field label="Saw">{tp.saw}</Field>
-              <Field label="Bet">{tp.bet}</Field>
-              <Field label="Cost">{tp.cost}</Field>
+            <dl className="max-w-content mt-4">
               <Field label="Proved">{tp.proved}</Field>
             </dl>
+            <Fold label="Saw, bet and cost" name={tp.title}>
+              <dl className="max-w-content space-y-2.5">
+                <Field label="Saw">{tp.saw}</Field>
+                <Field label="Bet">{tp.bet}</Field>
+                <Field label="Cost">{tp.cost}</Field>
+              </dl>
+            </Fold>
             <p className="mt-4 flex flex-wrap gap-x-5 gap-y-1">
               {tp.projects.map((id) => {
                 const project = projectById.get(id);

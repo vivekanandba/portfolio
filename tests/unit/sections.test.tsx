@@ -272,8 +272,12 @@ describe('Timeline', () => {
   it('renders each role with its company', () => {
     render(<Timeline />);
     for (const role of roles) {
+      // As a heading: the fold's control also carries the company, for screen
+      // readers (SPEC-0011 R16), and that is not what this asserts.
       expect(
-        screen.getByText(new RegExp(role.company.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'))),
+        screen.getByRole('heading', {
+          name: new RegExp(role.company.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')),
+        }),
       ).toBeInTheDocument();
     }
   });
